@@ -1,9 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 
+// Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://www.duncansdogco.com";
-const assetVersion = "2026-05-22-13";
+const assetVersion = "2026-05-22-14";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
