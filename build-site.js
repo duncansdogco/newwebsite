@@ -548,7 +548,18 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   <link rel="canonical" href="${url}">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
-  <meta property="og:image" content="${SITE}/assets/woodland.jpg">
+  <meta property="og:image" content="${SITE}/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${url}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(description)}">
+  <meta name="twitter:image" content="${SITE}/assets/og-image.png">
+  <meta name="google-site-verification" content="c1f17246544ca229">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <title>${esc(title)}</title>
   <link rel="stylesheet" href="/styles.css?v=${assetVersion}">
   ${[localBusinessJson(), ...structured].map(jsonLd).join("\n  ")}
