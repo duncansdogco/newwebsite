@@ -3750,6 +3750,57 @@ blockquote {
   padding: 20px clamp(18px, 5vw, 64px);
 }
 
+.genera-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFA601;
+  border: 1.5px solid rgba(0,62,69,0.25);
+  border-radius: 12px;
+  padding: 10px 20px 10px 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s;
+  box-shadow: 0 2px 12px rgba(255,166,1,0.35);
+  margin-top: 20px;
+  align-self: flex-start;
+}
+.genera-badge:hover {
+  box-shadow: 0 6px 24px rgba(255,166,1,0.55), 0 0 0 3px rgba(255,166,1,0.25);
+  transform: translateY(-1px);
+}
+.genera-badge .genera-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+.genera-badge .genera-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.genera-badge .genera-powered-by {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0,42,48,0.65);
+  margin-bottom: 3px;
+}
+.genera-badge .genera-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #003E45;
+}
+.genera-badge .genera-tagline {
+  font-size: 9px;
+  font-weight: 400;
+  color: rgba(0,52,60,0.6);
+  letter-spacing: 0.02em;
+  margin-top: 3px;
+}
+
 .footer-bottom nav {
   display: flex;
   gap: 18px;
