@@ -1,0 +1,164 @@
+{
+  "site": "https://www.duncansdogco.com",
+  "keywords": [
+    "dog daycare Cobham",
+    "doggy daycare Cobham",
+    "dog daycare Surrey",
+    "woodland dog daycare",
+    "dog daycare with collection",
+    "dog daycare SW London",
+    "puppy daycare Surrey",
+    "puppy school Cobham",
+    "dog boarding Cobham",
+    "dog sleepovers Surrey"
+  ],
+  "areas": [
+    {
+      "slug": "cobham",
+      "name": "Cobham",
+      "route": "local Cobham drop-off or short local collection routes near the A3 and M25"
+    },
+    {
+      "slug": "wimbledon",
+      "name": "Wimbledon",
+      "route": "SW London collection routes via Raynes Park, New Malden and the A3"
+    },
+    {
+      "slug": "clapham",
+      "name": "Clapham",
+      "route": "south west London collection routes heading out through Wandsworth and Putney"
+    },
+    {
+      "slug": "wandsworth",
+      "name": "Wandsworth",
+      "route": "collection routes linking Wandsworth, Putney and the A3 corridor"
+    },
+    {
+      "slug": "putney",
+      "name": "Putney",
+      "route": "collection routes from Putney toward the A3 and Cobham"
+    },
+    {
+      "slug": "esher",
+      "name": "Esher",
+      "route": "short Surrey collection routes through Claygate, Hinchley Wood and Cobham"
+    },
+    {
+      "slug": "balham",
+      "name": "Balham",
+      "route": "SW London collection routes via Clapham, Tooting and the A3"
+    },
+    {
+      "slug": "earlsfield",
+      "name": "Earlsfield",
+      "route": "collection routes through Southfields, Wandsworth and Wimbledon"
+    },
+    {
+      "slug": "southfields",
+      "name": "Southfields",
+      "route": "collection routes via Wimbledon, Putney and the A3"
+    },
+    {
+      "slug": "raynes-park",
+      "name": "Raynes Park",
+      "route": "collection routes via New Malden, Motspur Park and the A3"
+    },
+    {
+      "slug": "new-malden",
+      "name": "New Malden",
+      "route": "fast access to Cobham via the A3 corridor"
+    },
+    {
+      "slug": "morden",
+      "name": "Morden",
+      "route": "collection routes via Raynes Park, New Malden and the A3"
+    },
+    {
+      "slug": "tooting",
+      "name": "Tooting",
+      "route": "collection routes through Balham, Earlsfield and Wandsworth"
+    },
+    {
+      "slug": "weybridge",
+      "name": "Weybridge",
+      "route": "Surrey collection routes close to Cobham, Walton and Byfleet"
+    },
+    {
+      "slug": "walton-on-thames",
+      "name": "Walton-on-Thames",
+      "route": "Surrey collection routes through Hersham, Weybridge and Cobham"
+    },
+    {
+      "slug": "hersham",
+      "name": "Hersham",
+      "route": "short collection routes toward Esher, Walton and Cobham"
+    },
+    {
+      "slug": "claygate",
+      "name": "Claygate",
+      "route": "short local collection routes via Esher and Cobham"
+    },
+    {
+      "slug": "oxshott",
+      "name": "Oxshott",
+      "route": "short Surrey collection routes close to the Cobham woodland site"
+    },
+    {
+      "slug": "byfleet",
+      "name": "Byfleet",
+      "route": "Surrey collection routes via West Byfleet, Weybridge and Cobham"
+    },
+    {
+      "slug": "west-byfleet",
+      "name": "West Byfleet",
+      "route": "collection routes via Byfleet, Weybridge and Cobham"
+    },
+    {
+      "slug": "effingham",
+      "name": "Effingham",
+      "route": "Surrey collection routes toward Cobham via the local village network"
+    },
+    {
+      "slug": "horsley",
+      "name": "Horsley",
+      "route": "collection routes along the A246/A3 side of Surrey"
+    },
+    {
+      "slug": "st-georges-hill",
+      "name": "St George's Hill",
+      "route": "premium local collection routes near Weybridge and Cobham"
+    },
+    {
+      "slug": "copse-hill",
+      "name": "Copse Hill",
+      "route": "SW London collection routes close to Wimbledon and Raynes Park"
+    },
+    {
+      "slug": "motspur-park",
+      "name": "Motspur Park",
+      "route": "collection routes via New Malden, Raynes Park and the A3"
+    }
+  ],
+  "services": [
+    {
+      "slug": "rescue-dog-daycare",
+      "title": "Rescue Dog Daycare in Cobham",
+      "keywords": "rescue dog daycare Cobham, rescue dog socialisation Surrey, dog daycare for rescue dogs"
+    },
+    {
+      "slug": "dog-daycare-cobham",
+      "title": "Woodland Dog Daycare in Cobham, Surrey",
+      "keywords": "dog daycare Cobham, doggy daycare Cobham, dog daycare Surrey, woodland dog daycare, dog daycare with collection"
+    },
+    {
+      "slug": "puppy-daycare-cobham",
+      "title": "Puppy Daycare and Puppy School in Cobham",
+      "keywords": "puppy daycare Surrey, puppy school Cobham, puppy daycare Cobham"
+    },
+    {
+      "slug": "dog-boarding-cobham",
+      "title": "Dog Boarding and Sleepovers in Cobham",
+      "keywords": "dog boarding Cobham, dog sleepovers Surrey, dog boarding Surrey, not kennels"
+    }
+  ]
+}
