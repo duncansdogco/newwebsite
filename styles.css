@@ -114,6 +114,11 @@ a {
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
 }
 
+.page-pricing .site-header {
+  background: rgba(20, 35, 19, 0.96);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
+}
+
 .brand {
   display: inline-flex;
   align-items: center;
