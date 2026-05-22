@@ -3,7 +3,7 @@ const path = require("path");
 
 const ROOT = __dirname;
 const SITE = "https://www.duncansdogco.com";
-const assetVersion = "2026-05-22-9";
+const assetVersion = "2026-05-22-10";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1343,6 +1343,7 @@ function faqAndContact() {
         <h2>Send us an enquiry</h2>
         <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" data-netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="enquiry">
+          <input type="hidden" name="subject" value="New Duncan's Dog Co. website enquiry">
           <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
             <div class="form-group"><label for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
