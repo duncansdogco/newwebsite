@@ -2502,11 +2502,11 @@ h1 {
 
 .catchment-label {
   display: block;
-  margin-bottom: 6px;
-  color: rgba(185, 211, 167, 0.52);
-  font-size: 11px;
+  margin-bottom: 12px;
+  color: rgba(185, 211, 167, 0.86);
+  font-size: 12px;
   font-weight: 900;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -3870,7 +3870,27 @@ blockquote {
 
   .catchment-hub {
     order: -1;
-    min-height: 300px;
+    min-height: auto;
+    gap: 34px;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+  }
+
+  .hub-ring {
+    width: min(250px, 58vw);
+  }
+
+  .hub-ring::before {
+    inset: -16px;
+  }
+
+  .hub-ring::after {
+    inset: -32px;
+  }
+
+  .route-note {
+    max-width: min(360px, 82vw);
+    margin-top: 4px;
   }
 
   .footer-bottom {
@@ -3946,8 +3966,65 @@ blockquote {
   }
 
   .catchment-section {
-    padding-top: 72px;
+    padding-top: 92px;
     padding-bottom: 72px;
+  }
+
+  .catchment-header {
+    margin-bottom: 44px;
+  }
+
+  .catchment-header h2 {
+    font-size: clamp(36px, 11vw, 52px);
+  }
+
+  .catchment-map {
+    gap: 38px;
+  }
+
+  .catchment-list {
+    gap: 10px;
+  }
+
+  .catchment-label {
+    margin-bottom: 14px;
+    color: var(--leaf);
+    font-size: 13px;
+    letter-spacing: 0.2em;
+  }
+
+  .catchment-list a {
+    min-height: 48px;
+    font-size: 22px;
+  }
+
+  .hub-ring {
+    width: min(235px, 60vw);
+    box-shadow: 0 0 0 12px rgba(185, 211, 167, 0.04), 0 22px 58px rgba(0, 0, 0, 0.28);
+  }
+
+  .hub-ring strong {
+    font-size: 34px;
+  }
+
+  .hub-ring span {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+  }
+
+  .hub-ring::before {
+    inset: -12px;
+  }
+
+  .hub-ring::after {
+    inset: -24px;
+  }
+
+  .route-note {
+    max-width: min(330px, 82vw);
+    padding: 12px 18px;
+    font-size: 14px;
+    line-height: 1.45;
   }
 
   .catchment-footer .button {

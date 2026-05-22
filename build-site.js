@@ -3,7 +3,7 @@ const path = require("path");
 
 const ROOT = __dirname;
 const SITE = "https://www.duncansdogco.com";
-const assetVersion = "2026-05-22-11";
+const assetVersion = "2026-05-22-12";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -732,12 +732,12 @@ function catchmentSection() {
   return `<section class="catchment-section" aria-labelledby="catchment-title">
     <div class="catchment-header reveal">
       <p class="section-kicker">Collection Catchment</p>
-      <h2 id="catchment-title">Dog daycare collection across Surrey and SW London.</h2>
+      <h2 id="catchment-title">Dog daycare collection across Surrey and South West London.</h2>
       <p>Our Cobham woodland is the calm centre point. Collection routes are planned carefully around dogs, journey times and regular weekly attendance.</p>
     </div>
     <div class="catchment-map reveal">
       <div class="catchment-list">
-        <span class="catchment-label">SW London routes</span>
+        <span class="catchment-label">South West London collection</span>
         ${links(swLondon)}
       </div>
       <div class="catchment-hub" aria-label="Cobham woodland hub">
@@ -745,7 +745,7 @@ function catchmentSection() {
         <div class="route-note">A3 · M25 · Door-to-door collection · Drop-off available</div>
       </div>
       <div class="catchment-list catchment-list-right">
-        <span class="catchment-label">Surrey routes</span>
+        <span class="catchment-label">Surrey collection</span>
         ${links(surrey)}
       </div>
     </div>
