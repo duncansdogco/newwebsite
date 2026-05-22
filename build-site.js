@@ -1343,12 +1343,9 @@ function faqAndContact() {
     <div class="contact-inner">
       <div class="form-wrap reveal">
         <h2>Send us an enquiry</h2>
-        <form name="enquiry" method="POST" action="https://formsubmit.co/info@duncansdogco.com">
-          <input type="hidden" name="_next" value="https://duncansdogco.com/thank-you/">
-          <input type="hidden" name="_subject" value="New Duncan's Dog Co. website enquiry">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="text" name="_honey" style="display:none">
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="enquiry">
+          <input type="hidden" name="subject" value="New Duncan's Dog Co. website enquiry">
           <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
             <div class="form-group"><label for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
