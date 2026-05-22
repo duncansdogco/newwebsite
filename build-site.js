@@ -139,16 +139,16 @@ const servicePages = [
 ];
 
 const blogPosts = [
-  ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland Dog Daycare vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1"],
+  ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1"],
   ["dog-daycare-with-collection-wimbledon", "Dog Daycare with Collection in Wimbledon", "Everything Wimbledon dog owners should know about safe daily collection, journey times and arriving at Duncan's Dog Co. woodland daycare in Cobham.", "blogFresh2"],
-  ["dog-daycare-collection-clapham-putney-wandsworth", "Dog Daycare Collection in Clapham, Putney and Wandsworth", "How daily collection works for dogs in Clapham, Putney and Wandsworth travelling to Duncan's Dog Co. woodland daycare in Cobham, Surrey.", "blogFresh3"],
+  ["dog-daycare-collection-clapham-putney-wandsworth", "Dog Daycare: Clapham, Putney & Wandsworth", "How daily collection works for dogs in Clapham, Putney and Wandsworth travelling to Duncan's Dog Co. woodland daycare in Cobham, Surrey.", "blogFresh3"],
   ["dog-boarding-vs-kennels", "Dog Boarding vs Kennels", "A practical comparison of dog boarding, kennels, home care and sleepovers — helping owners in Cobham and Surrey choose the right overnight care for their dog.", "blogFresh4"],
-  ["what-to-look-for-in-licensed-dog-daycare", "What to Look for in a Licensed Dog Daycare", "What every owner should check before choosing a dog daycare: licensing, staff ratios, trial days, safety protocols and honest care standards in Cobham and Surrey.", "blogFresh5"],
+  ["what-to-look-for-in-licensed-dog-daycare", "Licensed Dog Daycare: What to Look For", "What every owner should check before choosing a dog daycare: licensing, staff ratios, trial days, safety protocols and honest care standards in Cobham and Surrey.", "blogFresh5"],
   ["puppy-daycare-vs-puppy-classes", "Puppy Daycare vs Puppy Classes", "Puppy daycare and puppy classes serve different purposes. Find out how each supports socialisation, training and development — and what to consider in Cobham and Surrey.", "blogFresh6"],
   ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham — what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7"],
-  ["why-collection-is-part-of-care", "Why Collection Should Be Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare — not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
-  ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: A Gentle Introduction Guide", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9"],
-  ["woodland-daycare-when-it-rains", "What Happens at Woodland Daycare When It Rains?", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"]
+  ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare — not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
+  ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: Gentle Introductions", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9"],
+  ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"]
 ];
 
 const blogArticleContent = {
@@ -1233,7 +1233,7 @@ function areaPages() {
     <section class="contact-section"><div><p class="section-kicker">Trial Day</p><h2>Book a trial day from ${esc(name)}.</h2><p>Tell us about your dog and we will check collection, drop-off and suitability.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Book a trial day from ${esc(name)}</a></div></section>`;
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
-      title: `${h1} | Duncan's Dog Co.`,
+      title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
       description: `Dog daycare collection in ${name} for woodland dog daycare in Cobham. Route context, drop-off options, local FAQs and trial day enquiry.`,
       keywords: `dog daycare ${name}, dog daycare collection ${name}, dog daycare with collection, dog daycare Surrey, dog daycare SW London`,
       h1,
@@ -1417,8 +1417,147 @@ function faqAndContact() {
   writePage("thank-you", layout({ route: "thank-you", noindex: true, title: "Thank You | Duncan's Dog Co.", description: "Thank you for enquiring with Duncan's Dog Co.", keywords: "Duncan's Dog Co enquiry thank you", h1: "Thank you for your enquiry", intro: "We've received your message and will be in touch soon.", body: `<section class="section contact-section"><div><p class="section-kicker">Enquiry received</p><h2>We'll be in touch within 24 hours.</h2><p>Thank you for telling us about your dog. We'll review your message and come back to you about availability, collection options and the right next step.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/">Back to homepage</a></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Thank You", url: "/thank-you/" }])] }));
   writePage("startup-support", layout({ route: "startup-support", title: "Dog Daycare Startup Support | Duncan's Dog Co.", description: "Startup support for dog daycare founders from Duncan's Dog Co., a family-run woodland daycare in Cobham established in 2011.", keywords: "dog daycare startup support, start a dog daycare, dog business support UK", h1: "Dog Daycare Startup Support", intro: "Practical support for people building thoughtful, licensed dog care businesses.", heroData: { eyebrow: "Dog Daycare Startup Support", displayTitle: "15 years of knowledge.<br><span>Yours from day one.</span>", text: "We share the templates, systems and experience we built from scratch — so you can start faster and avoid the mistakes we made.", video: "https://video.wixstatic.com/video/4d2311_60a7a5c2d3264b3fb778671f4e3e86ec/720p/mp4/file.mp4", ctaHref: "mailto:becks@duncansdogco.com?subject=Enquiry%20about%20help%20with%20my%20licensing", ctaText: "Get in Touch", stats: [["15+", "Years<br>Running"], ["5★", "Licensed<br>Daycare"], ["Est.", "2011<br>Cobham"]] }, body: startupSupportBody(), structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Startup Support", url: "/startup-support/" }])] }));
   writePage("careers", layout({ route: "careers", title: "Dog Daycare Jobs in Cobham | Duncan's Dog Co.", description: "Join the team at Duncan's Dog Co. — a family-run woodland dog daycare in Cobham, Surrey. Dog handler and driver roles, outdoor work and a team that loves what it does.", keywords: "dog daycare jobs Cobham, dog daycare careers Surrey, dog handler jobs Surrey", h1: "Careers at Duncan's Dog Co.", intro: "Join a family-run woodland daycare in Cobham, Surrey.", heroData: { eyebrow: "Careers · Cobham, Surrey", displayTitle: "Come and join<br><span>our pack.</span>", text: "We're a family-run woodland daycare that's been running since 2011. If you love dogs, early mornings, and doing work that actually matters — we'd love to hear from you.", video: videoHero, ctaHref: "#apply", ctaText: "Apply Now", stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["5★", "Elmbridge<br>Rated"]] }, body: `<section class="section careers-reasons-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Why join us</p><h2>Six good reasons to join the team.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>It is outdoor, practical, dog-focused work with a small team and a setting that feels nothing like a corporate workplace.</p></div>${richFeatureGrid([["Spend your days with dogs", "Every day you are surrounded by cared-for dogs in a private woodland setting."], ["No two days are the same", "Collections, daycare, sleepovers and different dogs make the rhythm varied."], ["Learn as you go", "We teach safe handling, welfare routines and dog behaviour basics."], ["Be part of a tight team", "Every person counts, everyone knows the dogs and the work is personal."], ["Work in our woodland", "Fresh air, open space and over 40 acres of private Cobham woodland."], ["Five-star rated", "Work somewhere local families have trusted for over a decade."]])}</section><section class="section role-section" id="apply"><div class="section-heading-row reveal"><div><p class="section-kicker">Current opening</p><h2>Full Time Driver & Daycare Assistant.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>We are looking for a reliable, dog-loving person to collect and drop off dogs across our catchment area and support the daycare team throughout the day.</p></div><div class="rich-feature-grid icon-feature-grid career-role-grid"><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("collection")}</span><h3>What you'll be doing</h3><p>Collecting dogs from client homes, dropping them home safely, supervising dogs in the woodland, feeding and monitoring, keeping records and helping maintain site and vehicle standards.</p></article><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("team")}</span><h3>What we're looking for</h3><p>A genuine love for dogs, a full clean UK driving licence, calm animal handling, reliability, good people skills, physical fitness and comfort with early starts.</p></article><article class="rich-feature-card career-apply-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("mail")}</span><h3>Apply now</h3><p>Email us with a bit about yourself, your dog experience and availability.</p><a class="button primary" href="mailto:info@duncansdogco.com?subject=Careers%20application">Apply by email</a></article></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Careers", url: "/careers/" }])] }));
-  writePage("privacy-policy", layout({ route: "privacy-policy", title: "Privacy Policy | Duncan's Dog Co.", description: "Privacy policy for Duncan's Dog Co.", keywords: "privacy policy Duncan's Dog Co", h1: "Privacy Policy", intro: "How Duncan's Dog Co. handles enquiry and customer information.", body: `<section class="section article"><p>This page is ready for the full privacy policy from the current site. Before launch, paste the latest approved policy text here so Netlify has a crawlable legal page.</p><p>For privacy questions, contact <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>.</p></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Privacy Policy", url: "/privacy-policy/" }])] }));
-  writePage("terms-conditions", layout({ route: "terms-conditions", title: "Terms and Conditions | Duncan's Dog Co.", description: "Terms and conditions for Duncan's Dog Co.", keywords: "terms and conditions Duncan's Dog Co", h1: "Terms and Conditions", intro: "Terms for Duncan's Dog Co. services.", body: `<section class="section article"><p>This page is ready for the full terms and conditions from the current site. Before launch, paste the latest approved terms here so Netlify has a crawlable legal page.</p><p>For service questions, contact <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>.</p></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Terms and Conditions", url: "/terms-conditions/" }])] }));
+  writePage("privacy-policy", layout({ route: "privacy-policy", title: "Privacy Policy | Duncan's Dog Co.", description: "Privacy policy for Duncan's Dog Co. — how we collect, use and protect the personal information you share with us.", keywords: "privacy policy Duncan's Dog Co", h1: "Privacy Policy", intro: "How Duncan's Dog Co. collects, uses and protects your personal information.", body: `<section class="section article">
+<p><strong>Last updated: May 2025</strong></p>
+<p>Duncan's Dog Co. is a family-run dog daycare, boarding and collection service based in Cobham, Surrey, operating as a sole trader. We are the data controller for the personal information we collect from you. This policy explains what we collect, why, and what your rights are.</p>
+<p>If you have any questions, email us at <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> or call <a href="tel:07731798899">07731 798 899</a>.</p>
+
+<h2>1. What information we collect</h2>
+<p>We collect personal information when you use our enquiry form, contact us by email or phone, or use our services. This includes:</p>
+<ul>
+<li>Your name, email address and phone number</li>
+<li>Your home address and postcode (for collection route planning)</li>
+<li>Information about your dog — name, breed, age, temperament and health details</li>
+<li>Any other information you choose to share in messages or conversations with us</li>
+</ul>
+<p>We do not collect payment card details through this website. Any payments are handled directly and separately.</p>
+
+<h2>2. How we use your information</h2>
+<p>We use the information you provide to:</p>
+<ul>
+<li>Respond to your enquiry and assess whether our service is a good fit for your dog</li>
+<li>Arrange and manage trial days, daycare bookings, puppy sessions and sleepovers</li>
+<li>Plan and coordinate collection and drop-off routes</li>
+<li>Contact you about your bookings, your dog's welfare and service updates</li>
+<li>Meet our legal obligations, including licensing requirements under the Animal Welfare (Licensing of Activities Involving Animals) (England) Regulations 2018</li>
+</ul>
+
+<h2>3. Legal basis for processing</h2>
+<p>We process your personal data on the following grounds:</p>
+<ul>
+<li><strong>Contract performance</strong> — to provide the daycare and boarding services you have requested</li>
+<li><strong>Legitimate interests</strong> — to respond to enquiries and manage our business operations</li>
+<li><strong>Legal obligation</strong> — to comply with licensing and animal welfare regulations</li>
+</ul>
+
+<h2>4. Who we share your information with</h2>
+<p>We do not sell your personal information. We may share limited information with:</p>
+<ul>
+<li><strong>Netlify</strong> — our website host, which processes enquiry form submissions on our behalf. Netlify is GDPR-compliant and processes data in accordance with their Data Processing Agreement.</li>
+<li><strong>Our team members</strong> — staff involved in your dog's care will have access to the information needed to provide that care safely</li>
+<li><strong>Emergency veterinary services</strong> — in the event of a medical emergency involving your dog, we may share your contact details and your dog's basic information with a vet</li>
+</ul>
+<p>We will not share your information with any other third parties without your explicit consent, except where required by law.</p>
+
+<h2>5. How long we keep your information</h2>
+<p>We keep your information for as long as you are an active client and for a reasonable period afterwards — typically three years — in case of any queries or disputes. Information from enquiries that did not lead to a booking is held for up to 12 months. We will delete your information on request (see your rights below).</p>
+
+<h2>6. Your rights</h2>
+<p>Under UK GDPR, you have the right to:</p>
+<ul>
+<li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
+<li><strong>Rectification</strong> — ask us to correct inaccurate or incomplete information</li>
+<li><strong>Erasure</strong> — ask us to delete your data where there is no lawful reason to continue holding it</li>
+<li><strong>Restriction</strong> — ask us to limit how we use your data while a concern is being resolved</li>
+<li><strong>Objection</strong> — object to our use of your data where we rely on legitimate interests</li>
+<li><strong>Portability</strong> — request your data in a structured, commonly used format</li>
+</ul>
+<p>To exercise any of these rights, email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>. We will respond within 30 days.</p>
+<p>If you are not satisfied with how we handle your data, you have the right to complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p>
+
+<h2>7. Cookies and website data</h2>
+<p>Our website does not use tracking or advertising cookies. We do not use Google Analytics or any third-party analytics tools that collect personally identifiable information through cookies. No cookie consent banner is required as a result.</p>
+<p>If we add any cookies or analytics tools in future, this policy will be updated and a cookie notice will be added to the site.</p>
+
+<h2>8. Security</h2>
+<p>We take reasonable steps to protect your personal information from unauthorised access, loss or misuse. Our website is served over HTTPS and enquiry form data is transmitted securely through Netlify's infrastructure.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>We may update this privacy policy from time to time. Any material changes will be noted at the top of this page with an updated date. Continued use of our services after changes are posted constitutes acceptance of the updated policy.</p>
+
+<h2>10. Contact</h2>
+<p>Duncan's Dog Co.<br>Cobham, Surrey<br>Email: <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><br>Phone: <a href="tel:07731798899">07731 798 899</a></p>
+</section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Privacy Policy", url: "/privacy-policy/" }])] }));
+  writePage("terms-conditions", layout({ route: "terms-conditions", title: "Terms and Conditions | Duncan's Dog Co.", description: "Terms and conditions for Duncan's Dog Co. dog daycare, boarding and collection services in Cobham, Surrey.", keywords: "terms and conditions Duncan's Dog Co, dog daycare terms Cobham", h1: "Terms and Conditions", intro: "Terms covering daycare, boarding, collection and puppy services at Duncan's Dog Co.", body: `<section class="section article">
+<p><strong>Last updated: May 2025</strong></p>
+<p>These terms and conditions apply to all services provided by Duncan's Dog Co., operating from Cobham, Surrey. By booking or using our services, you agree to these terms. Please read them carefully and contact us at <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> if anything is unclear.</p>
+
+<h2>1. Trial day requirement</h2>
+<p>All new dogs must complete a trial day before joining regular daycare or boarding. The trial allows us to assess your dog's temperament, compatibility with the group and suitability for our environment. We reserve the right to decline a dog at any stage — including after a trial — if we do not believe the placement is appropriate for the dog or the existing group. This decision is final and is always made in the interest of welfare.</p>
+
+<h2>2. Health and vaccination requirements</h2>
+<p>For the safety of all dogs in our care, the following requirements apply:</p>
+<ul>
+<li>All dogs must be up to date with core vaccinations (distemper, parvovirus, hepatitis and leptospirosis). Vaccination records must be provided before the first session.</li>
+<li>Dogs must be treated regularly for fleas and ticks with a veterinary-approved product. Evidence of treatment may be requested.</li>
+<li>Bitches in season are not accepted. Please notify us immediately if your dog comes into season while booked.</li>
+<li>Dogs showing signs of illness — including vomiting, diarrhoea, suspected kennel cough or any contagious condition — must not attend. A minimum 14-day exclusion applies following kennel cough diagnosis.</li>
+<li>We reserve the right to exclude any dog we consider unwell or posing a risk to other dogs.</li>
+</ul>
+
+<h2>3. Booking and payment</h2>
+<p>Bookings are confirmed by us in writing (email or message). Regular client spaces are reserved on an ongoing or rolling basis. Ad hoc bookings are subject to availability.</p>
+<p>Payment terms are agreed individually with each client and outlined at the start of the arrangement. Invoices are due for payment within the agreed period. We reserve the right to suspend bookings for accounts with outstanding balances.</p>
+
+<h2>4. Cancellation policy</h2>
+<p>We ask for as much notice as possible when cancelling a booked day. Our current cancellation terms are:</p>
+<ul>
+<li><strong>More than 48 hours notice:</strong> no charge</li>
+<li><strong>Less than 48 hours notice:</strong> the full session fee may be charged at our discretion</li>
+<li><strong>Same-day cancellation (including no-shows):</strong> the full session fee will be charged</li>
+</ul>
+<p>We will not charge for cancellations due to your dog's illness, provided you notify us before the collection window. We may cancel bookings with reasonable notice due to staff absence, adverse conditions or other operational reasons, in which case no charge will be made.</p>
+
+<h2>5. Collection and drop-off service</h2>
+<p>Collection and drop-off is offered across our catchment areas in Surrey and South West London. Routes are planned by us and we cannot guarantee specific collection or drop-off times, though we aim to keep these consistent. You are responsible for ensuring your dog is ready and accessible at the agreed collection point at the expected time.</p>
+<p>If your dog cannot be collected after repeated attempts, we may count the session as a no-show and charge accordingly. Collection routes and areas are reviewed periodically and may change with reasonable notice.</p>
+
+<h2>6. Emergency veterinary care</h2>
+<p>In the event of a medical emergency, we will seek veterinary treatment for your dog without delay. By using our services, you authorise us to consent to emergency veterinary treatment on your behalf if we cannot reach you in time. All veterinary costs in such circumstances are your responsibility. We strongly recommend that you maintain appropriate pet insurance.</p>
+<p>We will always attempt to contact you before any non-emergency treatment and will follow your instructions where practicable.</p>
+
+<h2>7. Liability</h2>
+<p>We take every reasonable precaution to keep dogs in our care safe. However, dogs can be unpredictable, and accidents do happen. Duncan's Dog Co. will not be liable for:</p>
+<ul>
+<li>Minor injuries resulting from normal dog-to-dog interaction</li>
+<li>Loss or damage caused by your dog to property or other animals</li>
+<li>Veterinary costs not directly resulting from our negligence</li>
+</ul>
+<p>Nothing in these terms limits our liability for death or personal injury caused by our negligence, or for any other liability that cannot be excluded by law.</p>
+<p>You are responsible for any damage or injury caused by your dog to our staff, vehicles, property or other dogs in our care. We recommend you hold appropriate third-party liability insurance for your dog (this is often included in pet insurance policies).</p>
+
+<h2>8. Dog welfare and behaviour</h2>
+<p>We operate under an Elmbridge Borough Council animal activity licence and are committed to the five welfare needs of all dogs in our care. Our staff are trained in dog behaviour and handling. We use positive, force-free methods at all times.</p>
+<p>If your dog shows persistent aggression, persistent anxiety or behaviour that poses a risk to the group, we may suspend or end the arrangement with reasonable notice. Our priority will always be the welfare of your dog and the dogs around them.</p>
+
+<h2>9. Your responsibilities</h2>
+<p>As the dog's owner, you confirm that:</p>
+<ul>
+<li>Your dog is in good health, up to date with vaccinations, and free from known contagious conditions</li>
+<li>You have disclosed any known health conditions, behavioural history or relevant background</li>
+<li>You will keep your contact details and emergency contact information up to date</li>
+<li>You hold valid pet insurance or accept full financial responsibility for your dog's veterinary care</li>
+</ul>
+
+<h2>10. Changes to these terms</h2>
+<p>We may update these terms from time to time. We will give reasonable notice of any material changes. Continued use of our services after changes take effect constitutes acceptance of the updated terms.</p>
+
+<h2>11. Governing law</h2>
+<p>These terms are governed by the laws of England and Wales. Any disputes will be subject to the exclusive jurisdiction of the English courts.</p>
+
+<h2>12. Contact</h2>
+<p>Duncan's Dog Co.<br>Cobham, Surrey<br>Email: <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><br>Phone: <a href="tel:07731798899">07731 798 899</a></p>
+</section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Terms and Conditions", url: "/terms-conditions/" }])] }));
 }
 
 function aboutUs() {
