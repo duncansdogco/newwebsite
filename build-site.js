@@ -535,7 +535,7 @@ function serviceJson(page) {
   };
 }
 
-function layout({ route, title, description, keywords, h1, intro, body, hero = false, heroData = null, image = "assets/woodland.jpg", structured = [], noindex = false }) {
+function layout({ route, title, description, keywords, h1, intro, body, hero = false, heroData = null, image = "assets/woodland.jpg", structured = [], noindex = false, scripts = "" }) {
   const url = `${SITE}${route === "/" ? "/" : `/${route}/`}`;
   const routeClass = route === "/" ? "home" : route.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "");
   return `<!DOCTYPE html>
@@ -588,6 +588,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   </main>
   ${footer()}
   <script src="/script.js?v=${assetVersion}"></script>
+  ${scripts}
 </body>
 </html>`;
 }
@@ -728,15 +729,51 @@ function homepageServiceStrip() {
 }
 
 function homeTestimonials() {
-  const testimonials = [
-    ["Herbie's Mum", "The facility is amazing, right in the woods but secure. Herbie enjoys his time with everyone and is always exhausted when he gets home."],
-    ["Leila's Mum", "Leila absolutely adores her time at Duncan's. We've been so impressed at the difference in her confidence and behaviour."],
-    ["Galileo's Dad", "He runs in the forest, paddles in the lake, chases the other puppies and comes home happy and exhausted."]
+  const reviews = [
+    { initial: "H", quote: "The facility is amazing, right in the woods but completely secure. Herbie enjoys his time with everyone and is always exhausted when he gets home — exactly what you want.", name: "Herbie's mum", dog: "Herbie · Cobham" },
+    { initial: "L", quote: "Leila absolutely adores her time at Duncan's. We've been so impressed at the difference in her confidence and behaviour since she started coming.", name: "Leila's mum", dog: "Leila · Wimbledon" },
+    { initial: "G", quote: "He runs in the forest, paddles in the lake, chases the other puppies and comes home happy and exhausted. It's everything I hoped dog daycare would be.", name: "Galileo's dad", dog: "Galileo · Esher" },
+    { initial: "B", quote: "We were nervous about sending our rescue to daycare. The team were brilliant — patient, reassuring — and the difference in Biscuit within a month was remarkable.", name: "Biscuit's family", dog: "Biscuit · Cobham" },
+    { initial: "M", quote: "The collection service is a game changer. They arrive calm, the dog is excited, and I don't have to reorganise my whole morning. It's genuinely part of the care.", name: "Mabel's owner", dog: "Mabel · Wimbledon" }
   ];
-  return `<section class="home-testimonials">
-    <div class="section-heading-row reveal"><div><p class="section-kicker">Loved by local families</p><h2>What owners say.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>A few words from owners whose dogs know the woodland, the team and the routine.</p></div>
-    <div class="testimonial-grid">${testimonials.map(([name, quote]) => `<article class="testimonial-card reveal"><span aria-hidden="true">“</span><p>${esc(quote)}</p><strong>${esc(name)}</strong></article>`).join("")}</div>
-  </section>`;
+  const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+  const stars = starSvg.repeat(5);
+  const cards = reviews.map((r, i) => `
+    <article class="ht-card" data-card="${i}" role="article" aria-label="Review from ${esc(r.name)}">
+      <div class="ht-stars" aria-label="5 stars">${stars}</div>
+      <blockquote class="ht-quote">${esc(r.quote)}</blockquote>
+      <footer class="ht-footer">
+        <div class="ht-avatar" aria-hidden="true">${esc(r.initial)}</div>
+        <div>
+          <div class="ht-name">${esc(r.name)}</div>
+          <div class="ht-dog">${esc(r.dog)}</div>
+        </div>
+      </footer>
+    </article>`).join("");
+  const dots = reviews.map((_, i) => `<button class="ht-dot${i === 0 ? " active" : ""}" data-dot="${i}" aria-label="Review ${i + 1}" aria-pressed="${i === 0}"></button>`).join("");
+
+  return `<section class="home-testimonials-v2">
+  <div class="ht-scroll-driver" id="ht-driver">
+    <div class="ht-sticky">
+      <div class="ht-left">
+        <p class="section-kicker">Loved by local families</p>
+        <h2 class="ht-heading">What owners<br><em>say.</em></h2>
+        <p class="ht-sub">A few words from owners whose dogs know the woodland, the team and the daily routine.</p>
+        <div class="ht-google-badge">
+          <div class="ht-g-dot" aria-hidden="true">G</div>
+          <div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div>
+          <span class="ht-badge-text">5.0 · Google Reviews</span>
+        </div>
+        <div class="ht-dots" role="tablist" aria-label="Reviews">${dots}</div>
+        <a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">
+          Read all reviews on Google
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+      <div class="ht-stack" id="ht-stack" aria-live="polite">${cards}</div>
+    </div>
+  </div>
+</section>`;
 }
 
 function homeTrialFormSection() {
@@ -1081,6 +1118,48 @@ function home() {
   ${homeTestimonials()}
   ${catchmentSection()}
   ${homeTrialFormSection()}`;
+  const htMotionScript = `<script type="module">
+  import { scroll } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  const driver = document.getElementById('ht-driver');
+  if (!driver) return;
+  const cards = [...document.querySelectorAll('.ht-card')].reverse();
+  const dots  = [...document.querySelectorAll('.ht-dot')];
+  const TOTAL = cards.length;
+  cards.forEach((c, i) => {
+    const behind = TOTAL - 1 - i;
+    c.style.transform = \`translateY(\${behind * 10}px) scale(\${1 - behind * 0.035}) translateZ(\${-behind * 24}px)\`;
+    c.style.zIndex    = String(TOTAL - behind);
+    c.style.opacity   = String(behind > 2 ? 0.35 : 1 - behind * 0.14);
+  });
+  let cur = 0;
+  scroll(({ y }) => {
+    const raw    = y.progress * TOTAL;
+    const active = Math.min(Math.floor(raw), TOTAL - 1);
+    if (active !== cur) {
+      cur = active;
+      dots.forEach((d, i) => { d.classList.toggle('active', i === active); d.setAttribute('aria-pressed', String(i === active)); });
+    }
+    cards.forEach((card, i) => {
+      const cp = raw - i;
+      if (cp <= 0) {
+        const behind = Math.min(-cp, TOTAL - 1);
+        card.style.transform = \`translateY(\${behind * 10}px) scale(\${1 - behind * 0.035}) translateZ(\${-behind * 24}px)\`;
+        card.style.opacity   = String(Math.max(0.35, 1 - Math.min(behind, 2) * 0.14));
+        card.style.zIndex    = String(TOTAL - Math.floor(behind));
+      } else if (cp < 1) {
+        const t = cp;
+        card.style.transform = \`translateY(\${t * -140}%) rotate(\${t * -10}deg) scale(\${1 - t * 0.04})\`;
+        card.style.opacity   = String(Math.max(0, 1 - t * 1.8));
+        card.style.zIndex    = String(TOTAL + 1);
+      } else {
+        card.style.transform = 'translateY(-200%) rotate(-12deg)';
+        card.style.opacity   = '0';
+        card.style.zIndex    = '0';
+      }
+    });
+  }, { target: driver, offset: ['start center', 'end end'] });
+<\/script>`;
+
   writePage("/", layout({
     route: "/",
     title: "Dog Daycare Cobham & SW London | Duncan's Dog Co.",
@@ -1090,7 +1169,8 @@ function home() {
     intro: "Woodland dog daycare in Cobham, with safe collection across Surrey and South West London.",
     hero: true,
     body,
-    structured: [breadcrumbJson([{ name: "Home", url: "/" }])]
+    structured: [breadcrumbJson([{ name: "Home", url: "/" }])],
+    scripts: htMotionScript
   }));
 }
 
