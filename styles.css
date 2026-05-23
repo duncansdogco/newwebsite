@@ -2745,7 +2745,7 @@ blockquote {
 
 /* ── NEW testimonials scroll-stack section ── */
 .home-testimonials-v2 {
-  background: var(--cream);
+  background: #fff;
 }
 
 .ht-scroll-driver {
