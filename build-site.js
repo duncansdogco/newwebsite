@@ -733,8 +733,8 @@ function homeTestimonials() {
     { initial: "H", quote: "The facility is amazing, right in the woods but completely secure. Herbie enjoys his time with everyone and is always exhausted when he gets home — exactly what you want.", name: "Herbie's mum", dog: "Herbie · Cobham" },
     { initial: "L", quote: "Leila absolutely adores her time at Duncan's. We've been so impressed at the difference in her confidence and behaviour since she started coming.", name: "Leila's mum", dog: "Leila · Wimbledon" },
     { initial: "G", quote: "He runs in the forest, paddles in the lake, chases the other puppies and comes home happy and exhausted. It's everything I hoped dog daycare would be.", name: "Galileo's dad", dog: "Galileo · Esher" },
-    { initial: "B", quote: "We were nervous about sending our rescue to daycare. The team were brilliant — patient, reassuring — and the difference in Biscuit within a month was remarkable.", name: "Biscuit's family", dog: "Biscuit · Cobham" },
-    { initial: "M", quote: "The collection service is a game changer. They arrive calm, the dog is excited, and I don't have to reorganise my whole morning. It's genuinely part of the care.", name: "Mabel's owner", dog: "Mabel · Wimbledon" }
+    { initial: "A", quote: "They truly have everything a dog could possibly want or need. But what really makes Duncan's so special is the people — attentive, caring, and clearly love what they do. Alfie's PitPat shows him breaking records every day, and he comes home completely exhausted. Always the best sign.", name: "Alfie's owner", dog: "Alfie · Google Review" },
+    { initial: "J", quote: "Our dog has been going to Duncan's since he was a puppy — 7 years now — and he is always so happy to go in each day. Michaela is Jasper's favourite person in the whole world. We can not thank her enough for the love she shows our dog.", name: "Jasper's owner", dog: "Jasper · 7 years · Google Review" }
   ];
   const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
   const stars = starSvg.repeat(5);
