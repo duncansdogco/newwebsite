@@ -4167,17 +4167,40 @@ blockquote {
     min-height: auto;
   }
 
-  /* Testimonials scroll-stack mobile */
+  /* Testimonials mobile: horizontal swipe carousel */
   .ht-scroll-driver { min-height: auto; }
   .ht-sticky {
     position: relative;
     height: auto;
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
     padding-top: 56px;
-    padding-bottom: 56px;
+    padding-bottom: 0;
+    overflow: visible;
   }
-  .ht-stack { height: 300px; }
+  .ht-stack {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px;
+    padding: 4px 20px 48px;
+    height: auto;
+    perspective: none;
+    margin: 0 -20px;
+  }
+  .ht-stack::-webkit-scrollbar { display: none; }
+  .ht-card {
+    position: relative;
+    inset: unset;
+    flex: 0 0 calc(100vw - 64px);
+    max-width: 340px;
+    scroll-snap-align: center;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+  }
   .ht-heading { font-size: 36px; }
 
   .home-contact-actions a {

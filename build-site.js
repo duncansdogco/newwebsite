@@ -1122,10 +1122,16 @@ function home() {
   (function() {
     var driver = document.getElementById('ht-driver');
     if (!driver) return;
-    var cards = Array.from(document.querySelectorAll('.ht-card')).reverse();
-    var dots  = Array.from(document.querySelectorAll('.ht-dot'));
-    var TOTAL = cards.length;
+    var stack   = document.getElementById('ht-stack');
+    var allCards = Array.from(document.querySelectorAll('.ht-card'));
+    var dots     = Array.from(document.querySelectorAll('.ht-dot'));
+    var TOTAL    = allCards.length;
+    var deskCards = allCards.slice().reverse();
+    var observer  = null;
 
+    function isMobile() { return window.innerWidth <= 980; }
+
+    /* ── Desktop: vertical scroll stack ── */
     function setStack(progress) {
       var raw    = Math.max(0, Math.min(TOTAL, progress * TOTAL));
       var active = Math.min(Math.floor(raw), TOTAL - 1);
@@ -1133,7 +1139,7 @@ function home() {
         d.classList.toggle('active', i === active);
         d.setAttribute('aria-pressed', String(i === active));
       });
-      cards.forEach(function(card, i) {
+      deskCards.forEach(function(card, i) {
         var cp = raw - i;
         if (cp <= 0) {
           var behind = Math.min(-cp, TOTAL - 1);
@@ -1153,17 +1159,42 @@ function home() {
     }
 
     function getProgress() {
-      var rect   = driver.getBoundingClientRect();
-      var vh     = window.innerHeight;
-      var range  = driver.offsetHeight - vh;
+      var rect  = driver.getBoundingClientRect();
+      var vh    = window.innerHeight;
+      var range = driver.offsetHeight - vh;
       return range > 0 ? Math.max(0, Math.min(1, -rect.top / range)) : 0;
     }
 
-    // Set initial state
-    setStack(0);
+    /* ── Mobile: horizontal swipe carousel ── */
+    function setupMobile() {
+      allCards.forEach(function(c) { c.style.transform = c.style.opacity = c.style.zIndex = ''; });
+      if (observer) observer.disconnect();
+      observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            var idx = parseInt(e.target.getAttribute('data-card'), 10);
+            dots.forEach(function(d, i) {
+              d.classList.toggle('active', i === idx);
+              d.setAttribute('aria-pressed', String(i === idx));
+            });
+          }
+        });
+      }, { root: stack, threshold: 0.55 });
+      allCards.forEach(function(c) { observer.observe(c); });
+    }
 
-    window.addEventListener('scroll', function() { setStack(getProgress()); }, { passive: true });
-    window.addEventListener('resize',  function() { setStack(getProgress()); }, { passive: true });
+    function setupDesktop() {
+      if (observer) { observer.disconnect(); observer = null; }
+      setStack(getProgress());
+    }
+
+    /* ── Init & resize ── */
+    if (isMobile()) { setupMobile(); } else { setStack(0); }
+
+    window.addEventListener('scroll', function() { if (!isMobile()) setStack(getProgress()); }, { passive: true });
+    window.addEventListener('resize', function() {
+      if (isMobile()) { setupMobile(); } else { setupDesktop(); }
+    }, { passive: true });
   })();
 <\/script>`;
 
