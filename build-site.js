@@ -538,6 +538,7 @@ function serviceJson(page) {
 function layout({ route, title, description, keywords, h1, intro, body, hero = false, heroData = null, image = "assets/woodland.jpg", structured = [], noindex = false, scripts = "" }) {
   const url = `${SITE}${route === "/" ? "/" : `/${route}/`}`;
   const routeClass = route === "/" ? "home" : route.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "");
+  const ogImage = image && image.startsWith("http") ? image : `${SITE}/${image || "assets/woodland.jpg"}`;
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -549,13 +550,15 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   <link rel="canonical" href="${url}">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
-  <meta property="og:image" content="${SITE}/assets/og-image.png">
+  <meta property="og:image" content="${ogImage}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
   <meta property="og:url" content="${url}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(description)}">
-  <meta name="twitter:image" content="${SITE}/assets/og-image.png">
+  <meta name="twitter:image" content="${ogImage}">
   <meta name="google-site-verification" content="TTdcRBaSCQeuUwJ6KgRK_-dK04RkrZshhgFN0s3QoLI">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -659,6 +662,7 @@ function pricingHero(h1, intro) {
       <h1>${esc(h1)}</h1>
       <p>${esc(intro)}</p>
     </div>
+    <img class="pricing-hero-img reveal" src="/assets/woodland-wide.jpg" alt="Dogs running in the woodland at Duncan's Dog Co. Cobham" width="1200" height="500" loading="lazy">
   </section>`;
 }
 
