@@ -35,6 +35,34 @@ const areas = [
   ["motspur-park", "Motspur Park", "collection routes via New Malden, Raynes Park and the A3"]
 ];
 
+const areaDetails = {
+  cobham:            { postcode: "KT11", journeyMins: 5,  mainRoad: "A245 or A3",      intro: "Cobham dogs are on our doorstep. The woodland site sits just off the A245, minutes from the town centre and KT11 postcodes. Most Cobham families drop off on their morning commute and collect on the way home." },
+  wimbledon:         { postcode: "SW19", journeyMins: 30, mainRoad: "A3",              intro: "We collect from Wimbledon and SW19 postcodes along the A3 corridor. The journey to our Cobham woodland takes around 30 minutes, and dogs travel with the same familiar faces from collection through to home time." },
+  clapham:           { postcode: "SW4",  journeyMins: 40, mainRoad: "South Circular then A3", intro: "Collection from Clapham and SW4 runs south via the South Circular and onto the A3, reaching our Cobham woodland in around 40 minutes. Routes are planned to group Clapham dogs efficiently." },
+  wandsworth:        { postcode: "SW18", journeyMins: 35, mainRoad: "A3",              intro: "Wandsworth and SW18 dogs travel south on the A3 to reach our Cobham woodland in around 35 minutes, with the same handlers from the moment of collection." },
+  putney:            { postcode: "SW15", journeyMins: 35, mainRoad: "A3",              intro: "Putney is one of our busiest SW London collection areas. SW15 dogs join the A3 route south, arriving at the Cobham woodland in time for a full morning of supervised outdoor exercise." },
+  esher:             { postcode: "KT10", journeyMins: 10, mainRoad: "A244 or A3",      intro: "Esher and KT10 dogs are on our doorstep. Just 10 minutes from the Cobham woodland via the A244, Esher is one of our closest and most popular collection areas." },
+  balham:            { postcode: "SW12", journeyMins: 40, mainRoad: "A24 or A3",       intro: "Balham and SW12 dogs travel south via the A24 or A3 corridor to our Cobham woodland in around 40 minutes, riding with handlers they will come to know well." },
+  earlsfield:        { postcode: "SW18", journeyMins: 35, mainRoad: "A3",              intro: "Earlsfield dogs join our A3 collection route south to Cobham, arriving at the woodland in around 35 minutes for a full day of supervised outdoor care." },
+  southfields:       { postcode: "SW18", journeyMins: 35, mainRoad: "A3",              intro: "Southfields and SW18 dogs join our A3 corridor route to the Cobham woodland, a 35-minute journey with the same trusted team from door to woodland and back." },
+  "raynes-park":     { postcode: "SW20", journeyMins: 30, mainRoad: "A3",              intro: "Raynes Park and SW20 dogs are well placed for our A3 collection route, with the Cobham woodland around 30 minutes south. One of our most established SW London pickup areas." },
+  "new-malden":      { postcode: "KT3",  journeyMins: 25, mainRoad: "A3",              intro: "New Malden and KT3 dogs are just 25 minutes from our Cobham woodland via the A3, making this one of the most convenient Surrey border areas for daily collection." },
+  morden:            { postcode: "SM4",  journeyMins: 35, mainRoad: "A24 or A297",     intro: "Morden and SM4 dogs travel south via the A24 corridor to our Cobham woodland in around 35 minutes. A reliable collection area for families on the southern edge of London." },
+  tooting:           { postcode: "SW17", journeyMins: 40, mainRoad: "A24",             intro: "Tooting and SW17 dogs join the A24 route south toward Cobham, reaching the woodland in around 40 minutes with collection and drop-off available subject to route capacity." },
+  weybridge:         { postcode: "KT13", journeyMins: 15, mainRoad: "A317 or A3",      intro: "Weybridge and KT13 dogs are close to our Cobham woodland, just 15 minutes via the A317. Early collection and consistent daily routines are easy to manage from this area." },
+  "walton-on-thames":{ postcode: "KT12", journeyMins: 15, mainRoad: "A3050 or A244",   intro: "Walton-on-Thames and KT12 dogs reach our Cobham woodland in around 15 minutes. A well-established collection area with strong take-up from local families." },
+  hersham:           { postcode: "KT12", journeyMins: 10, mainRoad: "A244",            intro: "Hersham dogs are just 10 minutes from the Cobham woodland via the A244 — one of our closest collection areas, ideal for families who want an early, efficient start." },
+  claygate:          { postcode: "KT10", journeyMins: 12, mainRoad: "A309 or A3",      intro: "Claygate and KT10 dogs are a short drive from our Cobham woodland, around 12 minutes via the A309. One of our most consistent Surrey collection areas." },
+  oxshott:           { postcode: "KT22", journeyMins: 10, mainRoad: "A244",            intro: "Oxshott and KT22 dogs are neighbours to our Cobham woodland, just 10 minutes via the A244. One of the easiest collection areas we serve, with reliable morning routines." },
+  byfleet:           { postcode: "KT14", journeyMins: 20, mainRoad: "A245",            intro: "Byfleet and KT14 dogs travel to our Cobham woodland in around 20 minutes via the A245, joining a well-established Surrey route with consistent morning pickup times." },
+  "west-byfleet":    { postcode: "KT14", journeyMins: 20, mainRoad: "A245",            intro: "West Byfleet and KT14 dogs reach the Cobham woodland in about 20 minutes via the A245. Collection and daily drop-off routines work well from this area." },
+  effingham:         { postcode: "KT24", journeyMins: 20, mainRoad: "B2039",           intro: "Effingham and KT24 dogs reach our Cobham woodland via quiet Surrey lanes in around 20 minutes — a calm start for dogs from this corner of rural Surrey." },
+  horsley:           { postcode: "KT24", journeyMins: 25, mainRoad: "A246",            intro: "Horsley and KT24 dogs travel via the A246 to our Cobham woodland in around 25 minutes. A popular area for Surrey families who want structured, licensed outdoor care." },
+  "st-georges-hill": { postcode: "KT13", journeyMins: 10, mainRoad: "A317",            intro: "St George's Hill dogs are minutes from our Cobham woodland, around 10 minutes via the A317. We collect from this private estate area for established daycare clients." },
+  "copse-hill":      { postcode: "SW20", journeyMins: 30, mainRoad: "A3",              intro: "Copse Hill and SW20 dogs join our A3 collection route south to Cobham, around 30 minutes from this quiet corner of Wimbledon to our private woodland." },
+  "motspur-park":    { postcode: "KT3",  journeyMins: 30, mainRoad: "A3",              intro: "Motspur Park and KT3 dogs travel down the A3 to our Cobham woodland in about 30 minutes, part of our established New Malden and Raynes Park collection corridor." }
+};
+
 const servicePages = [
   {
     slug: "rescue",
@@ -1314,12 +1342,16 @@ function areaIndex() {
 function areaPages() {
   for (const [slug, name, route] of areas) {
     const legacy = legacyAreaPage(slug);
+    const detail = areaDetails[slug] || {};
     const h1 = `Dog Daycare Collection in ${name}`;
     const dropOffOnly = legacy && /don't collect/i.test(legacy.collectionIntro || "");
+    const journeyText = detail.journeyMins ? `around ${detail.journeyMins} minutes` : "a short drive";
+    const postcodeText = detail.postcode ? ` (${detail.postcode})` : "";
+    const roadText = detail.mainRoad || route;
     const faqs = [
-      [`Do you collect dogs from ${name}?`, dropOffOnly ? `${name} is currently best suited to drop-off at our Cobham facility, with easy access from nearby main routes.` : `Collection from ${name} is available subject to route capacity, your dog's routine and current schedule.`],
-      [`How does the ${name} route work?`, legacy?.collectionIntro || `${name} usually connects to the Cobham woodland site through ${route}, with timings confirmed during enquiry.`],
-      [`Can I drop off from ${name}?`, `Yes. Drop-off at the Cobham site can work well if you commute near the A3, M25 or surrounding Surrey routes.`]
+      [`Do you collect dogs from ${name}?`, dropOffOnly ? `${name}${postcodeText} is currently best suited to drop-off at our Cobham facility, with easy access from nearby main routes.` : `Yes. Collection from ${name}${postcodeText} is available subject to route capacity and your dog's routine. The journey to our Cobham woodland takes ${journeyText} via the ${roadText}.`],
+      [`How long does the journey from ${name} take?`, `Dogs travelling from ${name}${postcodeText} typically reach our Cobham woodland in ${journeyText} via the ${roadText}. They travel in our bespoke people carriers with familiar handlers throughout.`],
+      [`Can I drop off my dog from ${name}?`, `Yes. Drop-off at our Cobham facility works well for ${name} families, especially those commuting via the ${roadText} or nearby Surrey routes. It is a straightforward drive to the site.`]
     ];
     const featureItems = (legacy?.features?.length ? legacy.features : [
       ["Open 7 days a week, 365 days a year", "Including weekends and bank holidays, for consistent care whenever you need it."],
@@ -1341,7 +1373,7 @@ function areaPages() {
         <p class="section-kicker">${esc(legacy?.whyEyebrow || `Doggy Daycare in ${name}`)}</p>
         <h2>${esc(legacy?.whyTitle || `Woodland dog daycare for ${name} dogs.`)}</h2>
         <div class="squiggle-line" aria-hidden="true"></div>
-        <p>${esc(legacy?.whyText || `Duncan's Dog Co. gives ${name} dogs a real outdoor day in private Cobham woodland, with collection and drop-off options planned around sensible routes.`)}</p>
+        <p>${esc(legacy?.whyText || detail.intro || `Duncan's Dog Co. gives ${name} dogs a real outdoor day in private Cobham woodland, with collection and drop-off options planned around sensible routes.`)}</p>
         <div class="local-feature-list">${featureItems.map(([title, text]) => `<div class="local-feature"><span></span><p><strong>${esc(title)}</strong>${esc(text)}</p></div>`).join("")}</div>
       </div>
       <div class="location-intro-image reveal"><img src="${esc(legacy?.image || "/assets/woodland-wide.jpg")}" alt="Dog daycare for ${esc(name)} dogs at Duncan's Dog Co."></div>
@@ -1371,7 +1403,7 @@ function areaPages() {
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
       title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
-      description: `Dog daycare collection in ${name} for woodland dog daycare in Cobham. Route context, drop-off options, local FAQs and trial day enquiry.`,
+      description: `Dog daycare collection in ${name}${postcodeText} — ${journeyText} to our private Cobham woodland via the ${roadText}. Licensed, family-run care with door-to-door collection.`,
       keywords: `dog daycare ${name}, dog daycare collection ${name}, dog daycare with collection, dog daycare Surrey, dog daycare SW London`,
       h1,
       intro: legacy?.heroText || `Woodland dog daycare in Cobham with collection and drop-off options for ${name} families.`,
