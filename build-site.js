@@ -37,7 +37,7 @@ const areas = [
 
 const servicePages = [
   {
-    slug: "rescue-dog-daycare",
+    slug: "rescue",
     nav: "Rescue Dogs",
     title: "Rescue Dog Daycare in Cobham",
     description: "Rescue dog daycare in Cobham with calm introductions, gentle socialisation and woodland enrichment at Duncan's Dog Co.",
@@ -62,7 +62,7 @@ const servicePages = [
     ]
   },
   {
-    slug: "dog-daycare-cobham",
+    slug: "daycare",
     nav: "Daycare",
     title: "Woodland Dog Daycare in Cobham, Surrey",
     description: "Woodland dog daycare in Cobham, Surrey, with safe collection across Surrey and SW London, 40 acres of private woodland, and 5-star licensed care.",
@@ -87,7 +87,7 @@ const servicePages = [
     ]
   },
   {
-    slug: "puppy-daycare-cobham",
+    slug: "puppies",
     nav: "Puppies",
     title: "Puppy Daycare and Puppy School in Cobham",
     description: "Puppy daycare and puppy school in Cobham for young dogs across Surrey and SW London, with gentle socialisation, confidence building and woodland enrichment.",
@@ -112,7 +112,7 @@ const servicePages = [
     ]
   },
   {
-    slug: "dog-boarding-cobham",
+    slug: "sleepovers",
     nav: "Sleepovers",
     title: "Dog Boarding and Sleepovers in Cobham",
     description: "Dog boarding and sleepovers in Cobham for settled Duncan's Dog Co. dogs. A familiar alternative to kennels for Surrey families.",
@@ -573,10 +573,10 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
     <a class="brand" href="/" aria-label="Duncan's Dog Co. home"><img src="/assets/logo.png" alt="" aria-hidden="true"><span>Duncan's Dog Co.</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span></button>
     <nav class="site-nav" id="site-nav" data-nav>
-      <a href="/dog-daycare-cobham/">Daycare</a>
-      <a href="/puppy-daycare-cobham/">Puppies</a>
-      <a href="/dog-boarding-cobham/">Sleepovers</a>
-      <a href="/rescue-dog-daycare/">Rescue</a>
+      <a href="/daycare/">Daycare</a>
+      <a href="/puppies/">Puppies</a>
+      <a href="/sleepovers/">Sleepovers</a>
+      <a href="/rescue/">Rescue</a>
       <a href="/pricing/">Pricing</a>
       <a href="/about-us/">About</a>
       <a href="/startup-support/">Startup Support</a>
@@ -618,7 +618,7 @@ function footer() {
           </div>
         </a>
       </div>
-      <div><h2>Services</h2><a href="/dog-daycare-cobham/">Doggy Daycare</a><a href="/puppy-daycare-cobham/">Puppy School</a><a href="/dog-boarding-cobham/">Sleepovers</a><a href="/rescue-dog-daycare/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
+      <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
       <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="https://customers.duncansdoggydaycare.com/accounts/login/?next=/daycare/" target="_blank" rel="noopener">Client Bookings</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><span>Cobham, Surrey</span><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
@@ -700,28 +700,28 @@ function cards(items) {
 function homepageServiceStrip() {
   const items = [
     {
-      href: "/rescue-dog-daycare/",
+      href: "/rescue/",
       image: gallerySrc(gallery.homeRescue),
       tag: "All breeds welcome",
       title: "Rescue Dogs",
       text: "Calm, gentle socialisation at their own pace with one-to-one attention, no pressure and no rush."
     },
     {
-      href: "/dog-daycare-cobham/",
+      href: "/daycare/",
       image: gallerySrc(gallery.homeDaycare),
       tag: "365 days a year",
       title: "Doggy Daycare",
       text: "A full day of woodland exploration, play and enrichment. Collection and drop-off available."
     },
     {
-      href: "/puppy-daycare-cobham/",
+      href: "/puppies/",
       image: gallerySrc(gallery.homePuppy),
       tag: "Puppy pathway",
       title: "Puppy School",
       text: "Socialisation, training, habituation and woodland adventure for a confident start."
     },
     {
-      href: "/dog-boarding-cobham/",
+      href: "/sleepovers/",
       image: gallerySrc(gallery.homeSleepover),
       tag: "Licensed boarding",
       title: "Sleepovers",
@@ -832,7 +832,7 @@ function faqMarkup(faqs) {
 }
 
 function linkPanel() {
-  return `<div class="internal-links"><a href="/dog-daycare-cobham/">Dog daycare</a><a href="/pricing/">Pricing</a><a href="/faq/">FAQ</a><a href="/puppy-daycare-cobham/">Puppy daycare</a><a href="/dog-boarding-cobham/">Sleepovers</a><a href="/rescue-dog-daycare/">Rescue dogs</a></div>`;
+  return `<div class="internal-links"><a href="/daycare/">Dog daycare</a><a href="/pricing/">Pricing</a><a href="/faq/">FAQ</a><a href="/puppies/">Puppy daycare</a><a href="/sleepovers/">Sleepovers</a><a href="/rescue/">Rescue dogs</a></div>`;
 }
 
 function richFeatureGrid(items) {
@@ -1033,7 +1033,7 @@ function startupSupportBody() {
 }
 
 function serviceBody(page) {
-  if (page.slug === "rescue-dog-daycare") {
+  if (page.slug === "rescue") {
     return `<section class="section live-content rescue-care-section">
       <div class="section-heading-row reveal">
         <div><p class="section-kicker">Rescue dog daycare</p><h2>Trust first, daycare second.</h2><div class="squiggle-line" aria-hidden="true"></div></div>
@@ -1046,7 +1046,7 @@ function serviceBody(page) {
     <section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day.</h2><p>Tell us about your dog and we will talk through confidence, collection options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
   }
 
-  if (page.slug === "dog-daycare-cobham") {
+  if (page.slug === "daycare") {
     return `<section class="daycare-story-section">
       <div class="daycare-story-copy reveal">
         <p class="section-kicker">What We Do</p>
@@ -1105,12 +1105,12 @@ function serviceBody(page) {
     </section>`;
   }
 
-  if (page.slug === "puppy-daycare-cobham") {
+  if (page.slug === "puppies") {
     const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, provided they have had their primary vaccinations and received veterinary clearance to socialise with other dogs."], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
     return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused. Gently socialised.", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: gallerySrc(gallery.puppyWoodlandCloseup), alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Why we're different", title: "Real-world confidence, built gently.", text: "Puppies learn through calm handling, careful socialisation, familiar people and positive woodland experiences. We keep introductions gentle and matched to each puppy's age and confidence, including calm adult role models where that supports their learning.", className: "puppy-ribbon" })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${richFeatureGrid([["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models."], ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day."], ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm."], ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."], ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach."], ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home."]])}</section><section class="section faqs puppy-faq-section"><div class="section-kicker">Common questions</div><h2>Puppy School FAQs.</h2>${faqMarkup(puppyFaqs)}</section>${ctaBand("Ready for Puppy School?", "Book a puppy introduction.", "Spaces in Puppy School are limited. Get in touch to check availability and arrange the right first step.", "/contact/#enquiry-form", "Enquire about Puppy School")}`;
   }
 
-  if (page.slug === "dog-boarding-cobham") {
+  if (page.slug === "sleepovers") {
     return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel. Our home.", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like. Your dog stays overnight at our woodland facility as part of the family. They sleep in our home alongside the team, not in a run or a crate in a kennel block.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "https://static.wixstatic.com/media/4d2311_df80b335345d4af4ac284e695581bee2~mv2.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Home-from-home feel", title: "Sleepovers still feel familiar.", text: "A sleepover is an extension of your dog's normal Duncan's day: familiar people, familiar woodland, full daytime care and a calm overnight routine in our home, never a kennel block." })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Stays in our home", "Not a kennel, not a run. Your dog sleeps in our home with the team. Warm, comfortable and familiar."], ["Full woodland access", "Overnight guests still get their full woodland day: same exercise, same routines, same team."], ["Same familiar team", "Dogs already attending daycare know the team before their first sleepover, making the transition easier."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${ctaBand("Planning a trip?", "Book your dog's sleepover.", "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates.")}`;
   }
 
@@ -1742,17 +1742,17 @@ function blogArticleMarkup(slug, desc) {
 
 function blogRelatedLinks(slug) {
   const links = {
-    "woodland-dog-daycare-vs-indoor-dog-daycare": [["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
-    "dog-daycare-with-collection-wimbledon": [["Wimbledon collection", "/areas/wimbledon/"], ["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]],
+    "woodland-dog-daycare-vs-indoor-dog-daycare": [["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
+    "dog-daycare-with-collection-wimbledon": [["Wimbledon collection", "/areas/wimbledon/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]],
     "dog-daycare-collection-clapham-putney-wandsworth": [["Clapham", "/areas/clapham/"], ["Putney", "/areas/putney/"], ["Wandsworth", "/areas/wandsworth/"], ["Contact", "/contact/#enquiry-form"]],
-    "dog-boarding-vs-kennels": [["Sleepovers", "/dog-boarding-cobham/"], ["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"]],
-    "what-to-look-for-in-licensed-dog-daycare": [["Dog daycare", "/dog-daycare-cobham/"], ["About us", "/about-us/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
-    "puppy-daycare-vs-puppy-classes": [["Puppy School", "/puppy-daycare-cobham/"], ["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
-    "how-trial-days-work": [["Contact", "/contact/#enquiry-form"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Dog daycare", "/dog-daycare-cobham/"]],
-    "why-collection-is-part-of-care": [["Collection areas", "/areas/"], ["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
-    "rescue-dog-daycare-gentle-introductions": [["Rescue dogs", "/rescue-dog-daycare/"], ["Dog daycare", "/dog-daycare-cobham/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
-    "woodland-daycare-when-it-rains": [["Dog daycare", "/dog-daycare-cobham/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]]
-  }[slug] || [["Dog daycare", "/dog-daycare-cobham/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Contact", "/contact/#enquiry-form"]];
+    "dog-boarding-vs-kennels": [["Sleepovers", "/sleepovers/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"]],
+    "what-to-look-for-in-licensed-dog-daycare": [["Dog daycare", "/daycare/"], ["About us", "/about-us/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
+    "puppy-daycare-vs-puppy-classes": [["Puppy School", "/puppies/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
+    "how-trial-days-work": [["Contact", "/contact/#enquiry-form"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Dog daycare", "/daycare/"]],
+    "why-collection-is-part-of-care": [["Collection areas", "/areas/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
+    "rescue-dog-daycare-gentle-introductions": [["Rescue dogs", "/rescue/"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
+    "woodland-daycare-when-it-rains": [["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]]
+  }[slug] || [["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Contact", "/contact/#enquiry-form"]];
   return `<div class="internal-links blog-related-links">${links.map(([label, href]) => `<a href="${href}">${esc(label)}</a>`).join("")}</div>`;
 }
 
@@ -1766,17 +1766,24 @@ function blog() {
 
 function redirectsAndMeta() {
   const redirects = [
-    ["/daycare", "/dog-daycare-cobham/"],
-    ["/daycare.html", "/dog-daycare-cobham/"],
-    ["/puppies", "/puppy-daycare-cobham/"],
-    ["/puppies.html", "/puppy-daycare-cobham/"],
-    ["/sleepover", "/dog-boarding-cobham/"],
-    ["/sleepover.html", "/dog-boarding-cobham/"],
+    // Old long service URLs → new short URLs (for SEO continuity)
+    ["/dog-daycare-cobham", "/daycare/"],
+    ["/dog-daycare-cobham/", "/daycare/"],
+    ["/puppy-daycare-cobham", "/puppies/"],
+    ["/puppy-daycare-cobham/", "/puppies/"],
+    ["/dog-boarding-cobham", "/sleepovers/"],
+    ["/dog-boarding-cobham/", "/sleepovers/"],
+    ["/rescue-dog-daycare", "/rescue/"],
+    ["/rescue-dog-daycare/", "/rescue/"],
+    // Old .html and short slugs from original site
+    ["/daycare.html", "/daycare/"],
+    ["/puppies.html", "/puppies/"],
+    ["/sleepover", "/sleepovers/"],
+    ["/sleepover.html", "/sleepovers/"],
     ["/faqs", "/faq/"],
     ["/faqs.html", "/faq/"],
     ["/pricing.html", "/pricing/"],
     ["/contact.html", "/contact/"],
-    ["/startup-support", "/startup-support/"],
     ["/startup-support.html", "/startup-support/"],
     ["/privacy-policy.html", "/privacy-policy/"],
     ["/terms-conditions.html", "/terms-conditions/"],
@@ -1784,12 +1791,16 @@ function redirectsAndMeta() {
     ["/about.html", "/about-us/"],
     ["/team", "/about-us/"],
     ["/team.html", "/about-us/"],
-    ["/careers", "/careers/"],
     ["/careers.html", "/careers/"],
     ...areas.map(([slug]) => [`/${slug}.html`, `/areas/${slug}/`]),
     ...areas.map(([slug]) => [`/${slug}`, `/areas/${slug}/`])
   ];
-  fs.writeFileSync(path.join(ROOT, "_redirects"), redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n");
+  const faviconRedirects = [
+    "/favicon.ico /assets/favicon-32x32.png 200",
+    "/apple-touch-icon.png /assets/apple-touch-icon.png 200",
+    "/apple-touch-icon-precomposed.png /assets/apple-touch-icon.png 200"
+  ];
+  fs.writeFileSync(path.join(ROOT, "_redirects"), redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n" + faviconRedirects.join("\n") + "\n");
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
   const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
