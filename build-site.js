@@ -542,6 +542,9 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KDP8MF95');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ''}
@@ -569,6 +572,9 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   ${[localBusinessJson(), ...structured].map(jsonLd).join("\n  ")}
 </head>
 <body class="page-${routeClass}">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDP8MF95" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header class="site-header" data-header>
     <a class="brand" href="/" aria-label="Duncan's Dog Co. home"><img src="/assets/logo.png" alt="" aria-hidden="true"><span>Duncan's Dog Co.</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span></button>
