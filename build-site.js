@@ -71,7 +71,7 @@ const servicePages = [
     heroData: {
       eyebrow: "Doggy Daycare · Cobham, Surrey",
       displayTitle: "One family.<br><span>One facility. The same woodland your dog has loved since 2011.</span>",
-      text: "Open 365 days a year. Collection and drop-off available. All breeds welcome — no exceptions.",
+      text: "Open 365 days a year. Collection and drop-off available. All breeds welcome. No exceptions.",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
       stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["1:6", "Staff<br>Ratio"], ["5★", "Licensed<br>Rating"]]
     },
@@ -96,7 +96,7 @@ const servicePages = [
     heroData: {
       eyebrow: "Puppy Daycare · Cobham, Surrey",
       displayTitle: "The best start<br><span>your puppy will ever get.</span>",
-      text: "Socialisation, training, habituation and woodland adventure — woven into every single day.",
+      text: "Socialisation, training, habituation and woodland adventure, woven into every single day.",
       video: "https://video.wixstatic.com/video/4d2311_5b23afdf17844bf682dc5825d78931c9/720p/mp4/file.mp4",
       stats: [["15+", "Years<br>Running"], ["Small", "Puppy<br>Groups"], ["1:6", "Staff<br>Ratio"], ["5★", "Licensed<br>Rating"]]
     },
@@ -121,7 +121,7 @@ const servicePages = [
     heroData: {
       eyebrow: "Sleepovers · Cobham, Surrey",
       displayTitle: "Not a kennel.<br><span>Never will be.</span>",
-      text: "Home-from-home overnight boarding at our Cobham cottage. A full day in the woodland included — every stay.",
+      text: "Home-from-home overnight boarding at our Cobham cottage. A full day in the woodland with every stay.",
       video: "https://video.wixstatic.com/video/4d2311_8044be8e15474641973691fadcdbc012/1080p/mp4/file.mp4",
       stats: [["5★", "Licensed<br>Boarding"], ["40+", "Acres of<br>Woodland"], ["1:6", "Staff<br>Ratio"], ["15+", "Years<br>Running"]]
     },
@@ -142,11 +142,11 @@ const blogPosts = [
   ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1"],
   ["dog-daycare-with-collection-wimbledon", "Dog Daycare with Collection in Wimbledon", "Everything Wimbledon dog owners should know about safe daily collection, journey times and arriving at Duncan's Dog Co. woodland daycare in Cobham.", "blogFresh2"],
   ["dog-daycare-collection-clapham-putney-wandsworth", "Dog Daycare: Clapham, Putney & Wandsworth", "How daily collection works for dogs in Clapham, Putney and Wandsworth travelling to Duncan's Dog Co. woodland daycare in Cobham, Surrey.", "blogFresh3"],
-  ["dog-boarding-vs-kennels", "Dog Boarding vs Kennels", "A practical comparison of dog boarding, kennels, home care and sleepovers — helping owners in Cobham and Surrey choose the right overnight care for their dog.", "blogFresh4"],
+  ["dog-boarding-vs-kennels", "Dog Boarding vs Kennels", "A practical comparison of dog boarding, kennels, home care and sleepovers to help owners in Cobham and Surrey choose the right overnight care for their dog.", "blogFresh4"],
   ["what-to-look-for-in-licensed-dog-daycare", "Licensed Dog Daycare: What to Look For", "What every owner should check before choosing a dog daycare: licensing, staff ratios, trial days, safety protocols and honest care standards in Cobham and Surrey.", "blogFresh5"],
-  ["puppy-daycare-vs-puppy-classes", "Puppy Daycare vs Puppy Classes", "Puppy daycare and puppy classes serve different purposes. Find out how each supports socialisation, training and development — and what to consider in Cobham and Surrey.", "blogFresh6"],
-  ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham — what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7"],
-  ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare — not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
+  ["puppy-daycare-vs-puppy-classes", "Puppy Daycare vs Puppy Classes", "Puppy daycare and puppy classes serve different purposes. Find out how each supports socialisation, training and development, and what to consider in Cobham and Surrey.", "blogFresh6"],
+  ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham: what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7"],
+  ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare, not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
   ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: Gentle Introductions", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9"],
   ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"]
 ];
@@ -249,7 +249,7 @@ const teamMembers = [
     role: "Co-Founder",
     tenure: "Since 2011",
     image: "https://static.wixstatic.com/media/4d2311_71d31db36d044db68e9c682627720df9~mv2.avif/v1/fill/w_886,h_862,al_c,q_85,enc_avif,quality_auto/DDDheadshots18%20(118%20of%20355).avif",
-    bio: "Growing up, Duncan's mum's best friend was a German Shepherd trainer, so he was always surrounded by incredible dogs. He was known as the 'crazy dog man' — and that early connection turned into a lifelong passion and a business he's proud of.",
+    bio: "Growing up, Duncan's mum's best friend was a German Shepherd trainer, so he was always surrounded by incredible dogs. He was known as the 'crazy dog man', and that early connection turned into a lifelong passion and a business he's proud of.",
     label: "Favourite breed",
     value: "German Shepherds"
   },
@@ -267,7 +267,7 @@ const teamMembers = [
     role: "Daycare Manager",
     tenure: "13 years",
     image: "https://static.wixstatic.com/media/4d2311_a7691b5ffe5f4bcd8718763a55b3b92f~mv2.avif/v1/fill/w_886,h_862,al_c,q_85,enc_avif,quality_auto/Becks.avif",
-    bio: "After years in events and a stint running a brand roadshow for Nestle Purina, Becks discovered her love for working with dogs and went on to study canine behaviour. She joined DDC in its early days — back when it was just a field and some waterproofs — and has helped shape everything since.",
+    bio: "After years in events and a stint running a brand roadshow for Nestle Purina, Becks discovered her love for working with dogs and went on to study canine behaviour. She joined DDC in its early days, back when it was just a field and some waterproofs, and has helped shape everything since.",
     label: "At DDC since",
     value: "The very early days"
   },
@@ -276,7 +276,7 @@ const teamMembers = [
     role: "Operations Manager",
     tenure: "8 years",
     image: "https://static.wixstatic.com/media/4d2311_cb2be3e63fe04dff83c65a13ab626bc9~mv2.avif/v1/fill/w_886,h_862,al_c,q_85,enc_avif,quality_auto/7FFD924C-CF35-4839-B806-7F7E6E723D8C.avif",
-    bio: "Nick describes working at DDC as owning 100 dogs — but getting to give them back at the end of the day. He grew up with Border Collies and loves the connections he builds with dogs and their owners out in the woodland.",
+    bio: "Nick describes working at DDC as owning 100 dogs but getting to give them back at the end of the day. He grew up with Border Collies and loves the connections he builds with dogs and their owners out in the woodland.",
     label: "Favourite breed",
     value: "Border Collie"
   },
@@ -285,7 +285,7 @@ const teamMembers = [
     role: "Company Secretary",
     tenure: "10 years",
     image: "https://static.wixstatic.com/media/4d2311_7316226d90044df3afb4293738eeb277~mv2.avif/v1/fill/w_886,h_862,al_c,q_85,enc_avif,quality_auto/DDDheadshots18%20(262%20of%20355).avif",
-    bio: "Kelly joined as Grooming Manager ten years ago, bringing nearly 20 years of grooming expertise. She now runs operations as Company Secretary — one of the longest-serving and most integral members of the DDC family.",
+    bio: "Kelly joined as Grooming Manager ten years ago, bringing nearly 20 years of grooming expertise. She now runs operations as Company Secretary and is one of the longest-serving and most integral members of the DDC family.",
     label: "Her dog",
     value: "Margot, a Cane Corso"
   },
@@ -294,7 +294,7 @@ const teamMembers = [
     role: "Puppy Manager & Driver",
     tenure: "4 years",
     image: "https://static.wixstatic.com/media/4d2311_637a60a900824e39a55374001c480b09~mv2.avif/v1/fill/w_886,h_862,al_c,q_85,enc_avif,quality_auto/IMG_1690_JPG.avif",
-    bio: "Eleanor leads our puppy programme and holds dog behaviour qualifications. She eats, sleeps and breathes puppies — knowing every pup's personality, reading their body language instinctively, and building the kind of trust that means nervous arrivals leave as confident, happy dogs. She is the reason our puppy families come back year after year.",
+    bio: "Eleanor leads our puppy programme and holds dog behaviour qualifications. She eats, sleeps and breathes puppies. She knows every pup's personality, reads their body language instinctively, and builds the kind of trust that means nervous arrivals leave as confident, happy dogs. She is the reason our puppy families come back year after year.",
     label: "Her dog",
     value: "Pippin, a toy Yorkie"
   },
@@ -303,7 +303,7 @@ const teamMembers = [
     role: "Driver & Carer",
     tenure: "6 years",
     image: "https://static.wixstatic.com/media/4d2311_232bf220cb304fcfa3ffef1e7c12cd6e~mv2.jpg/v1/fill/w_980,h_1742,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-07%20at%2010_05_edited.jpg",
-    bio: "Michaela has been at DDC for six years and loves every day of it. She builds real relationships with every dog and every owner — and you may well recognise her from the DDC TikTok.",
+    bio: "Michaela has been at DDC for six years and loves every day of it. She builds real relationships with every dog and every owner, and you may well recognise her from the DDC TikTok.",
     label: "Best part of the job",
     value: "The dogs and their owners"
   },
@@ -312,7 +312,7 @@ const teamMembers = [
     role: "Boarding Manager",
     tenure: "3 years",
     image: "https://static.wixstatic.com/media/4d2311_2706ef08752e4e39acf208b3af521bd7~mv2.jpg/v1/fill/w_980,h_1316,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PHOTO-2025-02-25-10-48-41%202.jpg",
-    bio: "Holly grew up with a Springer Spaniel called Peppa and has always loved dogs. She manages all boarding at DDC, making sure every overnight guest feels completely at home — and she'll tell you it's nothing like a typical 9-5.",
+    bio: "Holly grew up with a Springer Spaniel called Peppa and has always loved dogs. She manages all boarding at DDC, making sure every overnight guest feels completely at home, and she'll tell you it's nothing like a typical 9-5.",
     label: "Favourite breed",
     value: "Spaniels"
   },
@@ -321,7 +321,7 @@ const teamMembers = [
     role: "Social Media & Driver",
     tenure: "Since 2024",
     image: "https://static.wixstatic.com/media/4d2311_3455d69b1898477080e19e48298653cb~mv2.jpeg/v1/fill/w_980,h_1277,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-07%20at%2011_08_37.jpeg",
-    bio: "Becky joined in June 2024 and covers the Earlsfield area. She has a Spaniel of her own, so she knows exactly what makes them tick — and she's built brilliant relationships with her dogs and their owners along the way.",
+    bio: "Becky joined in June 2024 and covers the Earlsfield area. She has a Spaniel of her own, so she knows exactly what makes them tick, and she's built brilliant relationships with her dogs and their owners along the way.",
     label: "Favourite breed",
     value: "Spaniels"
   },
@@ -330,7 +330,7 @@ const teamMembers = [
     role: "Driver & Carer",
     tenure: "",
     image: "https://static.wixstatic.com/media/4d2311_7268ad1d66b64770a00d7b22cd3195b3~mv2.jpeg/v1/fill/w_980,h_1457,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-11-10%20at%2022_32_24.jpeg",
-    bio: "Carlton spends his time off exploring woods and parks on his mountain bike with his dog — so working at DDC is a natural fit. He doesn't have a favourite breed; every dog has a different personality and he loves them for it.",
+    bio: "Carlton spends his time off exploring woods and parks on his mountain bike with his dog, so working at DDC is a natural fit. He doesn't have a favourite breed; every dog has a different personality and he loves them for it.",
     label: "Favourite breed",
     value: "All of them"
   },
@@ -339,7 +339,7 @@ const teamMembers = [
     role: "Social Media & Driver",
     tenure: "Since 2025",
     image: "https://static.wixstatic.com/media/4d2311_8f292cb9cdf44b9987595c429bb2a034~mv2.jpeg/v1/fill/w_848,h_1093,al_c,q_85,enc_avif,quality_auto/WhatsApp%20Image%202025-11-12%20at%2017_52_52.jpeg",
-    bio: "Laura joined in April 2025 and has embraced every part of the role. She grew up with a Border Collie and more recently a Golden Retriever — dogs have always been a big part of her life, and working with them every day is something she genuinely loves.",
+    bio: "Laura joined in April 2025 and has embraced every part of the role. She grew up with a Border Collie and more recently a Golden Retriever, and dogs have always been a big part of her life. Working with them every day is something she genuinely loves.",
     label: "Favourite breed",
     value: "Border Collies & Goldens"
   },
@@ -934,9 +934,9 @@ function daycareDifferenceSection() {
 
 function puppyBuiltSection() {
   const items = [
-    ["Socialisation", "Positive, consensual interactions with other dogs — learning to read cues, play safely and build confidence with their peers."],
+    ["Socialisation", "Positive, consensual interactions with other dogs, learning to read cues, play safely and build confidence with their peers."],
     ["Training", "Positive reinforcement and reward-based methods. Good manners, recall foundations and calm handling are built naturally into the day."],
-    ["Habituation", "Calm, gradual exposure to sights, sounds and real-world experiences — reducing anxiety and building lasting confidence."],
+    ["Habituation", "Calm, gradual exposure to sights, sounds and real-world experiences, reducing anxiety and building lasting confidence."],
     ["Recall & Independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."],
     ["Routine & Structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same environment and calm approach."],
     ["Woodland Adventure", "A dedicated puppy pathway in our woodland setting: safe, enriching and full of things to explore."]
@@ -945,7 +945,7 @@ function puppyBuiltSection() {
     <div class="puppy-built-header reveal">
       <p class="section-kicker">Built for where they are</p>
       <h2>Built into every day.</h2>
-      <p>Not a course. Not a programme. Just consistent, expert care — woven into everything we do from day one.</p>
+      <p>Not a course. Not a programme. Just consistent, expert care, woven into everything we do from day one.</p>
     </div>
     <div class="puppy-built-grid">
       ${items.map(([title, text], index) => `<article class="puppy-built-card reveal"><span aria-hidden="true">${["●", "◆", "✓", "↻", "□", "•"][index]}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("")}
@@ -959,8 +959,8 @@ function puppySupportSection() {
       <p class="section-kicker">Progress & support</p>
       <h2>We keep you in the loop.</h2>
       <div class="squiggle-line" aria-hidden="true"></div>
-      <p>Bringing a puppy into the family is a big deal. We take that seriously. Our team provides regular updates, progress notes and honest guidance on how your puppy is developing — both with us and at home.</p>
-      <p>If you have questions about behaviour, training at home or how your pup is settling in, just ask. We're here throughout — not just during daycare hours.</p>
+      <p>Bringing a puppy into the family is a big deal. We take that seriously. Our team provides regular updates, progress notes and honest guidance on how your puppy is developing, both with us and at home.</p>
+      <p>If you have questions about behaviour, training at home or how your pup is settling in, just ask. We're here throughout, not just during daycare hours.</p>
     </div>
     <div class="puppy-support-image reveal">
       <img src="${gallerySrc(gallery.familyRunTeam)}" alt="Duncan's Dog Co. trained family-run team with certificates" loading="lazy">
@@ -984,12 +984,12 @@ function startupSupportBody() {
     ["Pricing & Business Structure", "How to price your services from day one, what to charge for, and how to structure memberships, deposits and late fees."],
     ["Day-to-Day Operations", "The systems, routines and staff management structures we use to run a 90-dog-a-day operation smoothly and safely."],
     ["Staffing & HR Foundations", "Induction templates, role structures, training logs and the frameworks we use to hire and retain a reliable team."],
-    ["Direct Access to Experience", "Ask us directly. We answer from 15 years of doing this — not from a course, a book or secondhand knowledge."]
+    ["Direct Access to Experience", "Ask us directly. We answer from 15 years of doing this, not from a course, a book or secondhand knowledge."]
   ];
   const stats = [
     ["15+", "Years in the industry", "Established in 2011. We've been through every stage of growth, change and challenge a daycare can face."],
     ["5★", "Licensed daycare", "One of the first daycares to be inspected under the Animal Welfare licensing framework. We know what it takes."],
-    ["90+", "Dogs a day at peak", "Our advice comes from running a genuinely large operation — not a small hobby setup. The systems scale."],
+    ["90+", "Dogs a day at peak", "Our advice comes from running a genuinely large operation, not a small hobby setup. The systems scale."],
     ["100%", "Real experience", "Every template, document and piece of guidance we share is something we use or have used ourselves."]
   ];
   return `<section class="section live-content startup-problem-section">
@@ -1106,12 +1106,12 @@ function serviceBody(page) {
   }
 
   if (page.slug === "puppy-daycare-cobham") {
-    const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, provided they have had their primary vaccinations and received veterinary clearance to socialise with other dogs."], ["Is Puppy School different to regular daycare?", "It is daycare — same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development — she knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes — collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
-    return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused. Gently socialised.", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare — the same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day — they model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: gallerySrc(gallery.puppyWoodlandCloseup), alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Why we're different", title: "Real-world confidence, built gently.", text: "Puppies learn through calm handling, careful socialisation, familiar people and positive woodland experiences. We keep introductions gentle and matched to each puppy's age and confidence, including calm adult role models where that supports their learning.", className: "puppy-ribbon" })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${richFeatureGrid([["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs — learning to read cues, play safely and build confidence with good role models."], ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day."], ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm."], ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."], ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach."], ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home."]])}</section><section class="section faqs puppy-faq-section"><div class="section-kicker">Common questions</div><h2>Puppy School FAQs.</h2>${faqMarkup(puppyFaqs)}</section>${ctaBand("Ready for Puppy School?", "Book a puppy introduction.", "Spaces in Puppy School are limited. Get in touch to check availability and arrange the right first step.", "/contact/#enquiry-form", "Enquire about Puppy School")}`;
+    const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, provided they have had their primary vaccinations and received veterinary clearance to socialise with other dogs."], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
+    return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused. Gently socialised.", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: gallerySrc(gallery.puppyWoodlandCloseup), alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Why we're different", title: "Real-world confidence, built gently.", text: "Puppies learn through calm handling, careful socialisation, familiar people and positive woodland experiences. We keep introductions gentle and matched to each puppy's age and confidence, including calm adult role models where that supports their learning.", className: "puppy-ribbon" })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${richFeatureGrid([["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models."], ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day."], ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm."], ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."], ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach."], ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home."]])}</section><section class="section faqs puppy-faq-section"><div class="section-kicker">Common questions</div><h2>Puppy School FAQs.</h2>${faqMarkup(puppyFaqs)}</section>${ctaBand("Ready for Puppy School?", "Book a puppy introduction.", "Spaces in Puppy School are limited. Get in touch to check availability and arrange the right first step.", "/contact/#enquiry-form", "Enquire about Puppy School")}`;
   }
 
   if (page.slug === "dog-boarding-cobham") {
-    return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel. Our home.", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like — your dog stays overnight at our woodland facility as part of the family. They sleep in our home alongside the team, not in a run or a crate in a kennel block.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "https://static.wixstatic.com/media/4d2311_df80b335345d4af4ac284e695581bee2~mv2.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Home-from-home feel", title: "Sleepovers still feel familiar.", text: "A sleepover is an extension of your dog's normal Duncan's day: familiar people, familiar woodland, full daytime care and a calm overnight routine in our home, never a kennel block." })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Stays in our home", "Not a kennel, not a run. Your dog sleeps in our home with the team — warm, comfortable and familiar."], ["Full woodland access", "Overnight guests still get their full woodland day: same exercise, same routines, same team."], ["Same familiar team", "Dogs already attending daycare know the team before their first sleepover, making the transition easier."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${ctaBand("Planning a trip?", "Book your dog's sleepover.", "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates.")}`;
+    return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel. Our home.", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like. Your dog stays overnight at our woodland facility as part of the family. They sleep in our home alongside the team, not in a run or a crate in a kennel block.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "https://static.wixstatic.com/media/4d2311_df80b335345d4af4ac284e695581bee2~mv2.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ kicker: "Home-from-home feel", title: "Sleepovers still feel familiar.", text: "A sleepover is an extension of your dog's normal Duncan's day: familiar people, familiar woodland, full daytime care and a calm overnight routine in our home, never a kennel block." })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Stays in our home", "Not a kennel, not a run. Your dog sleeps in our home with the team. Warm, comfortable and familiar."], ["Full woodland access", "Overnight guests still get their full woodland day: same exercise, same routines, same team."], ["Same familiar team", "Dogs already attending daycare know the team before their first sleepover, making the transition easier."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${ctaBand("Planning a trip?", "Book your dog's sleepover.", "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates.")}`;
   }
 
   return `<section class="section">${cards(page.sections)}</section>${authenticPhotoRibbon({ kicker: page.nav, title: `${page.nav} with the Duncan's Dog Co. feel.`, text: "More genuine imagery helps these pages feel closer to the live site while the written content stays clearer for visitors and search." })}<section class="section faqs"><div class="section-kicker">FAQs</div><h2>Questions about ${esc(page.nav.toLowerCase())}</h2>${faqMarkup(page.faqs)}${linkPanel()}</section><section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day.</h2><p>Tell us about your dog and we will advise availability, route options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
@@ -1408,7 +1408,7 @@ const fullFaqSections = [
     faqs: [
       ["Do you take puppies?", "Yes, once fully vaccinated. We introduce puppies gradually and provide extra support as they settle in. Puppies are introduced carefully, with one-to-one time from our team to build their confidence before joining wider daycare life."],
       ["What is Puppy School?", "Our puppy programme is for fully vaccinated puppies from 12 weeks. Sessions run in our woodland setting using positive reinforcement only. We cover socialisation, basic manners, recall foundations, lead walking, exposure to new environments and structured rest."],
-      ["How do you handle puppies differently to adult dogs?", "Puppies have the same collection and drop-off times as regular daycare, but the structure of their day is different — more rest, gentler introductions and a slower pace. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important part: they model good behaviour and help puppies learn what appropriate interaction looks like. Our team are experienced at reading early signals of stress and adjust the day accordingly."]
+      ["How do you handle puppies differently to adult dogs?", "Puppies have the same collection and drop-off times as regular daycare, but the structure of their day is different: more rest, gentler introductions and a slower pace. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important part: they model good behaviour and help puppies learn what appropriate interaction looks like. Our team are experienced at reading early signals of stress and adjust the day accordingly."]
     ]
   },
   {
@@ -1426,7 +1426,7 @@ const fullFaqSections = [
     intro: "First aid, neutering, seasons, rescue dogs and individual suitability.",
     faqs: [
       ["What if my dog is unwell or there's an incident?", "Our team is first-aid trained. If your dog is unwell or hurt during the day, you'll be contacted immediately and we'll arrange vet care if needed. We never wait and hope. If something does not look right, we act on it and keep you informed."],
-      ["What's your neutering policy?", "We do not have a blanket neutering requirement. What matters to us is behaviour, not neuter status. If your female dog comes into season, she will need 10 days at home after her final day of bleeding — her slot is held during this time. Beyond seasons, we assess each dog individually and will have an open conversation if we feel anything needs to change."],
+      ["What's your neutering policy?", "We do not have a blanket neutering requirement. What matters to us is behaviour, not neuter status. If your female dog comes into season, she will need 10 days at home after her final day of bleeding and her slot is held during this time. Beyond seasons, we assess each dog individually and will have an open conversation if we feel anything needs to change."],
       ["What if my dog isn't neutered?", "Unneutered dogs are welcome. We assess suitability on behaviour, not neuter status. If a dog's behaviour becomes disruptive in the group we will have a conversation about it, but we do not make neutering a blanket condition of attendance."],
       ["How do you handle different sizes and temperaments?", "Dogs are grouped carefully by energy level, size and existing friendships. A small, nervous dog will not be put in with a large, boisterous group. Our consistent team know each dog's personality well and spot tension before it becomes a problem."],
       ["Do you have rescue dog support?", "Yes. Our rescue dog service is tailored to support the unique needs of rescue dogs, building confidence, gentle socialisation and a calm environment free from pressure. All breeds are welcome, and our team works closely with each rescue dog at their own pace."]
@@ -1483,7 +1483,7 @@ function faqPageBody() {
     ${fullFaqSections.map(faqSectionMarkup).join("")}
     ${linkPanel()}
   </section>
-  ${ctaBand("Still have questions?", "We're always happy to chat.", "Call us, WhatsApp us, or send us a message — whichever works best for you.", "/contact/#enquiry-form", "Get in Touch")}`;
+  ${ctaBand("Still have questions?", "We're always happy to chat.", "Call us, WhatsApp us, or send us a message. Whichever works best for you.", "/contact/#enquiry-form", "Get in Touch")}`;
 }
 
 function faqAndContact() {
@@ -1514,8 +1514,8 @@ function faqAndContact() {
             <div class="form-group"><label for="service">Service interested in</label><select id="service" name="service"><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
           </div>
           <div class="form-notes">
-            <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited — please enquire early and include your dates below.</div>
-            <div class="form-note-card"><strong>School holidays:</strong> We fill up fast — please enquire well in advance to avoid disappointment.</div>
+            <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates below.</div>
+            <div class="form-note-card"><strong>School holidays:</strong> We fill up fast, so please enquire well in advance to avoid disappointment.</div>
           </div>
           <div class="form-group">
             <label for="message">Anything else we should know?</label>
@@ -1538,9 +1538,9 @@ function faqAndContact() {
   </section>`;
   writePage("contact", layout({ route: "contact", title: "Contact Duncan's Dog Co. | Dog Daycare Cobham", description: "Contact Duncan's Dog Co. about dog daycare, puppy daycare, collection, drop-off and dog sleepovers in Cobham, Surrey.", keywords: "contact dog daycare Cobham, dog daycare enquiry Surrey", h1: "Enquire About Dog Daycare in Cobham", intro: "Tell us about your dog, your area and the care you need.", heroData: { eyebrow: "Duncan's Dog Co · Cobham, Surrey", displayTitle: "Let's get<br><span>your dog started.</span>", text: "Fill in the form below and we'll be in touch within 24 hours to arrange a meet and greet.", video: "https://video.wixstatic.com/video/4d2311_dc5ef7217b904315baa814b81aa6906a/1080p/mp4/file.mp4", ctaHref: "#enquiry-form", ctaText: "Enquire Now", stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["1:6", "Staff<br>Ratio"], ["5★", "Licensed<br>Rating"]] }, body: contactBody, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Contact", url: "/contact/" }])] }));
   writePage("thank-you", layout({ route: "thank-you", noindex: true, title: "Thank You | Duncan's Dog Co.", description: "Thank you for enquiring with Duncan's Dog Co.", keywords: "Duncan's Dog Co enquiry thank you", h1: "Thank you for your enquiry", intro: "We've received your message and will be in touch soon.", body: `<section class="section contact-section"><div><p class="section-kicker">Enquiry received</p><h2>We'll be in touch within 24 hours.</h2><p>Thank you for telling us about your dog. We'll review your message and come back to you about availability, collection options and the right next step.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/">Back to homepage</a></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Thank You", url: "/thank-you/" }])] }));
-  writePage("startup-support", layout({ route: "startup-support", title: "Dog Daycare Startup Support | Duncan's Dog Co.", description: "Startup support for dog daycare founders from Duncan's Dog Co., a family-run woodland daycare in Cobham established in 2011.", keywords: "dog daycare startup support, start a dog daycare, dog business support UK", h1: "Dog Daycare Startup Support", intro: "Practical support for people building thoughtful, licensed dog care businesses.", heroData: { eyebrow: "Dog Daycare Startup Support", displayTitle: "15 years of knowledge.<br><span>Yours from day one.</span>", text: "We share the templates, systems and experience we built from scratch — so you can start faster and avoid the mistakes we made.", video: "https://video.wixstatic.com/video/4d2311_60a7a5c2d3264b3fb778671f4e3e86ec/720p/mp4/file.mp4", ctaHref: "mailto:becks@duncansdogco.com?subject=Enquiry%20about%20help%20with%20my%20licensing", ctaText: "Get in Touch", stats: [["15+", "Years<br>Running"], ["5★", "Licensed<br>Daycare"], ["Est.", "2011<br>Cobham"]] }, body: startupSupportBody(), structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Startup Support", url: "/startup-support/" }])] }));
-  writePage("careers", layout({ route: "careers", title: "Dog Daycare Jobs in Cobham | Duncan's Dog Co.", description: "Join the team at Duncan's Dog Co. — a family-run woodland dog daycare in Cobham, Surrey. Dog handler and driver roles, outdoor work and a team that loves what it does.", keywords: "dog daycare jobs Cobham, dog daycare careers Surrey, dog handler jobs Surrey", h1: "Careers at Duncan's Dog Co.", intro: "Join a family-run woodland daycare in Cobham, Surrey.", heroData: { eyebrow: "Careers · Cobham, Surrey", displayTitle: "Come and join<br><span>our pack.</span>", text: "We're a family-run woodland daycare that's been running since 2011. If you love dogs, early mornings, and doing work that actually matters — we'd love to hear from you.", video: videoHero, ctaHref: "#apply", ctaText: "Apply Now", stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["5★", "Elmbridge<br>Rated"]] }, body: `<section class="section careers-reasons-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Why join us</p><h2>Six good reasons to join the team.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>It is outdoor, practical, dog-focused work with a small team and a setting that feels nothing like a corporate workplace.</p></div>${richFeatureGrid([["Spend your days with dogs", "Every day you are surrounded by cared-for dogs in a private woodland setting."], ["No two days are the same", "Collections, daycare, sleepovers and different dogs make the rhythm varied."], ["Learn as you go", "We teach safe handling, welfare routines and dog behaviour basics."], ["Be part of a tight team", "Every person counts, everyone knows the dogs and the work is personal."], ["Work in our woodland", "Fresh air, open space and over 40 acres of private Cobham woodland."], ["Five-star rated", "Work somewhere local families have trusted for over a decade."]])}</section><section class="section role-section" id="apply"><div class="section-heading-row reveal"><div><p class="section-kicker">Current opening</p><h2>Full Time Driver & Daycare Assistant.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>We are looking for a reliable, dog-loving person to collect and drop off dogs across our catchment area and support the daycare team throughout the day.</p></div><div class="rich-feature-grid icon-feature-grid career-role-grid"><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("collection")}</span><h3>What you'll be doing</h3><p>Collecting dogs from client homes, dropping them home safely, supervising dogs in the woodland, feeding and monitoring, keeping records and helping maintain site and vehicle standards.</p></article><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("team")}</span><h3>What we're looking for</h3><p>A genuine love for dogs, a full clean UK driving licence, calm animal handling, reliability, good people skills, physical fitness and comfort with early starts.</p></article><article class="rich-feature-card career-apply-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("mail")}</span><h3>Apply now</h3><p>Email us with a bit about yourself, your dog experience and availability.</p><a class="button primary" href="mailto:info@duncansdogco.com?subject=Careers%20application">Apply by email</a></article></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Careers", url: "/careers/" }])] }));
-  writePage("privacy-policy", layout({ route: "privacy-policy", title: "Privacy Policy | Duncan's Dog Co.", description: "Privacy policy for Duncan's Dog Co. — how we collect, use and protect the personal information you share with us.", keywords: "privacy policy Duncan's Dog Co", h1: "Privacy Policy", intro: "How Duncan's Dog Co. collects, uses and protects your personal information.", body: `<section class="section article">
+  writePage("startup-support", layout({ route: "startup-support", title: "Dog Daycare Startup Support | Duncan's Dog Co.", description: "Startup support for dog daycare founders from Duncan's Dog Co., a family-run woodland daycare in Cobham established in 2011.", keywords: "dog daycare startup support, start a dog daycare, dog business support UK", h1: "Dog Daycare Startup Support", intro: "Practical support for people building thoughtful, licensed dog care businesses.", heroData: { eyebrow: "Dog Daycare Startup Support", displayTitle: "15 years of knowledge.<br><span>Yours from day one.</span>", text: "We share the templates, systems and experience we built from scratch, so you can start faster and avoid the mistakes we made.", video: "https://video.wixstatic.com/video/4d2311_60a7a5c2d3264b3fb778671f4e3e86ec/720p/mp4/file.mp4", ctaHref: "mailto:becks@duncansdogco.com?subject=Enquiry%20about%20help%20with%20my%20licensing", ctaText: "Get in Touch", stats: [["15+", "Years<br>Running"], ["5★", "Licensed<br>Daycare"], ["Est.", "2011<br>Cobham"]] }, body: startupSupportBody(), structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Startup Support", url: "/startup-support/" }])] }));
+  writePage("careers", layout({ route: "careers", title: "Dog Daycare Jobs in Cobham | Duncan's Dog Co.", description: "Join the team at Duncan's Dog Co., a family-run woodland dog daycare in Cobham, Surrey. Dog handler and driver roles, outdoor work and a team that loves what it does.", keywords: "dog daycare jobs Cobham, dog daycare careers Surrey, dog handler jobs Surrey", h1: "Careers at Duncan's Dog Co.", intro: "Join a family-run woodland daycare in Cobham, Surrey.", heroData: { eyebrow: "Careers · Cobham, Surrey", displayTitle: "Come and join<br><span>our pack.</span>", text: "We're a family-run woodland daycare that's been running since 2011. If you love dogs, early mornings, and doing work that actually matters, we'd love to hear from you.", video: videoHero, ctaHref: "#apply", ctaText: "Apply Now", stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["5★", "Elmbridge<br>Rated"]] }, body: `<section class="section careers-reasons-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Why join us</p><h2>Six good reasons to join the team.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>It is outdoor, practical, dog-focused work with a small team and a setting that feels nothing like a corporate workplace.</p></div>${richFeatureGrid([["Spend your days with dogs", "Every day you are surrounded by cared-for dogs in a private woodland setting."], ["No two days are the same", "Collections, daycare, sleepovers and different dogs make the rhythm varied."], ["Learn as you go", "We teach safe handling, welfare routines and dog behaviour basics."], ["Be part of a tight team", "Every person counts, everyone knows the dogs and the work is personal."], ["Work in our woodland", "Fresh air, open space and over 40 acres of private Cobham woodland."], ["Five-star rated", "Work somewhere local families have trusted for over a decade."]])}</section><section class="section role-section" id="apply"><div class="section-heading-row reveal"><div><p class="section-kicker">Current opening</p><h2>Full Time Driver & Daycare Assistant.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>We are looking for a reliable, dog-loving person to collect and drop off dogs across our catchment area and support the daycare team throughout the day.</p></div><div class="rich-feature-grid icon-feature-grid career-role-grid"><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("collection")}</span><h3>What you'll be doing</h3><p>Collecting dogs from client homes, dropping them home safely, supervising dogs in the woodland, feeding and monitoring, keeping records and helping maintain site and vehicle standards.</p></article><article class="rich-feature-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("team")}</span><h3>What we're looking for</h3><p>A genuine love for dogs, a full clean UK driving licence, calm animal handling, reliability, good people skills, physical fitness and comfort with early starts.</p></article><article class="rich-feature-card career-apply-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("mail")}</span><h3>Apply now</h3><p>Email us with a bit about yourself, your dog experience and availability.</p><a class="button primary" href="mailto:info@duncansdogco.com?subject=Careers%20application">Apply by email</a></article></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Careers", url: "/careers/" }])] }));
+  writePage("privacy-policy", layout({ route: "privacy-policy", title: "Privacy Policy | Duncan's Dog Co.", description: "Privacy policy for Duncan's Dog Co., covering how we collect, use and protect the personal information you share with us.", keywords: "privacy policy Duncan's Dog Co", h1: "Privacy Policy", intro: "How Duncan's Dog Co. collects, uses and protects your personal information.", body: `<section class="section article">
 <p><strong>Last updated: May 2025</strong></p>
 <p>Duncan's Dog Co. is a family-run dog daycare, boarding and collection service based in Cobham, Surrey, operating as a sole trader. We are the data controller for the personal information we collect from you. This policy explains what we collect, why, and what your rights are.</p>
 <p>If you have any questions, email us at <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> or call <a href="tel:07731798899">07731 798 899</a>.</p>
@@ -1550,7 +1550,7 @@ function faqAndContact() {
 <ul>
 <li>Your name, email address and phone number</li>
 <li>Your home address and postcode (for collection route planning)</li>
-<li>Information about your dog — name, breed, age, temperament and health details</li>
+<li>Information about your dog: name, breed, age, temperament and health details</li>
 <li>Any other information you choose to share in messages or conversations with us</li>
 </ul>
 <p>We do not collect payment card details through this website. Any payments are handled directly and separately.</p>
@@ -1568,32 +1568,32 @@ function faqAndContact() {
 <h2>3. Legal basis for processing</h2>
 <p>We process your personal data on the following grounds:</p>
 <ul>
-<li><strong>Contract performance</strong> — to provide the daycare and boarding services you have requested</li>
-<li><strong>Legitimate interests</strong> — to respond to enquiries and manage our business operations</li>
-<li><strong>Legal obligation</strong> — to comply with licensing and animal welfare regulations</li>
+<li><strong>Contract performance:</strong> to provide the daycare and boarding services you have requested</li>
+<li><strong>Legitimate interests:</strong> to respond to enquiries and manage our business operations</li>
+<li><strong>Legal obligation:</strong> to comply with licensing and animal welfare regulations</li>
 </ul>
 
 <h2>4. Who we share your information with</h2>
 <p>We do not sell your personal information. We may share limited information with:</p>
 <ul>
-<li><strong>Netlify</strong> — our website host, which processes enquiry form submissions on our behalf. Netlify is GDPR-compliant and processes data in accordance with their Data Processing Agreement.</li>
-<li><strong>Our team members</strong> — staff involved in your dog's care will have access to the information needed to provide that care safely</li>
-<li><strong>Emergency veterinary services</strong> — in the event of a medical emergency involving your dog, we may share your contact details and your dog's basic information with a vet</li>
+<li><strong>Netlify:</strong> our website host, which processes enquiry form submissions on our behalf. Netlify is GDPR-compliant and processes data in accordance with their Data Processing Agreement.</li>
+<li><strong>Our team members:</strong> staff involved in your dog's care will have access to the information needed to provide that care safely</li>
+<li><strong>Emergency veterinary services:</strong> in the event of a medical emergency involving your dog, we may share your contact details and your dog's basic information with a vet</li>
 </ul>
 <p>We will not share your information with any other third parties without your explicit consent, except where required by law.</p>
 
 <h2>5. How long we keep your information</h2>
-<p>We keep your information for as long as you are an active client and for a reasonable period afterwards — typically three years — in case of any queries or disputes. Information from enquiries that did not lead to a booking is held for up to 12 months. We will delete your information on request (see your rights below).</p>
+<p>We keep your information for as long as you are an active client and for a reasonable period afterwards, typically three years, in case of any queries or disputes. Information from enquiries that did not lead to a booking is held for up to 12 months. We will delete your information on request (see your rights below).</p>
 
 <h2>6. Your rights</h2>
 <p>Under UK GDPR, you have the right to:</p>
 <ul>
-<li><strong>Access</strong> — request a copy of the personal data we hold about you</li>
-<li><strong>Rectification</strong> — ask us to correct inaccurate or incomplete information</li>
-<li><strong>Erasure</strong> — ask us to delete your data where there is no lawful reason to continue holding it</li>
-<li><strong>Restriction</strong> — ask us to limit how we use your data while a concern is being resolved</li>
-<li><strong>Objection</strong> — object to our use of your data where we rely on legitimate interests</li>
-<li><strong>Portability</strong> — request your data in a structured, commonly used format</li>
+<li><strong>Access:</strong> request a copy of the personal data we hold about you</li>
+<li><strong>Rectification:</strong> ask us to correct inaccurate or incomplete information</li>
+<li><strong>Erasure:</strong> ask us to delete your data where there is no lawful reason to continue holding it</li>
+<li><strong>Restriction:</strong> ask us to limit how we use your data while a concern is being resolved</li>
+<li><strong>Objection:</strong> object to our use of your data where we rely on legitimate interests</li>
+<li><strong>Portability:</strong> request your data in a structured, commonly used format</li>
 </ul>
 <p>To exercise any of these rights, email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>. We will respond within 30 days.</p>
 <p>If you are not satisfied with how we handle your data, you have the right to complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p>
@@ -1616,7 +1616,7 @@ function faqAndContact() {
 <p>These terms and conditions apply to all services provided by Duncan's Dog Co., operating from Cobham, Surrey. By booking or using our services, you agree to these terms. Please read them carefully and contact us at <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> if anything is unclear.</p>
 
 <h2>1. Trial day requirement</h2>
-<p>All new dogs must complete a trial day before joining regular daycare or boarding. The trial allows us to assess your dog's temperament, compatibility with the group and suitability for our environment. We reserve the right to decline a dog at any stage — including after a trial — if we do not believe the placement is appropriate for the dog or the existing group. This decision is final and is always made in the interest of welfare.</p>
+<p>All new dogs must complete a trial day before joining regular daycare or boarding. The trial allows us to assess your dog's temperament, compatibility with the group and suitability for our environment. We reserve the right to decline a dog at any stage, including after a trial, if we do not believe the placement is appropriate for the dog or the existing group. This decision is final and is always made in the interest of welfare.</p>
 
 <h2>2. Health and vaccination requirements</h2>
 <p>For the safety of all dogs in our care, the following requirements apply:</p>
@@ -1624,7 +1624,7 @@ function faqAndContact() {
 <li>All dogs must be up to date with core vaccinations (distemper, parvovirus, hepatitis and leptospirosis). Vaccination records must be provided before the first session.</li>
 <li>Dogs must be treated regularly for fleas and ticks with a veterinary-approved product. Evidence of treatment may be requested.</li>
 <li>Bitches in season are not accepted. Please notify us immediately if your dog comes into season while booked.</li>
-<li>Dogs showing signs of illness — including vomiting, diarrhoea, suspected kennel cough or any contagious condition — must not attend. A minimum 14-day exclusion applies following kennel cough diagnosis.</li>
+<li>Dogs showing signs of illness, including vomiting, diarrhoea, suspected kennel cough or any contagious condition, must not attend. A minimum 14-day exclusion applies following kennel cough diagnosis.</li>
 <li>We reserve the right to exclude any dog we consider unwell or posing a risk to other dogs.</li>
 </ul>
 
