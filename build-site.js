@@ -494,7 +494,14 @@ function localBusinessJson() {
     address: { "@type": "PostalAddress", addressLocality: "Cobham", addressRegion: "Surrey", addressCountry: "GB" },
     areaServed: areas.map(([, name]) => name),
     openingHours: "Mo-Su 07:45-18:30",
-    image: `${SITE}/assets/woodland.jpg`
+    image: `${SITE}/assets/woodland.jpg`,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "49",
+      bestRating: "5",
+      worstRating: "1"
+    }
   };
 }
 
@@ -528,9 +535,10 @@ function serviceJson(page) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: page.title,
+    description: page.description,
     provider: { "@id": `${SITE}/#business` },
     areaServed: areas.map(([, name]) => name),
-    serviceType: page.keywords,
+    serviceType: page.nav,
     url: `${SITE}/${page.slug}/`
   };
 }
