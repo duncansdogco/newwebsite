@@ -4611,12 +4611,14 @@ blockquote {
 }
 
 .pricing-hero h1 {
+  width: 100%;
   margin: 0;
   color: #151515;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(58px, 7vw, 92px);
   font-weight: 500;
   line-height: 0.98;
+  text-align: center;
 }
 
 .pricing-hero p:not(.eyebrow) {
