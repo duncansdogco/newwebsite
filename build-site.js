@@ -1286,6 +1286,83 @@ function pricing() {
     ["Weekends & Bank Holidays", "Weekend Rate", "75", "Per Day", "sage", "Weekend and bank holiday rate."]
   ];
   const included = ["Council licensed", "Woodland adventures", "Home collection & drop-off", "Family-run team", "Safe travel in people carriers", "Play and rest balance", "Puppies welcome once fully vaccinated", "Enrichment activities", "Emergency vet support"];
+  const calcSection = `<section class="pricing-calc-section">
+  <div class="pricing-calc-inner">
+    <div class="pricing-calc-header reveal">
+      <p class="section-kicker">Estimate your cost</p>
+      <h2>Work out your monthly rate.</h2>
+      <p>Choose how often your dog would come and we will work it out instantly.</p>
+    </div>
+    <div class="pricing-calc-card reveal">
+      <div class="calc-steps">
+        <div class="calc-step">
+          <span class="calc-step-label">Days per week</span>
+          <div class="calc-day-btns">
+            <button class="calc-day-btn active" data-days="1" type="button">1</button>
+            <button class="calc-day-btn" data-days="2" type="button">2</button>
+            <button class="calc-day-btn" data-days="3" type="button">3</button>
+            <button class="calc-day-btn" data-days="4" type="button">4</button>
+            <button class="calc-day-btn" data-days="5" type="button">5</button>
+          </div>
+        </div>
+        <div class="calc-step">
+          <span class="calc-step-label">Transport</span>
+          <div class="calc-toggle">
+            <button class="calc-toggle-btn active" data-type="collection" type="button">Collection included</button>
+            <button class="calc-toggle-btn" data-type="dropoff" type="button">I'll drop off myself</button>
+          </div>
+        </div>
+        <div class="calc-step">
+          <span class="calc-step-label">Weekend days <em>(£75 each)</em></span>
+          <div class="calc-counter">
+            <button class="calc-counter-btn" id="c-minus" type="button" aria-label="Fewer weekend days">−</button>
+            <span id="c-count">0</span>
+            <button class="calc-counter-btn" id="c-plus" type="button" aria-label="More weekend days">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-col">
+          <span class="calc-result-label">Day rate</span>
+          <strong class="calc-result-price" id="c-rate">£65</strong>
+          <span class="calc-result-sub" id="c-note">1 day/week, collection included</span>
+        </div>
+        <div class="calc-result-divider" aria-hidden="true"></div>
+        <div class="calc-result-col">
+          <span class="calc-result-label">Monthly estimate</span>
+          <strong class="calc-result-price calc-result-big" id="c-monthly">£282</strong>
+          <span class="calc-result-sub">Based on 4.33 weeks per month</span>
+        </div>
+      </div>
+      <p class="calc-small-print">Minimum 4 days per calendar month applies. Weekend and bank holiday days charged at £75 per day.</p>
+      <a class="button primary" href="/contact/#enquiry-form">Book a trial day</a>
+    </div>
+  </div>
+  <script>
+  (function(){
+    var days=1,weekend=0,dropoff=false;
+    function rate(){return dropoff?55:days===1?65:days===2?60:55;}
+    function note(){return dropoff?'Drop-off rate, any frequency':days===1?'1 day/week, collection included':days===2?'2 days/week, collection included':'3+ days/week, collection included';}
+    function monthly(){return Math.round(((days-weekend)*rate()+weekend*75)*52/12);}
+    function render(){
+      document.querySelectorAll('.calc-day-btn').forEach(function(b){b.classList.toggle('active',+b.dataset.days===days);});
+      document.querySelectorAll('.calc-toggle-btn').forEach(function(b){b.classList.toggle('active',(b.dataset.type==='dropoff')===dropoff);});
+      weekend=Math.min(weekend,Math.min(days,2));
+      document.getElementById('c-count').textContent=weekend;
+      document.getElementById('c-minus').disabled=weekend===0;
+      document.getElementById('c-plus').disabled=weekend>=Math.min(days,2);
+      document.getElementById('c-rate').textContent='£'+rate();
+      document.getElementById('c-note').textContent=note();
+      document.getElementById('c-monthly').textContent='£'+monthly();
+    }
+    document.querySelectorAll('.calc-day-btn').forEach(function(b){b.addEventListener('click',function(){days=+this.dataset.days;render();});});
+    document.querySelectorAll('.calc-toggle-btn').forEach(function(b){b.addEventListener('click',function(){dropoff=this.dataset.type==='dropoff';render();});});
+    document.getElementById('c-minus').addEventListener('click',function(){if(weekend>0){weekend--;render();}});
+    document.getElementById('c-plus').addEventListener('click',function(){if(weekend<Math.min(days,2)){weekend++;render();}});
+    render();
+  })();
+  <\/script>
+</section>`;
   const body = `<section class="pricing-live-section">
     <div class="pricing-live-inner">
       <div class="pricing-card-grid">
@@ -1312,6 +1389,7 @@ function pricing() {
       <p class="pricing-note"><strong>Prices are based on weekly visits.</strong> A 4 day minimum charge per calendar month applies.</p>
     </div>
   </section>
+  ${calcSection}
   <section class="section faqs pricing-faq-section"><div class="section-kicker">Pricing FAQs</div><h2>Questions before you book.</h2>${faqMarkup(faqs)}${linkPanel()}</section>`;
   writePage("pricing", layout({
     route: "pricing",
