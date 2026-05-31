@@ -1926,6 +1926,8 @@ function redirectsAndMeta() {
   ];
   fs.writeFileSync(path.join(ROOT, "_redirects"), redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n" + faviconRedirects.join("\n") + "\n");
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+  // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
+  fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
   const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, "site-data.json"), JSON.stringify({ site: SITE, keywords: ["dog daycare Cobham", "doggy daycare Cobham", "dog daycare Surrey", "woodland dog daycare", "dog daycare with collection", "dog daycare SW London", "puppy daycare Surrey", "puppy school Cobham", "dog boarding Cobham", "dog sleepovers Surrey"], areas: areas.map(([slug, name, route]) => ({ slug, name, route })), services: servicePages.map(({ slug, title, keywords }) => ({ slug, title, keywords })) }, null, 2));
