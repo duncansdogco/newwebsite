@@ -1917,6 +1917,7 @@ function redirectsAndMeta() {
     ["/team.html", "/about-us/"],
     ["/careers.html", "/careers/"],
     ...areas.map(([slug]) => [`/${slug}.html`, `/areas/${slug}/`]),
+    ...areas.map(([slug]) => [`/${slug}/`, `/areas/${slug}/`]),
     ...areas.map(([slug]) => [`/${slug}`, `/areas/${slug}/`])
   ];
   const faviconRedirects = [
