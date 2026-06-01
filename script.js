@@ -47,3 +47,36 @@ if ("IntersectionObserver" in window) {
 } else {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
+
+/* ── Stats count-up ── */
+(function () {
+  const statEls = document.querySelectorAll(".difference-stats strong");
+  if (!statEls.length || !("IntersectionObserver" in window)) return;
+
+  function countUp(el) {
+    const raw = el.textContent.trim();
+    const match = raw.match(/^(\d+)(.*)/);
+    if (!match) return; // non-numeric like "1:6" — leave as-is
+    const target = parseInt(match[1], 10);
+    const suffix = match[2];
+    const duration = 1100;
+    const start = performance.now();
+    (function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      el.textContent = Math.round(eased * target) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }(start));
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      // Only count up when the parent stat cell becomes visible
+      countUp(entry.target);
+      statsObserver.unobserve(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  statEls.forEach((el) => statsObserver.observe(el));
+}());

@@ -56,6 +56,17 @@
   }
 }
 
+@keyframes faqOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -1368,6 +1379,22 @@ h1 {
   flex-direction: column;
   background: rgba(255, 255, 255, 0.94);
   padding: 24px 20px;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 240ms ease;
+}
+
+.difference-feature:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+/* Staggered scale + fade entrance for feature cards */
+.difference-feature.reveal {
+  transform: translateY(32px) scale(0.96);
+}
+
+.difference-feature.reveal.is-visible {
+  transform: translateY(0) scale(1);
 }
 
 .difference-feature span {
@@ -1392,6 +1419,15 @@ h1 {
   margin: 0;
   color: rgba(20, 35, 19, 0.62);
   font-size: 15px;
+}
+
+/* Staggered scale entrance for photo strip */
+.difference-photo.reveal {
+  transform: translateY(28px) scale(0.97);
+}
+
+.difference-photo.reveal.is-visible {
+  transform: translateY(0) scale(1);
 }
 
 .difference-stats {
@@ -1428,6 +1464,15 @@ h1 {
   font-weight: 900;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+/* Staggered pop entrance for individual stat cells */
+.difference-stats div.reveal {
+  transform: translateY(20px) scale(0.94);
+}
+
+.difference-stats div.reveal.is-visible {
+  transform: translateY(0) scale(1);
 }
 
 .authentic-ribbon {
@@ -3250,6 +3295,12 @@ blockquote {
 
 .faq-grid p {
   margin: 14px 0 0;
+}
+
+.faq-grid details[open] p,
+.faq-page-grid details[open] p,
+.faq-section-block details[open] p {
+  animation: faqOpen 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .faq-page-intro {

@@ -962,14 +962,14 @@ function daycareDifferenceSection() {
       <div class="squiggle-line" aria-hidden="true"></div>
       <p>Woodland daycare works best when the setting, people and routine all feel known. Our private woodland gives dogs natural shelter from the British weather, sensory stimulation from being outside, and a familiar team from collection through to home time.</p>
     </div>
-    <div class="difference-photo-strip reveal">
-      ${stripPhotos.map(([src, alt, label]) => `<figure class="difference-photo"><img src="${src}" alt="${esc(alt)}" loading="lazy"><figcaption>${esc(label)}</figcaption></figure>`).join("")}
+    <div class="difference-photo-strip">
+      ${stripPhotos.map(([src, alt, label]) => `<figure class="difference-photo reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><figcaption>${esc(label)}</figcaption></figure>`).join("")}
     </div>
-    <div class="difference-features reveal">
-      ${features.map(([number, title, text]) => `<article class="difference-feature"><span>${number}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("")}
+    <div class="difference-features">
+      ${features.map(([number, title, text]) => `<article class="difference-feature reveal"><span>${number}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("")}
     </div>
-    <div class="difference-stats reveal">
-      ${stats.map(([number, label]) => `<div><strong>${esc(number)}</strong><span>${esc(label)}</span></div>`).join("")}
+    <div class="difference-stats">
+      ${stats.map(([number, label]) => `<div class="reveal"><strong>${esc(number)}</strong><span>${esc(label)}</span></div>`).join("")}
     </div>
   </section>`;
 }
