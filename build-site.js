@@ -3,7 +3,7 @@ const path = require("path");
 
 // Build: 2026-05-22
 const ROOT = __dirname;
-const SITE = "https://www.duncansdogco.com";
+const SITE = "https://duncansdogco.com";
 const assetVersion = "2026-05-22-14";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
@@ -519,7 +519,7 @@ function localBusinessJson() {
     foundingDate: "2011",
     priceRange: "££",
     description: "Woodland dog daycare in Cobham, with safe collection across Surrey and South West London.",
-    address: { "@type": "PostalAddress", addressLocality: "Cobham", addressRegion: "Surrey", addressCountry: "GB" },
+    address: { "@type": "PostalAddress", addressLocality: "Cobham", addressRegion: "Surrey", postalCode: "KT11", addressCountry: "GB" },
     areaServed: areas.map(([, name]) => name),
     openingHours: "Mo-Su 07:45-18:30",
     image: `${SITE}/assets/woodland.jpg`,
@@ -662,7 +662,7 @@ function footer() {
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
       <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="https://customers.duncansdoggydaycare.com/accounts/login/?next=/daycare/" target="_blank" rel="noopener">Client Bookings</a></div>
-      <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><span>Cobham, Surrey</span><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
+      <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Duncan's Dog Co. All rights reserved.</span>
@@ -1925,7 +1925,9 @@ function redirectsAndMeta() {
     "/apple-touch-icon.png /assets/apple-touch-icon.png 200",
     "/apple-touch-icon-precomposed.png /assets/apple-touch-icon.png 200"
   ];
-  fs.writeFileSync(path.join(ROOT, "_redirects"), redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n" + faviconRedirects.join("\n") + "\n");
+  // www → non-www redirect (kicks in once www DNS is pointed at Netlify)
+  const wwwRedirect = "https://www.duncansdogco.com/* https://duncansdogco.com/:splat 301!";
+  fs.writeFileSync(path.join(ROOT, "_redirects"), wwwRedirect + "\n" + redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n" + faviconRedirects.join("\n") + "\n");
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
