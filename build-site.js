@@ -599,6 +599,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   <meta name="twitter:description" content="${esc(description)}">
   <meta name="twitter:image" content="${ogImage}">
   <meta name="google-site-verification" content="TTdcRBaSCQeuUwJ6KgRK_-dK04RkrZshhgFN0s3QoLI">
+  <meta name="google-site-verification" content="palKBdTaR-xBpZdDW5XCzxZlThymVMeO4Jf1Wpo4Ets">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
