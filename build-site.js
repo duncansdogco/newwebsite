@@ -176,7 +176,10 @@ const blogPosts = [
   ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham: what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7"],
   ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare, not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
   ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: Gentle Introductions", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9"],
-  ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"]
+  ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"],
+  ["dog-daycare-vs-dog-walker", "Dog Daycare vs Dog Walker: Which Is Right for Your Dog?", "A practical guide to help Surrey and South West London owners decide between a dog walker and woodland dog daycare — and what really makes the difference for your dog's day.", "woodlandPack"],
+  ["is-my-dog-ready-for-daycare", "How to Know If Your Dog Is Ready for Daycare", "Not every dog is ready for group daycare straight away. Here is how to read the signs, what to expect from a good trial day and how to find the right pace for your dog.", "goldenPair"],
+  ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler"]
 ];
 
 const blogArticleContent = {
@@ -229,6 +232,72 @@ const blogArticleContent = {
     ["Rain does not stop the day", ["We are an outdoor woodland daycare, so British weather is part of the routine. Most dogs love the smells, puddles and adventure that come with rain."]],
     ["Shelter and comfort matter", ["Our woodland gives a natural canopy from the rain, and we also have indoor spaces for rest, drying and comfort when dogs need a break."]],
     ["Home happy, not miserable", ["Dogs are towel-dried and settled before heading home. The aim is a proper outdoor day, followed by comfort and care before drop-off."]]
+  ],
+  "dog-daycare-vs-dog-walker": [
+    ["What each one actually does", [
+      "A dog walker takes your dog out for 30 to 60 minutes, usually with a group of other dogs from different households, then returns them home. It solves the toilet break problem and gets some fresh air into the day.",
+      "Dog daycare is a full day of structured care. Dogs are collected in the morning, spend the day in a managed group with qualified staff, and are returned home in the evening. It is not just exercise — it is routine, socialisation, rest and consistency."
+    ]],
+    ["When a dog walker is the right choice", [
+      "Dog walkers work well for dogs who are settled at home, do not show signs of boredom or separation anxiety, and just need a midday break. If your dog is content with their own company and does not need much stimulation, a good walker may be exactly enough.",
+      "They can also work alongside daycare — some owners use daycare two or three days a week and a walker on other days, giving dogs variety without overloading them."
+    ]],
+    ["When daycare works better", [
+      "If your dog struggles when left alone, becomes destructive or anxious, barks continuously, or needs more than a short walk can give them, daycare is usually the better fit. Dogs who are highly social, energetic or still young often thrive with the structure and company of a full daycare day.",
+      "Daycare also suits owners who are out of the house for long hours. A 30-minute walk in the middle of a nine-hour absence is not enough for most dogs. Daycare removes that problem entirely."
+    ]],
+    ["What to ask before you choose", [
+      "For a dog walker, ask how many dogs are in each walk, whether they are all known to each other, and what happens if a dog has an incident on the walk. Ask to see their insurance and check they have first aid training.",
+      "For a daycare, ask about licensing, staff ratios, how dogs are grouped, what the trial day looks like, and whether the same team is with the dogs all day. The answers will tell you a lot about how seriously they take the care."
+    ]],
+    ["What woodland daycare adds", [
+      "At Duncan's Dog Co., dogs spend their day outdoors in 40 acres of private woodland in Cobham. They move, sniff, rest and explore in a way that a park walk or garden simply cannot replicate. The sensory richness of the woodland — the scents, the textures, the natural shelter — makes for a genuinely tired and settled dog at the end of the day.",
+      "Collection is available across Surrey and South West London, so families in Wimbledon, Putney, Esher and beyond can access proper daycare without needing to travel themselves. If you are weighing up a walker versus daycare, feel free to get in touch and talk it through."
+    ]]
+  ],
+  "is-my-dog-ready-for-daycare": [
+    ["The signs worth looking for", [
+      "Dogs who do well in daycare tend to show curiosity around other dogs, recover quickly from new situations and settle back into calm after excitement. They do not need to be the most confident dog in the room — plenty of quieter dogs thrive in the right daycare environment — but they should be able to engage with other dogs without consistent fear or aggression.",
+      "If your dog shows strong anxiety in new environments, reacts badly to unfamiliar dogs or has a history of serious incidents with other animals, daycare may not be the right fit right now. A slower, more gradual introduction to group settings is usually a better starting point."
+    ]],
+    ["Age and energy are not everything", [
+      "Young, energetic dogs often do brilliantly in daycare, but so do older dogs who enjoy gentle social time and a change of scenery. The right daycare will adapt to the dog in front of them, not just the stereotype of what a daycare dog looks like.",
+      "Puppies from around 12 weeks old can join a puppy-specific programme rather than full adult daycare. This gives younger dogs the right pace, the right group and the right amount of stimulation without overwhelming them."
+    ]],
+    ["What a good trial day looks like", [
+      "Any reputable daycare should offer a trial day before asking for a full commitment. This is not just a formality — it is the most honest way to assess whether daycare is genuinely right for your dog. During a trial, good staff will observe how your dog settles, how they interact with the group, how they travel, and how they recover from new experiences.",
+      "At Duncan's, the trial day starts with a meet and greet at the facility. We talk through your dog's history, temperament and routine before they join a group. After the trial, we give you honest feedback. Some dogs are ready to start; others benefit from a slower introduction; and occasionally a dog is simply better suited to a different type of care."
+    ]],
+    ["Dogs who need more time", [
+      "Not being ready for daycare now does not mean never. Some dogs need a few months of basic training and confidence building before group care is the right step. Others need their recall, their reactivity or their anxiety addressed first.",
+      "If a daycare tells you your dog is not ready, take that seriously. It is a sign they are being honest with you rather than just taking the booking. A slower route in — one that matches where your dog actually is — will always produce better long-term results."
+    ]],
+    ["Getting started from Cobham, Surrey and SW London", [
+      "If you think your dog might be ready, or you are not sure and want a professional opinion, the best first step is a conversation. Tell us about your dog, your area and what you are hoping daycare will do for them. We will be straightforward about whether it sounds like a good fit.",
+      "Collection is available across Surrey and South West London including Wimbledon, Esher, Putney, Wandsworth, Weybridge and more. Enquire through the website and we will take it from there."
+    ]]
+  ],
+  "dog-daycare-cobham-guide": [
+    ["Why Cobham works as a daycare base", [
+      "Cobham sits at a natural meeting point for collection routes running south from London and east from Surrey. The A3 brings dogs in from Wimbledon, Putney and Clapham. The A244 and local roads connect Esher, Hersham, Weybridge and Walton-on-Thames. That geography means a single woodland site can serve a wide catchment without impractically long journeys.",
+      "Duncan's Dog Co. has operated from this Cobham site since 2011. The facility is built around 40 acres of private woodland — not a shared park, not a fenced paddock, but a genuine woodland environment managed specifically for dog daycare."
+    ]],
+    ["What a good daycare day actually looks like", [
+      "Dogs are collected in the morning by the daycare team and transported to the woodland site. Once there, they spend the day in managed groups — not all together, but in groups matched by size, temperament and energy level. The day involves outdoor time, rest, social interaction and supervised play.",
+      "Good daycare is not just managed chaos. Dogs should have rest periods built in, particularly younger or less experienced dogs. They should always have access to water, shade and somewhere calm. And the same familiar faces should be with them throughout — not a rotating door of different staff."
+    ]],
+    ["How collection works across Surrey", [
+      "Collection is one of the things that makes a Cobham woodland daycare genuinely practical for families who cannot drive out themselves. Route capacity is limited so that dogs are not sitting in vehicles for unreasonable lengths of time. Most collection journeys from the core areas take between 10 and 40 minutes depending on the postcode.",
+      "Families in Wimbledon, Clapham, Putney, Wandsworth, Balham, Earlsfield and Southfields make up our South West London routes. Surrey collection covers Esher, Cobham, Claygate, Oxshott, Hersham, Weybridge, Walton-on-Thames and the surrounding areas. If you are unsure whether your postcode is covered, it is always worth asking."
+    ]],
+    ["What licensed daycare actually means", [
+      "Dog daycare in England is regulated under the Animal Welfare (Licensing of Activities Involving Animals) Regulations 2018. Any business providing group dog daycare for money must hold a licence issued by their local council. The licence involves an inspection against set welfare standards covering space, staffing, safety, records and animal handling.",
+      "Duncan's Dog Co. holds a 5-star daycare licence issued by Elmbridge Borough Council. That rating reflects our standards across welfare, facilities, staffing and record keeping. It is not self-awarded — it is assessed by an independent council inspector. When choosing daycare, always ask to see the licence certificate and check the rating."
+    ]],
+    ["Getting started", [
+      "The first step is an enquiry. Tell us your postcode, a little about your dog and what kind of routine you are looking for. We will check collection availability and arrange a meet and greet at the facility so you can see the woodland and meet the team before any commitment is made.",
+      "After a successful meet and greet, we arrange a trial day. That gives us the chance to see how your dog settles, and gives you honest feedback on whether daycare is the right fit. There is no pressure and no obligation. If daycare is right for your dog, we will make it work."
+    ]]
   ]
 };
 
