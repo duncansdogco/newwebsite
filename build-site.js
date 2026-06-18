@@ -1699,12 +1699,12 @@ function faqAndContact() {
             <div class="form-group"><label for="dog-name">Your dog's name *</label><input type="text" id="dog-name" name="dog_name" required placeholder="Buddy"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="breed">Dog's breed</label><input type="text" id="breed" name="breed" placeholder="e.g. Labrador, Spaniel"></div>
-            <div class="form-group"><label for="age">Dog's age</label><select id="age" name="dog_age"><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+            <div class="form-group"><label for="breed">Dog's breed *</label><input type="text" id="breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
+            <div class="form-group"><label for="age">Dog's age *</label><select id="age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="neutered">Neutered / spayed?</label><select id="neutered" name="neutered"><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
-            <div class="form-group"><label for="sex">Dog's sex</label><select id="sex" name="sex"><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+            <div class="form-group"><label for="neutered">Neutered / spayed? *</label><select id="neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
+            <div class="form-group"><label for="sex">Dog's sex *</label><select id="sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label for="address">Your address *</label><textarea id="address" name="address" required placeholder="House number, street, town and postcode"></textarea></div>
