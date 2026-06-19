@@ -80,3 +80,15 @@ if ("IntersectionObserver" in window) {
 
   statEls.forEach((el) => statsObserver.observe(el));
 }());
+
+/* ── Prevent duplicate form submissions ── */
+(function () {
+  const form = document.querySelector("form[data-netlify]");
+  if (!form) return;
+  form.addEventListener("submit", function () {
+    const btn = form.querySelector("[type=submit]");
+    if (!btn) return;
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+  });
+}());
