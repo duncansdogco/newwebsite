@@ -148,7 +148,7 @@ const servicePages = [
     intro: "Sleepovers are for dogs who already know us, so overnight care feels familiar, calm and connected to their usual daycare routine.",
     heroData: {
       eyebrow: "Sleepovers · Cobham, Surrey",
-      displayTitle: "Not a kennel.<br><span>Never will be.</span>",
+      displayTitle: "Full days.<br><span>Calm nights.</span>",
       text: "Home-from-home overnight boarding at our Cobham cottage. A full day in the woodland with every stay.",
       video: "https://video.wixstatic.com/video/4d2311_8044be8e15474641973691fadcdbc012/1080p/mp4/file.mp4",
       stats: [["5★", "Licensed<br>Boarding"], ["40+", "Acres of<br>Woodland"], ["1:6", "Staff<br>Ratio"], ["15+", "Years<br>Running"]]
