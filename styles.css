@@ -5917,7 +5917,7 @@ blockquote {
 /* ── SPLASH FAQ — numbered single-column ── */
 
 .splash-faq-section {
-  background: var(--cream);
+  background: #f4fbfc;
 }
 
 .splash-faq-list {
@@ -5974,7 +5974,7 @@ blockquote {
 /* ── SPLASH private rental — two-column with photo ── */
 
 .splash-rental-section {
-  background: #f0fafb;
+  background: #fff;
 }
 
 .splash-rental-inner {

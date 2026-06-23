@@ -1446,7 +1446,7 @@ function splashPageBody() {
         <h2>Private pool rental.</h2>
         <div class="squiggle-line" aria-hidden="true"></div>
         <p>The pool is available for private hire outside of regular sessions. Ideal for dog groups, training sessions or a dedicated swim with your own dogs. Get in touch to enquire about availability and pricing.</p>
-        <a class="button primary" href="mailto:info@duncansdogco.com?subject=Private%20Pool%20Rental%20Enquiry">Enquire: info@duncansdogco.com</a>
+        <a class="button primary" href="mailto:info@duncansdogco.com?subject=Private%20Pool%20Rental%20Enquiry">Enquire about private hire</a>
       </div>
       <figure class="splash-rental-photo">
         <img src="/assets/splash/team.jpg" alt="The SPLASH team in the pool at Duncan's Dog Co." loading="lazy">
