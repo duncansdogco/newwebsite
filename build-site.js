@@ -841,7 +841,7 @@ function homepageServiceStrip() {
     }
   ];
 
-  const splashPill = `<a class="splash-pill reveal" href="/splash/"><img src="/assets/splash/taster.jpg" alt="SPLASH Swimming at Duncan's Dog Co." loading="lazy"><div class="splash-pill-overlay"></div><span class="splash-pill-badge">Now open</span><div class="splash-pill-content"><div class="splash-pill-left"><span class="card-num">05</span><h2>SPLASH Swimming</h2><p>Supervised 1-to-1 dog swimming at our Cobham pool. Built for dogs who love the water.</p></div><span class="card-link">Book a taster <span aria-hidden="true">→</span></span></div></a>`;
+  const splashPill = `<a class="splash-pill reveal" href="/splash/"><img src="/assets/splash/pool-session.jpg" alt="SPLASH Swimming at Duncan's Dog Co." loading="lazy"><div class="splash-pill-overlay"></div><span class="splash-pill-badge">Now open</span><div class="splash-pill-content"><div class="splash-pill-left"><span class="card-num">05</span><h2>SPLASH Swimming</h2><p>Supervised 1-to-1 dog swimming at our Cobham pool. Built for dogs who love the water.</p></div><span class="card-link">Book a taster <span aria-hidden="true">→</span></span></div></a>`;
 
   return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What We Offer</p><h2>Our Services</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Everything your dog needs, built around a family cottage deep in the Surrey woodland.</p></div><div class="live-card-grid">${items.map((item, index) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co."><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><span class="card-num">${String(index + 1).padStart(2, "0")}</span><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div>${splashPill}</section>`;
 }
@@ -1346,13 +1346,6 @@ function splashPageBody() {
     "Not every dog takes to the water and that is completely fine. The taster is designed to find out whether SPLASH is the right fit for your dog, while making sure their first experience is positive and stress-free.",
     "If SPLASH is a good fit, we confirm next steps and get you set up for regular sessions."
   ], badge: "Taster session £40 · 1-to-1 with the SPLASH team", image: "/assets/splash/sign.jpg", alt: "Chocolate Labrador at SPLASH at Duncan's Dog Co." })}
-  <section class="section live-content">
-    <div class="section-heading-row reveal">
-      <div><p class="section-kicker">What's included</p><h2>Everything in your taster.</h2><div class="squiggle-line" aria-hidden="true"></div></div>
-      <p>One 1-to-1 session covers everything we need to know about your dog and everything you need to know about SPLASH.</p>
-    </div>
-    ${richFeatureGrid([["1-to-1 swimming", "Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure."], ["Full assessment", "We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly."], ["First Swim Session Report", "A written summary of your dog's session, their confidence in the water and our recommendations going forward."], ["Photos and videos", "We capture your dog's first swim so you can see exactly how they got on."], ["Recommendations", "Personalised guidance on next steps, frequency and whether ongoing sessions are the right fit."], ["Easy booking", "If SPLASH is a good fit, we get you set up on our booking platform so regular sessions are simple to manage."]])}
-  </section>
   <section class="splash-photo-grid-section">
     <figure class="reveal"><img src="/assets/splash/pool-session.jpg" alt="SPLASH team guiding a dog through the pool at Duncan's Dog Co." loading="lazy"></figure>
     <figure class="reveal"><img src="/assets/splash/poolside.jpg" alt="Dog on the poolside with the SPLASH team at Duncan's Dog Co." loading="lazy"></figure>
@@ -1416,6 +1409,20 @@ function splashPageBody() {
       </div>
     </div>
   </section>
+  <section class="section live-content splash-taster-list-section">
+    <div class="section-heading-row reveal">
+      <div><p class="section-kicker">What's included</p><h2>Everything in your taster.</h2><div class="squiggle-line" aria-hidden="true"></div></div>
+      <p>One session covers everything we need to know about your dog and everything you need to know about SPLASH.</p>
+    </div>
+    <ul class="splash-taster-list reveal">
+      <li><strong>1-to-1 swimming</strong><span>Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure.</span></li>
+      <li><strong>Full assessment</strong><span>We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly.</span></li>
+      <li><strong>First Swim Session Report</strong><span>A written summary of your dog's session, their confidence in the water and our recommendations.</span></li>
+      <li><strong>Photos and videos</strong><span>We capture your dog's first swim so you can see exactly how they got on.</span></li>
+      <li><strong>Personalised next steps</strong><span>Guidance on frequency and whether ongoing sessions are the right fit for your dog.</span></li>
+      <li><strong>Easy booking</strong><span>If SPLASH is a good fit, we get you set up so regular sessions are simple to manage.</span></li>
+    </ul>
+  </section>
   <section class="section splash-faq-section">
     <div class="section-heading-row reveal">
       <div>
@@ -1446,7 +1453,14 @@ function splashPageBody() {
       </figure>
     </div>
   </section>
-  ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.", "/contact/#enquiry-form", "Register your interest")}`;
+  <section class="splash-cta-band" style="background-image:url('/assets/splash/taster.jpg')">
+    <div class="splash-cta-inner">
+      <p class="section-kicker">Ready to dive in?</p>
+      <h2>Book a SPLASH taster.</h2>
+      <p>Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.</p>
+      <a class="button primary" href="/contact/#enquiry-form">Register your interest</a>
+    </div>
+  </section>`;
 }
 
 function services() {

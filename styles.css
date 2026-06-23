@@ -6026,3 +6026,94 @@ blockquote {
   font-size: 17px;
   line-height: 1.7;
 }
+
+/* ── SPLASH taster list ── */
+
+.splash-taster-list {
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0;
+  border-top: 1px solid rgba(20, 35, 19, 0.1);
+}
+
+.splash-taster-list li {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 20px 0 20px 28px;
+  border-bottom: 1px solid rgba(20, 35, 19, 0.1);
+  position: relative;
+}
+
+.splash-taster-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 28px;
+  width: 12px;
+  height: 2px;
+  background: #006e85;
+  border-radius: 2px;
+}
+
+.splash-taster-list li strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.splash-taster-list li span {
+  display: block;
+  font-size: 14px;
+  color: rgba(20, 35, 19, 0.65);
+  line-height: 1.6;
+}
+
+/* ── SPLASH photo CTA band ── */
+
+.splash-cta-band {
+  position: relative;
+  background-size: cover;
+  background-position: center 40%;
+  padding: 120px 48px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.splash-cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 15, 22, 0.62);
+}
+
+.splash-cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.splash-cta-band .section-kicker {
+  color: #7ee8ef;
+}
+
+.splash-cta-band h2 {
+  color: #fff;
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 8px 0 16px;
+}
+
+.splash-cta-band p:not(.section-kicker) {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 600px) {
+  .splash-cta-band {
+    padding: 80px 24px;
+  }
+}
