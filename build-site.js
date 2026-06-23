@@ -839,10 +839,18 @@ function homepageServiceStrip() {
       tag: "Licensed boarding",
       title: "Sleepovers",
       text: "Home-from-home overnight boarding, never kennels, with familiar care throughout."
+    },
+    {
+      href: "/splash/",
+      image: "/assets/splash/pool-session.jpg",
+      tag: "Taster from £40",
+      title: "SPLASH Swimming",
+      text: "Supervised 1-to-1 dog swimming at our Cobham pool. Built for dogs who love the water.",
+      newBadge: true
     }
   ];
 
-  return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What We Offer</p><h2>Our Services</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Everything your dog needs, built around a family cottage deep in the Surrey woodland.</p></div><div class="live-card-grid">${items.map((item, index) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co."><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><span class="card-num">${String(index + 1).padStart(2, "0")}</span><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div></section>`;
+  return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What We Offer</p><h2>Our Services</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Everything your dog needs, built around a family cottage deep in the Surrey woodland.</p></div><div class="live-card-grid">${items.map((item, index) => `<a class="live-card reveal${item.newBadge ? " live-card--new" : ""}" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co."><span class="card-tag">${esc(item.tag)}</span>${item.newBadge ? `<span class="card-new-ribbon">Now open</span>` : ""}<div class="live-card-overlay"></div><div class="live-card-content"><span class="card-num">${String(index + 1).padStart(2, "0")}</span><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div></section>`;
 }
 
 function homeTestimonials() {
@@ -1232,7 +1240,6 @@ function serviceBody(page) {
 
 function home() {
   const body = `${homepageServiceStrip()}
-  ${homepageSplashBanner()}
   <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>Premium care is built on trust. We are one Cobham facility, with familiar staff from collection all the way through to home time. Dogs get real woodland days with natural shelter, sensory stimulation and a calm approach to social groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
   ${homeTestimonials()}
   ${catchmentSection()}
@@ -1422,20 +1429,6 @@ function splashPageBody() {
     ${faqMarkup(splashFaqs)}
   </section>
   ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.", "/contact/#enquiry-form", "Register your interest")}`;
-}
-
-function homepageSplashBanner() {
-  return `<section class="splash-homepage-banner">
-  <div class="splash-banner-photo">
-    <img src="/assets/splash/pool-session.jpg" alt="Dog swimming at SPLASH at Duncan's Dog Co., Cobham" loading="lazy">
-  </div>
-  <div class="splash-banner-content reveal">
-    <span class="splash-banner-new">New</span>
-    <img class="splash-banner-logo" src="/assets/splash/splash-logo.png" alt="SPLASH at Duncan's Dog Co." width="120" height="120">
-    <p>Dog swimming is now open at our Cobham facility. Supervised 1-to-1 sessions. Taster from £40.</p>
-    <a class="button primary" href="/splash/">Find out more</a>
-  </div>
-</section>`;
 }
 
 function services() {
