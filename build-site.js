@@ -1333,20 +1333,24 @@ function home() {
 function splashPageBody() {
   const splashFaqs = [
     ["What happens at the taster session?", "Your dog gets the sole attention of the SPLASH team while we assess their confidence, ability and genuine enjoyment in the water. Not every dog enjoys swimming and that is completely fine. The taster is designed to find out whether SPLASH is right for your dog while making sure their first experience is positive and stress-free."],
-    ["How do I book?", "Get in touch and we will send you everything you need to get started, including your GENERA setup details."],
-    ["What is included in the £40 taster session?", "A dedicated 1-to-1 swimming experience, a full assessment by the SPLASH team, a First Swim Session Report, photos and videos of your dog's first swim, and recommendations for future sessions."],
-    ["What is GENERA?", "GENERA is our new booking platform. Following your taster session, ongoing SPLASH sessions are booked through GENERA. We will be bringing daycare, boarding and other services onto GENERA over the coming months."],
+    ["How do I book?", "Get in touch via the form below and we will get back to you within 24 hours about availability, next steps and everything you need ahead of your first session."],
+    ["What is included in the £40 taster session?", "A dedicated 1-to-1 swimming experience, a full assessment by the SPLASH team, a First Swim Session Report, and photos and videos of your dog's first swim."],
+    ["Is swimming safe for my dog?", "Yes. All sessions are 1-to-1 with the SPLASH team and every dog wears a correctly fitted buoyancy aid for their first session. We assess each dog individually and will never push a dog beyond what they are comfortable with."],
     ["Are there discounts for regular bookings?", "Yes. We offer discounted rates for customers who commit to recurring bookings, as well as savings on bulk session packages. Full pricing is confirmed following your dog's assessment."],
-    ["Does every dog enjoy swimming?", "Not every dog takes to the water and that is completely okay. The taster exists to find out in a safe, positive way."]
+    ["Does every dog enjoy swimming?", "Not every dog takes to the water and that is completely okay. The taster exists to find out in a safe, positive way. If it is not the right fit, we will tell you honestly."]
   ];
 
-  return `${liveIntro({ kicker: "About SPLASH", title: "Your dog's first swim.", paragraphs: ["Your dog's first SPLASH session is a 1-to-1 taster, priced at £40. During the session your dog has the sole attention of the SPLASH team while we assess their confidence, ability and enjoyment in the water.", "Not every dog enjoys swimming and that is completely fine. The taster is designed to find out whether SPLASH is the right fit for your dog, while making sure their first experience in the water is positive and stress-free.", "Following the taster, if SPLASH is a good fit, ongoing sessions are booked through GENERA, our new client platform. Registering for SPLASH now also gives you a head start when we bring daycare and boarding across to GENERA over the coming months."], badge: "Taster session £40 · 1-to-1 with the SPLASH team", image: "/assets/splash/sign.jpg", alt: "Chocolate Labrador at SPLASH at Duncan's Dog Co." })}
+  return `${liveIntro({ kicker: "About SPLASH", title: "Your dog's first swim.", paragraphs: [
+    "Your dog's first SPLASH session is a 1-to-1 taster, priced at £40. During the session your dog has the sole attention of the SPLASH team while we assess their confidence, ability and genuine enjoyment in the water.",
+    "Not every dog takes to the water and that is completely fine. The taster is designed to find out whether SPLASH is the right fit for your dog, while making sure their first experience is positive and stress-free.",
+    "If SPLASH is a good fit, we confirm next steps and get you set up for regular sessions."
+  ], badge: "Taster session £40 · 1-to-1 with the SPLASH team", image: "/assets/splash/sign.jpg", alt: "Chocolate Labrador at SPLASH at Duncan's Dog Co." })}
   <section class="section live-content">
     <div class="section-heading-row reveal">
       <div><p class="section-kicker">What's included</p><h2>Everything in your taster.</h2><div class="squiggle-line" aria-hidden="true"></div></div>
       <p>One 1-to-1 session covers everything we need to know about your dog and everything you need to know about SPLASH.</p>
     </div>
-    ${richFeatureGrid([["1-to-1 swimming", "Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure."], ["Full assessment", "We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly."], ["First Swim Session Report", "A written summary of your dog's session, their confidence in the water and our recommendations going forward."], ["Photos and videos", "We capture your dog's first swim so you can see exactly how they got on."], ["Recommendations", "Personalised guidance on next steps, frequency and whether ongoing sessions are the right fit."], ["GENERA setup", "If SPLASH is a good fit, we will get you set up on GENERA so ongoing bookings are simple to manage."]])}
+    ${richFeatureGrid([["1-to-1 swimming", "Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure."], ["Full assessment", "We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly."], ["First Swim Session Report", "A written summary of your dog's session, their confidence in the water and our recommendations going forward."], ["Photos and videos", "We capture your dog's first swim so you can see exactly how they got on."], ["Recommendations", "Personalised guidance on next steps, frequency and whether ongoing sessions are the right fit."], ["Easy booking", "If SPLASH is a good fit, we get you set up on our booking platform so regular sessions are simple to manage."]])}
   </section>
   <section class="splash-photo-grid-section">
     <figure class="reveal"><img src="/assets/splash/pool-session.jpg" alt="SPLASH team guiding a dog through the pool at Duncan's Dog Co." loading="lazy"></figure>
@@ -1354,18 +1358,55 @@ function splashPageBody() {
     <figure class="reveal"><img src="/assets/splash/shake.jpg" alt="Happy dog after a SPLASH swimming session at Duncan's Dog Co." loading="lazy"></figure>
     <figure class="reveal"><img src="/assets/splash/team.jpg" alt="SPLASH team supporting a dog in the water at Duncan's Dog Co." loading="lazy"></figure>
   </section>
-  <section class="splash-genera-section section">
-    <div class="splash-genera-copy reveal">
-      <p class="section-kicker">Booking platform</p>
-      <h2>Introducing GENERA.</h2>
-      <div class="squiggle-line" aria-hidden="true"></div>
-      <p>Following your taster session, ongoing SPLASH sessions are booked through GENERA, our new client platform. We will be bringing daycare, boarding and other Duncan's Dog Co. services onto GENERA over the coming months.</p>
-      <p>Registering for SPLASH now gives you early access and makes the wider move much smoother when other services come across.</p>
+  <section class="splash-benefits-section">
+    <div class="splash-bubbles" aria-hidden="true">
+      <span class="bubble" style="width:24px;height:24px;left:8%;bottom:10%;--dur:6s;--delay:0s"></span>
+      <span class="bubble" style="width:16px;height:16px;left:18%;bottom:25%;--dur:8s;--delay:1.5s"></span>
+      <span class="bubble" style="width:32px;height:32px;left:35%;bottom:5%;--dur:7s;--delay:0.8s"></span>
+      <span class="bubble" style="width:12px;height:12px;left:52%;bottom:15%;--dur:9s;--delay:2.2s"></span>
+      <span class="bubble" style="width:20px;height:20px;left:65%;bottom:8%;--dur:6.5s;--delay:1s"></span>
+      <span class="bubble" style="width:28px;height:28px;left:78%;bottom:20%;--dur:8.5s;--delay:0.3s"></span>
+      <span class="bubble" style="width:14px;height:14px;left:88%;bottom:12%;--dur:7.5s;--delay:1.8s"></span>
+      <span class="bubble" style="width:22px;height:22px;left:42%;bottom:30%;--dur:10s;--delay:3s"></span>
     </div>
-    <div class="splash-genera-features reveal">
-      <div class="splash-genera-item"><strong>Recurring bookings</strong><span>Discounted rates when you commit to regular SPLASH sessions.</span></div>
-      <div class="splash-genera-item"><strong>Bulk packages</strong><span>Savings on multi-session packages, confirmed after your assessment session.</span></div>
-      <div class="splash-genera-item"><strong>One platform</strong><span>Daycare, boarding and SPLASH all in one place as we roll out GENERA.</span></div>
+    <div class="splash-benefits-inner section">
+      <div class="splash-benefits-heading reveal">
+        <p class="section-kicker">Why swimming?</p>
+        <h2>Good for body.<br>Good for mind.</h2>
+        <p>Swimming offers something a walk cannot. Low-impact, full-body, genuinely joyful. Here is what your dog gets from a regular dip.</p>
+      </div>
+      <div class="splash-benefits-grid reveal">
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">01</div>
+          <h3>Joint-friendly exercise</h3>
+          <p>Zero impact on joints. Ideal for dogs with arthritis, post-surgery recovery, or any breed prone to joint problems.</p>
+        </div>
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">02</div>
+          <h3>Full body workout</h3>
+          <p>Every stroke uses more muscles than a land walk. Strong core, strong legs, genuinely tired dog.</p>
+        </div>
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">03</div>
+          <h3>Confidence in water</h3>
+          <p>A positive first experience builds calm around water for life. Especially valuable for nervous or cautious dogs.</p>
+        </div>
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">04</div>
+          <h3>Mental enrichment</h3>
+          <p>New sensations, new environment, new challenge. Swimming tires a busy brain as much as the body.</p>
+        </div>
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">05</div>
+          <h3>Great for senior dogs</h3>
+          <p>Older dogs who struggle on walks often thrive in the water. Supported movement they can actually enjoy.</p>
+        </div>
+        <div class="splash-benefit-card">
+          <div class="splash-benefit-num">06</div>
+          <h3>Pure fun</h3>
+          <p>Some dogs are simply born for the water. SPLASH gives them somewhere to be exactly that.</p>
+        </div>
+      </div>
     </div>
   </section>
   <section class="section faqs">
@@ -1373,7 +1414,7 @@ function splashPageBody() {
     <h2>SPLASH FAQs.</h2>
     ${faqMarkup(splashFaqs)}
   </section>
-  ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will send you everything you need to get started, including your GENERA setup details.", "/contact/#enquiry-form", "Register your interest")}`;
+  ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.", "/contact/#enquiry-form", "Register your interest")}`;
 }
 
 function services() {

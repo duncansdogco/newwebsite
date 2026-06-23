@@ -5507,6 +5507,8 @@ blockquote {
 }
 
 /* ── SPLASH page ── */
+
+/* Photo grid */
 .splash-photo-grid-section {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -5518,6 +5520,20 @@ blockquote {
   margin: 0;
   aspect-ratio: 3/4;
   overflow: hidden;
+  position: relative;
+}
+
+.splash-photo-grid-section figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 180, 200, 0) 0%, rgba(0, 180, 200, 0) 100%);
+  transition: background 0.4s ease;
+  pointer-events: none;
+}
+
+.splash-photo-grid-section figure:hover::after {
+  background: radial-gradient(circle at 50% 50%, rgba(0, 180, 200, 0.18) 0%, rgba(0, 180, 200, 0) 70%);
 }
 
 .splash-photo-grid-section figure img {
@@ -5525,66 +5541,113 @@ blockquote {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.55s ease;
 }
 
 .splash-photo-grid-section figure:hover img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
-.splash-genera-section {
+/* Benefits section */
+@keyframes bubbleRise {
+  0%   { transform: translateY(0) scale(1);    opacity: 0.55; }
+  70%  { opacity: 0.2; }
+  100% { transform: translateY(-130px) scale(0.55); opacity: 0; }
+}
+
+.splash-benefits-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(170deg, #00313f 0%, #005060 45%, #006e85 100%);
+}
+
+.splash-bubbles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  animation: bubbleRise var(--dur, 5s) ease-in infinite var(--delay, 0s);
+}
+
+.splash-benefits-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.splash-benefits-heading {
+  max-width: 640px;
+  margin-bottom: 56px;
+}
+
+.splash-benefits-heading .section-kicker {
+  color: #7ee8ef;
+}
+
+.splash-benefits-heading h2 {
+  color: #fff;
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 8px 0 20px;
+  line-height: 1.1;
+}
+
+.splash-benefits-heading p {
+  color: rgba(245, 242, 232, 0.72);
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.splash-benefits-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
-  background: var(--ink);
-  color: var(--cream);
-  padding: 80px 64px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.splash-genera-copy .section-kicker {
-  color: var(--leaf);
+.splash-benefit-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
 }
 
-.splash-genera-copy h2 {
+.splash-benefit-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(126, 232, 239, 0.3);
+}
+
+.splash-benefit-num {
+  font-size: 44px;
+  font-weight: 800;
+  color: rgba(126, 232, 239, 0.25);
+  line-height: 1;
+  margin-bottom: 14px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -1px;
+}
+
+.splash-benefit-card h3 {
   color: #fff;
-  font-size: clamp(28px, 4vw, 44px);
-}
-
-.splash-genera-copy p {
-  color: rgba(245, 242, 232, 0.78);
-  line-height: 1.7;
-  margin: 0 0 16px;
-}
-
-.splash-genera-copy .squiggle-line {
-  margin: 16px 0 20px;
-}
-
-.splash-genera-features {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.splash-genera-item {
-  border-left: 3px solid var(--leaf);
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.splash-genera-item strong {
-  color: #fff;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1.3;
 }
 
-.splash-genera-item span {
-  color: rgba(245, 242, 232, 0.7);
+.splash-benefit-card p {
+  color: rgba(245, 242, 232, 0.68);
   font-size: 14px;
-  line-height: 1.55;
+  line-height: 1.65;
+  margin: 0;
 }
 
 @media (max-width: 900px) {
@@ -5592,16 +5655,27 @@ blockquote {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .splash-genera-section {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 56px 24px;
+  .splash-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .splash-benefits-inner {
+    padding: 56px 24px 64px;
   }
 }
 
 @media (max-width: 600px) {
   .splash-photo-grid-section {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .splash-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .splash-benefit-card {
+    padding: 24px 20px;
   }
 }
 
