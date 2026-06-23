@@ -1423,16 +1423,13 @@ function splashPageBody() {
           <li><strong>Photos and videos</strong><span>We capture your dog's first swim so you can see exactly how they got on.</span></li>
         </ul>
       </div>
-      <div class="splash-cta-col reveal">
+      <div class="splash-cta-col reveal" style="background-image:url('/assets/splash/taster.jpg')">
         <div class="splash-cta-box">
           <p class="section-kicker">Ready to dive in?</p>
           <h2>Book a SPLASH taster.</h2>
           <p>Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.</p>
           <a class="button primary" href="/contact/#enquiry-form">Register your interest</a>
         </div>
-        <figure class="splash-cta-photo">
-          <img src="/assets/splash/taster.jpg" alt="Book a SPLASH taster session at Duncan's Dog Co." loading="lazy">
-        </figure>
       </div>
     </div>
   </section>
