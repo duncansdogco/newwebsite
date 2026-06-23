@@ -6098,7 +6098,7 @@ blockquote {
   background-position: center 30%;
   border-radius: 16px;
   overflow: hidden;
-  min-height: 440px;
+  min-height: 560px;
   display: flex;
   align-items: flex-end;
   box-shadow: 0 8px 40px rgba(0, 50, 64, 0.14);

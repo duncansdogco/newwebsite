@@ -788,7 +788,7 @@ function livePageHero(h1, data) {
       ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
       <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
     </div>
-    <div class="live-page-video reveal"><video src="${data.video}" poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"></video></div>
+    <div class="live-page-video"><video src="${data.video}" poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"></video></div>
   </section>`;
 }
 
