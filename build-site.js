@@ -788,7 +788,7 @@ function livePageHero(h1, data) {
       ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
       <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
     </div>
-    <div class="live-page-video"><video src="${data.video}" poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"></video></div>
+    <div class="live-page-video"><video poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"><source src="${esc(data.video)}" type="video/mp4"></video></div>
   </section>`;
 }
 
@@ -1409,18 +1409,43 @@ function splashPageBody() {
       </div>
     </div>
   </section>
+  <section class="splash-safety-strip">
+    <div class="splash-safety-inner section">
+      <div class="splash-safety-item reveal">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="splash-safety-icon"><path d="M14 3 L14 25 M5 8 Q14 5 23 8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="14" cy="14" r="10" stroke="currentColor" stroke-width="2.2"/></svg>
+        <div>
+          <strong>Qualified team</strong>
+          <p>Our pool supervisors have completed relevant water safety and canine welfare training.</p>
+        </div>
+      </div>
+      <div class="splash-safety-item reveal">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="splash-safety-icon"><path d="M6 10 C6 6 10 4 14 4 C18 4 22 6 22 10 L22 18 C22 22 18 24 14 24 C10 24 6 22 6 18 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 13 L22 13" stroke="currentColor" stroke-width="2.2"/><path d="M14 13 L14 24" stroke="currentColor" stroke-width="2.2"/></svg>
+        <div>
+          <strong>Life vests for every dog</strong>
+          <p>Every dog wears a correctly fitted buoyancy aid throughout their session. No exceptions.</p>
+        </div>
+      </div>
+      <div class="splash-safety-item reveal">
+        <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="splash-safety-icon"><circle cx="14" cy="9" r="4" stroke="currentColor" stroke-width="2.2"/><path d="M6 24 C6 19.5 9.5 17 14 17 C18.5 17 22 19.5 22 24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M10 13 L8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <div>
+          <strong>Always 1-to-1</strong>
+          <p>Your dog is never left unattended in the water. Full supervision from start to finish, every session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="splash-included-cta-section">
     <div class="splash-included-cta-inner section">
       <div class="splash-included-col reveal">
         <p class="section-kicker">What's included</p>
-        <h2>Everything in your taster.</h2>
+        <h2>Your first session, covered.</h2>
         <div class="squiggle-line" aria-hidden="true"></div>
         <p class="splash-exclusive-note">Exclusive to regular daycare dogs.</p>
         <ul class="splash-taster-list">
-          <li><strong>1-to-1 swimming</strong><span>Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure.</span></li>
-          <li><strong>Full assessment</strong><span>We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly.</span></li>
-          <li><strong>First Swim Session Report</strong><span>A written summary of your dog's session, their confidence in the water and our recommendations.</span></li>
-          <li><strong>Photos and videos</strong><span>We capture your dog's first swim so you can see exactly how they got on.</span></li>
+          <li class="reveal"><strong>1-to-1 swimming</strong><span>Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure.</span></li>
+          <li class="reveal"><strong>Full assessment</strong><span>We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly.</span></li>
+          <li class="reveal"><strong>First Swim Session Report</strong><span>A written summary of your dog's session, their confidence in the water and our recommendations.</span></li>
+          <li class="reveal"><strong>Photos and videos</strong><span>We capture your dog's first swim so you can see exactly how they got on.</span></li>
         </ul>
       </div>
       <div class="splash-cta-col reveal" style="background-image:url('/assets/splash/taster.jpg')">

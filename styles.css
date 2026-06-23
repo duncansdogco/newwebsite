@@ -6027,6 +6027,80 @@ blockquote {
   line-height: 1.7;
 }
 
+/* ── SPLASH safety strip ── */
+
+.splash-safety-strip {
+  background: var(--forest);
+  padding: 0;
+}
+
+.splash-safety-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.splash-safety-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 0 36px 0 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-left: 36px;
+}
+
+.splash-safety-item:first-child {
+  padding-left: 0;
+}
+
+.splash-safety-item:last-child {
+  border-right: none;
+}
+
+.splash-safety-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: #7ee8ef;
+  margin-top: 2px;
+}
+
+.splash-safety-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.splash-safety-item p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 860px) {
+  .splash-safety-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .splash-safety-item {
+    border-right: none;
+    padding-left: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 32px;
+  }
+
+  .splash-safety-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
 /* ── SPLASH combined included + CTA section ── */
 
 .splash-included-cta-section {
