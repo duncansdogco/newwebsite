@@ -1423,21 +1423,13 @@ function splashPageBody() {
       <li><strong>Easy booking</strong><span>If SPLASH is a good fit, we get you set up so regular sessions are simple to manage.</span></li>
     </ul>
   </section>
-  <section class="section splash-faq-section">
-    <div class="section-heading-row reveal">
-      <div>
-        <p class="section-kicker">Common questions</p>
-        <h2>SPLASH FAQs.</h2>
-        <div class="squiggle-line" aria-hidden="true"></div>
-      </div>
+  <section class="splash-cta-band">
+    <div class="splash-cta-inner">
+      <p class="section-kicker">Ready to dive in?</p>
+      <h2>Book a SPLASH taster.</h2>
+      <p>Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.</p>
+      <a class="button primary" href="/contact/#enquiry-form">Register your interest</a>
     </div>
-    <div class="splash-faq-list">${splashFaqs.map(([q, a], i) => `<div class="splash-faq-item reveal">
-      <span class="splash-faq-num">0${i + 1}</span>
-      <div class="splash-faq-body">
-        <h3>${esc(q)}</h3>
-        <p>${a}</p>
-      </div>
-    </div>`).join("")}</div>
   </section>
   <section class="section splash-rental-section">
     <div class="splash-rental-inner reveal">
@@ -1451,14 +1443,6 @@ function splashPageBody() {
       <figure class="splash-rental-photo">
         <img src="/assets/splash/team.jpg" alt="The SPLASH team in the pool at Duncan's Dog Co." loading="lazy">
       </figure>
-    </div>
-  </section>
-  <section class="splash-cta-band" style="background-image:url('/assets/splash/taster.jpg')">
-    <div class="splash-cta-inner">
-      <p class="section-kicker">Ready to dive in?</p>
-      <h2>Book a SPLASH taster.</h2>
-      <p>Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.</p>
-      <a class="button primary" href="/contact/#enquiry-form">Register your interest</a>
     </div>
   </section>`;
 }
