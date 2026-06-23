@@ -5684,3 +5684,202 @@ blockquote {
     animation: none;
   }
 }
+
+/* ── SPLASH benefit card icons ── */
+
+.splash-benefit-card {
+  position: relative;
+}
+
+.splash-benefit-icon {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 28px;
+  height: 28px;
+  color: rgba(126, 232, 239, 0.55);
+}
+
+/* Wave icon — sways gently side to side */
+@keyframes waveSway {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(3px); }
+}
+
+.icon-waves {
+  animation: waveSway 3s ease-in-out infinite;
+}
+
+/* Drop icon — bobs up and down */
+@keyframes dropBob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+
+.icon-drop {
+  animation: dropBob 2.8s ease-in-out infinite;
+}
+
+/* Ripple icon — outer ring pulses in and out */
+@keyframes ripplePulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 0.15; transform: scale(1.15); }
+}
+
+.icon-ripple .ripple-ring {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ripplePulse 2.5s ease-in-out infinite;
+}
+
+/* Spark — flickers brightness */
+@keyframes sparkFlicker {
+  0%, 100% { opacity: 1; }
+  40%       { opacity: 0.4; }
+  70%       { opacity: 0.8; }
+}
+
+.icon-spark {
+  animation: sparkFlicker 2.2s ease-in-out infinite;
+}
+
+/* Heart — gentle heartbeat */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%       { transform: scale(1.12); }
+  40%       { transform: scale(1); }
+  55%       { transform: scale(1.06); }
+}
+
+.icon-heart {
+  transform-origin: center;
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+/* Burst — slow rotation */
+@keyframes burstSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.icon-burst {
+  transform-origin: center;
+  animation: burstSpin 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon-waves,
+  .icon-drop,
+  .icon-ripple .ripple-ring,
+  .icon-spark,
+  .icon-heart,
+  .icon-burst,
+  .bubble {
+    animation: none;
+  }
+}
+
+/* ── Homepage SPLASH banner ── */
+
+.splash-homepage-banner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.splash-banner-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.splash-banner-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.splash-homepage-banner:hover .splash-banner-photo img {
+  transform: scale(1.03);
+}
+
+.splash-banner-content {
+  background: linear-gradient(155deg, #00313f 0%, #005060 100%);
+  padding: 52px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.splash-banner-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #7ee8ef;
+  color: #00313f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.splash-banner-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.splash-banner-content p {
+  color: rgba(245, 242, 232, 0.78);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 280px;
+}
+
+.splash-banner-content .button {
+  width: fit-content;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .splash-homepage-banner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .splash-banner-photo {
+    aspect-ratio: 16/7;
+  }
+
+  .splash-banner-content {
+    padding: 40px 24px;
+  }
+
+  .splash-banner-content p {
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .splash-banner-photo {
+    aspect-ratio: 4/3;
+  }
+
+  .splash-banner-content {
+    padding: 32px 20px;
+    gap: 14px;
+  }
+
+  .splash-banner-logo {
+    width: 88px;
+    height: 88px;
+  }
+}

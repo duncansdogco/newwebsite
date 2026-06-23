@@ -1232,6 +1232,7 @@ function serviceBody(page) {
 
 function home() {
   const body = `${homepageServiceStrip()}
+  ${homepageSplashBanner()}
   <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>Premium care is built on trust. We are one Cobham facility, with familiar staff from collection all the way through to home time. Dogs get real woodland days with natural shelter, sensory stimulation and a calm approach to social groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
   ${homeTestimonials()}
   ${catchmentSection()}
@@ -1377,31 +1378,37 @@ function splashPageBody() {
       </div>
       <div class="splash-benefits-grid reveal">
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-waves" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 10 Q7 5 12 10 Q17 15 22 10 Q24 8 26 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M2 18 Q7 13 12 18 Q17 23 22 18 Q24 16 26 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
           <div class="splash-benefit-num">01</div>
           <h3>Joint-friendly exercise</h3>
           <p>Zero impact on joints. Ideal for dogs with arthritis, post-surgery recovery, or any breed prone to joint problems.</p>
         </div>
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-drop" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 4 C14 4 6 12 6 17 A8 8 0 0 0 22 17 C22 12 14 4 14 4Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 19 Q12 17 14 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/></svg>
           <div class="splash-benefit-num">02</div>
           <h3>Full body workout</h3>
           <p>Every stroke uses more muscles than a land walk. Strong core, strong legs, genuinely tired dog.</p>
         </div>
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-ripple" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="2.5" fill="currentColor"/><circle cx="14" cy="14" r="6" stroke="currentColor" stroke-width="2"/><circle class="ripple-ring" cx="14" cy="14" r="11" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.5"/></svg>
           <div class="splash-benefit-num">03</div>
           <h3>Confidence in water</h3>
           <p>A positive first experience builds calm around water for life. Especially valuable for nervous or cautious dogs.</p>
         </div>
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-spark" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 3 L9 15 L14 15 L13 25 L20 13 L15 13 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.2"/></svg>
           <div class="splash-benefit-num">04</div>
           <h3>Mental enrichment</h3>
           <p>New sensations, new environment, new challenge. Swimming tires a busy brain as much as the body.</p>
         </div>
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-heart" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 23 C14 23 4 16 4 10 A5.5 5.5 0 0 1 14 7.5 A5.5 5.5 0 0 1 24 10 C24 16 14 23 14 23Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
           <div class="splash-benefit-num">05</div>
           <h3>Great for senior dogs</h3>
           <p>Older dogs who struggle on walks often thrive in the water. Supported movement they can actually enjoy.</p>
         </div>
         <div class="splash-benefit-card">
+          <svg class="splash-benefit-icon icon-burst" aria-hidden="true" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="3.5" fill="currentColor"/><line x1="14" y1="2" x2="14" y2="7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22.2" y1="5.8" x2="18.8" y2="9.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="26" y1="14" x2="21" y2="14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22.2" y1="22.2" x2="18.8" y2="18.8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="14" y1="26" x2="14" y2="21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="5.8" y1="22.2" x2="9.2" y2="18.8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="2" y1="14" x2="7" y2="14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="5.8" y1="5.8" x2="9.2" y2="9.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
           <div class="splash-benefit-num">06</div>
           <h3>Pure fun</h3>
           <p>Some dogs are simply born for the water. SPLASH gives them somewhere to be exactly that.</p>
@@ -1415,6 +1422,20 @@ function splashPageBody() {
     ${faqMarkup(splashFaqs)}
   </section>
   ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.", "/contact/#enquiry-form", "Register your interest")}`;
+}
+
+function homepageSplashBanner() {
+  return `<section class="splash-homepage-banner">
+  <div class="splash-banner-photo">
+    <img src="/assets/splash/pool-session.jpg" alt="Dog swimming at SPLASH at Duncan's Dog Co., Cobham" loading="lazy">
+  </div>
+  <div class="splash-banner-content reveal">
+    <span class="splash-banner-new">New</span>
+    <img class="splash-banner-logo" src="/assets/splash/splash-logo.png" alt="SPLASH at Duncan's Dog Co." width="120" height="120">
+    <p>Dog swimming is now open at our Cobham facility. Supervised 1-to-1 sessions. Taster from £40.</p>
+    <a class="button primary" href="/splash/">Find out more</a>
+  </div>
+</section>`;
 }
 
 function services() {
