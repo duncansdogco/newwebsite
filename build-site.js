@@ -785,10 +785,10 @@ function livePageHero(h1, data) {
       <h1 id="page-title" class="sr-only">${esc(h1)}</h1>
       ${data.logo ? `<img class="hero-logo-badge" src="${esc(data.logo)}" alt="${esc(h1)}" aria-hidden="true">` : `<div class="live-display-title" aria-hidden="true">${data.displayTitle}</div>`}
       <p>${esc(data.text)}</p>
-      <div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>
+      ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
       <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
     </div>
-    <div class="live-page-video reveal"><video src="${data.video}" poster="/assets/woodland.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+    <div class="live-page-video reveal"><video src="${data.video}" poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"></video></div>
   </section>`;
 }
 
@@ -1416,21 +1416,35 @@ function splashPageBody() {
       </div>
     </div>
   </section>
-  <section class="section faqs">
-    <div class="section-kicker">Common questions</div>
-    <h2>SPLASH FAQs.</h2>
-    ${faqMarkup(splashFaqs)}
-  </section>
-  <section class="section splash-rental-section">
+  <section class="section splash-faq-section">
     <div class="section-heading-row reveal">
       <div>
+        <p class="section-kicker">Common questions</p>
+        <h2>SPLASH FAQs.</h2>
+        <div class="squiggle-line" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="splash-faq-list">${splashFaqs.map(([q, a], i) => `<div class="splash-faq-item reveal">
+      <span class="splash-faq-num">0${i + 1}</span>
+      <div class="splash-faq-body">
+        <h3>${esc(q)}</h3>
+        <p>${a}</p>
+      </div>
+    </div>`).join("")}</div>
+  </section>
+  <section class="section splash-rental-section">
+    <div class="splash-rental-inner reveal">
+      <div class="splash-rental-copy">
         <p class="section-kicker">Private hire</p>
         <h2>Private pool rental.</h2>
         <div class="squiggle-line" aria-hidden="true"></div>
+        <p>The pool is available for private hire outside of regular sessions. Ideal for dog groups, training sessions or a dedicated swim with your own dogs. Get in touch to enquire about availability and pricing.</p>
+        <a class="button primary" href="mailto:info@duncansdogco.com?subject=Private%20Pool%20Rental%20Enquiry">Enquire: info@duncansdogco.com</a>
       </div>
-      <p>The pool is available for private hire outside of regular sessions. Ideal for dog groups, training sessions or a dedicated swim with your own dogs. Contact us to enquire about availability and pricing.</p>
+      <figure class="splash-rental-photo">
+        <img src="/assets/splash/team.jpg" alt="The SPLASH team in the pool at Duncan's Dog Co." loading="lazy">
+      </figure>
     </div>
-    <a class="button primary" href="mailto:info@duncansdogco.com?subject=Private%20Pool%20Rental%20Enquiry">info@duncansdogco.com</a>
   </section>
   ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.", "/contact/#enquiry-form", "Register your interest")}`;
 }
@@ -1462,12 +1476,13 @@ function splash() {
     intro: "Supervised 1-to-1 swimming for dogs at our Cobham facility. Taster sessions from £40.",
     heroData: {
       eyebrow: "SPLASH · Cobham, Surrey",
-      logo: "/assets/splash/splash-logo.png",
+      logo: "/assets/splash/splash-logo-transparent.png",
       text: "A supervised 1-to-1 swimming programme for dogs who love the water. Taster sessions from £40.",
       video: "/assets/splash/hero.mp4",
+      videoPoster: "/assets/splash/hero-poster.jpg",
       ctaHref: "/contact/#enquiry-form",
       ctaText: "Book a Taster",
-      stats: [["£40", "Taster<br>Session"], ["1-to-1", "Expert<br>Supervision"], ["Pool", "On-site<br>at Cobham"]]
+      stats: []
     },
     body: splashPageBody(),
     structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "SPLASH Dog Swimming", url: "/splash/" }])]

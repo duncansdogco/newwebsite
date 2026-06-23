@@ -5802,10 +5802,10 @@ blockquote {
 /* ── SPLASH hero: logo replaces the text headline ── */
 .hero-logo-badge {
   display: block;
-  width: 260px;
-  max-width: 80%;
+  width: 300px;
+  max-width: 85%;
   margin-bottom: 28px;
-  mix-blend-mode: screen;
+  filter: drop-shadow(0 4px 24px rgba(0, 160, 190, 0.25));
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -5912,4 +5912,117 @@ blockquote {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* ── SPLASH FAQ — numbered single-column ── */
+
+.splash-faq-section {
+  background: var(--cream);
+}
+
+.splash-faq-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(20, 35, 19, 0.1);
+  margin-top: 48px;
+}
+
+.splash-faq-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid rgba(20, 35, 19, 0.1);
+  align-items: start;
+}
+
+.splash-faq-num {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #006e85;
+  padding-top: 4px;
+}
+
+.splash-faq-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.splash-faq-body p {
+  color: rgba(20, 35, 19, 0.68);
+  font-size: 15px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .splash-faq-item {
+    grid-template-columns: 44px 1fr;
+    gap: 16px;
+    padding: 28px 0;
+  }
+
+  .splash-faq-body h3 {
+    font-size: 16px;
+  }
+}
+
+/* ── SPLASH private rental — two-column with photo ── */
+
+.splash-rental-section {
+  background: #f0fafb;
+}
+
+.splash-rental-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.splash-rental-copy h2 {
+  margin-top: 8px;
+}
+
+.splash-rental-copy p {
+  color: rgba(20, 35, 19, 0.72);
+  font-size: 16px;
+  line-height: 1.75;
+  margin: 20px 0 32px;
+}
+
+.splash-rental-photo {
+  margin: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 80, 96, 0.12);
+}
+
+.splash-rental-photo img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (max-width: 860px) {
+  .splash-rental-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .splash-rental-photo img {
+    height: 280px;
+  }
+}
+
+/* ── SPLASH hero: increase description text size ── */
+.page-splash .live-page-copy > p {
+  font-size: 17px;
+  line-height: 1.7;
 }
