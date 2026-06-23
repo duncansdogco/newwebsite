@@ -5506,6 +5506,105 @@ blockquote {
   }
 }
 
+/* ── SPLASH page ── */
+.splash-photo-grid-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  overflow: hidden;
+}
+
+.splash-photo-grid-section figure {
+  margin: 0;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.splash-photo-grid-section figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.splash-photo-grid-section figure:hover img {
+  transform: scale(1.04);
+}
+
+.splash-genera-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  background: var(--ink);
+  color: var(--cream);
+  padding: 80px 64px;
+}
+
+.splash-genera-copy .section-kicker {
+  color: var(--leaf);
+}
+
+.splash-genera-copy h2 {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.splash-genera-copy p {
+  color: rgba(245, 242, 232, 0.78);
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.splash-genera-copy .squiggle-line {
+  margin: 16px 0 20px;
+}
+
+.splash-genera-features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.splash-genera-item {
+  border-left: 3px solid var(--leaf);
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.splash-genera-item strong {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.splash-genera-item span {
+  color: rgba(245, 242, 232, 0.7);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .splash-photo-grid-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .splash-genera-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 56px 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .splash-photo-grid-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .squiggle-line {
     animation: none;

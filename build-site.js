@@ -688,6 +688,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
       <a href="/daycare/">Daycare</a>
       <a href="/puppies/">Puppies</a>
       <a href="/sleepovers/">Sleepovers</a>
+      <a href="/splash/">SPLASH</a>
       <a href="/rescue/">Rescue</a>
       <a href="/pricing/">Pricing</a>
       <a href="/about-us/">About</a>
@@ -730,7 +731,7 @@ function footer() {
           </div>
         </a>
       </div>
-      <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
+      <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
       <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="https://customers.duncansdoggydaycare.com/accounts/login/?next=/daycare/" target="_blank" rel="noopener">Client Bookings</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
@@ -1329,6 +1330,52 @@ function home() {
   }));
 }
 
+function splashPageBody() {
+  const splashFaqs = [
+    ["What happens at the taster session?", "Your dog gets the sole attention of the SPLASH team while we assess their confidence, ability and genuine enjoyment in the water. Not every dog enjoys swimming and that is completely fine. The taster is designed to find out whether SPLASH is right for your dog while making sure their first experience is positive and stress-free."],
+    ["How do I book?", "Get in touch and we will send you everything you need to get started, including your GENERA setup details."],
+    ["What is included in the £40 taster session?", "A dedicated 1-to-1 swimming experience, a full assessment by the SPLASH team, a First Swim Session Report, photos and videos of your dog's first swim, and recommendations for future sessions."],
+    ["What is GENERA?", "GENERA is our new booking platform. Following your taster session, ongoing SPLASH sessions are booked through GENERA. We will be bringing daycare, boarding and other services onto GENERA over the coming months."],
+    ["Are there discounts for regular bookings?", "Yes. We offer discounted rates for customers who commit to recurring bookings, as well as savings on bulk session packages. Full pricing is confirmed following your dog's assessment."],
+    ["Does every dog enjoy swimming?", "Not every dog takes to the water and that is completely okay. The taster exists to find out in a safe, positive way."]
+  ];
+
+  return `${liveIntro({ kicker: "About SPLASH", title: "Your dog's first swim.", paragraphs: ["Your dog's first SPLASH session is a 1-to-1 taster, priced at £40. During the session your dog has the sole attention of the SPLASH team while we assess their confidence, ability and enjoyment in the water.", "Not every dog enjoys swimming and that is completely fine. The taster is designed to find out whether SPLASH is the right fit for your dog, while making sure their first experience in the water is positive and stress-free.", "Following the taster, if SPLASH is a good fit, ongoing sessions are booked through GENERA, our new client platform. Registering for SPLASH now also gives you a head start when we bring daycare and boarding across to GENERA over the coming months."], badge: "Taster session £40 · 1-to-1 with the SPLASH team", image: "/assets/splash/sign.jpg", alt: "Chocolate Labrador at SPLASH at Duncan's Dog Co." })}
+  <section class="section live-content">
+    <div class="section-heading-row reveal">
+      <div><p class="section-kicker">What's included</p><h2>Everything in your taster.</h2><div class="squiggle-line" aria-hidden="true"></div></div>
+      <p>One 1-to-1 session covers everything we need to know about your dog and everything you need to know about SPLASH.</p>
+    </div>
+    ${richFeatureGrid([["1-to-1 swimming", "Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure."], ["Full assessment", "We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly."], ["First Swim Session Report", "A written summary of your dog's session, their confidence in the water and our recommendations going forward."], ["Photos and videos", "We capture your dog's first swim so you can see exactly how they got on."], ["Recommendations", "Personalised guidance on next steps, frequency and whether ongoing sessions are the right fit."], ["GENERA setup", "If SPLASH is a good fit, we will get you set up on GENERA so ongoing bookings are simple to manage."]])}
+  </section>
+  <section class="splash-photo-grid-section">
+    <figure class="reveal"><img src="/assets/splash/pool-session.jpg" alt="SPLASH team guiding a dog through the pool at Duncan's Dog Co." loading="lazy"></figure>
+    <figure class="reveal"><img src="/assets/splash/poolside.jpg" alt="Dog on the poolside with the SPLASH team at Duncan's Dog Co." loading="lazy"></figure>
+    <figure class="reveal"><img src="/assets/splash/shake.jpg" alt="Happy dog after a SPLASH swimming session at Duncan's Dog Co." loading="lazy"></figure>
+    <figure class="reveal"><img src="/assets/splash/team.jpg" alt="SPLASH team supporting a dog in the water at Duncan's Dog Co." loading="lazy"></figure>
+  </section>
+  <section class="splash-genera-section section">
+    <div class="splash-genera-copy reveal">
+      <p class="section-kicker">Booking platform</p>
+      <h2>Introducing GENERA.</h2>
+      <div class="squiggle-line" aria-hidden="true"></div>
+      <p>Following your taster session, ongoing SPLASH sessions are booked through GENERA, our new client platform. We will be bringing daycare, boarding and other Duncan's Dog Co. services onto GENERA over the coming months.</p>
+      <p>Registering for SPLASH now gives you early access and makes the wider move much smoother when other services come across.</p>
+    </div>
+    <div class="splash-genera-features reveal">
+      <div class="splash-genera-item"><strong>Recurring bookings</strong><span>Discounted rates when you commit to regular SPLASH sessions.</span></div>
+      <div class="splash-genera-item"><strong>Bulk packages</strong><span>Savings on multi-session packages, confirmed after your assessment session.</span></div>
+      <div class="splash-genera-item"><strong>One platform</strong><span>Daycare, boarding and SPLASH all in one place as we roll out GENERA.</span></div>
+    </div>
+  </section>
+  <section class="section faqs">
+    <div class="section-kicker">Common questions</div>
+    <h2>SPLASH FAQs.</h2>
+    ${faqMarkup(splashFaqs)}
+  </section>
+  ${ctaBand("Ready to dive in?", "Book a SPLASH taster.", "Get in touch and we will send you everything you need to get started, including your GENERA setup details.", "/contact/#enquiry-form", "Register your interest")}`;
+}
+
 function services() {
   for (const page of servicePages) {
     const body = serviceBody(page);
@@ -1344,6 +1391,28 @@ function services() {
       structured: [serviceJson(page), faqJson(page.faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: page.title, url: `/${page.slug}/` }])]
     }));
   }
+}
+
+function splash() {
+  writePage("splash", layout({
+    route: "splash",
+    title: "SPLASH Dog Swimming at Duncan's Dog Co. | Cobham Surrey",
+    description: "Supervised 1-to-1 dog swimming sessions at Duncan's Dog Co. in Cobham, Surrey. Taster sessions from £40. Assessed by the SPLASH team with photos, videos and a full report.",
+    keywords: "dog swimming Cobham, dog swimming Surrey, SPLASH dog swimming, dog pool Cobham, dog hydrotherapy Surrey",
+    h1: "SPLASH Dog Swimming at Duncan's Dog Co.",
+    intro: "Supervised 1-to-1 swimming for dogs at our Cobham facility. Taster sessions from £40.",
+    heroData: {
+      eyebrow: "SPLASH · Cobham, Surrey",
+      displayTitle: "Dog swimming.<br><span>Done properly.</span>",
+      text: "A supervised 1-to-1 swimming programme for dogs who love the water. Taster sessions from £40.",
+      video: "/assets/splash/hero.mp4",
+      ctaHref: "/contact/#enquiry-form",
+      ctaText: "Book a Taster",
+      stats: [["£40", "Taster<br>Session"], ["1-to-1", "Expert<br>Supervision"], ["Pool", "On-site<br>at Cobham"], ["GENERA", "Easy<br>Booking"]]
+    },
+    body: splashPageBody(),
+    structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "SPLASH Dog Swimming", url: "/splash/" }])]
+  }));
 }
 
 function pricing() {
@@ -2004,7 +2073,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, "site-data.json"), JSON.stringify({ site: SITE, keywords: ["dog daycare Cobham", "doggy daycare Cobham", "dog daycare Surrey", "woodland dog daycare", "dog daycare with collection", "dog daycare SW London", "puppy daycare Surrey", "puppy school Cobham", "dog boarding Cobham", "dog sleepovers Surrey"], areas: areas.map(([slug, name, route]) => ({ slug, name, route })), services: servicePages.map(({ slug, title, keywords }) => ({ slug, title, keywords })) }, null, 2));
 }
@@ -2012,6 +2081,7 @@ function redirectsAndMeta() {
 clean();
 home();
 services();
+splash();
 pricing();
 areaIndex();
 areaPages();
