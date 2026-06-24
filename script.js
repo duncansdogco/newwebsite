@@ -92,3 +92,16 @@ if ("IntersectionObserver" in window) {
     btn.textContent = "Sending…";
   });
 }());
+
+/* ── Force autoplay on hero videos (handles browsers that need an explicit play() call) ── */
+(function () {
+  function tryPlay(video) {
+    if (!video || !video.paused) return;
+    const p = video.play();
+    if (p && typeof p.catch === "function") p.catch(function () {});
+  }
+  document.querySelectorAll("video[autoplay]").forEach(function (v) {
+    if (v.readyState >= 2) { tryPlay(v); return; }
+    v.addEventListener("canplay", function () { tryPlay(v); }, { once: true });
+  });
+}());
