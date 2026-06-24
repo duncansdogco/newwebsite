@@ -179,7 +179,9 @@ const blogPosts = [
   ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"],
   ["dog-daycare-vs-dog-walker", "Dog Daycare vs Dog Walker: Which Is Right for Your Dog?", "A practical guide to help Surrey and South West London owners decide between a dog walker and woodland dog daycare — and what really makes the difference for your dog's day.", "woodlandPack"],
   ["is-my-dog-ready-for-daycare", "How to Know If Your Dog Is Ready for Daycare", "Not every dog is ready for group daycare straight away. Here is how to read the signs, what to expect from a good trial day and how to find the right pace for your dog.", "goldenPair"],
-  ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler"]
+  ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler"],
+  ["first-splash-session", "What to Expect at Your Dog's First SPLASH Session", "A first SPLASH session is calm, supervised and built around your dog. Here is exactly what to expect at your dog's first swim at SPLASH in Cobham, Surrey.", "splashLabAfterSwim"],
+  ["signs-your-dog-needs-more-enrichment", "Signs Your Dog Needs More Enrichment (And What to Do About It)", "A bored dog is not a naughty dog. Here are the signs your dog needs more enrichment, and how woodland daycare addresses them every day at Duncan's in Cobham.", "woodlandStaffyDigging"]
 ];
 
 const blogArticleContent = {
@@ -277,6 +279,51 @@ const blogArticleContent = {
       "Collection is available across Surrey and South West London including Wimbledon, Esher, Putney, Wandsworth, Weybridge and more. Enquire through the website and we will take it from there."
     ]]
   ],
+  "first-splash-session": [
+    ["A first swim, not a plunge in the deep end", [
+      "Your dog's first SPLASH session is a proper introduction, not a test. We do not expect them to swim lengths or enjoy it immediately. Some dogs take to the water straight away. Others need a few minutes to find their feet. Both are completely normal.",
+      "The session is taster length. You will receive a First Swim Session Report afterwards with our honest assessment of how your dog got on and what we recommend as a next step."
+    ]],
+    ["Life vests. Every dog. No exceptions.", [
+      "Every dog at SPLASH wears a correctly fitted buoyancy aid, regardless of size, breed or swimming history. This is not optional.",
+      "The vest gives the team control, keeps your dog safe and means we can focus on how they are moving and feeling rather than holding them up. It makes the whole session calmer for the dog and the team."
+    ]],
+    ["Two qualified team members in the water with your dog", [
+      "Your dog is never in the pool alone. Two qualified SPLASH team members are in the water throughout the session, one supporting the dog and one ready to assist.",
+      "We use calm voices, positive reinforcement and your dog's own pace to introduce the water. We do not rush. If your dog wants to take a break on the steps, they take a break on the steps."
+    ]],
+    ["What you receive after the session", [
+      "Every SPLASH taster includes a First Swim Session Report. This covers how your dog handled the introduction to water, how they moved, how they responded to the team and what we recommend next. It is a genuine assessment, not a sales pitch.",
+      "You will also receive photos and short video clips taken during the session so you can see exactly how your dog got on."
+    ]],
+    ["Exclusive to regular daycare dogs", [
+      "SPLASH is currently available to dogs who attend Duncan's Dog Co. for regular daycare. This allows our team to know your dog before they come into the water, which makes the introduction calmer and safer for everyone.",
+      "If you are interested in daycare and SPLASH, the right first step is a daycare enquiry. Taster sessions from £40."
+    ]]
+  ],
+  "signs-your-dog-needs-more-enrichment": [
+    ["Enrichment is not just about exercise", [
+      "A tired dog is not always a well-enriched dog. Running laps of the garden or a park walk gives physical output but does not engage the parts of the brain that make a dog feel genuinely satisfied.",
+      "Enrichment is about mental stimulation. Sniffing, exploring new environments, making decisions, encountering different textures and smells. These are the things that genuinely settle a dog rather than just burning calories."
+    ]],
+    ["Signs your dog may need more", [
+      "Destructive behaviour at home, particularly chewing or scratching, often appears when a dog is understimulated. It is not spite. It is a dog doing what dogs do when they have nothing else to do.",
+      "Other common signs: excessive barking or whining when alone, restlessness in the evening even after a walk, repetitive behaviours like circling or pacing, and a dog who is always pushing for more regardless of how much exercise they have already had.",
+      "Some dogs will dig. A lot. If your garden looks like a construction site, your dog is telling you something."
+    ]],
+    ["Why woodland time makes a difference", [
+      "The woodland environment is rich with sensory information that a garden or park simply cannot replicate. Every walk through trees involves hundreds of different scents, textures, sounds and decisions. Dogs use their nose as their primary sense, and a woodland gives them something genuinely worth using it on.",
+      "Sniff-led exploration and varied natural environments reduce stress in dogs and produce longer, calmer rest afterwards. A dog who has spent time properly sniffing is often more settled than one who has run twice the distance on a familiar route."
+    ]],
+    ["What we do at Duncan's", [
+      "Our woodland site covers 40 acres of private Cobham countryside. Dogs explore different areas each day, encounter natural surfaces and obstacles, and spend time in groups matched to their temperament and energy level.",
+      "Beyond the environment, dogs benefit from structured social time, rest periods and the consistency of the same team and the same group. That combination of stimulation and routine is what produces a genuinely settled dog at the end of the day."
+    ]],
+    ["Is daycare the right answer for your dog?", [
+      "For dogs who are understimulated during the day, structured woodland daycare usually makes a significant difference. The change in behaviour is often visible within a few sessions: less destructive at home, more settled in the evenings, calmer overall.",
+      "If you are not sure whether your dog needs more enrichment or whether daycare is the right fit, the best starting point is a conversation. Tell us about your dog and what you are seeing, and we will be honest about whether daycare is likely to help."
+    ]]
+  ],
   "dog-daycare-cobham-guide": [
     ["Why Cobham works as a daycare base", [
       "Cobham sits at a natural meeting point for collection routes running south from London and east from Surrey. The A3 brings dogs in from Wimbledon, Putney and Clapham. The A244 and local roads connect Esher, Hersham, Weybridge and Walton-on-Thames. That geography means a single woodland site can serve a wide catchment without impractically long journeys.",
@@ -337,7 +384,9 @@ const gallery = {
   blogFresh7: "blog-fresh-07.jpeg",
   blogFresh8: "blog-fresh-08.jpeg",
   blogFresh9: "blog-fresh-09.jpeg",
-  blogFresh10: "blog-fresh-10.jpeg"
+  blogFresh10: "blog-fresh-10.jpeg",
+  splashLabAfterSwim: "splash-lab-after-swim.jpg",
+  woodlandStaffyDigging: "woodland-staffy-digging.jpg"
 };
 
 const teamMembers = [
@@ -2099,7 +2148,9 @@ function blogRelatedLinks(slug) {
     "how-trial-days-work": [["Contact", "/contact/#enquiry-form"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Dog daycare", "/daycare/"]],
     "why-collection-is-part-of-care": [["Collection areas", "/areas/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
     "rescue-dog-daycare-gentle-introductions": [["Rescue dogs", "/rescue/"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
-    "woodland-daycare-when-it-rains": [["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]]
+    "woodland-daycare-when-it-rains": [["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]],
+    "first-splash-session": [["SPLASH", "/splash/"], ["Book a taster", "/contact/#enquiry-form"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"]],
+    "signs-your-dog-needs-more-enrichment": [["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["Pricing", "/pricing/"], ["About us", "/about-us/"]]
   }[slug] || [["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Contact", "/contact/#enquiry-form"]];
   return `<div class="internal-links blog-related-links">${links.map(([label, href]) => `<a href="${href}">${esc(label)}</a>`).join("")}</div>`;
 }
