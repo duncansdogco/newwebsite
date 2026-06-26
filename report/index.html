@@ -14,15 +14,16 @@ body{font-family:'Montserrat',sans-serif;background:#c8d8dc;padding:24px;}
 .toolbar p strong{color:var(--deep);}
 .print-btn{padding:9px 22px;background:var(--deep);color:white;border:none;border-radius:6px;font-size:13px;font-family:'Montserrat',sans-serif;cursor:pointer;font-weight:700;letter-spacing:0.5px;}
 .page{width:794px;background:white;margin:0 auto;box-shadow:0 6px 30px rgba(0,0,0,0.18);border-radius:4px;overflow:hidden;}
-.header{background:var(--deep);display:flex;min-height:175px;position:relative;}
-.header-left{flex:1;padding:22px 28px;display:flex;flex-direction:column;justify-content:center;gap:4px;}
+.header{background:var(--deep);min-height:175px;position:relative;overflow:hidden;}
+.header-left{position:relative;z-index:2;padding:22px 28px;display:flex;flex-direction:column;justify-content:center;gap:4px;}
 .logo-img{width:88px;height:88px;object-fit:contain;margin-bottom:8px;}
 .title-first{font-size:26px;font-weight:900;color:white;letter-spacing:3px;text-transform:uppercase;line-height:1;}
 .title-report{font-family:'Dancing Script',cursive;font-size:38px;color:var(--light);line-height:1.1;}
 .tagline{color:rgba(255,255,255,0.45);font-size:8px;letter-spacing:3.5px;text-transform:uppercase;margin-top:4px;}
-.header-photo{width:260px;flex-shrink:0;background:rgba(0,0,0,0.2);cursor:pointer;position:relative;overflow:hidden;}
+.header-photo{position:absolute;inset:0;z-index:1;cursor:pointer;overflow:hidden;}
 .header-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
-.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);gap:6px;font-size:11px;letter-spacing:0.5px;}
+.header-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,49,63,0.88) 0%,rgba(0,49,63,0.55) 45%,rgba(0,49,63,0.1) 100%);pointer-events:none;}
+.photo-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);gap:6px;font-size:11px;letter-spacing:0.5px;z-index:3;}
 .photo-ph i{font-size:28px;}
 .file-input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .session-bar{background:var(--navy);display:flex;}
@@ -119,8 +120,8 @@ input:focus{outline:none;}
         <i class="ti ti-camera"></i>
         <span>Click to add<br>dog photo</span>
       </div>
-      <div style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,0.45);color:white;font-size:9px;padding:3px 7px;border-radius:4px;pointer-events:none;letter-spacing:0.5px;">click to change</div>
-      <input class="file-input" type="file" accept="image/*" onchange="loadHero(this)">
+      <div style="position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,0.45);color:white;font-size:9px;padding:3px 7px;border-radius:4px;pointer-events:none;letter-spacing:0.5px;z-index:4;">click to change</div>
+      <input class="file-input" type="file" accept="image/*" onchange="loadHero(this)" style="z-index:5;">
     </div>
   </div>
 
