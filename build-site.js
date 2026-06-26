@@ -515,7 +515,7 @@ function gallerySrc(name) {
 
 function clean() {
   for (const entry of fs.readdirSync(ROOT)) {
-    if ([".git", ".gitignore", ".netlify", "netlify", "assets", "build-site.js", "styles.css", "script.js", "netlify.toml", "gallery-contact.html", "video-contact.html", "enquiry-detect.html"].includes(entry)) continue;
+    if ([".git", ".gitignore", ".netlify", "netlify", "assets", "build-site.js", "styles.css", "script.js", "netlify.toml", "gallery-contact.html", "video-contact.html", "enquiry-detect.html", "report"].includes(entry)) continue;
     fs.rmSync(path.join(ROOT, entry), { recursive: true, force: true });
   }
 }
