@@ -306,15 +306,16 @@ function makeDraggable(container, img, ix, iy) {
     container.style.cursor = 'grabbing';
     e.preventDefault();
   });
-  document.addEventListener('mousemove', e => {
+  window.addEventListener('mousemove', e => {
     if(!dragging) return;
-    const rect = container.getBoundingClientRect();
-    state.x = Math.max(0, Math.min(100, state.x - (e.clientX - sx) / rect.width * 100));
-    state.y = Math.max(0, Math.min(100, state.y - (e.clientY - sy) / rect.height * 100));
+    e.preventDefault();
+    const sens = 0.4;
+    state.x = Math.max(0, Math.min(100, state.x - (e.clientX - sx) * sens));
+    state.y = Math.max(0, Math.min(100, state.y - (e.clientY - sy) * sens));
     img.style.objectPosition = state.x + '% ' + state.y + '%';
     sx = e.clientX; sy = e.clientY;
-  });
-  document.addEventListener('mouseup', () => { if(dragging){ dragging = false; container.style.cursor = 'grab'; } });
+  }, {passive: false});
+  window.addEventListener('mouseup', () => { if(dragging){ dragging = false; container.style.cursor = 'grab'; } });
 }
 
 function showHint(el) {
