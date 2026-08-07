@@ -167,21 +167,21 @@ const servicePages = [
 ];
 
 const blogPosts = [
-  ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1"],
-  ["dog-daycare-with-collection-wimbledon", "Dog Daycare with Collection in Wimbledon", "Everything Wimbledon dog owners should know about safe daily collection, journey times and arriving at Duncan's Dog Co. woodland daycare in Cobham.", "blogFresh2"],
-  ["dog-daycare-collection-clapham-putney-wandsworth", "Dog Daycare: Clapham, Putney & Wandsworth", "How daily collection works for dogs in Clapham, Putney and Wandsworth travelling to Duncan's Dog Co. woodland daycare in Cobham, Surrey.", "blogFresh3"],
-  ["dog-boarding-vs-kennels", "Dog Boarding vs Kennels", "A practical comparison of dog boarding, kennels, home care and sleepovers to help owners in Cobham and Surrey choose the right overnight care for their dog.", "blogFresh4"],
-  ["what-to-look-for-in-licensed-dog-daycare", "Licensed Dog Daycare: What to Look For", "What every owner should check before choosing a dog daycare: licensing, staff ratios, trial days, safety protocols and honest care standards in Cobham and Surrey.", "blogFresh5"],
-  ["puppy-daycare-vs-puppy-classes", "Puppy Daycare vs Puppy Classes", "Puppy daycare and puppy classes serve different purposes. Find out how each supports socialisation, training and development, and what to consider in Cobham and Surrey.", "blogFresh6"],
-  ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham: what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7"],
-  ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare, not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8"],
-  ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: Gentle Introductions", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9"],
-  ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10"],
-  ["dog-daycare-vs-dog-walker", "Dog Daycare vs Dog Walker: Which Is Right for Your Dog?", "A practical guide to help Surrey and South West London owners decide between a dog walker and woodland dog daycare — and what really makes the difference for your dog's day.", "woodlandPack"],
-  ["is-my-dog-ready-for-daycare", "How to Know If Your Dog Is Ready for Daycare", "Not every dog is ready for group daycare straight away. Here is how to read the signs, what to expect from a good trial day and how to find the right pace for your dog.", "goldenPair"],
-  ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler"],
-  ["first-splash-session", "What to Expect at Your Dog's First SPLASH Session", "A first SPLASH session is calm, supervised and built around your dog. Here is exactly what to expect at your dog's first swim at SPLASH in Cobham, Surrey.", "splashLabAfterSwim"],
-  ["signs-your-dog-needs-more-enrichment", "Signs Your Dog Needs More Enrichment (And What to Do About It)", "A bored dog is not a naughty dog. Here are the signs your dog needs more enrichment, and how woodland daycare addresses them every day at Duncan's in Cobham.", "woodlandStaffyDigging"]
+  ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1", "2026-05-22"],
+  ["dog-daycare-with-collection-wimbledon", "Dog Daycare with Collection in Wimbledon", "Everything Wimbledon dog owners should know about safe daily collection, journey times and arriving at Duncan's Dog Co. woodland daycare in Cobham.", "blogFresh2", "2026-05-22"],
+  ["dog-daycare-collection-clapham-putney-wandsworth", "Dog Daycare: Clapham, Putney & Wandsworth", "How daily collection works for dogs in Clapham, Putney and Wandsworth travelling to Duncan's Dog Co. woodland daycare in Cobham, Surrey.", "blogFresh3", "2026-05-22"],
+  ["dog-boarding-vs-kennels", "Dog Boarding vs Kennels", "A practical comparison of dog boarding, kennels, home care and sleepovers to help owners in Cobham and Surrey choose the right overnight care for their dog.", "blogFresh4", "2026-05-22"],
+  ["what-to-look-for-in-licensed-dog-daycare", "Licensed Dog Daycare: What to Look For", "What every owner should check before choosing a dog daycare: licensing, staff ratios, trial days, safety protocols and honest care standards in Cobham and Surrey.", "blogFresh5", "2026-05-22"],
+  ["puppy-daycare-vs-puppy-classes", "Puppy Daycare vs Puppy Classes", "Puppy daycare and puppy classes serve different purposes. Find out how each supports socialisation, training and development, and what to consider in Cobham and Surrey.", "blogFresh6", "2026-05-22"],
+  ["how-trial-days-work", "How Trial Days Work", "Find out how our trial day process works at Duncan's Dog Co. in Cobham: what we assess, how dogs are introduced to the group and what to expect on the day.", "blogFresh7", "2026-05-22"],
+  ["why-collection-is-part-of-care", "Why Dog Collection Is Part of the Care", "Why safe collection and drop-off is a core part of quality dog daycare, not just a convenience. How Duncan's Dog Co. approaches transport across Surrey and SW London.", "blogFresh8", "2026-05-22"],
+  ["rescue-dog-daycare-gentle-introductions", "Rescue Dog Daycare: Gentle Introductions", "A gentle guide for rescue dog owners considering daycare in Cobham. How to introduce rescue dogs to group settings slowly, safely and at the right pace.", "blogFresh9", "2026-05-22"],
+  ["woodland-daycare-when-it-rains", "Woodland Daycare in Wet Weather", "How Duncan's Dog Co. keeps woodland daycare enjoyable in wet British weather, with natural shelter, drying routines and dog comfort built into every session.", "blogFresh10", "2026-05-22"],
+  ["dog-daycare-vs-dog-walker", "Dog Daycare vs Dog Walker: Which Is Right for Your Dog?", "A practical guide to help Surrey and South West London owners decide between a dog walker and woodland dog daycare — and what really makes the difference for your dog's day.", "woodlandPack", "2026-06-07"],
+  ["is-my-dog-ready-for-daycare", "How to Know If Your Dog Is Ready for Daycare", "Not every dog is ready for group daycare straight away. Here is how to read the signs, what to expect from a good trial day and how to find the right pace for your dog.", "goldenPair", "2026-06-07"],
+  ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler", "2026-06-07"],
+  ["first-splash-session", "What to Expect at Your Dog's First SPLASH Session", "A first SPLASH session is calm, supervised and built around your dog. Here is exactly what to expect at your dog's first swim at SPLASH in Cobham, Surrey.", "splashLabAfterSwim", "2026-06-24"],
+  ["signs-your-dog-needs-more-enrichment", "Signs Your Dog Needs More Enrichment (And What to Do About It)", "A bored dog is not a naughty dog. Here are the signs your dog needs more enrichment, and how woodland daycare addresses them every day at Duncan's in Cobham.", "woodlandStaffyDigging", "2026-06-24"]
 ];
 
 const blogArticleContent = {
@@ -673,6 +673,22 @@ function faqJson(faqs) {
       name: q,
       acceptedAnswer: { "@type": "Answer", text: a }
     }))
+  };
+}
+
+function blogPostingJson({ slug, title, description, image, datePublished }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${SITE}/blog/${slug}/#article`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/blog/${slug}/` },
+    headline: title,
+    description,
+    image: `${SITE}${image}`,
+    datePublished,
+    dateModified: datePublished,
+    author: { "@type": "Organization", name: "Duncan's Dog Co.", url: SITE },
+    publisher: { "@type": "Organization", name: "Duncan's Dog Co.", logo: { "@type": "ImageObject", url: `${SITE}/assets/logo.png` } }
   };
 }
 
@@ -2161,9 +2177,9 @@ function blogRelatedLinks(slug) {
 
 function blog() {
   writePage("blog", layout({ route: "blog", title: "Dog Daycare Advice & Guides | Duncan's Dog Co.", description: "Guides and advice from Duncan's Dog Co. on woodland dog daycare, puppy socialisation, rescue dogs, boarding, collection and choosing licensed care in Cobham and Surrey.", keywords: "dog daycare blog, puppy socialisation Surrey, dog boarding vs kennels", h1: "Duncan's Dog Co. Blog", intro: "Stories and useful reads for owners comparing daycare, puppy care, collection and sleepovers.", body: `<section class="section blog-index-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Blog</p><h2>Latest reads from the woodland.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Short, useful posts on choosing daycare, puppy socialisation, collection, sleepovers and woodland care.</p></div><div class="blog-card-grid">${blogPosts.map(([slug, title, desc, imageKey]) => `<a class="blog-card reveal" href="/blog/${slug}/"><div class="blog-card-image"><img src="${gallerySrc(gallery[imageKey] || gallery.woodlandGroup)}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></div><div class="blog-card-copy"><span>${esc(title.split(" ")[0])}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p><strong>Read post <span aria-hidden="true">→</span></strong></div></a>`).join("")}</div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }])] }));
-  for (const [slug, title, desc, imageKey] of blogPosts) {
+  for (const [slug, title, desc, imageKey, date] of blogPosts) {
     const image = gallerySrc(gallery[imageKey] || gallery.woodlandGroup);
-    writePage(`blog/${slug}`, layout({ route: `blog/${slug}`, title: `${title} | Duncan's Dog Co.`, description: desc, keywords: `${title}, dog daycare Cobham, dog daycare Surrey`, h1: title, intro: desc, body: `<section class="blog-article-hero"><img src="${image}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></section><section class="section article blog-article">${blogArticleMarkup(slug, desc)}</section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }, { name: title, url: `/blog/${slug}/` }])] }));
+    writePage(`blog/${slug}`, layout({ route: `blog/${slug}`, title: `${title} | Duncan's Dog Co.`, description: desc, keywords: `${title}, dog daycare Cobham, dog daycare Surrey`, h1: title, intro: desc, body: `<section class="blog-article-hero"><img src="${image}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></section><section class="section article blog-article">${blogArticleMarkup(slug, desc)}</section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }, { name: title, url: `/blog/${slug}/` }]), blogPostingJson({ slug, title, description: desc, image, datePublished: date })] }));
   }
 }
 
