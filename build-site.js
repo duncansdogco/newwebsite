@@ -181,7 +181,8 @@ const blogPosts = [
   ["is-my-dog-ready-for-daycare", "How to Know If Your Dog Is Ready for Daycare", "Not every dog is ready for group daycare straight away. Here is how to read the signs, what to expect from a good trial day and how to find the right pace for your dog.", "goldenPair", "2026-06-07"],
   ["dog-daycare-cobham-guide", "Dog Daycare in Cobham: A Guide for Surrey Families", "Everything local families should know about choosing dog daycare in Cobham — what a good day looks like, how collection works across Surrey, and what licensed care actually means.", "handler", "2026-06-07"],
   ["first-splash-session", "What to Expect at Your Dog's First SPLASH Session", "A first SPLASH session is calm, supervised and built around your dog. Here is exactly what to expect at your dog's first swim at SPLASH in Cobham, Surrey.", "splashLabAfterSwim", "2026-06-24"],
-  ["signs-your-dog-needs-more-enrichment", "Signs Your Dog Needs More Enrichment (And What to Do About It)", "A bored dog is not a naughty dog. Here are the signs your dog needs more enrichment, and how woodland daycare addresses them every day at Duncan's in Cobham.", "woodlandStaffyDigging", "2026-06-24"]
+  ["signs-your-dog-needs-more-enrichment", "Signs Your Dog Needs More Enrichment (And What to Do About It)", "A bored dog is not a naughty dog. Here are the signs your dog needs more enrichment, and how woodland daycare addresses them every day at Duncan's in Cobham.", "woodlandStaffyDigging", "2026-06-24"],
+  ["summer-heat-dog-daycare-safety", "Keeping Dogs Safe and Cool in Summer Heat", "Practical advice on keeping dogs safe in summer heat: the 7-second pavement test, signs of overheating, and how woodland daycare and Splash help dogs stay cool in Cobham.", "bridgePackWide", "2026-08-09"]
 ];
 
 const blogArticleContent = {
@@ -344,6 +345,28 @@ const blogArticleContent = {
     ["Getting started", [
       "The first step is an enquiry. Tell us your postcode, a little about your dog and what kind of routine you are looking for. We will check collection availability and arrange a meet and greet at the facility so you can see the woodland and meet the team before any commitment is made.",
       "After a successful meet and greet, we arrange a trial day. That gives us the chance to see how your dog settles, and gives you honest feedback on whether daycare is the right fit. There is no pressure and no obligation. If daycare is right for your dog, we will make it work."
+    ]]
+  ],
+  "summer-heat-dog-daycare-safety": [
+    ["The 7-second pavement test", [
+      "If you would not hold the back of your hand on the pavement for 7 seconds, it is too hot for your dog's paws. Tarmac and paving can reach temperatures far higher than the air around them on a warm day, and repeated exposure can cause real burns, not just discomfort.",
+      "It is a simple check, but one worth doing before every walk in warm weather, especially in the middle of the day when pavements have had hours to heat up."
+    ]],
+    ["Signs a dog is struggling with the heat", [
+      "Heavy panting that does not settle, excessive drooling, lethargy or reluctance to move, and seeking out shade or water are all signs a dog is finding the heat hard going. Flat-faced breeds, older dogs and dogs carrying extra weight are especially at risk and need extra care.",
+      "If a dog seems distressed in hot weather, get them somewhere cool and offer water straight away, and contact a vet if they do not settle quickly. It is always better to check than to wait and see."
+    ]],
+    ["Why woodland beats a hot pavement walk", [
+      "Our Cobham site gives dogs natural tree cover, which keeps the ground and the air noticeably cooler than open tarmac or an exposed park. Dogs can choose shade, move at their own pace, and are never stuck on hot paving for the whole walk.",
+      "We also adjust routines on hot days: more rest breaks, more water stops, and activity planned around the cooler parts of the day rather than the midday peak."
+    ]],
+    ["Splash: a proper way to cool down", [
+      "On warmer days, Splash gives regular daycare dogs the option of a supervised swim as well as their usual woodland day. It is not a replacement for shade and water, it is an addition, a genuine way for a dog to cool off properly rather than just getting through the heat.",
+      "Not every dog wants to swim, and that is fine. Daycare works well with or without a dip in the pool."
+    ]],
+    ["What to do at home", [
+      "The same basics apply away from daycare: walk in the early morning or evening rather than the middle of the day, always carry water, check pavement temperature before you set off, and never leave a dog in a car, not even for a few minutes with the windows down.",
+      "If you are ever unsure whether it is safe to walk your dog, it probably is not the right time. A shorter walk or a missed walk is always better than a dog overheating."
     ]]
   ]
 };
@@ -2170,7 +2193,8 @@ function blogRelatedLinks(slug) {
     "rescue-dog-daycare-gentle-introductions": [["Rescue dogs", "/rescue/"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
     "woodland-daycare-when-it-rains": [["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]],
     "first-splash-session": [["SPLASH", "/splash/"], ["Book a taster", "/contact/#enquiry-form"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"]],
-    "signs-your-dog-needs-more-enrichment": [["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["Pricing", "/pricing/"], ["About us", "/about-us/"]]
+    "signs-your-dog-needs-more-enrichment": [["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["Pricing", "/pricing/"], ["About us", "/about-us/"]],
+    "summer-heat-dog-daycare-safety": [["SPLASH", "/splash/"], ["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["FAQ", "/faq/"]]
   }[slug] || [["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Contact", "/contact/#enquiry-form"]];
   return `<div class="internal-links blog-related-links">${links.map(([label, href]) => `<a href="${href}">${esc(label)}</a>`).join("")}</div>`;
 }
