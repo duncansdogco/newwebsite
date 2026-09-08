@@ -142,10 +142,11 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .card .name{font-family:var(--serif);font-size:18px;line-height:1.1;color:var(--black);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .card .jobs{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.35}
 .card .jobs span+span::before{content:" · "}
-.card .lunch{text-align:right;line-height:1}
-.card .lunch .t{font-family:var(--serif);font-size:22px;color:var(--black);letter-spacing:-.01em}
-.card .lunch .t.none{color:var(--line-strong);font-size:18px}
-.card .lunch .micro{margin-top:3px;display:block}
+.card .lunch{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:78px;padding:6px 10px;border-radius:var(--r);background:#f1f1f1;line-height:1}
+.card .lunch .t{font-family:var(--serif);font-size:22px;color:var(--black);letter-spacing:-.01em;white-space:nowrap}
+.card .lunch.unset{background:var(--amber-soft);border:1px dashed var(--amber)}
+.card .lunch.unset .micro{color:#8a5a12}
+.card .lunch.unset .t{font-family:var(--sans);font-size:12px;font-weight:700;color:#8a5a12}
 .tag{display:inline-block;background:var(--amber);color:var(--black);font-family:var(--sans);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 6px;border-radius:2px;line-height:1}
 .card .edit{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:var(--r);display:grid;place-items:center;color:var(--muted)}
 .card .edit svg{width:16px;height:16px;fill:currentColor}
@@ -510,7 +511,7 @@ function renderPens(){
       const lunch=d.lunch[id]; const jobs=d.jobs[id]||[];
       card.innerHTML=`<span class="av" style="background:${s.hue}">${initials(s.name)}</span>
         <div class="who"><div class="name">${esc(s.name)}${d.radio[id]?'<span class="tag">Radio 1st</span>':''}</div>${jobs.length?`<div class="jobs">${jobs.map(j=>`<span>${esc(j)}</span>`).join('')}</div>`:''}</div>
-        <div class="lunch"><span class="t ${lunch?'':'none'}">${lunch?esc(lunch):'—'}</span><span class="micro">Lunch</span></div>
+        <div class="lunch ${lunch?'':'unset'}"><span class="micro">Lunch</span><span class="t">${lunch?esc(lunch):'Not set'}</span></div>
         <button class="edit" type="button" aria-label="Edit ${esc(s.name)}"><svg viewBox="0 0 24 24"><path d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7L3 17.3Zm17.7-10.2a1 1 0 0 0 0-1.4l-2.4-2.4a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7 1.9-1.7Z"/></svg></button>`;
       card.addEventListener('click',e=>{ if(dragMoved) return; e.stopPropagation(); if(selected && selected!==id){ move(selected,p.key); return; } openCardSheet(id); });
       attachDrag(card,id); body.appendChild(card);
@@ -552,9 +553,10 @@ function attachDrag(el,id){
     if(e.target.closest('.edit')) return;
     const startX=e.clientX, startY=e.clientY; let ghost=null, active=false, lastTarget=null;
     dragMoved=false;
+    try{ el.setPointerCapture(e.pointerId); }catch{}
     const onMove=ev=>{
       const dx=ev.clientX-startX, dy=ev.clientY-startY;
-      if(!active){ if(Math.hypot(dx,dy)<7) return; active=true; dragMoved=true; try{ el.setPointerCapture(e.pointerId); }catch{}
+      if(!active){ if(Math.hypot(dx,dy)<6) return; active=true; dragMoved=true;
         ghost=el.cloneNode(true); ghost.classList.add('drag-ghost'); ghost.classList.remove('selected'); ghost.style.width=el.offsetWidth+'px'; document.body.appendChild(ghost); el.classList.add('lifted');
         const cur=penOf(getDay(viewDate),id)||'bench';
         document.querySelectorAll('[data-drop]').forEach(z=>{ if(z.dataset.drop!==cur) z.classList.add('can-drop'); });
@@ -565,6 +567,7 @@ function attachDrag(el,id){
     };
     const onUp=ev=>{
       el.removeEventListener('pointermove',onMove); el.removeEventListener('pointerup',onUp); el.removeEventListener('pointercancel',onUp);
+      try{ el.releasePointerCapture(e.pointerId); }catch{}
       if(!active) return;
       ghost?.remove(); el.classList.remove('lifted');
       document.querySelectorAll('.can-drop,.over').forEach(z=>z.classList.remove('can-drop','over'));
