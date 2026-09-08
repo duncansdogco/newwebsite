@@ -1,0 +1,12 @@
+{
+  "name": "duncansdogco-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Duncan's Dog Co website and team tools",
+  "scripts": {
+    "build": "node build-site.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0"
+  }
+}
