@@ -1,4 +1,4 @@
-// Shared storage for the Staff Positioning board at /team/
+// Shared storage for the Staff Positioning board at /board/
 // GET  /api/team-board  -> current board JSON (or null if never saved)
 // PUT  /api/team-board  -> replace board JSON
 // Every request must carry the team PIN in the x-team-pin header.

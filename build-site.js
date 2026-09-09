@@ -538,7 +538,7 @@ function gallerySrc(name) {
 
 function clean() {
   for (const entry of fs.readdirSync(ROOT)) {
-    if ([".git", ".gitignore", ".netlify", "netlify", "assets", "build-site.js", "styles.css", "script.js", "netlify.toml", "gallery-contact.html", "video-contact.html", "enquiry-detect.html", "report", "team", "package.json", "package-lock.json", "node_modules"].includes(entry)) continue;
+    if ([".git", ".gitignore", ".netlify", "netlify", "assets", "build-site.js", "styles.css", "script.js", "netlify.toml", "gallery-contact.html", "video-contact.html", "enquiry-detect.html", "report", "board", "package.json", "package-lock.json", "node_modules"].includes(entry)) continue;
     fs.rmSync(path.join(ROOT, entry), { recursive: true, force: true });
   }
 }
@@ -2247,7 +2247,7 @@ function redirectsAndMeta() {
   // www → non-www redirect (kicks in once www DNS is pointed at Netlify)
   const wwwRedirect = "https://www.duncansdogco.com/* https://duncansdogco.com/:splat 301!";
   fs.writeFileSync(path.join(ROOT, "_redirects"), wwwRedirect + "\n" + redirects.map(([from, to]) => `${from} ${to} 301`).join("\n") + "\n" + faviconRedirects.join("\n") + "\n");
-  fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /team/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
+  fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
   const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
