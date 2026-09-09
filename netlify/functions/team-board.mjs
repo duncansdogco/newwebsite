@@ -20,7 +20,7 @@ export default async (req) => {
   const given = (req.headers.get("x-team-pin") || "").trim();
   if (!given || given !== expected) return json({ error: "bad-pin" }, 401);
 
-  const store = getStore("team-board");
+  const store = getStore({ name: "team-board", consistency: "strong" });
 
   if (req.method === "GET") {
     const data = await store.get(KEY, { type: "json" });
