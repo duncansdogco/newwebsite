@@ -94,7 +94,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .tray .hint{font-size:12px;color:var(--muted);display:block;margin-top:2px}
 .tray.can-drop{background:var(--green-soft);border-color:var(--green)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;flex:1}
-.chip{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line-strong);border-radius:999px;padding:4px 12px 4px 4px;font-size:14px;font-weight:700;color:var(--black);user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
+.chip{-webkit-touch-callout:none;display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line-strong);border-radius:999px;padding:4px 12px 4px 4px;font-size:14px;font-weight:700;color:var(--black);user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab}
 .chip:hover{border-color:var(--black)}
 .chip.selected{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft);background:var(--green-soft)}
 .chip.lifted{opacity:.3}
@@ -102,7 +102,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .empty{font-size:13px;color:var(--muted);padding-top:6px}
 
 /* job chips */
-.jchip{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line-strong);border-radius:8px;padding:5px 10px 5px 7px;font-size:13px;font-weight:700;color:var(--black);user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;position:relative}
+.jchip{-webkit-touch-callout:none;display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line-strong);border-radius:8px;padding:5px 10px 5px 7px;font-size:13px;font-weight:700;color:var(--black);user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;position:relative}
 .jchip .emo{font-size:17px;line-height:1}
 .jchip.todo{border-left:4px solid var(--amber)}
 .jchip.done{background:var(--chip);color:var(--muted);font-weight:400;border-color:var(--line)}
@@ -131,7 +131,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .pen-empty{margin:auto;text-align:center;color:var(--muted);font-size:13px;padding:30px 16px}
 .pen-empty b{display:block;font-family:var(--serif);font-size:15px;color:var(--black);margin-bottom:3px}
 
-.card{display:grid;grid-template-columns:auto 1fr auto;gap:0 12px;align-items:center;padding:12px 12px 12px 14px;border-bottom:1px solid var(--line);position:relative;user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;background:#fff}
+.card{-webkit-touch-callout:none;display:grid;grid-template-columns:auto 1fr auto;gap:0 12px;align-items:center;padding:12px 12px 12px 14px;border-bottom:1px solid var(--line);position:relative;user-select:none;-webkit-user-select:none;touch-action:none;cursor:grab;background:#fff}
 .card:last-child{border-bottom:none}
 .card:hover{background:#fafafa}
 .card.lifted{opacity:.3}
@@ -351,12 +351,11 @@ const HUES = ['#193419','#2f6b3a','#b5562f','#1c1c1c','#5b4a3a','#3d5a6c','#7a2e
 const DEFAULT_BOARD = () => ({
   v:1,
   staff: ['Holly','Eleanor','Nick','Katie','Alexia','Tyler','Yvonne','Laura'].map((n,i)=>({ id:'s'+(i+1), name:n, hue:HUES[i%HUES.length] })),
-  jobs: ['🧼 Clean & disinfect boarding area + poo bin','🗑️ Carpark / office poo bin','🗑️ Woodland poo bin','🧼 Clean & disinfect poo pen','🌿 Jungle sweep & bin (Wed / Fri)','🗑️ Pen poo bin (pen in use)','🚗 Car clean (Fri)'],
+  jobs: ['🧼 Clean & disinfect boarding area + poo bin','🗑️ Carpark / office poo bin','🗑️ Woodland poo bin','🧼 Clean & disinfect poo pen','🌿 Jungle sweep & bin (Wed / Fri)','🗑️ Pen poo bin (pen in use)','🚗 Car wash'],
   lunches: ['12:00','12:30','13:00','13:30'],
   notes: {
     penTasks: 'Fill water buckets 🪣 • Poo sweep 🧹',
     fridayClean: 'Poo bins and poo scoops',
-    fridayCar: 'Friday car clean',
     general: 'Ratio: only 1 person out of a pen at any given time.\nLunches: you can swap for an earlier or later lunch, but the dedicated time slots MUST be used.\nPoo bins: do not need doing every day. If they are half full they can be left till the next day.'
   },
   days: {},
@@ -471,7 +470,7 @@ async function saveNow(){
   saving=false;
 }
 async function pollRemote(){
-  if(localMode || dirty || saving || document.hidden) return;
+  if(localMode || dirty || saving || document.hidden || drag) return;
   try{
     const remote = await api('GET');
     if(remote && remote.updatedAt && remote.updatedAt!==board.updatedAt){ board=remote; cacheLocal(); render(); setStatus('Updated by the team '+timeNow()); toast('Board updated by someone on the team'); }
@@ -608,49 +607,65 @@ function renderNotes(){
   document.getElementById('notes').innerHTML=`
     <div class="note"><span class="micro"><span class="emo">🌳</span>Woodland pen · every day</span><p>${esc(n.penTasks)}</p></div>
     <div class="note"><span class="micro"><span class="emo">☀️</span>Sahara / Top pen · every day</span><p>${esc(n.penTasks)}</p></div>
-    ${fri?`<div class="note friday"><span class="micro"><span class="emo">🧹</span>Friday clean</span><p>${esc(n.fridayClean)}</p></div><div class="note friday"><span class="micro"><span class="emo">🚗</span>Friday car clean</span><p>${esc(n.fridayCar)}</p></div>`:''}
+    ${fri?`<div class="note friday wide"><span class="micro"><span class="emo">🧹</span>Friday clean</span><p>${esc(n.fridayClean)}</p></div>`:''}
     <div class="note wide"><span class="micro"><span class="emo">📌</span>General notes</span><p>${esc(n.general)}</p></div>`;
 }
 
 /* ===================== DRAG (pointer events) ===================== */
 let dragMoved=false;
+let drag=null; // the one drag in progress, so a lost pointerup can never leave a name stuck
+function endDrag(dropTarget){
+  if(!drag) return;
+  const d=drag; drag=null;
+  window.removeEventListener('pointermove',d.onMove); window.removeEventListener('pointerup',d.onUp); window.removeEventListener('pointercancel',d.onUp);
+  try{ d.el.releasePointerCapture(d.pointerId); }catch{}
+  d.ghost?.remove(); d.el.classList.remove('lifted');
+  document.querySelectorAll('.drag-ghost').forEach(g=>g.remove());
+  document.querySelectorAll('.lifted,.can-drop,.over,.can-take').forEach(z=>z.classList.remove('lifted','can-drop','over','can-take'));
+  if(!d.active){ dragMoved=false; return; }
+  if(dropTarget){
+    if(d.isStaff){ const target=dropTarget.dataset.drop; if(target!==d.curZone) move(d.payload.id,target); else render(); }
+    else giveJob(dropTarget.dataset.id, d.payload.job);
+  } else render();
+  setTimeout(()=>{ dragMoved=false; },50);
+}
 function attachDrag(el,payload){
+  el.addEventListener('contextmenu', e=>e.preventDefault());
   el.addEventListener('pointerdown', e=>{
+    if(!drag) dragMoved=false;
     if(e.button && e.button!==0) return;
     if(e.target.closest('.job .x')) return;
-    const startX=e.clientX, startY=e.clientY; let ghost=null, active=false, lastTarget=null;
+    if(drag) endDrag(null); // a previous drag never finished: clear it first
+    const isStaff=payload.kind==='staff';
+    const d={ el, payload, isStaff, pointerId:e.pointerId, startX:e.clientX, startY:e.clientY, ghost:null, active:false, lastTarget:null,
+      curZone:isStaff?(penOf(getDay(viewDate),payload.id)||'bench'):null };
     dragMoved=false;
     try{ el.setPointerCapture(e.pointerId); }catch{}
-    const isStaff=payload.kind==='staff';
-    const curZone=isStaff?(penOf(getDay(viewDate),payload.id)||'bench'):null;
-    const onMove=ev=>{
-      const dx=ev.clientX-startX, dy=ev.clientY-startY;
-      if(!active){ if(Math.hypot(dx,dy)<6) return; active=true; dragMoved=true;
-        ghost=el.cloneNode(true); ghost.classList.add('drag-ghost'); ghost.classList.remove('selected'); ghost.style.width=el.offsetWidth+'px'; document.body.appendChild(ghost); el.classList.add('lifted');
-        if(isStaff) document.querySelectorAll('[data-drop]').forEach(z=>{ if(z.dataset.drop!==curZone) z.classList.add('can-drop'); });
+    d.onMove=ev=>{
+      if(ev.pointerId!==d.pointerId) return;
+      const dx=ev.clientX-d.startX, dy=ev.clientY-d.startY;
+      if(!d.active){ if(Math.hypot(dx,dy)<6) return; d.active=true; dragMoved=true;
+        d.ghost=el.cloneNode(true); d.ghost.classList.add('drag-ghost'); d.ghost.classList.remove('selected'); d.ghost.style.width=el.offsetWidth+'px'; document.body.appendChild(d.ghost); el.classList.add('lifted');
+        if(isStaff) document.querySelectorAll('[data-drop]').forEach(z=>{ if(z.dataset.drop!==d.curZone) z.classList.add('can-drop'); });
         else document.querySelectorAll('.card[data-take]').forEach(c=>c.classList.add('can-take'));
       }
-      ghost.style.transform=`translate(${ev.clientX}px,${ev.clientY}px) translate(-50%,-50%) rotate(-1.5deg)`;
+      d.ghost.style.transform=`translate(${ev.clientX}px,${ev.clientY}px) translate(-50%,-50%) rotate(-1.5deg)`;
       const t=zoneAt(ev.clientX,ev.clientY,isStaff);
-      if(t!==lastTarget){ lastTarget?.classList.remove('over'); lastTarget=t; t?.classList.add('over'); }
+      if(t!==d.lastTarget){ d.lastTarget?.classList.remove('over'); d.lastTarget=t; t?.classList.add('over'); }
     };
-    const onUp=ev=>{
-      el.removeEventListener('pointermove',onMove); el.removeEventListener('pointerup',onUp); el.removeEventListener('pointercancel',onUp);
-      try{ el.releasePointerCapture(e.pointerId); }catch{}
-      if(!active) return;
-      ghost?.remove(); el.classList.remove('lifted');
-      document.querySelectorAll('.can-drop,.over,.can-take').forEach(z=>z.classList.remove('can-drop','over','can-take'));
-      const t=ev.type==='pointerup'?zoneAt(ev.clientX,ev.clientY,isStaff):null;
-      if(t){
-        if(isStaff){ const target=t.dataset.drop; if(target!==curZone) move(payload.id,target); }
-        else giveJob(t.dataset.id, payload.job);
-      } else render();
-      setTimeout(()=>{ dragMoved=false; },50);
+    d.onUp=ev=>{
+      if(ev.pointerId!==d.pointerId) return;
+      const t=(ev.type==='pointerup' && d.active)?zoneAt(ev.clientX,ev.clientY,isStaff):null;
+      endDrag(t);
     };
-    el.addEventListener('pointermove',onMove); el.addEventListener('pointerup',onUp); el.addEventListener('pointercancel',onUp);
+    drag=d;
+    window.addEventListener('pointermove',d.onMove); window.addEventListener('pointerup',d.onUp); window.addEventListener('pointercancel',d.onUp);
   });
 }
 function zoneAt(x,y,isStaff){ const g=document.querySelector('.drag-ghost'); if(g) g.style.display='none'; const el=document.elementFromPoint(x,y); if(g) g.style.display=''; return el?.closest(isStaff?'[data-drop]':'.card[data-take]')||null; }
+// Safety nets: never leave a name floating if the page loses focus or the tab is hidden mid-drag
+window.addEventListener('blur',()=>endDrag(null));
+document.addEventListener('visibilitychange',()=>{ if(document.hidden) endDrag(null); });
 
 /* ===================== SHEETS ===================== */
 function sheet(title, bodyHTML){
@@ -714,7 +729,6 @@ function openSettingsSheet(){
     <div class="field"><span class="micro">🍽 Lunch slots</span><div class="list" id="lunchList"></div><form class="addrow" id="addLunch"><input placeholder="e.g. 14:00" maxlength="8" autocomplete="off"><button class="btn" type="submit">Add</button></form></div>
     <div class="field"><span class="micro">Pen daily tasks</span><textarea class="ta" id="nPen" rows="2">${esc(board.notes.penTasks)}</textarea></div>
     <div class="field"><span class="micro">Friday clean</span><textarea class="ta" id="nFri" rows="2">${esc(board.notes.fridayClean)}</textarea></div>
-    <div class="field"><span class="micro">Friday car clean</span><textarea class="ta" id="nCar" rows="2">${esc(board.notes.fridayCar)}</textarea></div>
     <div class="field"><span class="micro">General notes</span><textarea class="ta" id="nGen" rows="5">${esc(board.notes.general)}</textarea></div>
     <div class="sheet-actions"><button class="btn" type="button" id="doneBtn">Done</button><button class="btn line" type="button" id="btnLogout">Lock board</button></div>`);
   const trash='<svg viewBox="0 0 24 24"><path d="M6 7h12l-1 14H7L6 7Zm3-4h6l1 2h4v2H4V5h4l1-2Z"/></svg>';
@@ -725,7 +739,7 @@ function openSettingsSheet(){
   el.querySelector('#addJob').onsubmit=e=>{ e.preventDefault(); const inp=e.target.querySelector('input'); const v=inp.value.trim(); if(v&&!board.jobs.includes(v)){ board.jobs.push(v); commit(); drawJobs(); } inp.value=''; };
   el.querySelector('#addLunch').onsubmit=e=>{ e.preventDefault(); const inp=e.target.querySelector('input'); const v=inp.value.trim(); if(v&&!board.lunches.includes(v)){ board.lunches.push(v); board.lunches.sort(); commit(); drawLunch(); } inp.value=''; };
   const bind=(sel,key)=>{ el.querySelector(sel).onchange=e=>{ board.notes[key]=e.target.value.trim(); commit(); }; };
-  bind('#nPen','penTasks'); bind('#nFri','fridayClean'); bind('#nCar','fridayCar'); bind('#nGen','general');
+  bind('#nPen','penTasks'); bind('#nFri','fridayClean'); bind('#nGen','general');
   el.querySelector('#doneBtn').onclick=closeSheet;
   el.querySelector('#btnLogout').onclick=()=>{ closeSheet(); logout(); };
 }
@@ -750,7 +764,7 @@ function buildShareCard(){
     <div class="foot">
       <div class="fbox"><span class="micro">🌳 Woodland pen · every day</span>${esc(n.penTasks)}</div>
       <div class="fbox"><span class="micro">☀️ Sahara / Top pen · every day</span>${esc(n.penTasks)}</div>
-      ${fri?`<div class="fbox fri"><span class="micro">🧹 Friday clean</span>${esc(n.fridayClean)}</div><div class="fbox fri"><span class="micro">🚗 Friday car clean</span>${esc(n.fridayCar)}</div>`:''}
+      ${fri?`<div class="fbox fri wide"><span class="micro">🧹 Friday clean</span>${esc(n.fridayClean)}</div>`:''}
       <div class="fbox wide"><span class="micro">📌 General notes</span>${esc(n.general)}</div>
     </div>
     <div class="ft"><span>Duncan's Dog Co</span><span>Daily team board</span></div>
