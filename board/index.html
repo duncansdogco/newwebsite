@@ -165,6 +165,14 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .note.friday{background:var(--amber-soft);border-color:#f3d9a6}
 .note.friday .micro{color:var(--amber-ink)}
 
+/* ---------- PHONE DROP BAR ---------- */
+.dropbar{position:fixed;left:0;right:0;bottom:0;z-index:150;background:#fff;border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.14);padding:8px 8px calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);gap:6px;animation:up .15s}
+.dropbar .lbl{grid-column:1/-1;text-align:center;font-size:12px;font-weight:700;color:var(--green-ink);padding:2px 0 4px}
+.dropbar button{border:2px dashed var(--line-strong);background:#fff;border-radius:10px;padding:8px 2px;font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--black);line-height:1.1;touch-action:none}
+.dropbar button .emo{font-size:22px}
+.dropbar button.over,.dropbar button:active{border-color:var(--green);border-style:solid;background:var(--green-soft)}
+.dropbar button.cur{opacity:.3}
+
 /* ---------- DRAG GHOST ---------- */
 .drag-ghost{position:fixed;left:0;top:0;pointer-events:none;z-index:200;box-shadow:0 18px 40px rgba(0,0,0,.28);opacity:.96;background:#fff;border-radius:8px}
 
@@ -334,6 +342,14 @@ textarea.ta:focus{border-color:var(--black)}
     <section class="pens" id="pens"></section>
     <section class="notes" id="notes"></section>
   </div>
+</div>
+
+<div class="dropbar" id="dropBar" hidden>
+  <div class="lbl" id="dropBarLbl"></div>
+  <button type="button" data-drop="bench"><span class="emo">👋</span>Not positioned</button>
+  <button type="button" data-drop="office"><span class="emo">🏠</span>Office</button>
+  <button type="button" data-drop="woodland"><span class="emo">🌳</span>Woodland</button>
+  <button type="button" data-drop="sahara"><span class="emo">☀️</span>Sahara / Top</button>
 </div>
 
 <div id="shareWrap"><div class="share" id="shareCard"></div></div>
@@ -508,7 +524,7 @@ function logout(msg){
 document.getElementById('gateForm').addEventListener('submit', e=>{ e.preventDefault(); const v=document.getElementById('pin').value.trim(); if(v) tryOpen(v); });
 
 /* ===================== RENDER ===================== */
-function render(){ renderDays(); renderDayBar(); renderBench(); renderJobs(); renderPens(); renderAlerts(); renderNotes(); }
+function render(){ renderDays(); renderDayBar(); renderBench(); renderJobs(); renderPens(); renderAlerts(); renderNotes(); updateDropBar(); }
 
 function renderDays(){
   const wrap=document.getElementById('days'); wrap.innerHTML='';
@@ -617,6 +633,8 @@ let drag=null; // the one drag in progress, so a lost pointerup can never leave 
 function endDrag(dropTarget){
   if(!drag) return;
   const d=drag; drag=null;
+  if(d.raf) cancelAnimationFrame(d.raf);
+  updateDropBar();
   window.removeEventListener('pointermove',d.onMove); window.removeEventListener('pointerup',d.onUp); window.removeEventListener('pointercancel',d.onUp);
   try{ d.el.releasePointerCapture(d.pointerId); }catch{}
   d.ghost?.remove(); d.el.classList.remove('lifted');
@@ -644,7 +662,9 @@ function attachDrag(el,payload){
     d.onMove=ev=>{
       if(ev.pointerId!==d.pointerId) return;
       const dx=ev.clientX-d.startX, dy=ev.clientY-d.startY;
+      d.lastX=ev.clientX; d.lastY=ev.clientY;
       if(!d.active){ if(Math.hypot(dx,dy)<6) return; d.active=true; dragMoved=true;
+        updateDropBar(); d.raf=requestAnimationFrame(autoScroll);
         d.ghost=el.cloneNode(true); d.ghost.classList.add('drag-ghost'); d.ghost.classList.remove('selected'); d.ghost.style.width=el.offsetWidth+'px'; document.body.appendChild(d.ghost); el.classList.add('lifted');
         if(isStaff) document.querySelectorAll('[data-drop]').forEach(z=>{ if(z.dataset.drop!==d.curZone) z.classList.add('can-drop'); });
         else document.querySelectorAll('.card[data-take]').forEach(c=>c.classList.add('can-take'));
@@ -663,6 +683,27 @@ function attachDrag(el,payload){
   });
 }
 function zoneAt(x,y,isStaff){ const g=document.querySelector('.drag-ghost'); if(g) g.style.display='none'; const el=document.elementFromPoint(x,y); if(g) g.style.display=''; return el?.closest(isStaff?'[data-drop]':'.card[data-take]')||null; }
+// While dragging near the top or bottom edge, scroll the page so far-away pens are reachable
+function autoScroll(){
+  if(!drag||!drag.active) return;
+  const bar=document.getElementById('dropBar'); const barH=bar.hidden?0:bar.offsetHeight;
+  const m=72, y=drag.lastY, h=innerHeight-barH; let dy=0;
+  if(y<m) dy=-Math.ceil((m-y)/m*18); else if(y>h-m && y<h) dy=Math.ceil((y-(h-m))/m*18);
+  if(dy){ window.scrollBy(0,dy); const t=zoneAt(drag.lastX,drag.lastY,drag.isStaff); if(t!==drag.lastTarget){ drag.lastTarget?.classList.remove('over'); drag.lastTarget=t; t?.classList.add('over'); } }
+  drag.raf=requestAnimationFrame(autoScroll);
+}
+// On phones, show a fixed bar of pens to drop or tap a name into, so nobody has to scroll with a finger down
+function updateDropBar(){
+  const bar=document.getElementById('dropBar');
+  const activeDrag = drag && drag.active;
+  const id = activeDrag ? (drag.isStaff ? drag.payload.id : null) : (selected || null);
+  const show = !!id && window.innerWidth<=900;
+  bar.hidden=!show; if(!show) return;
+  const cur=penOf(getDay(viewDate),id)||'bench'; const name=staffById(id)?.name||'';
+  document.getElementById('dropBarLbl').textContent = drag ? `Drop ${name} into…` : `Tap where ${name} goes`;
+  bar.querySelectorAll('button').forEach(b=>{ b.classList.toggle('cur', b.dataset.drop===cur); b.classList.remove('over'); });
+}
+document.querySelectorAll('#dropBar button').forEach(b=>b.addEventListener('click',()=>{ if(selected && !dragMoved){ move(selected,b.dataset.drop); } }));
 // Safety nets: never leave a name floating if the page loses focus or the tab is hidden mid-drag
 window.addEventListener('blur',()=>endDrag(null));
 document.addEventListener('visibilitychange',()=>{ if(document.hidden) endDrag(null); });
