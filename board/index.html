@@ -110,6 +110,8 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .jchip.done .who .av{width:20px;height:20px;font-size:9px;margin-left:-6px;border:2px solid #fff}
 .jchip.selected{border-color:var(--green);box-shadow:0 0 0 3px var(--green-soft);background:var(--green-soft);color:var(--black)}
 .jchip.lifted{opacity:.3}
+.jchip.add{border:1px dashed var(--green);color:var(--green-ink);background:var(--green-soft);cursor:pointer;touch-action:auto}
+.jchip.add:hover{background:#d7e8d9}
 
 /* ---------- BOARD ---------- */
 .pens{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
@@ -570,6 +572,8 @@ function renderJobs(){
     el.addEventListener('click',()=>{ if(dragMoved) return; selected=null; selectedJob = selectedJob===j?null:j; render(); });
     attachDrag(el,{kind:'job',job:j}); wrap.appendChild(el);
   });
+  const addBtn=document.createElement('button'); addBtn.type='button'; addBtn.className='jchip add'; addBtn.innerHTML='<span class="emo">➕</span>Add a job';
+  addBtn.onclick=openAddJobSheet; wrap.appendChild(addBtn);
   document.getElementById('jobTitle').textContent = todo? `📋 ${todo} job${todo===1?'':'s'} to allocate` : '📋 All jobs allocated';
   document.getElementById('jobHint').textContent = selectedJob ? (positioned.length? 'Now tap the person doing "'+jobLabel(selectedJob)+'".' : 'Position someone first, then tap them to give this job.') : 'Tap a job, then tap the person doing it. Or drag it onto them.';
 }
@@ -736,6 +740,17 @@ function openCardSheet(id){
   el.querySelectorAll('#segJobs button').forEach(b=>b.onclick=()=>{ const j=b.dataset.v; const arr=d.jobs[id]||[]; const i=arr.indexOf(j); if(i>=0) arr.splice(i,1); else arr.push(j); if(arr.length) d.jobs[id]=arr; else delete d.jobs[id]; b.classList.toggle('on',i<0); commit(); });
   el.querySelector('#doneBtn').onclick=closeSheet;
   el.querySelector('#unpos').onclick=()=>{ move(id,'bench'); closeSheet(); };
+}
+
+function openAddJobSheet(){
+  const el=sheet('➕ Add a job', `
+    <p class="hint">It goes on the list for everyone, every day. Start with an emoji to pick its icon, or one is chosen for you. Put days in brackets, like "(Wed / Fri)", for a job that only shows on those days.</p>
+    <form class="addrow" id="addJobQuick" style="margin-top:0"><input placeholder="e.g. 🪣 Fill water buckets" maxlength="60" autocomplete="off"><button class="btn" type="submit">Add</button></form>
+    <p class="hint" style="margin:14px 0 0">To remove or reorder jobs, use <b>Setup</b> at the top.</p>`);
+  const inp=el.querySelector('input'); inp.focus();
+  el.querySelector('#addJobQuick').onsubmit=e=>{ e.preventDefault(); const v=inp.value.trim(); if(!v) return;
+    if(board.jobs.includes(v)){ toast('That job is already on the list'); return; }
+    board.jobs.push(v); commit(); closeSheet(); toast(jobEmoji(v)+' '+jobLabel(v)+' added'); };
 }
 
 function openTeamSheet(){
