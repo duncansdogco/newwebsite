@@ -22,3 +22,9 @@
     Content-Type = "video/mp4"
     Accept-Ranges = "bytes"
     Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "/assets/photos/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=31536000"
