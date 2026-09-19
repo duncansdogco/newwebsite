@@ -6175,3 +6175,12 @@ blockquote {
     gap: 48px;
   }
 }
+
+/* Reviews and login pages */
+.review-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 28px 0 40px; }
+.review-card blockquote { margin: 10px 0 14px; font-style: italic; }
+.review-card .ht-stars { display: flex; gap: 2px; }
+.review-card .ht-stars svg { width: 18px; height: 18px; fill: #E0A526; }
+.review-by { font-size: 15px; color: var(--moss); margin: 0; }
+.login-page .button, .reviews-page .button { margin: 6px 0 18px; }
+@media (max-width: 720px) { .review-grid { grid-template-columns: 1fr; } }

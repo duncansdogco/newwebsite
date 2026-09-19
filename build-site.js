@@ -823,7 +823,7 @@ function footer() {
         </a>
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
-      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a><a href="https://app.generasoftware.com/duncans-dog-co" target="_blank" rel="noopener">Customer Login</a></div>
+      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/login/">Customer Login</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
     <div class="footer-bottom">
@@ -938,14 +938,16 @@ function homepageServiceStrip() {
   return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What We Offer</p><h2>Our Services</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Everything your dog needs, built around a family cottage deep in the Surrey woodland.</p></div><div class="live-card-grid">${items.map((item, index) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co."><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><span class="card-num">${String(index + 1).padStart(2, "0")}</span><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div>${splashPill}</section>`;
 }
 
-function homeTestimonials() {
-  const reviews = [
+const testimonials = [
     { initial: "H", quote: "The facility is amazing, right in the woods but completely secure. Herbie enjoys his time with everyone and is always exhausted when he gets home — exactly what you want.", name: "Herbie's mum", dog: "Herbie · Cobham" },
     { initial: "L", quote: "Leila absolutely adores her time at Duncan's. We've been so impressed at the difference in her confidence and behaviour since she started coming.", name: "Leila's mum", dog: "Leila · Wimbledon" },
     { initial: "G", quote: "He runs in the forest, paddles in the lake, chases the other puppies and comes home happy and exhausted. It's everything I hoped dog daycare would be.", name: "Galileo's dad", dog: "Galileo · Esher" },
     { initial: "A", quote: "They truly have everything a dog could possibly want or need. But what really makes Duncan's so special is the people — attentive, caring, and clearly love what they do. Alfie's PitPat shows him breaking records every day, and he comes home completely exhausted. Always the best sign.", name: "Alfie's owner", dog: "Alfie · Google Review" },
     { initial: "J", quote: "Our dog has been going to Duncan's since he was a puppy — 7 years now — and he is always so happy to go in each day. Michaela is Jasper's favourite person in the whole world. We can not thank her enough for the love she shows our dog.", name: "Jasper's owner", dog: "Jasper · 7 years · Google Review" }
-  ];
+];
+
+function homeTestimonials() {
+  const reviews = testimonials;
   const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
   const stars = starSvg.repeat(5);
   const cards = reviews.map((r, i) => `
@@ -984,6 +986,30 @@ function homeTestimonials() {
     </div>
   </div>
 </section>`;
+}
+
+function loginAndReviews() {
+  const portal = "https://app.generasoftware.com/duncans-dog-co";
+  writePage("login", layout({ route: "login", title: "Customer Login | Duncan's Dog Co.", description: "Log in to your Duncan's Dog Co. customer portal to book daycare days, see invoices and keep your dog's details up to date.", keywords: "duncans dog co login, duncans dog co customer portal, duncans dog co booking", h1: "Customer Login", intro: "Your bookings, invoices and your dog's records, all in one place.", body: `<section class="section article login-page">
+<p>Existing customers book daycare days, check invoices and update their dog's details in the Duncan's Dog Co. customer portal. It works in any browser on your phone or computer, and there is nothing to download.</p>
+<p><a class="button primary" href="${portal}">Log in to the customer portal</a></p>
+<h2>First time here?</h2>
+<p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
+<h2>What you can do in the portal</h2>
+${richFeatureGrid([["Book extra days", "Add daycare days on top of your regular pattern from the dashboard."], ["See every invoice", "Invoices and payments are listed in one place, with Direct Debit handled through GoCardless."], ["Keep records current", "Vaccination dates, vet details and emergency contacts stay up to date."], ["Get notifications on your phone", "Add the portal to your home screen and booking confirmations arrive like messages."]])}
+<h2>Add it to your phone</h2>
+<p>Open the portal in Safari or Chrome on your phone, choose Share, then Add to Home Screen. It then opens like an app and you get notifications without installing anything.</p>
+</section>${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Customer Login", url: "/login/" }])] }));
+
+  const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+  const cards = testimonials.map((r) => `<article class="rich-feature-card reveal review-card"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><blockquote>${esc(r.quote)}</blockquote><p class="review-by"><strong>${esc(r.name)}</strong> · ${esc(r.dog)}</p></article>`).join("");
+  writePage("reviews", layout({ route: "reviews", title: "Duncan's Dog Co. Reviews | Dog Daycare Cobham", description: "What owners say about Duncan's Dog Co., the woodland dog daycare in Cobham, Surrey. Real Google reviews from families across Surrey and SW London.", keywords: "duncans dog co reviews, duncan's dog daycare reviews, dog daycare cobham reviews, dog daycare surrey reviews", h1: "Duncan's Dog Co. Reviews", intro: "What owners across Surrey and South West London say about their dog's days in the woodland.", body: `<section class="section article reviews-page">
+<p>Every review below was left on Google by an owner whose dog comes to the woodland. We have not edited them. You can read all of them, and leave your own, on our Google listing.</p>
+<p><a class="button primary" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google</a></p>
+<div class="rich-feature-grid review-grid">${cards}</div>
+<h2>Why owners keep coming back</h2>
+${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence LN/201800994 for daycare and LN/202400651 for boarding."], ["The same faces every day", "A small team who know every dog by name, from the collection van to home time."], ["40 acres of private woodland", "Real space to run, paddle and rest, not a yard or an indoor unit."], ["Collection included", "Door to door across Cobham, Surrey and South West London."]])}
+</section>${ctaBand("See it for yourself", "Book a trial day", "Tell us about your dog and we will arrange a first day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Reviews", url: "/reviews/" }])] }));
 }
 
 function homeTrialFormSection() {
@@ -1411,7 +1437,7 @@ function home() {
 
   writePage("/", layout({
     route: "/",
-    title: "Dog Daycare Cobham & SW London | Duncan's Dog Co.",
+    title: "Dog Daycare Cobham, Surrey & SW London | Duncan's Dog Co.",
     description: "Dog daycare in Cobham with collection across Surrey and SW London. 40 acres of private woodland, puppy daycare, sleepovers and 5-star licensed care.",
     keywords: "dog daycare Cobham, doggy daycare Cobham, dog daycare Surrey, woodland dog daycare, dog daycare with collection, dog daycare SW London",
     h1: "Dog Daycare in Cobham with Collection Across SW London",
@@ -2277,7 +2303,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/login/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   indexNow(urls);
@@ -2305,5 +2331,6 @@ areaIndex();
 areaPages();
 faqAndContact();
 aboutUs();
+loginAndReviews();
 blog();
 redirectsAndMeta();
