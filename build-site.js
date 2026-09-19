@@ -2235,6 +2235,33 @@ function redirectsAndMeta() {
     ["/team", "/about-us/"],
     ["/team.html", "/about-us/"],
     ["/careers.html", "/careers/"],
+    // Old Wix slugs Bing still holds from the Wix IndexNow pushes (last one 14 Apr 2026).
+    // Checked 19 Sep 2026: all of these 404ed. Wix ran the multi-word areas without hyphens.
+    ["/newmalden", "/areas/new-malden/"],
+    ["/raynespark", "/areas/raynes-park/"],
+    ["/raynespark-1", "/areas/raynes-park/"],
+    ["/copsehill", "/areas/copse-hill/"],
+    ["/westbyfleet", "/areas/west-byfleet/"],
+    ["/motspurpark", "/areas/motspur-park/"],
+    ["/stgeorgeshill", "/areas/st-georges-hill/"],
+    ["/collierswood", "/areas/tooting/"],
+    ["/effingham-1", "/areas/effingham/"],
+    ["/effingham-1-1", "/areas/effingham/"],
+    ["/effingham-1-1-1", "/areas/effingham/"],
+    ["/privacypolicy", "/privacy-policy/"],
+    ["/termsandconditions", "/terms-conditions/"],
+    ["/startupsupport", "/startup-support/"],
+    ["/enquirypack", "/contact/"],
+    ["/blank", "/"],
+    // Old Wix blog posts → nearest current article, everything else → blog index
+    ["/post/dog-daycare-vs-dog-walker-what-s-right-for-your-dog", "/blog/dog-daycare-vs-dog-walker/"],
+    ["/post/safe-journeys-happy-dogs-why-travel-time-matters-at-duncan-s-dog-co", "/blog/why-collection-is-part-of-care/"],
+    ["/post/why-puppies-need-to-keep-playing-with-other-puppies", "/blog/puppy-daycare-vs-puppy-classes/"],
+    ["/post/puppy-training-101-building-confident-well-mannered-dogs", "/blog/puppy-daycare-vs-puppy-classes/"],
+    ["/post/staying-comfy-this-winter-at-duncan-s-dog-co", "/blog/woodland-daycare-when-it-rains/"],
+    ["/post/uncomplicated-ways-to-keep-your-dog-entertained-indoors-during-the-winter", "/blog/signs-your-dog-needs-more-enrichment/"],
+    ["/post/top-10-essential-tips-every-new-dog-owner-should-know", "/blog/is-my-dog-ready-for-daycare/"],
+    ["/post/*", "/blog/"],
     ...areas.map(([slug]) => [`/${slug}.html`, `/areas/${slug}/`]),
     ...areas.map(([slug]) => [`/${slug}/`, `/areas/${slug}/`]),
     ...areas.map(([slug]) => [`/${slug}`, `/areas/${slug}/`])
@@ -2252,7 +2279,21 @@ function redirectsAndMeta() {
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
   const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
+  fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
+  indexNow(urls);
   fs.writeFileSync(path.join(ROOT, "site-data.json"), JSON.stringify({ site: SITE, keywords: ["dog daycare Cobham", "doggy daycare Cobham", "dog daycare Surrey", "woodland dog daycare", "dog daycare with collection", "dog daycare SW London", "puppy daycare Surrey", "puppy school Cobham", "dog boarding Cobham", "dog sleepovers Surrey"], areas: areas.map(([slug, name, route]) => ({ slug, name, route })), services: servicePages.map(({ slug, title, keywords }) => ({ slug, title, keywords })) }, null, 2));
+}
+
+// IndexNow: tell Bing (and Yandex, Naver, Seznam) which pages changed on every Netlify deploy.
+// Wix used to do this for us; nothing has pinged Bing since the move (last push 14 Apr 2026).
+// The key lives at /<key>.txt in the site root. Only runs on Netlify, never fails the build.
+const INDEXNOW_KEY = "a4de077b7a19f8b4f6dd5e07a31b4b58";
+function indexNow(urls) {
+  if (process.env.NETLIFY !== "true" || typeof fetch !== "function") return;
+  const body = JSON.stringify({ host: "duncansdogco.com", key: INDEXNOW_KEY, keyLocation: `${SITE}/${INDEXNOW_KEY}.txt`, urlList: urls.map((u) => `${SITE}${u}`) });
+  fetch("https://api.indexnow.org/indexnow", { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body })
+    .then((r) => console.log(`IndexNow: ${r.status} for ${urls.length} URLs`))
+    .catch((e) => console.log(`IndexNow skipped: ${e.message}`));
 }
 
 clean();
