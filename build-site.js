@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-19";
+const assetVersion = "2026-09-21-20";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -933,7 +933,7 @@ ${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence
 
 function homeTrialFormSection() {
   return `<section class="home-trial-section" id="homepage-enquiry">
-    <div class="home-trial-image reveal"><img src="/assets/insta/home-trial.jpg" alt="A dog looking back over a Duncan's Dog Co. team member's shoulder in the woodland"></div>
+    <div class="home-trial-image reveal"><img src="/assets/insta/home-trial.jpg" alt="A flat-coated retriever over the shoulder of a Duncan's Dog Co. team member in the woodland"></div>
     <div class="home-trial-panel reveal">
       <p class="section-kicker">Start here</p>
       <h2>Book a trial day</h2>

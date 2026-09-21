@@ -8146,3 +8146,4 @@ h1, h2, h3,
   .photo-marquee-track img { width: 160px; height: 160px; }
   .photo-marquee-track { padding-bottom: 64px; }
 }
+.home-trial-image img { object-position: center 78%; }
