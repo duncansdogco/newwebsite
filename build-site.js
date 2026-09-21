@@ -807,7 +807,7 @@ function footer() {
         <strong>Duncan's Dog Co.</strong>
         <span>Woodland dog daycare in Cobham, with collection across Surrey and South West London.</span>
         <div class="social-links">${socialLinks.map(([name, href]) => `<a href="${href}" target="_blank" rel="noopener" aria-label="${esc(name)}: ${href.replace("https://www.", "")}" title="${esc(name)}">${socialIcon(name)}<span>${esc(name)}</span></a>`).join("")}</div>
-        <a href="https://generasoftware.com" class="genera-badge" target="_blank" rel="noopener" aria-label="Website built by Genera Software">
+        <a href="https://www.generasoftware.com" class="genera-badge" target="_blank" rel="noopener" aria-label="Bookings and invoicing run on Genera, the dog daycare software built at Duncan's Dog Co">
           <svg class="genera-icon" viewBox="0 0 175.51 161.41" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M73.79,53.42c-5.3,4.1-11.93,4.82-17.92,2.15-10.49-4.68-15.79-16.71-16.42-27.95-.43-7.78,1.67-15.39,6.75-21.25,7.4-8.55,19.07-8.29,27.1-.35,9.01,8.91,12.15,22.82,8.6,34.83-1.47,4.97-3.95,9.37-8.1,12.57Z" fill="#003E45"/>
             <path d="M125.39,54.11c-4.4,2.68-9.39,3.85-14.32,2.46-6.55-1.85-11.24-6.89-13.63-13.22-3.95-10.44-2.76-21.98,2.99-31.51,4.83-8.01,13.91-13.84,23.12-11.19,5.16,1.49,8.91,5.25,11.51,9.81,2.55,4.48,3.54,9.21,3.72,14.4.27,8.1-1.71,16.08-6.51,22.62-1.93,2.63-4,4.87-6.87,6.62Z" fill="#003E45"/>
@@ -992,6 +992,7 @@ function loginAndReviews() {
   const portal = "https://app.generasoftware.com/duncans-dog-co";
   writePage("login", layout({ route: "login", title: "Customer Login | Duncan's Dog Co.", description: "Log in to your Duncan's Dog Co. customer portal to book daycare days, see invoices and keep your dog's details up to date.", keywords: "duncans dog co login, duncans dog co customer portal, duncans dog co booking", h1: "Customer Login", intro: "Your bookings, invoices and your dog's records, all in one place.", body: `<section class="section article login-page">
 <p>Existing customers book daycare days, check invoices and update their dog's details in the Duncan's Dog Co. customer portal. It works in any browser on your phone or computer, and there is nothing to download.</p>
+<p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co. after fifteen years of running the woodland on other people's systems. It now runs daycares, dog walkers, groomers and boarding kennels across the UK.</p>
 <p><a class="button primary" href="${portal}">Log in to the customer portal</a></p>
 <h2>First time here?</h2>
 <p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
