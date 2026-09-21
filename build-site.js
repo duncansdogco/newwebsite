@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-9";
+const assetVersion = "2026-09-21-11";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -101,7 +101,7 @@ const servicePages = [
       displayTitle: "One family.<br><span>One facility. The same woodland your dog has loved since 2011.</span>",
       text: "Open 365 days a year. Collection and drop-off available. All breeds welcome. No exceptions.",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
-      stats: [["15+", "Years<br>Running"], ["40+", "Acres of<br>Woodland"], ["1:6", "Staff<br>Ratio"], ["5★", "Licensed<br>Rating"]]
+      stats: []
     },
     sections: [
       ["Why woodland daycare works", "Our Cobham site gives dogs space to move, sniff and decompress. Days are structured around safe social groups, handler supervision and the kind of natural enrichment that indoor daycare cannot match."],
@@ -1203,6 +1203,14 @@ function serviceBody(page) {
   }
 
   if (page.slug === "daycare") {
+    const day = [
+      ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/gallery/blog-fresh-05.jpeg", "A Duncan's Dog Co. team member at the gate with two dogs"],
+      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. Forty acres, fenced, with shade in summer and shelter when it rains.", gallerySrc(gallery.bridgePackWide), "A group of dogs on the woodland bridge at Duncan's Dog Co."],
+      ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/sleeping/IMG_0253.jpg", "Two golden retrievers asleep side by side"],
+      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", gallerySrc(gallery.handler), "A handler in the woodland with dogs on a rainy day"]
+    ];
+    const included = ["Door-to-door collection and drop-off on our Surrey and South West London routes", "Forty acres of private, fenced woodland", "Groups matched by size, age and energy, with a 1:6 staff ratio", "The same team from collection through to home time", "Open 365 days a year, including bank holidays", "Licensed and rated 5 stars by Elmbridge Council, LN/201800994", "All breeds welcome", "Photos and a report card in your customer portal"];
+    const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Assessment day", "A settling-in session before joining the group, at their pace, with no rushing."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
     return `<section class="daycare-story-section">
       <div class="daycare-story-copy reveal">
         <p class="section-kicker">What We Do</p>
@@ -1219,42 +1227,34 @@ function serviceBody(page) {
         <img src="${gallerySrc(gallery.goldenPair)}" alt="Dogs playing together at Duncan's Dog Co.">
       </div>
     </section>
-    ${daycareDifferenceSection()}
-    <section class="section daycare-included-section">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">Daycare essentials</p><h2>Built into every booking.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>These are the practical standards families rely on each week: transport, space, weather-wise woodland, welfare, licensing and a team who know the dogs properly.</p></div>
-      <div class="daycare-standards-panel reveal">
-        <div class="standards-image">
-          <img src="${gallerySrc(gallery.bridgePackWide)}" alt="Dogs enjoying woodland daycare at Duncan's Dog Co." loading="lazy">
-        </div>
-        <div class="standards-list">
-          <article><span>01</span><div><h2>Collection routes</h2><p>Door-to-door collection and drop-off across selected Surrey and South West London routes. On the days your dog is booked in, you can message your driver from the <a href="/portal/">customer portal</a>.</p></div></article>
-          <article><span>02</span><div><h2>Private woodland</h2><p>A natural Cobham setting with room to sniff, explore, decompress and enjoy a proper outdoor day beneath the trees.</p></div></article>
-          <article><span>03</span><div><h2>Managed groups</h2><p>Dogs are placed thoughtfully with suitable companions and supervised by handlers who know their routines.</p></div></article>
-          <article><span>04</span><div><h2>Familiar staff</h2><p>The team collecting your dog are part of the same daycare team, so care stays connected from pick-up to home time, and the whole team reads the same message thread.</p></div></article>
-          <article><span>05</span><div><h2>Open all year</h2><p>Care available 365 days a year, including weekends and bank holidays, subject to availability.</p></div></article>
-          <article><span>06</span><div><h2>Licensed and insured</h2><p>Inspected, fully insured and rated 5-star by Elmbridge Council for dog daycare.</p></div></article>
-        </div>
+    <section class="day-strip">
+      <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>What a daycare day actually looks like.</h2></div><p>Open 7:45am to 6:30pm, seven days a week. This is the shape of it.</p></div>
+      <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
+    </section>
+    <section class="included-split">
+      <div class="included-photo reveal"><img src="${gallerySrc(gallery.woodlandPack)}" alt="A group of dogs together at Duncan's Dog Co." loading="lazy"></div>
+      <div class="included-copy reveal">
+        <h2>What every daycare day includes.</h2>
+        <ul class="tick-list">${included.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+        <div class="split-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary dark" href="/areas/">Check your area</a></div>
       </div>
     </section>
-    <section class="section local-steps-section">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">Joining Duncan's</p><h2>How your dog starts.</h2></div><p>This section is the onboarding journey: the steps before your dog becomes part of the woodland routine.</p></div>
-      <div class="local-steps-grid">
-        <article class="reveal"><span>01</span><h2>Enquiry</h2><p>Send us your postcode, your dog's details and the care you are looking for.</p></article>
-        <article class="reveal"><span>02</span><h2>Conversation</h2><p>We talk through suitability, current routes, temperament and any practical needs.</p></article>
-        <article class="reveal"><span>03</span><h2>Introduction</h2><p>Your dog meets us carefully so we can understand confidence, travel comfort and sociability.</p></article>
-        <article class="reveal"><span>04</span><h2>Regular rhythm</h2><p>If everyone is happy, we agree attendance and build them into the daycare routine.</p></article>
+    <section class="start-split">
+      <div class="start-copy reveal">
+        <h2>How your dog starts.</h2>
+        <ol class="plain-steps">${steps.map(([title, text]) => `<li><div><strong>${esc(title)}</strong><span>${esc(text)}</span></div></li>`).join("")}</ol>
       </div>
+      <div class="start-photo reveal"><img src="/assets/gallery/PHOTO-2026-02-14-02-48-21.jpg" alt="A Duncan's Dog Co. team member with two dogs in the woodland" loading="lazy"></div>
     </section>
     <section class="daycare-pricing-teaser">
-      <div><h2>Transparent pricing.</h2><p>Our pricing page explains daycare, collection, drop-off, sleepovers, minimum attendance and trial day information in proper text.</p></div>
-      <a class="button secondary dark" href="/pricing/">View Pricing</a>
+      <div><h2>Straightforward pricing.</h2><p>£65 a day for one day a week, £60 a day for two, and £55 a day for three or more. Collection and drop-off are included. Weekends are £75, and we ask for a minimum of four days a month.</p></div>
+      <a class="button secondary dark" href="/pricing/">See full pricing</a>
     </section>
     <section class="daycare-final-cta">
       <div class="daycare-final-photo reveal"><img src="${gallerySrc(gallery.groupLineup)}" alt="Group of dogs together in Duncan's Dog Co. woodland daycare" loading="lazy"></div>
       <div class="daycare-final-copy reveal">
         <p class="section-kicker">Ready to get started?</p>
         <h2>We'd love to meet your dog.</h2>
-        <div class="squiggle-line" aria-hidden="true"></div>
         <p>Enquire now and we'll be in touch within 24 hours.</p>
         <a class="button primary" href="/contact/#enquiry-form">Enquire now</a>
       </div>
