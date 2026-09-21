@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-09-21-25";
+const assetVersion = "2026-09-21-26";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -910,19 +910,6 @@ function homeReviews() {
 
 function loginAndReviews() {
   const portal = "https://app.generasoftware.com/duncans-dog-co";
-  writePage("login", layout({ route: "login", title: "Customer Login | Duncan's Dog Co.", description: "Log in to your Duncan's Dog Co. customer portal to book daycare days, see invoices and keep your dog's details up to date.", keywords: "duncans dog co login, duncans dog co customer portal, duncans dog co booking", h1: "Customer Login", intro: "Your bookings, invoices and your dog's records, all in one place.", body: `<section class="section article login-page">
-<p>Existing customers book daycare days, check invoices and update their dog's details in the Duncan's Dog Co. customer portal. It works in any browser on your phone or computer, and there is nothing to download.</p>
-<p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co. to run our own woodland. It now runs daycares, dog walkers, groomers and boarding kennels across the UK.</p>
-<p><a class="button primary" href="${portal}">Log in to the customer portal</a></p>
-<h2>First time here?</h2>
-<p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
-<h2>What you can do in the portal</h2>
-${richFeatureGrid([["Message the team", "One thread we can both see, instead of texts and WhatsApps to different phones."], ["Message your driver", "On the days your dog is booked in, the driver on your route is in your thread too."], ["Book extra days", "Add daycare days on top of your regular pattern from the dashboard."], ["See every invoice", "Invoices and payments are listed in one place, with Direct Debit handled through GoCardless."], ["Keep records current", "Vaccination dates, vet details and emergency contacts stay up to date."], ["Get notifications on your phone", "Add the portal to your home screen and booking confirmations and messages arrive like any other app."]])}
-<p>There is more on how messaging and driver messages work on the <a href="/portal/">customer portal page</a>.</p>
-<h2>Add it to your phone</h2>
-<p>Open the portal in Safari or Chrome on your phone, choose Share, then Add to Home Screen. It then opens like an app and you get notifications without installing anything.</p>
-</section>${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Customer Login", url: "/login/" }])] }));
-
   const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
   const cards = testimonials.map((r) => `<article class="rich-feature-card reveal review-card"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><blockquote>${esc(r.quote)}</blockquote><p class="review-by"><strong>${esc(r.name)}</strong> · ${esc(r.dog)}</p></article>`).join("");
   writePage("reviews", layout({ route: "reviews", title: "Duncan's Dog Co. Reviews | Dog Daycare Cobham", description: "What owners say about Duncan's Dog Co., the woodland dog daycare in Cobham, Surrey. Real Google reviews from families across Surrey and SW London.", keywords: "duncans dog co reviews, duncan's dog daycare reviews, dog daycare cobham reviews, dog daycare surrey reviews", h1: "Duncan's Dog Co. Reviews", intro: "What owners across Surrey and South West London say about their dog's days in the woodland.", body: `<section class="section article reviews-page">
@@ -2359,6 +2346,8 @@ function blog() {
 
 function redirectsAndMeta() {
   const redirects = [
+    ["/login", "https://app.generasoftware.com/duncans-dog-co"],
+    ["/login/", "https://app.generasoftware.com/duncans-dog-co"],
     // Old long service URLs → new short URLs (for SEO continuity)
     ["/dog-daycare-cobham", "/daycare/"],
     ["/dog-daycare-cobham/", "/daycare/"],
@@ -2427,7 +2416,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/login/", "/portal/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/portal/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   indexNow(urls);
