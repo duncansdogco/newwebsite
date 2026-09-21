@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-05-22-14";
+const assetVersion = "2026-09-21-1";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -823,7 +823,7 @@ function footer() {
         </a>
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
-      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/login/">Customer Login</a></div>
+      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/portal/">Customer Portal</a><a href="/login/">Customer Login</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
     <div class="footer-bottom">
@@ -992,12 +992,13 @@ function loginAndReviews() {
   const portal = "https://app.generasoftware.com/duncans-dog-co";
   writePage("login", layout({ route: "login", title: "Customer Login | Duncan's Dog Co.", description: "Log in to your Duncan's Dog Co. customer portal to book daycare days, see invoices and keep your dog's details up to date.", keywords: "duncans dog co login, duncans dog co customer portal, duncans dog co booking", h1: "Customer Login", intro: "Your bookings, invoices and your dog's records, all in one place.", body: `<section class="section article login-page">
 <p>Existing customers book daycare days, check invoices and update their dog's details in the Duncan's Dog Co. customer portal. It works in any browser on your phone or computer, and there is nothing to download.</p>
-<p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co. after fifteen years of running the woodland on other people's systems. It now runs daycares, dog walkers, groomers and boarding kennels across the UK.</p>
+<p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co. to run our own woodland. It now runs daycares, dog walkers, groomers and boarding kennels across the UK.</p>
 <p><a class="button primary" href="${portal}">Log in to the customer portal</a></p>
 <h2>First time here?</h2>
 <p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
 <h2>What you can do in the portal</h2>
-${richFeatureGrid([["Book extra days", "Add daycare days on top of your regular pattern from the dashboard."], ["See every invoice", "Invoices and payments are listed in one place, with Direct Debit handled through GoCardless."], ["Keep records current", "Vaccination dates, vet details and emergency contacts stay up to date."], ["Get notifications on your phone", "Add the portal to your home screen and booking confirmations arrive like messages."]])}
+${richFeatureGrid([["Message the team", "One thread we can both see, instead of texts and WhatsApps to different phones."], ["Message your driver", "On the days your dog is booked in, the driver on your route is in your thread too."], ["Book extra days", "Add daycare days on top of your regular pattern from the dashboard."], ["See every invoice", "Invoices and payments are listed in one place, with Direct Debit handled through GoCardless."], ["Keep records current", "Vaccination dates, vet details and emergency contacts stay up to date."], ["Get notifications on your phone", "Add the portal to your home screen and booking confirmations and messages arrive like any other app."]])}
+<p>There is more on how messaging and driver messages work on the <a href="/portal/">customer portal page</a>.</p>
 <h2>Add it to your phone</h2>
 <p>Open the portal in Safari or Chrome on your phone, choose Share, then Add to Home Screen. It then opens like an app and you get notifications without installing anything.</p>
 </section>${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Customer Login", url: "/login/" }])] }));
@@ -1304,10 +1305,10 @@ function serviceBody(page) {
           <img src="${gallerySrc(gallery.bridgePackWide)}" alt="Dogs enjoying woodland daycare at Duncan's Dog Co." loading="lazy">
         </div>
         <div class="standards-list">
-          <article><span>01</span><div><h2>Collection routes</h2><p>Door-to-door collection and drop-off across selected Surrey and South West London routes.</p></div></article>
+          <article><span>01</span><div><h2>Collection routes</h2><p>Door-to-door collection and drop-off across selected Surrey and South West London routes. On the days your dog is booked in, you can message your driver from the <a href="/portal/">customer portal</a>.</p></div></article>
           <article><span>02</span><div><h2>Private woodland</h2><p>A natural Cobham setting with room to sniff, explore, decompress and enjoy a proper outdoor day beneath the trees.</p></div></article>
           <article><span>03</span><div><h2>Managed groups</h2><p>Dogs are placed thoughtfully with suitable companions and supervised by handlers who know their routines.</p></div></article>
-          <article><span>04</span><div><h2>Familiar staff</h2><p>The team collecting your dog are part of the same daycare team, so care stays connected from pick-up to home time.</p></div></article>
+          <article><span>04</span><div><h2>Familiar staff</h2><p>The team collecting your dog are part of the same daycare team, so care stays connected from pick-up to home time, and the whole team reads the same message thread.</p></div></article>
           <article><span>05</span><div><h2>Open all year</h2><p>Care available 365 days a year, including weekends and bank holidays, subject to availability.</p></div></article>
           <article><span>06</span><div><h2>Licensed and insured</h2><p>Inspected, fully insured and rated 5-star by Elmbridge Council for dog daycare.</p></div></article>
         </div>
@@ -1350,9 +1351,102 @@ function serviceBody(page) {
   return `<section class="section">${cards(page.sections)}</section>${authenticPhotoRibbon({ kicker: page.nav, title: `${page.nav} with the Duncan's Dog Co. feel.`, text: "More genuine imagery helps these pages feel closer to the live site while the written content stays clearer for visitors and search." })}<section class="section faqs"><div class="section-kicker">FAQs</div><h2>Questions about ${esc(page.nav.toLowerCase())}</h2>${faqMarkup(page.faqs)}${linkPanel()}</section><section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day.</h2><p>Tell us about your dog and we will advise availability, route options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
 }
 
+/* ── Customer portal: the phone mock, the homepage section and the /portal/ page ── */
+const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
+
+function portalPhone() {
+  const msgs = [
+    { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Michaela's run." },
+    { side: "team", who: "Michaela · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "15:20", text: "Big paddle in the lake this morning. Expect a sleepy boy tonight." }
+  ];
+  return `<div class="portal-phone" aria-hidden="true">
+    <div class="portal-phone-top"><img src="/assets/logo.png" alt=""><div><strong>Duncan's Dog Co.</strong><span>Milo · Daycare Mon, Wed, Thu</span></div></div>
+    <div class="portal-phone-day">Today</div>
+    <div class="portal-phone-thread">${msgs.map((m) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}"><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}</span></div>`).join("")}</div>
+    <div class="portal-phone-compose"><span>Write a message</span><b>↑</b></div>
+  </div>`;
+}
+
+function portalFeatures() {
+  return [
+    ["Message the team", "Anything you need to tell us goes in one thread that we can both see, instead of texts and WhatsApps to different phones. Every reply is signed by the person who sent it."],
+    ["Message your driver on the day", "On the days your dog is booked in, the driver on your route is in your thread too. Running late, a new gate code, the dog is at the neighbour's. They see it on the route."],
+    ["Book extra days", "Add daycare days on top of your regular pattern from the dashboard and get a confirmation on your phone."],
+    ["Every invoice in one place", "Invoices and payments are listed together, with Direct Debit handled through GoCardless."],
+    ["Your dog's records", "Vaccination dates, vet details, care notes and emergency contacts stay current, and the team sees changes the moment you save them."],
+    ["Notifications on your phone", "Add the portal to your home screen and booking confirmations and messages arrive like any other app."]
+  ];
+}
+
+function portalSection() {
+  return `<section class="portal-split" id="portal">
+    <div class="portal-split-visual reveal">${portalPhone()}</div>
+    <div class="portal-split-copy reveal">
+      <p class="section-kicker">Your customer portal</p>
+      <h2>Message the team. Message your driver.</h2>
+      <div class="squiggle-line" aria-hidden="true"></div>
+      <p>Every Duncan's Dog Co. family gets their own portal. Book extra days, see invoices and keep your dog's records current from your phone. Anything you need to tell us goes in one thread we can both see, and on the days your dog is booked in, the driver on your route is in that thread too.</p>
+      <div class="local-feature-list">
+        <div class="local-feature"><span></span><p><strong>One thread with the whole team</strong>No more texts and WhatsApps to different phones. Every reply is signed by whoever sent it.</p></div>
+        <div class="local-feature"><span></span><p><strong>Your driver, on the day</strong>Running late, a new gate code, the dog is at the neighbour's. Your driver sees it on the route.</p></div>
+        <div class="local-feature"><span></span><p><strong>Bookings, invoices and records</strong>Add extra days, see every invoice and keep vaccination dates and emergency contacts current.</p></div>
+      </div>
+      <div class="split-actions"><a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a></div>
+      <p class="portal-built-here">The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co.</p>
+    </div>
+  </section>`;
+}
+
+function portalPage() {
+  const faqs = [
+    ["Do I need to download an app?", "No. The portal works in any browser on your phone or computer. Add it to your home screen and it opens like an app, with notifications, and there is nothing to install."],
+    ["Can I message the driver at any time?", "You can message the daycare team at any time. Your driver joins the thread on the days your dog is booked in, so the note goes to the person actually on your route that day. On other days it goes to the office."],
+    ["Who sees my messages?", "The Duncan's Dog Co. team, and on booked days the driver on your route. Every reply is signed by the person who sent it, so you always know who you are talking to."],
+    ["I am not a customer yet. Can I see the portal?", "The portal is for families whose dogs come to the woodland. Once your dog has done their meet and greet and trial day, we send you a sign up link and your details are already in there."]
+  ];
+  const steps = [
+    ["Your dog is booked in", "Regular days are in the portal already. Extra days you add yourself from the dashboard."],
+    ["Your driver joins the thread", "On the morning of a booked day, the driver on your route appears in your messages alongside the team."],
+    ["Say what they need to know", "Running late, a new gate code, a dog at the neighbour's, a bag of food to bring in. The driver sees it on the run and the office sees it too."],
+    ["Only on the day", "Drivers only hear from the families on that day's route. Your conversation with the team carries on in the same thread as normal."]
+  ];
+  writePage("portal", layout({
+    route: "portal",
+    title: "Customer Portal | Duncan's Dog Co.",
+    description: "The Duncan's Dog Co. customer portal: message the team, message your driver on the days your dog is booked in, book extra days, see invoices and keep your dog's records current from your phone.",
+    keywords: "duncans dog co customer portal, duncans dog co app, dog daycare app Cobham, message dog daycare driver, duncans dog co booking",
+    h1: "Your Customer Portal",
+    intro: "Bookings, invoices, your dog's records and a direct line to the team and your driver, from your phone.",
+    body: `${portalSection()}
+    <section class="section live-content portal-features-section">
+      <div class="section-heading-row reveal"><div><p class="section-kicker">What you can do</p><h2>Everything about your dog, in one place.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>The portal is where you book, pay, keep records and talk to us. It is the same place the team works from, so what you see is what we see.</p></div>
+      ${richFeatureGrid(portalFeatures())}
+    </section>
+    <section class="section local-steps-section portal-steps-section">
+      <div class="section-heading-row reveal"><div><p class="section-kicker">Talking to your driver</p><h2>How driver messages work.</h2></div><p>Our own daycare staff do the driving, and on the days your dog travels, the driver on your route is one message away.</p></div>
+      <div class="local-steps-grid">${steps.map(([title, text], i) => `<article class="reveal"><span>${String(i + 1).padStart(2, "0")}</span><h2>${esc(title)}</h2><p>${esc(text)}</p></article>`).join("")}</div>
+    </section>
+    <section class="section article portal-setup-section">
+      <h2>Add it to your phone</h2>
+      <p>Open the portal in Safari or Chrome on your phone, choose Share, then Add to Home Screen. It then opens like an app and you get notifications for booking confirmations and messages without installing anything.</p>
+      <p><a class="button primary" href="${PORTAL_URL}">Open the customer portal</a></p>
+      <h2>First time here?</h2>
+      <p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
+      <h2>Built here, at Duncan's Dog Co.</h2>
+      <p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built at Duncan's Dog Co. Jess and Duncan started it to run this daycare, it has grown with the woodland for more than a decade, and it now runs bookings, invoicing, drivers and messaging for daycares, dog walkers, groomers and boarding kennels across the UK. When you spot something that could be better, tell us. Your portal runs on the same software as every other business using Genera, so anything you report gets fixed for all of them.</p>
+    </section>
+    <section class="section faqs"><div class="section-kicker">FAQs</div><h2>Questions about the portal</h2>${faqMarkup(faqs)}${linkPanel()}</section>
+    ${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a meet and greet and a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`,
+    structured: [faqJson(faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Customer Portal", url: "/portal/" }])]
+  }));
+}
+
 function home() {
   const body = `${homepageServiceStrip()}
   <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>Premium care is built on trust. We are one Cobham facility, with familiar staff from collection all the way through to home time. Dogs get real woodland days with natural shelter, sensory stimulation and a calm approach to social groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
+  ${portalSection()}
   ${homeTestimonials()}
   ${catchmentSection()}
   ${homeTrialFormSection()}`;
@@ -1812,7 +1906,7 @@ function areaPages() {
         <article><span>01</span><h2>Get in touch</h2><p>Fill in our enquiry form or give us a call. Tell us about your dog, your area and what kind of weekly care you need.</p></article>
         <article><span>02</span><h2>Meet & greet</h2><p>We arrange a complimentary visit to our Cobham facility so your dog can see the space and our team can meet them properly.</p></article>
         <article><span>03</span><h2>Assessment day</h2><p>Every dog does a settling-in session before joining the group. We take it at their pace with no rushing and no pressure.</p></article>
-        <article><span>04</span><h2>First woodland day</h2><p>${dropOffOnly ? "Drop them at our facility each morning and we will care for them all day, ready to head home happy and tired." : "Once everyone is happy, your dog joins us. We collect from your door, care for them all day and drop them home happy and tired."}</p></article>
+        <article><span>04</span><h2>First woodland day</h2><p>${dropOffOnly ? "Drop them at our facility each morning and we will care for them all day, ready to head home happy and tired." : "Once everyone is happy, your dog joins us. We collect from your door, care for them all day and drop them home happy and tired. On booked days you can message your driver from the customer portal."}</p></article>
       </div>
     </section>
     <section class="section local-services-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Useful next pages</p><h2>Plan your dog's care.</h2></div><p>Compare daycare, puppy care, sleepovers, pricing and FAQs before you enquire from ${esc(name)}.</p></div>${linkPanel()}</section>
@@ -1851,6 +1945,7 @@ const fullFaqSections = [
       ["How long are dogs in the car?", "Routes are planned every single night to minimise travel time for each dog. We do not run fixed routes. We work out the most efficient order each evening based on who is coming the next day, so no dog is in the car any longer than necessary."],
       ["Who does the driving?", "Our own daycare staff do the driving: the same people who care for your dog throughout the day. The driver who collects your dog in the morning is part of the same team looking after them in the woodland. No strangers, no handoffs."],
       ["What time does collection start?", "Collection begins from 7:45am. Drop-off in the afternoon is included in all weekly daycare prices. If you have specific timing requirements, speak to us when you sign up and we'll do our best to accommodate you."],
+      ["Can I contact the driver on the day?", "Yes. Every family has a customer portal with messaging built in. Anything you need to tell us goes in one thread the whole team can see, and on the days your dog is booked in, the driver on your route joins that thread. Running late, a new gate code or a change of address on the day goes straight to the person driving."],
       ["How are the collection groups organised?", "Our team plans each vehicle's passengers thoughtfully, grouping dogs by route, temperament and existing friendships. Dogs who know each other travel together where possible, making the journey calmer for everyone."]
     ]
   },
@@ -1902,7 +1997,7 @@ const fullFaqSections = [
     pricing: true,
     faqs: [
       ["What's your minimum attendance policy?", "We require a minimum of 4 days per calendar month. This helps dogs settle, stay socialised and maintain their routine within the pack. It reduces separation anxiety and keeps them familiar with our team."],
-      ["How do I manage bookings?", "Once you've completed your meet and greet, you'll register online and create a profile for your dog. From there you can manage bookings, update care notes and keep everything in one place."],
+      ["How do I manage bookings?", "Once you've completed your meet and greet, we send you a sign up link for the customer portal. From there you can add extra days, see invoices, update care notes and message the team, all from your phone. There is more on the customer portal page."],
       ["Do you offer any discounts?", "Yes. Blue Light Card holders receive 10% off. Simply show your card when signing up and we'll apply the discount automatically. Multi-day pricing also means the more days your dog attends each week, the better value it becomes."],
       ["What about sleepover pricing?", "Sleepover pricing is separate from daycare rates. Please get in touch directly for current overnight pricing and availability."]
     ]
@@ -2304,7 +2399,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/login/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/login/", "/portal/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   indexNow(urls);
@@ -2333,5 +2428,6 @@ areaPages();
 faqAndContact();
 aboutUs();
 loginAndReviews();
+portalPage();
 blog();
 redirectsAndMeta();
