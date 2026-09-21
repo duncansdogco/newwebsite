@@ -468,29 +468,11 @@ const teamMembers = [
     value: "Pippin, a toy Yorkie"
   },
   {
-    name: "Michaela",
-    role: "Driver & Carer",
-    tenure: "6 years",
-    image: "https://static.wixstatic.com/media/4d2311_232bf220cb304fcfa3ffef1e7c12cd6e~mv2.jpg/v1/fill/w_980,h_1742,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-07%20at%2010_05_edited.jpg",
-    bio: "Michaela has been at DDC for six years and loves every day of it. She builds real relationships with every dog and every owner, and you may well recognise her from the DDC TikTok.",
-    label: "Best part of the job",
-    value: "The dogs and their owners"
-  },
-  {
     name: "Holly",
     role: "Boarding Manager",
     tenure: "3 years",
     image: "https://static.wixstatic.com/media/4d2311_2706ef08752e4e39acf208b3af521bd7~mv2.jpg/v1/fill/w_980,h_1316,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PHOTO-2025-02-25-10-48-41%202.jpg",
     bio: "Holly grew up with a Springer Spaniel called Peppa and has always loved dogs. She manages all boarding at DDC, making sure every overnight guest feels completely at home, and she'll tell you it's nothing like a typical 9-5.",
-    label: "Favourite breed",
-    value: "Spaniels"
-  },
-  {
-    name: "Becky",
-    role: "Social Media & Driver",
-    tenure: "Since 2024",
-    image: "https://static.wixstatic.com/media/4d2311_3455d69b1898477080e19e48298653cb~mv2.jpeg/v1/fill/w_980,h_1277,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/WhatsApp%20Image%202025-02-07%20at%2011_08_37.jpeg",
-    bio: "Becky joined in June 2024 and covers the Earlsfield area. She has a Spaniel of her own, so she knows exactly what makes them tick, and she's built brilliant relationships with her dogs and their owners along the way.",
     label: "Favourite breed",
     value: "Spaniels"
   },
