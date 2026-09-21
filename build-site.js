@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-23";
+const assetVersion = "2026-09-21-24";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1398,6 +1398,44 @@ function deviceProfile() {
   </div>`;
 }
 
+function homeScreenPhone() {
+  const apps = [
+    ["Messages", "#34c759", "msg"], ["Photos", "#fff", "photos"], ["Maps", "#4cd964", "maps"], ["Calendar", "#fff", "cal"],
+    ["Weather", "#2f8be6", "weather"], ["Notes", "#ffd60a", "notes"], ["Clock", "#1c1c1e", "clock"], ["Camera", "#8e8e93", "camera"],
+    ["Mail", "#1f8bff", "mail"], ["Music", "#fc3c44", "music"], ["Wallet", "#1c1c1e", "wallet"]
+  ];
+  const glyph = {
+    msg: `<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.3 1.2 4.4 3.2 5.8L4 21l4.6-2.2c1.1.3 2.2.5 3.4.5 5.5 0 10-3.6 10-8S17.5 3 12 3Z"/></svg>`,
+    photos: `<svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4" fill="#ff9500" opacity=".9"/><circle cx="16.5" cy="9.5" r="4" fill="#ffcc00" opacity=".9"/><circle cx="17" cy="14.5" r="4" fill="#34c759" opacity=".9"/><circle cx="12" cy="17" r="4" fill="#5ac8fa" opacity=".9"/><circle cx="7" cy="14.5" r="4" fill="#af52de" opacity=".9"/><circle cx="7.5" cy="9.5" r="4" fill="#ff2d55" opacity=".9"/></svg>`,
+    maps: `<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#e8f4d9"/><path d="M0 14h24" stroke="#f5c542" stroke-width="3"/><path d="M9 0v24" stroke="#fff" stroke-width="3"/><circle cx="15" cy="8" r="3" fill="#ff3b30"/></svg>`,
+    cal: `<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#fff"/><rect width="24" height="7" fill="#ff3b30"/><text x="12" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#111">14</text></svg>`,
+    weather: `<svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4" fill="#ffd60a"/><path d="M7 18h10a3 3 0 0 0 0-6 4 4 0 0 0-7.7-1A3.5 3.5 0 0 0 7 18Z" fill="#fff"/></svg>`,
+    notes: `<svg viewBox="0 0 24 24"><rect width="24" height="24" fill="#fff"/><rect width="24" height="6" fill="#ffd60a"/><path d="M5 11h14M5 15h14M5 19h9" stroke="#ccc" stroke-width="1.5"/></svg>`,
+    clock: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#fff"/><path d="M12 6v6l4 2" stroke="#111" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>`,
+    camera: `<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="12" rx="2" fill="#fff"/><circle cx="12" cy="13" r="3.5" fill="#8e8e93"/></svg>`,
+    mail: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
+    music: `<svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18a3 3 0 1 1-2-2.8V7l10-2v9.5a3 3 0 1 1-2-2.8V8.2L9 9.8Z"/></svg>`,
+    wallet: `<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="4" rx="1" fill="#ff9f0a"/><rect x="4" y="10" width="16" height="4" rx="1" fill="#34c759"/><rect x="4" y="14" width="16" height="4" rx="1" fill="#5ac8fa"/></svg>`,
+    settings: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="3 2"/><circle cx="12" cy="12" r="2.5" fill="#fff"/></svg>`
+  };
+  const tile = ([name, bg, key]) => `<div class="hs-app"><span style="background:${bg}">${glyph[key]}</span><small>${name}</small></div>`;
+  const ddc = `<div class="hs-app hs-ddc"><span><img src="/assets/logo.png" alt=""><i>1</i></span><small>Duncan's Dog Co.</small></div>`;
+  return `<div class="dv hs" aria-hidden="true">
+    <div class="dv-body">
+      <div class="dv-inner">
+        <div class="dv-status light"><span>9:41</span><span class="dv-status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
+        <div class="dv-island"></div>
+        <div class="hs-wall"></div>
+        <div class="hs-notif"><img src="/assets/logo.png" alt=""><div><b>Duncan's Dog Co.</b><span>Milo's day on Wednesday is confirmed. Collection from 7:45.</span></div><em>now</em></div>
+        <div class="hs-grid">${apps.slice(0, 7).map(tile).join("")}${ddc}${apps.slice(7).map(tile).join("")}</div>
+        <div class="hs-dots"><i class="on"></i><i></i></div>
+        <div class="hs-dock">${apps.slice(0, 1).map(tile).join("")}${tile(["Safari", "#fff", "clock"])}${apps.slice(8, 9).map(tile).join("")}${tile(["Phone", "#34c759", "msg"])}</div>
+        <div class="dv-homebar light"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
 function portalDevice(start = "home") {
   const screens = { home: deviceHome(), chat: deviceChat(), pets: devicePets(), billing: deviceBilling(), profile: deviceProfile() };
   return `<div class="dv" data-device data-start="${start}" role="img" aria-label="The Duncan's Dog Co. customer portal on a phone, with bookings, messages, pets, billing and profile tabs.">
@@ -1528,9 +1566,12 @@ function portalPage() {
         <p>Drivers only hear from the families on that day's route, and your conversation with the team carries on in the same thread as normal.</p>
       </div>
     </section>
-    <section class="portal-setup">
+    <section class="portal-setup has-phone">
+      <div class="portal-setup-phone reveal">${homeScreenPhone()}<span class="hs-caption">On the home screen, like any other app</span></div>
+      <div class="portal-setup-copy">
       <div class="reveal"><h2>Add it to your phone</h2><p>Open the portal in Safari or Chrome, choose Share, then Add to Home Screen. It opens like an app from then on and you get notifications for confirmations and messages, without installing anything.</p><p><a class="button primary" href="${PORTAL_URL}">Open the customer portal</a></p></div>
       <div class="reveal"><h2>First time here?</h2><p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p></div>
+      </div>
     </section>
     <section class="portal-built">
       <div class="portal-built-copy reveal">
