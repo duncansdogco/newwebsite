@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-21";
+const assetVersion = "2026-09-21-22";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1508,6 +1508,15 @@ function portalPage() {
     keywords: "duncans dog co customer portal, duncans dog co app, dog daycare app Cobham, message dog daycare driver, duncans dog co booking",
     h1: "Your Customer Portal",
     intro: "Bookings, invoices, your dog's records and a direct line to the team and your driver, from your phone.",
+    heroData: {
+      eyebrow: "Customer Portal · Duncan's Dog Co.",
+      displayTitle: "Your dog's day,<br><span>in your pocket</span>",
+      text: "Bookings, invoices, your dog's records and a direct line to the team and your driver, from your phone.",
+      video: videoHero,
+      ctaHref: PORTAL_URL,
+      ctaText: "Log in to the portal",
+      stats: []
+    },
     body: `${portalShowcase({ start: "home", onPortalPage: true })}
     <section class="portal-driver">
       <div class="portal-driver-photo reveal"><img src="/assets/team/laura-driver.jpg" alt="Laura, one of the Duncan's Dog Co. drivers, in the woodland with a spaniel" loading="lazy"><span>Laura, one of our drivers</span></div>
