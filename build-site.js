@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-5";
+const assetVersion = "2026-09-21-7";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1370,6 +1370,135 @@ function portalSection({ onPortalPage = false } = {}) {
   </section>`;
 }
 
+/* ── The customer portal on a phone: a real 390x844 screen scaled with --s,
+   drawn from the live portal (white screens, dark nav, gold active tab). ── */
+const DEVICE_TABS = [
+  { key: "home", label: "Home", icon: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.47 3.84a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.06l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 0 0 1.061 1.06l8.69-8.69Z"/><path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z"/></svg>` },
+  { key: "chat", label: "Chat", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>` },
+  { key: "pets", label: "Pets", icon: `<svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="2.2" ry="3"/><ellipse cx="17" cy="8.5" rx="2.2" ry="3"/><ellipse cx="3.6" cy="13" rx="1.9" ry="2.6"/><ellipse cx="20.4" cy="13" rx="1.9" ry="2.6"/><path d="M12 11c3.2 0 6.2 3.3 6.2 6.1 0 1.9-1.4 3-3.1 3-1 0-1.9-.5-3.1-.5s-2.1.5-3.1.5c-1.7 0-3.1-1.1-3.1-3C5.8 14.3 8.8 11 12 11Z"/></svg>` },
+  { key: "billing", label: "Billing", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"/></svg>` },
+  { key: "profile", label: "Profile", icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/></svg>` }
+];
+
+const DEVICE_COPY = {
+  home: { title: "Every booking on one calendar", text: "Every day your dog is booked in, past and upcoming. Your regular days are already in there. Tap Create a booking to ask for an extra day, and you get a notification on your phone the moment we approve it." },
+  chat: { title: "Message the team. Message your driver.", text: "Anything you need to tell us goes in one thread we can both see, instead of texts and WhatsApps to different phones. On the days your dog is booked in, the driver on your route is in that thread too." },
+  pets: { title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile alongside their vaccination dates and care notes." },
+  billing: { title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Every invoice stays in the portal with the PDF to download, and you can see at a glance what is paid." },
+  profile: { title: "Your details, kept current", text: "Your contact details, emergency contacts and your dog's records, updated by you and seen by the team the moment you save." }
+};
+
+const sunIcon = `<svg class="dv-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+const moonIcon = `<svg class="dv-moon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>`;
+
+function deviceHome() {
+  // October 2026 starts on a Thursday. Milo is in Mon, Wed, Thu; sleepover on Fri 16.
+  const cells = [28, 29, 30].map((d) => `<div class="dv-day out"><span>${d}</span></div>`);
+  for (let d = 1; d <= 31; d += 1) {
+    const dow = (d + 3) % 7; // 0 = Mon
+    const icons = d === 16 ? sunIcon + moonIcon : [0, 2, 3].includes(dow) ? sunIcon : "";
+    const cls = d === 14 ? " sel" : d === 12 ? " today" : "";
+    cells.push(`<div class="dv-day${cls}"><span>${d}</span>${icons ? `<i>${icons}</i>` : ""}</div>`);
+  }
+  cells.push(`<div class="dv-day out"><span>1</span></div>`);
+  return `<div class="dv-screen dv-home">
+    <div class="dv-welcome">Welcome, Sophie</div>
+    <div class="dv-monthrow"><div><div class="dv-month">October 2026</div><div class="dv-monthsub">Plan your bookings and review your schedule.</div></div><div class="dv-chev"><span>‹</span><span>›</span></div></div>
+    <div class="dv-cta">+ Create a booking</div>
+    <div class="dv-cal"><div class="dv-dow"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="dv-days">${cells.join("")}</div></div>
+    <div class="dv-h3">${sunIcon} Bookings for 14 Oct</div>
+    <div class="dv-card">
+      <div class="dv-card-head"><img src="/assets/portal/day-1.jpg" alt=""><div><b>Milo</b><span>${sunIcon} Daycare</span></div></div>
+      <div class="dv-card-row"><span>Date</span><b>Wed 14 Oct · 08:00</b></div>
+      <div class="dv-card-row"><span>Transport</span><b>Collection & drop-off</b></div>
+      <div class="dv-card-row"><span>Status</span><em>✓ Confirmed</em></div>
+    </div>
+  </div>`;
+}
+
+function deviceChat() {
+  const msgs = [
+    { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Dan's run." },
+    { side: "team", who: "Dan · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
+    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Dan!", typed: true }
+  ];
+  return `<div class="dv-screen dv-chat" data-portal-chat>
+    <div class="dv-chat-head"><b>Duncan's Dog Co.</b><span>Milo · Daycare Mon, Wed, Thu</span></div>
+    <div class="dv-daypill">Today</div>
+    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Dan is typing</b></div></div>
+    <div class="portal-phone-compose"><span data-draft>Write a message</span><i data-caret></i><b>↑</b></div>
+  </div>`;
+}
+
+function devicePets() {
+  return `<div class="dv-screen dv-pets">
+    <div class="dv-title">Your pets</div>
+    <div class="dv-pet"><img src="/assets/portal/day-1.jpg" alt=""><div><b>Milo</b><span>Cocker Spaniel · 3 years</span><span class="ok">Vaccinations up to date</span></div></div>
+    <div class="dv-h3">Today at daycare <span class="dv-badge">4 new photos</span></div>
+    <div class="dv-photos"><img src="/assets/portal/day-2.jpg" alt=""><img src="/assets/portal/day-3.jpg" alt=""><img src="/assets/portal/day-4.jpg" alt=""><img src="/assets/portal/day-1.jpg" alt=""></div>
+    <div class="dv-report"><div class="dv-report-head"><b>Report card</b><span>★★★★★</span></div><p>A big woodland day. Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p><span class="dv-by">Becks · 15:20</span></div>
+  </div>`;
+}
+
+function deviceBilling() {
+  const inv = [["000112", "1 Oct 2026", "£715.00"], ["000098", "1 Sep 2026", "£660.00"], ["000081", "1 Aug 2026", "£770.00"], ["000064", "1 Jul 2026", "£715.00"]];
+  return `<div class="dv-screen dv-billing">
+    <div class="dv-title">Billing</div>
+    <div class="dv-dd"><b>DD</b><div><strong>Direct Debit active</strong><span>GoCardless · set up 2 Jul 2026</span></div><em>Active</em></div>
+    <div class="dv-h3">Invoices</div>
+    ${inv.map(([n, d, a]) => `<div class="dv-inv"><div><b>Invoice ${n}</b><span>${d}</span></div><strong>${a}</strong><div class="dv-inv-actions"><span>Download</span><span class="paid">Paid</span></div></div>`).join("")}
+    <p class="dv-note">Your next invoice is raised on 1 November and collected three working days later.</p>
+  </div>`;
+}
+
+function deviceProfile() {
+  return `<div class="dv-screen dv-profile">
+    <div class="dv-title">Profile</div>
+    <div class="dv-person"><span>ST</span><div><b>Sophie Turner</b><span>Customer since 2024</span></div></div>
+    <div class="dv-group"><div class="dv-field"><span>Mobile</span><b>07700 900 412</b></div><div class="dv-field"><span>Email</span><b>sophie@example.com</b></div><div class="dv-field"><span>Address</span><b>14 Elm Road, Esher KT10</b></div><div class="dv-field"><span>Gate code</span><b>4471</b></div></div>
+    <div class="dv-h3">Emergency contact</div>
+    <div class="dv-group"><div class="dv-field"><span>Name</span><b>Tom Turner</b></div><div class="dv-field"><span>Mobile</span><b>07700 900 318</b></div></div>
+    <div class="dv-h3">Milo's records</div>
+    <div class="dv-group"><div class="dv-field"><span>Booster due</span><b>3 Mar 2027</b></div><div class="dv-field"><span>Vet</span><b>Esher Vets, 01372 000 000</b></div><div class="dv-field"><span>Food</span><b>Own food, in the bag</b></div></div>
+  </div>`;
+}
+
+function portalDevice(start = "home") {
+  const screens = { home: deviceHome(), chat: deviceChat(), pets: devicePets(), billing: deviceBilling(), profile: deviceProfile() };
+  return `<div class="dv" data-device data-start="${start}" role="img" aria-label="The Duncan's Dog Co. customer portal on a phone, with bookings, messages, pets, billing and profile tabs.">
+    <div class="dv-body">
+      <div class="dv-inner">
+        <div class="dv-status"><span>9:41</span><span class="dv-status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
+        <div class="dv-island"></div>
+        <div class="dv-topbar"><img src="/assets/logo.png" alt=""><b>Duncan's Dog Co.</b><span class="dv-topbar-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/></svg><i>1</i></span></div>
+        ${Object.entries(screens).map(([k, html]) => `<div class="dv-pane" data-pane="${k}">${html}</div>`).join("")}
+        <div class="dv-fade"></div>
+        <div class="dv-nav">${DEVICE_TABS.map((t) => `<button type="button" data-tab="${t.key}" aria-label="${t.label}">${t.icon}<span>${t.label}</span></button>`).join("")}</div>
+        <div class="dv-homebar"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function portalShowcase({ start = "home", onPortalPage = false } = {}) {
+  const copy = DEVICE_TABS.map((t) => `<div class="dv-copy" data-copy="${t.key}"><h2>${esc(DEVICE_COPY[t.key].title)}</h2><p>${esc(DEVICE_COPY[t.key].text)}</p></div>`).join("");
+  const pills = DEVICE_TABS.map((t) => `<button type="button" data-pick="${t.key}">${t.label}</button>`).join("");
+  const actions = onPortalPage
+    ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="/login/">First time? Start here</a>`
+    : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a>`;
+  return `<section class="portal-showcase" id="portal" data-showcase>
+    <div class="portal-showcase-device reveal">${portalDevice(start)}</div>
+    <div class="portal-showcase-copy reveal">
+      <p class="section-kicker">Your customer portal</p>
+      <div class="dv-copies">${copy}</div>
+      <div class="dv-pills" role="group" aria-label="Choose a screen">${pills}</div>
+      <div class="split-actions">${actions}</div>
+      <p class="portal-built-here">The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co.</p>
+    </div>
+  </section>`;
+}
+
 function portalFrame(inner, tab = "Home") {
   const tabs = ["Home", "Pets", "Billing", "Profile"].map((t) => `<span${t === tab ? ' class="is-on"' : ""}>${t}</span>`).join("");
   return `<div class="portal-phone portal-screen" aria-hidden="true">
@@ -1447,8 +1576,7 @@ function portalPage() {
     keywords: "duncans dog co customer portal, duncans dog co app, dog daycare app Cobham, message dog daycare driver, duncans dog co booking",
     h1: "Your Customer Portal",
     intro: "Bookings, invoices, your dog's records and a direct line to the team and your driver, from your phone.",
-    body: `${portalSection({ onPortalPage: true })}
-    <section class="portal-rows">${rows}</section>
+    body: `${portalShowcase({ start: "home", onPortalPage: true })}
     <section class="portal-driver">
       <div class="portal-driver-photo reveal"><img src="/assets/team/laura-driver.jpg" alt="Laura, one of the Duncan's Dog Co. drivers, in the woodland with a spaniel" loading="lazy"><span>Laura, one of our drivers</span></div>
       <div class="portal-driver-copy reveal">
@@ -1478,7 +1606,7 @@ function portalPage() {
 function home() {
   const body = `${homepageServiceStrip()}
   <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>Premium care is built on trust. We are one Cobham facility, with familiar staff from collection all the way through to home time. Dogs get real woodland days with natural shelter, sensory stimulation and a calm approach to social groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
-  ${portalSection()}
+  ${portalShowcase({ start: "chat" })}
   ${homeTestimonials()}
   ${catchmentSection()}
   ${homeTrialFormSection()}`;

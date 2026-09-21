@@ -160,3 +160,58 @@ document.querySelectorAll("[data-portal-chat]").forEach((phone) => {
   }, { threshold: 0.4 });
   io.observe(phone);
 });
+
+/* Portal device: tappable tabs, copy that follows the tab, and a slow
+   auto-cycle until someone picks a screen themselves. */
+document.querySelectorAll("[data-showcase]").forEach((box) => {
+  const device = box.querySelector("[data-device]");
+  const tabs = Array.from(device.querySelectorAll("[data-tab]"));
+  const panes = Array.from(device.querySelectorAll("[data-pane]"));
+  const copies = Array.from(box.querySelectorAll("[data-copy]"));
+  const pills = Array.from(box.querySelectorAll("[data-pick]"));
+  const order = tabs.map((t) => t.dataset.tab);
+  let current = device.dataset.start || order[0];
+  let picked = false;
+  let timer = null;
+
+  const show = (key) => {
+    current = key;
+    tabs.forEach((t) => t.classList.toggle("is-on", t.dataset.tab === key));
+    panes.forEach((p) => p.classList.toggle("is-on", p.dataset.pane === key));
+    copies.forEach((c) => c.classList.toggle("is-on", c.dataset.copy === key));
+    pills.forEach((p) => p.classList.toggle("is-on", p.dataset.pick === key));
+  };
+
+  const pick = (key) => {
+    picked = true;
+    if (timer) { window.clearTimeout(timer); timer = null; }
+    show(key);
+  };
+
+  tabs.forEach((t) => t.addEventListener("click", () => pick(t.dataset.tab)));
+  pills.forEach((p) => p.addEventListener("click", () => pick(p.dataset.pick)));
+  show(current);
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced || !("IntersectionObserver" in window)) return;
+
+  // The chat thread needs time to play before the cycle moves on.
+  const schedule = () => {
+    timer = window.setTimeout(() => {
+      show(order[(order.indexOf(current) + 1) % order.length]);
+      schedule();
+    }, current === "chat" ? 12000 : 4500);
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        if (!timer && !picked) schedule();
+      } else if (timer) {
+        window.clearTimeout(timer);
+        timer = null;
+      }
+    });
+  }, { threshold: 0.35 });
+  io.observe(device);
+});
