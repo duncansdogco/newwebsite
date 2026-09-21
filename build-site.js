@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-1";
+const assetVersion = "2026-09-21-3";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1359,13 +1359,13 @@ function portalPhone() {
     { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
     { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Dan's run." },
     { side: "team", who: "Dan · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
-    { side: "team", who: "Becks · Duncan's Dog Co.", at: "15:20", text: "Big paddle in the lake this morning. Expect a sleepy boy tonight." }
+    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Dan!", typed: true }
   ];
-  return `<div class="portal-phone" aria-hidden="true">
+  return `<div class="portal-phone" data-portal-chat aria-hidden="true">
     <div class="portal-phone-top"><img src="/assets/logo.png" alt=""><div><strong>Duncan's Dog Co.</strong><span>Milo · Daycare Mon, Wed, Thu</span></div></div>
     <div class="portal-phone-day">Today</div>
-    <div class="portal-phone-thread">${msgs.map((m) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}"><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}</span></div>`).join("")}</div>
-    <div class="portal-phone-compose"><span>Write a message</span><b>↑</b></div>
+    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"${m.typed ? ' data-typed="true"' : ""}><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Dan is typing</b></div></div>
+    <div class="portal-phone-compose"><span data-draft>Write a message</span><i data-caret></i><b>↑</b></div>
   </div>`;
 }
 

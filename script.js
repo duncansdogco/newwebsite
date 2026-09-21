@@ -105,3 +105,58 @@ if ("IntersectionObserver" in window) {
     v.addEventListener("canplay", function () { tryPlay(v); }, { once: true });
   });
 }());
+
+/* Customer portal chat mock: plays once when it scrolls into view. */
+document.querySelectorAll("[data-portal-chat]").forEach((phone) => {
+  const msgs = Array.from(phone.querySelectorAll("[data-msg]"));
+  const typing = phone.querySelector("[data-typing]");
+  const draft = phone.querySelector("[data-draft]");
+  const caret = phone.querySelector("[data-caret]");
+  const send = phone.querySelector(".portal-phone-compose b");
+  const placeholder = draft.textContent;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduced || !("IntersectionObserver" in window)) {
+    phone.classList.add("is-static");
+    msgs[msgs.length - 1].classList.add("is-seen");
+    return;
+  }
+
+  const timers = [];
+  const at = (ms, fn) => timers.push(window.setTimeout(fn, ms));
+  const show = (i) => msgs[i].classList.add("is-in");
+
+  const play = () => {
+    at(300, () => show(0));
+    at(1400, () => show(1));
+    at(2300, () => typing.classList.add("is-in"));
+    at(3900, () => { typing.classList.remove("is-in"); show(2); });
+    // The owner types the last reply into the composer, then sends it.
+    const last = msgs[msgs.length - 1];
+    const reply = last.querySelector("p").textContent;
+    let t = 5000;
+    at(t - 100, () => { draft.textContent = ""; draft.classList.add("is-typing"); caret.classList.add("is-on"); });
+    for (let i = 1; i <= reply.length; i += 1) {
+      const text = reply.slice(0, i);
+      at(t, () => { draft.textContent = text; });
+      t += 45;
+    }
+    at(t + 500, () => {
+      send.classList.add("is-live");
+      draft.textContent = placeholder;
+      draft.classList.remove("is-typing");
+      caret.classList.remove("is-on");
+      show(msgs.length - 1);
+    });
+    at(t + 800, () => send.classList.remove("is-live"));
+    at(t + 2000, () => last.classList.add("is-seen"));
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      io.disconnect();
+      play();
+    }
+  }, { threshold: 0.4 });
+  io.observe(phone);
+});

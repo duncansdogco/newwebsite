@@ -6244,7 +6244,10 @@ blockquote {
 }
 
 .portal-phone {
+  display: flex;
+  flex-direction: column;
   width: min(340px, 100%);
+  height: 640px;
   border: 10px solid var(--ink);
   border-radius: 44px;
   background: var(--paper);
@@ -6298,9 +6301,13 @@ blockquote {
 }
 
 .portal-phone-thread {
-  display: grid;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
   gap: 10px;
   padding: 12px 14px 8px;
+  overflow: hidden;
 }
 
 .portal-msg {
@@ -6310,7 +6317,7 @@ blockquote {
 }
 
 .portal-msg.owner {
-  justify-self: end;
+  align-self: flex-end;
   text-align: right;
 }
 
@@ -6404,5 +6411,106 @@ blockquote {
 
   .portal-phone {
     transform: none;
+  }
+}
+
+/* ── Portal chat animation: bubbles arrive one at a time, driver types, owner replies ── */
+[data-portal-chat] .portal-msg,
+[data-portal-chat] .portal-typing {
+  display: none;
+}
+
+[data-portal-chat] .portal-msg.is-in {
+  display: grid;
+  animation: portalChatIn 0.35s ease-out both;
+}
+
+[data-portal-chat] .portal-typing.is-in {
+  display: flex;
+  animation: portalChatIn 0.25s ease-out both;
+}
+
+[data-portal-chat].is-static .portal-msg {
+  display: grid;
+  animation: none;
+}
+
+.portal-msg-seen {
+  display: none;
+  font-style: normal;
+}
+
+.portal-msg.is-seen .portal-msg-seen {
+  display: inline;
+}
+
+.portal-typing {
+  align-items: center;
+  gap: 4px;
+  max-width: 86%;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  border-bottom-left-radius: 6px;
+  background: #fff;
+}
+
+.portal-typing span {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(20, 35, 19, 0.4);
+  animation: portalTypingBounce 1s ease-in-out infinite;
+}
+
+.portal-typing span:nth-child(2) { animation-delay: 150ms; }
+.portal-typing span:nth-child(3) { animation-delay: 300ms; }
+
+.portal-typing b {
+  margin-left: 6px;
+  color: rgba(20, 35, 19, 0.5);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.portal-phone-compose [data-draft].is-typing {
+  color: var(--ink);
+}
+
+.portal-phone-compose [data-caret] {
+  display: none;
+  width: 1px;
+  height: 1.1em;
+  margin-left: 1px;
+  background: var(--forest);
+  animation: portalCaret 1s steps(2) infinite;
+}
+
+.portal-phone-compose [data-caret].is-on {
+  display: inline-block;
+}
+
+.portal-phone-compose b.is-live {
+  transform: scale(1.06);
+}
+
+@keyframes portalChatIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes portalTypingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+
+@keyframes portalCaret {
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-typing span,
+  .portal-phone-compose [data-caret] {
+    animation: none;
   }
 }
