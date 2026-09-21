@@ -215,3 +215,12 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
   }, { threshold: 0.35 });
   io.observe(device);
 });
+
+/* FAQ accordions: opening one question closes the others in the same list. */
+document.querySelectorAll(".faq-list").forEach((list) => {
+  list.addEventListener("toggle", (event) => {
+    const item = event.target;
+    if (!(item instanceof HTMLDetailsElement) || !item.open) return;
+    list.querySelectorAll("details[open]").forEach((other) => { if (other !== item) other.open = false; });
+  }, true);
+});
