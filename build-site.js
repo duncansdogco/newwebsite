@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-3";
+const assetVersion = "2026-09-21-5";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1351,18 +1351,7 @@ function portalPhone() {
   </div>`;
 }
 
-function portalFeatures() {
-  return [
-    ["Message the team", "Anything you need to tell us goes in one thread that we can both see, instead of texts and WhatsApps to different phones. Every reply is signed by the person who sent it."],
-    ["Message your driver on the day", "On the days your dog is booked in, the driver on your route is in your thread too. Running late, a new gate code, the dog is at the neighbour's. They see it on the route."],
-    ["Book extra days", "Add daycare days on top of your regular pattern from the dashboard and get a confirmation on your phone."],
-    ["Every invoice in one place", "Invoices and payments are listed together, with Direct Debit handled through GoCardless."],
-    ["Your dog's records", "Vaccination dates, vet details, care notes and emergency contacts stay current, and the team sees changes the moment you save them."],
-    ["Notifications on your phone", "Add the portal to your home screen and booking confirmations and messages arrive like any other app."]
-  ];
-}
-
-function portalSection() {
+function portalSection({ onPortalPage = false } = {}) {
   return `<section class="portal-split" id="portal">
     <div class="portal-split-visual reveal">${portalPhone()}</div>
     <div class="portal-split-copy reveal">
@@ -1375,10 +1364,72 @@ function portalSection() {
         <div class="local-feature"><span></span><p><strong>Your driver, on the day</strong>Running late, a new gate code, the dog is at the neighbour's. Your driver sees it on the route.</p></div>
         <div class="local-feature"><span></span><p><strong>Bookings, invoices and records</strong>Add extra days, see every invoice and keep vaccination dates and emergency contacts current.</p></div>
       </div>
-      <div class="split-actions"><a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a></div>
+      <div class="split-actions">${onPortalPage ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="/login/">First time? Start here</a>` : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a>`}</div>
       <p class="portal-built-here">The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co.</p>
     </div>
   </section>`;
+}
+
+function portalFrame(inner, tab = "Home") {
+  const tabs = ["Home", "Pets", "Billing", "Profile"].map((t) => `<span${t === tab ? ' class="is-on"' : ""}>${t}</span>`).join("");
+  return `<div class="portal-phone portal-screen" aria-hidden="true">
+    <div class="portal-phone-top"><img src="/assets/logo.png" alt=""><div><strong>Duncan's Dog Co.</strong><span>Customer portal</span></div></div>
+    <div class="portal-screen-body">${inner}</div>
+    <div class="portal-screen-tabs">${tabs}</div>
+  </div>`;
+}
+
+function portalScreens() {
+  const dot = `<i></i>`;
+  const booked = new Set([1, 5, 7, 12, 14, 19, 21, 26, 28]);
+  const cells = [];
+  for (let i = 0; i < 3; i += 1) cells.push(`<span class="pad"></span>`);
+  for (let d = 1; d <= 31; d += 1) cells.push(`<span${d === 14 ? ' class="today"' : ""}>${d}${booked.has(d) ? dot : ""}</span>`);
+  const calendar = `<p class="ps-hello">Welcome back, Sophie</p><h4>October 2026</h4>
+    <div class="ps-legend"><span>Daycare</span><span class="s">Sleepover</span><span class="c">Confirmed</span></div>
+    <div class="ps-grid"><b>M</b><b>T</b><b>W</b><b>T</b><b>F</b><b>S</b><b>S</b>${cells.join("")}</div>
+    <p class="ps-label">Coming up</p>
+    <div class="ps-row"><span class="ps-date">14<small>Oct</small></span><div><strong>Daycare, collection</strong><em>Confirmed</em></div></div>
+    <div class="ps-row"><span class="ps-date">16<small>Oct</small></span><div><strong>Sleepover, 2 nights</strong><em>Confirmed</em></div></div>`;
+
+  const request = `<h4>Request a day</h4>
+    <label>Service<span>Daycare ▾</span></label>
+    <label>Date<span>Wednesday 14 October ▾</span></label>
+    <label>Pet<span>Milo ▾</span></label>
+    <div class="ps-toggle on"><span>Collect from home</span><i></i></div>
+    <div class="ps-toggle on"><span>Drop off at home</span><i></i></div>
+    <div class="ps-toggle"><span>Repeat every week</span><i></i></div>
+    <label>Note for the team<span class="muted">Milo has a new harness, it is in the bag</span></label>
+    <div class="ps-button">Request booking</div>`;
+
+  const confirmed = `<div class="ps-tick">✓</div><h4 class="center">Booking confirmed</h4><p class="ps-sub">Milo is booked in with Duncan's Dog Co.</p>
+    <div class="ps-detail"><span>Service</span><b>Daycare</b></div>
+    <div class="ps-detail"><span>Date</span><b>Wed 14 Oct 2026</b></div>
+    <div class="ps-detail"><span>Transport</span><b>Collection and drop-off</b></div>
+    <div class="ps-detail"><span>Status</span><b class="ok">Confirmed</b></div>
+    <div class="ps-detail"><span>Driver</span><b>Dan, morning route</b></div>
+    <div class="ps-button">Add another day</div>
+    <p class="ps-note center">We will message you if the collection time changes.</p>`;
+
+  const billing = `<h4>Billing</h4>
+    <div class="ps-dd"><b>DD</b><div><strong>Direct Debit active</strong><span>GoCardless, set up 2 Jul 2026</span></div></div>
+    <div class="ps-inv"><div><strong>Invoice 000112</strong><span>1 Oct 2026</span></div><div class="r"><strong>£715.00</strong><em>Paid</em></div></div>
+    <div class="ps-inv"><div><strong>Invoice 000098</strong><span>1 Sep 2026</span></div><div class="r"><strong>£660.00</strong><em>Paid</em></div></div>
+    <div class="ps-inv"><div><strong>Invoice 000081</strong><span>1 Aug 2026</span></div><div class="r"><strong>£770.00</strong><em>Paid</em></div></div>
+    <div class="ps-inv"><div><strong>Invoice 000064</strong><span>1 Jul 2026</span></div><div class="r"><strong>£715.00</strong><em>Paid</em></div></div>
+    <p class="ps-note">Next invoice is raised on 1 November and collected three working days later.</p>`;
+
+  const day = `<div class="ps-pet"><h4>Milo</h4><span>Report card</span></div>
+    <div class="ps-photos"><img src="/assets/portal/day-1.jpg" alt=""><img src="/assets/portal/day-2.jpg" alt=""><img src="/assets/portal/day-3.jpg" alt=""><img src="/assets/portal/day-4.jpg" alt=""></div>
+    <div class="ps-card"><strong>A big woodland day</strong><span class="ps-stars">★★★★★</span><p>Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p></div>`;
+
+  return [
+    { screen: portalFrame(calendar, "Home"), title: "Every booking on one calendar", text: "Every day your dog is booked in, past and upcoming, in one place. Your regular days are already in there. Tap a day to see whether we are collecting." },
+    { screen: portalFrame(request, "Home"), title: "Ask for an extra day in seconds", text: "Pick the service, pick the date, say whether we are collecting, and send it. Quicker than writing the text, and it lands in our bookings rather than on somebody's phone." },
+    { screen: portalFrame(confirmed, "Home"), title: "You know straight away", text: "The moment we approve the day, the portal tells you, and a notification arrives on your phone. No waiting to hear whether we saw the message." },
+    { screen: portalFrame(billing, "Billing"), title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Every invoice and receipt stays in the portal, so there is nothing to find in your inbox." },
+    { screen: portalFrame(day, "Pets"), title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile. Every one stays there, so you can look back at them whenever you like." }
+  ];
 }
 
 function portalPage() {
@@ -1388,12 +1439,7 @@ function portalPage() {
     ["Who sees my messages?", "The Duncan's Dog Co. team, and on booked days the driver on your route. Every reply is signed by the person who sent it, so you always know who you are talking to."],
     ["I am not a customer yet. Can I see the portal?", "The portal is for families whose dogs come to the woodland. Once your dog has done their meet and greet and trial day, we send you a sign up link and your details are already in there."]
   ];
-  const steps = [
-    ["Your dog is booked in", "Regular days are in the portal already. Extra days you add yourself from the dashboard."],
-    ["Your driver joins the thread", "On the morning of a booked day, the driver on your route appears in your messages alongside the team."],
-    ["Say what they need to know", "Running late, a new gate code, a dog at the neighbour's, a bag of food to bring in. The driver sees it on the run and the office sees it too."],
-    ["Only on the day", "Drivers only hear from the families on that day's route. Your conversation with the team carries on in the same thread as normal."]
-  ];
+  const rows = portalScreens().map((r, i) => `<div class="portal-row${i % 2 ? " flip" : ""}"><div class="portal-row-visual reveal">${r.screen}</div><div class="portal-row-copy reveal"><h2>${esc(r.title)}</h2><p>${esc(r.text)}</p></div></div>`).join("");
   writePage("portal", layout({
     route: "portal",
     title: "Customer Portal | Duncan's Dog Co.",
@@ -1401,23 +1447,27 @@ function portalPage() {
     keywords: "duncans dog co customer portal, duncans dog co app, dog daycare app Cobham, message dog daycare driver, duncans dog co booking",
     h1: "Your Customer Portal",
     intro: "Bookings, invoices, your dog's records and a direct line to the team and your driver, from your phone.",
-    body: `${portalSection()}
-    <section class="section live-content portal-features-section">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">What you can do</p><h2>Everything about your dog, in one place.</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>The portal is where you book, pay, keep records and talk to us. It is the same place the team works from, so what you see is what we see.</p></div>
-      ${richFeatureGrid(portalFeatures())}
+    body: `${portalSection({ onPortalPage: true })}
+    <section class="portal-rows">${rows}</section>
+    <section class="portal-driver">
+      <div class="portal-driver-photo reveal"><img src="/assets/team/laura-driver.jpg" alt="Laura, one of the Duncan's Dog Co. drivers, in the woodland with a spaniel" loading="lazy"><span>Laura, one of our drivers</span></div>
+      <div class="portal-driver-copy reveal">
+        <h2>Your driver, one message away.</h2>
+        <p>Our own daycare staff do the driving. On the morning of a booked day, the driver on your route joins your thread in the portal alongside the team. Running late, a new gate code, a dog at the neighbour's, a bag of food to bring in. Type it once and the driver sees it on the run, and the office sees it too.</p>
+        <p>Drivers only hear from the families on that day's route, and your conversation with the team carries on in the same thread as normal.</p>
+      </div>
     </section>
-    <section class="section local-steps-section portal-steps-section">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">Talking to your driver</p><h2>How driver messages work.</h2></div><p>Our own daycare staff do the driving, and on the days your dog travels, the driver on your route is one message away.</p></div>
-      <div class="local-steps-grid">${steps.map(([title, text], i) => `<article class="reveal"><span>${String(i + 1).padStart(2, "0")}</span><h2>${esc(title)}</h2><p>${esc(text)}</p></article>`).join("")}</div>
+    <section class="portal-setup">
+      <div class="reveal"><h2>Add it to your phone</h2><p>Open the portal in Safari or Chrome, choose Share, then Add to Home Screen. It opens like an app from then on and you get notifications for confirmations and messages, without installing anything.</p><p><a class="button primary" href="${PORTAL_URL}">Open the customer portal</a></p></div>
+      <div class="reveal"><h2>First time here?</h2><p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p></div>
     </section>
-    <section class="section article portal-setup-section">
-      <h2>Add it to your phone</h2>
-      <p>Open the portal in Safari or Chrome on your phone, choose Share, then Add to Home Screen. It then opens like an app and you get notifications for booking confirmations and messages without installing anything.</p>
-      <p><a class="button primary" href="${PORTAL_URL}">Open the customer portal</a></p>
-      <h2>First time here?</h2>
-      <p>Every customer has been sent a sign up link by email. Your details, your dog's details and your emergency contacts are already in the portal, so you only need to set a password. If you cannot find the email, call us on <a href="tel:07731798899">07731 798 899</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a> and we will send it again.</p>
-      <h2>Built here, at Duncan's Dog Co.</h2>
-      <p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built at Duncan's Dog Co. Jess and Duncan started it to run this daycare, it has grown with the woodland for more than a decade, and it now runs bookings, invoicing, drivers and messaging for daycares, dog walkers, groomers and boarding kennels across the UK. When you spot something that could be better, tell us. Your portal runs on the same software as every other business using Genera, so anything you report gets fixed for all of them.</p>
+    <section class="portal-built">
+      <div class="portal-built-copy reveal">
+        <h2>Built here, at Duncan's Dog Co.</h2>
+        <p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built at Duncan's Dog Co. Jess and Duncan started it to run this daycare, and it now runs bookings, invoicing, drivers and messaging for daycares, dog walkers, groomers and boarding kennels across the UK.</p>
+        <p>If you spot something that could be better, tell us. Your portal runs on the same software as every other business using Genera, so anything you report gets fixed for all of them.</p>
+      </div>
+      <div class="portal-built-photo reveal"><img src="/assets/team/licence.jpg" alt="Jess and Duncan with the Duncan's Dog Co. licence certificate and the dogs" loading="lazy"></div>
     </section>
     <section class="section faqs"><div class="section-kicker">FAQs</div><h2>Questions about the portal</h2>${faqMarkup(faqs)}${linkPanel()}</section>
     ${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a meet and greet and a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`,
