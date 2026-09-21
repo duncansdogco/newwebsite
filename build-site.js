@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-22";
+const assetVersion = "2026-09-21-23";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -98,7 +98,7 @@ const servicePages = [
     intro: "Duncan's Dog Co. gives dogs a real outdoor day: supervised woodland walks, social time, rest, enrichment and transport that fits busy owners.",
     heroData: {
       eyebrow: "Doggy Daycare · Cobham, Surrey",
-      displayTitle: "One family, one woodland,<br><span>the same team every day</span>",
+      displayTitle: "One family,<br><span>one woodland</span>",
       text: "Open 365 days a year. Collection and drop-off available. All breeds welcome. No exceptions.",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
       stats: []
@@ -748,6 +748,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
     <a class="brand" href="/" aria-label="Duncan's Dog Co. home"><img src="/assets/logo.png" alt="" aria-hidden="true"><span>Duncan's Dog Co.</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle><span></span><span></span><span></span></button>
     <nav class="site-nav" id="site-nav" data-nav>
+      <a href="/">Home</a>
       <a href="/daycare/">Daycare</a>
       <a href="/puppies/">Puppies</a>
       <a href="/sleepovers/">Sleepovers</a>
@@ -850,6 +851,7 @@ function livePageHero(h1, data) {
       <p>${esc(data.text)}</p>
       ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
       <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
+      <p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p>
     </div>
     <div class="live-page-video"><video poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"><source src="${esc(data.video)}" type="video/mp4"></video></div>
   </section>`;

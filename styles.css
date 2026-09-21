@@ -8157,3 +8157,39 @@ h1, h2, h3,
 .portal-built-photo img { height: min(480px, 60vh) !important; }
 .portal-setup { padding: 64px clamp(18px, 5vw, 64px) !important; }
 .page-portal .faq-block { border-top: 0; }
+
+/* ── Page heroes: shorter, with the copy carrying more weight ── */
+.live-page-hero,
+.live-page-video { min-height: clamp(540px, 66vh, 700px) !important; }
+
+.live-page-copy { padding: 120px clamp(22px, 5vw, 64px) 64px !important; }
+
+.live-page-copy .eyebrow { margin-bottom: 18px; color: var(--leaf); }
+
+.live-display-title {
+  max-width: 680px !important;
+  margin-bottom: 20px !important;
+  font-size: clamp(44px, 5.4vw, 74px) !important;
+  line-height: 1 !important;
+}
+
+.live-page-copy > p:not(.eyebrow):not(.hero-trust) {
+  max-width: 540px !important;
+  margin-bottom: 28px !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 18px !important;
+  line-height: 1.6 !important;
+}
+
+.hero-cta-live {
+  padding: 16px 28px !important;
+  font-size: 15px !important;
+  background: var(--leaf) !important;
+  color: var(--ink) !important;
+}
+
+.live-page-copy .hero-trust { margin-top: 28px; }
+
+@media (max-width: 980px) {
+  .live-page-copy { padding: 100px clamp(18px, 5vw, 64px) 48px !important; }
+}
