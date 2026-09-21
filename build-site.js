@@ -1357,8 +1357,8 @@ const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
 function portalPhone() {
   const msgs = [
     { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
-    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Michaela's run." },
-    { side: "team", who: "Michaela · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Dan's run." },
+    { side: "team", who: "Dan · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
     { side: "team", who: "Becks · Duncan's Dog Co.", at: "15:20", text: "Big paddle in the lake this morning. Expect a sleepy boy tonight." }
   ];
   return `<div class="portal-phone" aria-hidden="true">
