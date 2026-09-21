@@ -8147,3 +8147,13 @@ h1, h2, h3,
   .photo-marquee-track { padding-bottom: 64px; }
 }
 .home-trial-image img { object-position: center 78%; }
+
+.portal-built {
+  padding: 72px clamp(18px, 5vw, 64px) !important;
+  background: var(--cream) !important;
+  align-items: center;
+}
+
+.portal-built-photo img { height: min(480px, 60vh) !important; }
+.portal-setup { padding: 64px clamp(18px, 5vw, 64px) !important; }
+.page-portal .faq-block { border-top: 0; }
