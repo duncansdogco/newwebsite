@@ -7749,3 +7749,162 @@ blockquote {
 
 .home-trial-image { max-height: 680px; overflow: hidden; }
 .home-trial-image img { max-height: 680px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Type and buttons, 21 Sep 2026.
+   Headings upright in Fraunces, no squiggles, quiet labels, plain
+   rectangular buttons with no shadow, one colour in hero titles.
+   Kept as one override layer rather than editing 60 italic rules.
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --shadow: 0 18px 40px rgba(20, 35, 19, 0.12);
+}
+
+h1, h2, h3,
+.live-display-title,
+.home-hero-title,
+.ht-heading,
+.dv-copy h2,
+.portal-row-copy h2,
+.standards-list h2,
+.day-moment h3,
+.rich-feature-card h3,
+.service-card h2,
+.live-card h2,
+.daycare-pricing-teaser h2,
+.cta-band h2,
+.catchment-section h2,
+.feature-split h2,
+.contact-section h2 {
+  font-family: var(--display) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.015em;
+}
+
+.live-card h2,
+.day-moment h3,
+.rich-feature-card h3,
+.plain-steps strong,
+.standards-list h2 {
+  font-weight: 600 !important;
+}
+
+.home-hero-title span + span,
+.live-display-title span {
+  color: inherit !important;
+}
+
+.squiggle-line { display: none !important; }
+
+.section-kicker,
+.eyebrow,
+.hero-copy .eyebrow {
+  margin-bottom: 14px;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.section-kicker { color: var(--moss); }
+.cta-band .section-kicker,
+.catchment-section .section-kicker { color: var(--leaf); }
+
+.button,
+.hero-cta-live,
+.nav-cta,
+.ps-button,
+.dv-pills button {
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.button {
+  min-height: 50px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.button:hover,
+.hero-cta-live:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.button.primary {
+  border-color: var(--forest) !important;
+  background: var(--forest) !important;
+  color: #fff !important;
+}
+
+.button.primary:hover { background: #244a24 !important; }
+
+.button.secondary.dark {
+  border-color: rgba(25, 52, 25, 0.28) !important;
+  background: transparent !important;
+  color: var(--forest) !important;
+}
+
+.button.secondary.dark:hover { border-color: var(--forest) !important; }
+
+.hero .button.primary,
+.cta-band .button.primary,
+.daycare-final-cta .button.primary,
+.contact-section .button.primary {
+  border-color: var(--leaf) !important;
+  background: var(--leaf) !important;
+  color: var(--ink) !important;
+}
+
+.hero .button.secondary {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: transparent !important;
+}
+
+.nav-cta {
+  border-radius: 8px !important;
+}
+
+.card-link,
+.hero-cta-live,
+.ht-cta {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+.card-link { color: #fff; }
+
+.live-card,
+.day-moment,
+.review-tile,
+.rich-feature-card,
+.local-route-card,
+.included-photo,
+.start-photo,
+.split-image,
+.portal-driver-photo,
+.portal-built-photo,
+.home-trial-image,
+.daycare-photo-stack img,
+.daycare-final-photo,
+.location-intro-image,
+.live-intro-image {
+  border-radius: 10px !important;
+}
+
+.dv-pills button { border-radius: 999px !important; }
+
+.info-badge {
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.reveal { transition-duration: 500ms; }
