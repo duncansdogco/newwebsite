@@ -3,7 +3,7 @@
   --forest: #193419;
   --moss: #647f4f;
   --leaf: #b9d3a7;
-  --cream: #f3f4f0;
+  --cream: #e9f0e2;
   --paper: #ffffff;
   --clay: #a66c48;
   --line: rgba(25, 52, 25, 0.14);
@@ -275,7 +275,7 @@ a {
 .eyebrow,
 .section-kicker {
   margin: 0 0 16px;
-  color: var(--leaf);
+  color: var(--moss);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -7050,7 +7050,7 @@ blockquote {
   gap: clamp(28px, 6vw, 88px);
   align-items: center;
   padding: 96px clamp(18px, 5vw, 64px);
-  background: var(--cream);
+  background: #fff;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
@@ -7396,3 +7396,136 @@ blockquote {
   .dv { --s: 0.8; }
   .dv-copies { min-height: 0; }
 }
+
+/* ── Homepage overhaul: hero trust line, five service cards, static reviews ── */
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 22px;
+  margin: 26px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero-trust span { display: inline-flex; align-items: center; gap: 6px; }
+.hero-trust b { color: #f5c842; letter-spacing: 1px; font-weight: 400; }
+
+.live-card-grid.five {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.live-card-grid.five .live-card { min-height: 400px; }
+.live-card-grid.five .live-card h2 { font-size: 26px; }
+.live-card-grid.five .live-card p { font-size: 14px; }
+
+.home-reviews {
+  padding: 96px clamp(18px, 5vw, 64px);
+  background: var(--cream);
+}
+
+.home-reviews .section-heading-row {
+  align-items: end;
+  margin-bottom: 36px;
+}
+
+.home-reviews .section-heading-row h2 {
+  max-width: 640px;
+  color: var(--forest);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-style: italic;
+  line-height: 1.04;
+}
+
+.review-google {
+  display: grid;
+  gap: 12px;
+  justify-items: start;
+}
+
+.review-google .ht-google-badge { margin: 0; }
+.review-google .ht-cta { margin: 0; }
+
+.review-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.review-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  padding: 26px 24px 22px;
+}
+
+.review-tile p {
+  flex: 1;
+  margin: 0;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.review-tile footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.review-tile footer strong { display: block; color: var(--forest); font-size: 14px; }
+.review-tile footer small { display: block; color: rgba(20, 35, 19, 0.55); font-size: 12px; }
+
+.review-avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--leaf);
+  color: var(--forest);
+  font-weight: 800;
+}
+
+@media (max-width: 1180px) {
+  .live-card-grid.five { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .review-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 980px) {
+  .home-reviews { padding: 64px clamp(18px, 5vw, 64px); }
+  .home-reviews .section-heading-row { align-items: start; }
+}
+
+@media (max-width: 720px) {
+  .live-card-grid.five { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .live-card-grid.five .live-card { min-height: 320px; }
+  .review-tiles { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .live-card-grid.five { grid-template-columns: 1fr; }
+}
+
+.review-tile,
+.review-tile footer {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.review-tile footer span:last-child { display: grid; gap: 2px; }
+.review-tile .review-avatar { flex-shrink: 0; font-family: inherit; font-size: 15px; font-style: normal; line-height: 1; }
+.review-tile footer strong,
+.review-tile footer small { font-style: normal; }

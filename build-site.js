@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-7";
+const assetVersion = "2026-09-21-9";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -831,7 +831,7 @@ function socialIcon(name) {
 function heroBlock(h1, intro) {
   return `<section class="hero" aria-labelledby="hero-title">
   <div class="hero-media" aria-label="Dogs exploring Duncan's Dog Co. woodland"><video src="${videoHero}" poster="/assets/woodland.jpg" autoplay muted loop playsinline preload="auto"></video></div>
-  <div class="hero-copy reveal"><div class="hero-pills" aria-label="Duncan's Dog Co. highlights"><span>Family-run since 2011</span><span>40 acres private woodland</span><span>Collection available</span></div><p class="eyebrow">Cobham, Surrey · Est. 2011</p><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div></div>
+  <div class="hero-copy reveal"><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div><p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p></div>
   <div class="star-spray paw-spray-a" aria-hidden="true"></div>
   <div class="star-spray paw-spray-b" aria-hidden="true"></div>
 </section>`;
@@ -885,89 +885,29 @@ function cards(items) {
 
 function homepageServiceStrip() {
   const items = [
-    {
-      href: "/rescue/",
-      image: gallerySrc(gallery.homeRescue),
-      tag: "All breeds welcome",
-      title: "Rescue Dogs",
-      text: "Calm, gentle socialisation at their own pace with one-to-one attention, no pressure and no rush."
-    },
-    {
-      href: "/daycare/",
-      image: gallerySrc(gallery.homeDaycare),
-      tag: "365 days a year",
-      title: "Doggy Daycare",
-      text: "A full day of woodland exploration, play and enrichment. Collection and drop-off available."
-    },
-    {
-      href: "/puppies/",
-      image: gallerySrc(gallery.homePuppy),
-      tag: "Puppy pathway",
-      title: "Puppy School",
-      text: "Socialisation, training, habituation and woodland adventure for a confident start."
-    },
-    {
-      href: "/sleepovers/",
-      image: gallerySrc(gallery.homeSleepover),
-      tag: "Licensed boarding",
-      title: "Sleepovers",
-      text: "Home-from-home overnight boarding with familiar care throughout."
-    }
+    { href: "/daycare/", image: gallerySrc(gallery.homeDaycare), tag: "365 days a year", title: "Doggy Daycare", text: "A full day in the woodland with collection and drop-off across Surrey and SW London." },
+    { href: "/puppies/", image: gallerySrc(gallery.homePuppy), tag: "From 12 weeks", title: "Puppy School", text: "Gentle socialisation, habituation and woodland adventure for a confident start." },
+    { href: "/sleepovers/", image: gallerySrc(gallery.homeSleepover), tag: "Licensed boarding", title: "Sleepovers", text: "Overnight stays in our home for dogs who already know us." },
+    { href: "/rescue/", image: gallerySrc(gallery.homeRescue), tag: "All breeds welcome", title: "Rescue Dogs", text: "Calm introductions at the dog's own pace, with no pressure and no rush." },
+    { href: "/splash/", image: "/assets/splash/taster.jpg", tag: "Now open", title: "SPLASH Swimming", text: "Supervised 1-to-1 swimming at our Cobham pool for dogs who love the water." }
   ];
-
-  const splashPill = `<a class="splash-pill reveal" href="/splash/"><img src="/assets/splash/shake.jpg" alt="SPLASH Swimming at Duncan's Dog Co." loading="lazy"><div class="splash-pill-overlay"></div><span class="splash-pill-badge">Now open</span><div class="splash-pill-content"><div class="splash-pill-left"><span class="card-num">05</span><h2>SPLASH Swimming</h2><p>Supervised 1-to-1 dog swimming at our Cobham pool. Built for dogs who love the water.</p></div><span class="card-link">Book a taster <span aria-hidden="true">→</span></span></div></a>`;
-
-  return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What We Offer</p><h2>Our Services</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Everything your dog needs, built around a family cottage deep in the Surrey woodland.</p></div><div class="live-card-grid">${items.map((item, index) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co."><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><span class="card-num">${String(index + 1).padStart(2, "0")}</span><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div>${splashPill}</section>`;
+  return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What we offer</p><h2>Our Services</h2></div><p>Five ways to spend a day with us, all from one family-run site in the Surrey woodland.</p></div><div class="live-card-grid five">${items.map((item) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co." loading="lazy"><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div></section>`;
 }
 
 const testimonials = [
     { initial: "H", quote: "The facility is amazing, right in the woods but completely secure. Herbie enjoys his time with everyone and is always exhausted when he gets home — exactly what you want.", name: "Herbie's mum", dog: "Herbie · Cobham" },
     { initial: "L", quote: "Leila absolutely adores her time at Duncan's. We've been so impressed at the difference in her confidence and behaviour since she started coming.", name: "Leila's mum", dog: "Leila · Wimbledon" },
     { initial: "G", quote: "He runs in the forest, paddles in the lake, chases the other puppies and comes home happy and exhausted. It's everything I hoped dog daycare would be.", name: "Galileo's dad", dog: "Galileo · Esher" },
-    { initial: "A", quote: "They truly have everything a dog could possibly want or need. But what really makes Duncan's so special is the people — attentive, caring, and clearly love what they do. Alfie's PitPat shows him breaking records every day, and he comes home completely exhausted. Always the best sign.", name: "Alfie's owner", dog: "Alfie · Google Review" },
-    { initial: "J", quote: "Our dog has been going to Duncan's since he was a puppy — 7 years now — and he is always so happy to go in each day. Michaela is Jasper's favourite person in the whole world. We can not thank her enough for the love she shows our dog.", name: "Jasper's owner", dog: "Jasper · 7 years · Google Review" }
+    { initial: "A", quote: "They truly have everything a dog could possibly want or need. But what really makes Duncan's so special is the people — attentive, caring, and clearly love what they do. Alfie's PitPat shows him breaking records every day, and he comes home completely exhausted. Always the best sign.", name: "Alfie's owner", dog: "Alfie · Google Review" }
 ];
 
-function homeTestimonials() {
-  const reviews = testimonials;
+function homeReviews() {
   const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-  const stars = starSvg.repeat(5);
-  const cards = reviews.map((r, i) => `
-    <article class="ht-card" data-card="${i}" role="article" aria-label="Review from ${esc(r.name)}">
-      <div class="ht-stars" aria-label="5 stars">${stars}</div>
-      <blockquote class="ht-quote">${esc(r.quote)}</blockquote>
-      <footer class="ht-footer">
-        <div class="ht-avatar" aria-hidden="true">${esc(r.initial)}</div>
-        <div>
-          <div class="ht-name">${esc(r.name)}</div>
-          <div class="ht-dog">${esc(r.dog)}</div>
-        </div>
-      </footer>
-    </article>`).join("");
-  const dots = reviews.map((_, i) => `<button class="ht-dot${i === 0 ? " active" : ""}" data-dot="${i}" aria-label="Review ${i + 1}" aria-pressed="${i === 0}"></button>`).join("");
-
-  return `<section class="home-testimonials-v2">
-  <div class="ht-scroll-driver" id="ht-driver">
-    <div class="ht-sticky">
-      <div class="ht-left">
-        <p class="section-kicker">Loved by local families</p>
-        <h2 class="ht-heading">What owners<br><em>say.</em></h2>
-        <p class="ht-sub">A few words from owners whose dogs know the woodland, the team and the daily routine.</p>
-        <div class="ht-google-badge">
-          <div class="ht-g-dot" aria-hidden="true">G</div>
-          <div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div>
-          <span class="ht-badge-text">5.0 · Google Reviews</span>
-        </div>
-        <div class="ht-dots" role="tablist" aria-label="Reviews">${dots}</div>
-        <a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">
-          Read all reviews on Google
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </a>
-      </div>
-      <div class="ht-stack" id="ht-stack" aria-live="polite">${cards}</div>
-    </div>
-  </div>
-</section>`;
+  const cards = testimonials.map((r) => `<blockquote class="review-tile reveal"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><p>${esc(r.quote)}</p><footer><span class="review-avatar" aria-hidden="true">${esc(r.initial)}</span><span><strong>${esc(r.name)}</strong><small>${esc(r.dog)}</small></span></footer></blockquote>`).join("");
+  return `<section class="home-reviews" aria-labelledby="reviews-title">
+    <div class="section-heading-row reveal"><div><p class="section-kicker">What owners say</p><h2 id="reviews-title">Five stars on Google, from the families who come every week.</h2></div><div class="review-google"><div class="ht-google-badge"><div class="ht-g-dot" aria-hidden="true">G</div><div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div><span class="ht-badge-text">5.0 · Google Reviews</span></div><a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div></div>
+    <div class="review-tiles">${cards}</div>
+  </section>`;
 }
 
 function loginAndReviews() {
@@ -1605,91 +1545,11 @@ function portalPage() {
 
 function home() {
   const body = `${homepageServiceStrip()}
-  <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>Premium care is built on trust. We are one Cobham facility, with familiar staff from collection all the way through to home time. Dogs get real woodland days with natural shelter, sensory stimulation and a calm approach to social groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
+  <section class="feature-split"><div class="split-image reveal"><img src="${gallerySrc(gallery.homeSplit)}" alt="Duncan's Dog Co. team in front of the woodland daycare cottage"></div><div class="split-copy reveal"><p class="section-kicker">Why Families Choose Us</p><h2>Known dogs. Known team. Real woodland.</h2><div class="squiggle-line" aria-hidden="true"></div><p>We are one family-run site in Cobham, not a chain. The person who collects your dog in the morning is part of the team looking after them all day, and the woodland is ours. Dogs get proper outdoor days with shade, shelter and small, well-matched groups.</p><div class="split-actions"><a class="button primary" href="/about-us/">Meet the team</a><a class="button secondary dark" href="/contact/#enquiry-form">Book a trial day</a></div></div></section>
   ${portalShowcase({ start: "chat" })}
-  ${homeTestimonials()}
+  ${homeReviews()}
   ${catchmentSection()}
   ${homeTrialFormSection()}`;
-  const htMotionScript = `<script>
-  (function() {
-    var driver = document.getElementById('ht-driver');
-    if (!driver) return;
-    var stack   = document.getElementById('ht-stack');
-    var allCards = Array.from(document.querySelectorAll('.ht-card'));
-    var dots     = Array.from(document.querySelectorAll('.ht-dot'));
-    var TOTAL    = allCards.length;
-    var deskCards = allCards.slice().reverse();
-    var observer  = null;
-
-    function isMobile() { return window.innerWidth <= 980; }
-
-    /* ── Desktop: vertical scroll stack ── */
-    function setStack(progress) {
-      var raw    = Math.max(0, Math.min(TOTAL, progress * TOTAL));
-      var active = Math.min(Math.floor(raw), TOTAL - 1);
-      dots.forEach(function(d, i) {
-        d.classList.toggle('active', i === active);
-        d.setAttribute('aria-pressed', String(i === active));
-      });
-      deskCards.forEach(function(card, i) {
-        var cp = raw - i;
-        if (cp <= 0) {
-          var behind = Math.min(-cp, TOTAL - 1);
-          card.style.transform = 'translateY(' + (behind * 10) + 'px) scale(' + (1 - behind * 0.035) + ') translateZ(' + (-behind * 24) + 'px)';
-          card.style.opacity   = String(Math.max(0.35, 1 - Math.min(behind, 2) * 0.14));
-          card.style.zIndex    = String(TOTAL - Math.floor(behind));
-        } else if (cp < 1) {
-          card.style.transform = 'translateY(' + (cp * -140) + '%) rotate(' + (cp * -10) + 'deg) scale(' + (1 - cp * 0.04) + ')';
-          card.style.opacity   = String(Math.max(0, 1 - cp * 1.8));
-          card.style.zIndex    = String(TOTAL + 1);
-        } else {
-          card.style.transform = 'translateY(-200%) rotate(-12deg)';
-          card.style.opacity   = '0';
-          card.style.zIndex    = '0';
-        }
-      });
-    }
-
-    function getProgress() {
-      var rect  = driver.getBoundingClientRect();
-      var vh    = window.innerHeight;
-      var range = driver.offsetHeight - vh;
-      return range > 0 ? Math.max(0, Math.min(1, -rect.top / range)) : 0;
-    }
-
-    /* ── Mobile: horizontal swipe carousel ── */
-    function setupMobile() {
-      allCards.forEach(function(c) { c.style.transform = c.style.opacity = c.style.zIndex = ''; });
-      if (observer) observer.disconnect();
-      observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) {
-            var idx = parseInt(e.target.getAttribute('data-card'), 10);
-            dots.forEach(function(d, i) {
-              d.classList.toggle('active', i === idx);
-              d.setAttribute('aria-pressed', String(i === idx));
-            });
-          }
-        });
-      }, { root: stack, threshold: 0.55 });
-      allCards.forEach(function(c) { observer.observe(c); });
-    }
-
-    function setupDesktop() {
-      if (observer) { observer.disconnect(); observer = null; }
-      setStack(getProgress());
-    }
-
-    /* ── Init & resize ── */
-    if (isMobile()) { setupMobile(); } else { setStack(0); }
-
-    window.addEventListener('scroll', function() { if (!isMobile()) setStack(getProgress()); }, { passive: true });
-    window.addEventListener('resize', function() {
-      if (isMobile()) { setupMobile(); } else { setupDesktop(); }
-    }, { passive: true });
-  })();
-<\/script>`;
-
   writePage("/", layout({
     route: "/",
     title: "Dog Daycare Cobham, Surrey & SW London | Duncan's Dog Co.",
@@ -1699,8 +1559,7 @@ function home() {
     intro: "Woodland dog daycare in Cobham, with safe collection across Surrey and South West London.",
     hero: true,
     body,
-    structured: [breadcrumbJson([{ name: "Home", url: "/" }])],
-    scripts: htMotionScript
+    structured: [breadcrumbJson([{ name: "Home", url: "/" }])]
   }));
 }
 
