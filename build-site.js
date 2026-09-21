@@ -4,7 +4,8 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-24";
+const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
+const assetVersion = "2026-09-21-25";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -795,7 +796,7 @@ function footer() {
         </a>
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
-      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/portal/">Customer Portal</a><a href="/login/">Customer Login</a></div>
+      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/portal/">Customer Portal</a><a href="${PORTAL_URL}">Customer Login</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
     <div class="footer-bottom">
@@ -1268,7 +1269,6 @@ function serviceBody(page) {
 }
 
 /* ── Customer portal: the phone mock, the homepage section and the /portal/ page ── */
-const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
 
 function portalPhone() {
   const msgs = [
@@ -1298,7 +1298,7 @@ function portalSection({ onPortalPage = false } = {}) {
         <div class="local-feature"><span></span><p><strong>Your driver, on the day</strong>Running late, a new gate code, the dog is at the neighbour's. Your driver sees it on the route.</p></div>
         <div class="local-feature"><span></span><p><strong>Bookings, invoices and records</strong>Add extra days, see every invoice and keep vaccination dates and emergency contacts current.</p></div>
       </div>
-      <div class="split-actions">${onPortalPage ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="/login/">First time? Start here</a>` : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a>`}</div>
+      <div class="split-actions">${onPortalPage ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="#setup">First time? Start here</a>` : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="${PORTAL_URL}">Customer login</a>`}</div>
       <p class="portal-built-here">The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co.</p>
     </div>
   </section>`;
@@ -1457,8 +1457,8 @@ function portalShowcase({ start = "home", onPortalPage = false } = {}) {
   const copy = DEVICE_TABS.map((t) => `<div class="dv-copy" data-copy="${t.key}"><h2>${esc(DEVICE_COPY[t.key].title)}</h2><p>${esc(DEVICE_COPY[t.key].text)}</p></div>`).join("");
   const pills = DEVICE_TABS.map((t) => `<button type="button" data-pick="${t.key}">${t.label}</button>`).join("");
   const actions = onPortalPage
-    ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="/login/">First time? Start here</a>`
-    : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="/login/">Customer login</a>`;
+    ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="#setup">First time? Start here</a>`
+    : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="${PORTAL_URL}">Customer login</a>`;
   return `<section class="portal-showcase" id="portal" data-showcase>
     <div class="portal-showcase-device reveal">${portalDevice(start)}</div>
     <div class="portal-showcase-copy reveal">
@@ -1566,7 +1566,7 @@ function portalPage() {
         <p>Drivers only hear from the families on that day's route, and your conversation with the team carries on in the same thread as normal.</p>
       </div>
     </section>
-    <section class="portal-setup has-phone">
+    <section class="portal-setup has-phone" id="setup">
       <div class="portal-setup-phone reveal">${homeScreenPhone()}<span class="hs-caption">On the home screen, like any other app</span></div>
       <div class="portal-setup-copy">
       <div class="reveal"><h2>Add it to your phone</h2><p>Open the portal in Safari or Chrome, choose Share, then Add to Home Screen. It opens like an app from then on and you get notifications for confirmations and messages, without installing anything.</p><p><a class="button primary" href="${PORTAL_URL}">Open the customer portal</a></p></div>
