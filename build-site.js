@@ -4,7 +4,7 @@ const path = require("path");
 // Build: 2026-05-22
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
-const assetVersion = "2026-09-21-11";
+const assetVersion = "2026-09-21-13";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -885,10 +885,10 @@ function cards(items) {
 
 function homepageServiceStrip() {
   const items = [
-    { href: "/daycare/", image: gallerySrc(gallery.homeDaycare), tag: "365 days a year", title: "Doggy Daycare", text: "A full day in the woodland with collection and drop-off across Surrey and SW London." },
-    { href: "/puppies/", image: gallerySrc(gallery.homePuppy), tag: "From 12 weeks", title: "Puppy School", text: "Gentle socialisation, habituation and woodland adventure for a confident start." },
-    { href: "/sleepovers/", image: gallerySrc(gallery.homeSleepover), tag: "Licensed boarding", title: "Sleepovers", text: "Overnight stays in our home for dogs who already know us." },
-    { href: "/rescue/", image: gallerySrc(gallery.homeRescue), tag: "All breeds welcome", title: "Rescue Dogs", text: "Calm introductions at the dog's own pace, with no pressure and no rush." },
+    { href: "/daycare/", image: "/assets/insta/svc-daycare.jpg", tag: "365 days a year", title: "Doggy Daycare", text: "A full day in the woodland with collection and drop-off across Surrey and SW London." },
+    { href: "/puppies/", image: "/assets/insta/svc-puppy.jpg", tag: "From 12 weeks", title: "Puppy School", text: "Gentle socialisation, habituation and woodland adventure for a confident start." },
+    { href: "/sleepovers/", image: "/assets/insta/svc-sleepover.jpg", tag: "Licensed boarding", title: "Sleepovers", text: "Overnight stays in our home for dogs who already know us." },
+    { href: "/rescue/", image: "/assets/insta/svc-rescue.jpg", tag: "All breeds welcome", title: "Rescue Dogs", text: "Calm introductions at the dog's own pace, with no pressure and no rush." },
     { href: "/splash/", image: "/assets/splash/taster.jpg", tag: "Now open", title: "SPLASH Swimming", text: "Supervised 1-to-1 swimming at our Cobham pool for dogs who love the water." }
   ];
   return `<section class="section live-service-strip"><div class="section-heading-row reveal"><div><p class="section-kicker">What we offer</p><h2>Our Services</h2></div><p>Five ways to spend a day with us, all from one family-run site in the Surrey woodland.</p></div><div class="live-card-grid five">${items.map((item) => `<a class="live-card reveal" href="${item.href}"><img src="${item.image}" alt="${esc(item.title)} at Duncan's Dog Co." loading="lazy"><span class="card-tag">${esc(item.tag)}</span><div class="live-card-overlay"></div><div class="live-card-content"><h2>${esc(item.title)}</h2><p>${esc(item.text)}</p><span class="card-link">Find out more <span aria-hidden="true">→</span></span></div></a>`).join("")}</div></section>`;
@@ -938,7 +938,7 @@ ${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence
 
 function homeTrialFormSection() {
   return `<section class="home-trial-section" id="homepage-enquiry">
-    <div class="home-trial-image reveal"><img src="${gallerySrc(gallery.homeQuote)}" alt="Happy dog enjoying Duncan's Dog Co. woodland daycare"></div>
+    <div class="home-trial-image reveal"><img src="/assets/insta/home-trial.jpg" alt="Happy dog enjoying Duncan's Dog Co. woodland daycare"></div>
     <div class="home-trial-panel reveal">
       <p class="section-kicker">Start here</p>
       <h2>Book a trial day.</h2>
@@ -1204,10 +1204,10 @@ function serviceBody(page) {
 
   if (page.slug === "daycare") {
     const day = [
-      ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/gallery/blog-fresh-05.jpeg", "A Duncan's Dog Co. team member at the gate with two dogs"],
-      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. Forty acres, fenced, with shade in summer and shelter when it rains.", gallerySrc(gallery.bridgePackWide), "A group of dogs on the woodland bridge at Duncan's Dog Co."],
-      ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/sleeping/IMG_0253.jpg", "Two golden retrievers asleep side by side"],
-      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", gallerySrc(gallery.handler), "A handler in the woodland with dogs on a rainy day"]
+      ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
+      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. Forty acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland.jpg", "A group of dogs heading along the woodland path"],
+      ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
+      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home.jpg", "A team member crouched with a spaniel at the end of the day"]
     ];
     const included = ["Door-to-door collection and drop-off on our Surrey and South West London routes", "Forty acres of private, fenced woodland", "Groups matched by size, age and energy, with a 1:6 staff ratio", "The same team from collection through to home time", "Open 365 days a year, including bank holidays", "Licensed and rated 5 stars by Elmbridge Council, LN/201800994", "All breeds welcome", "Photos and a report card in your customer portal"];
     const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Assessment day", "A settling-in session before joining the group, at their pace, with no rushing."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
@@ -1223,8 +1223,8 @@ function serviceBody(page) {
         <div class="info-badge"><span>★</span>Family-run since 2011 · all breeds welcome</div>
       </div>
       <div class="daycare-photo-stack reveal">
-        <img src="${gallerySrc(gallery.woodlandGroup)}" alt="Duncan's Dog Co. dogs together in woodland">
-        <img src="${gallerySrc(gallery.goldenPair)}" alt="Dogs playing together at Duncan's Dog Co.">
+        <img src="/assets/insta/story-1.jpg" alt="Dogs walking through the woodland at Duncan's Dog Co.">
+        <img src="/assets/insta/story-2.jpg" alt="Dogs together on a log in the woodland">
       </div>
     </section>
     <section class="day-strip">
@@ -1232,7 +1232,7 @@ function serviceBody(page) {
       <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
     </section>
     <section class="included-split">
-      <div class="included-photo reveal"><img src="${gallerySrc(gallery.woodlandPack)}" alt="A group of dogs together at Duncan's Dog Co." loading="lazy"></div>
+      <div class="included-photo reveal"><img src="/assets/insta/included.jpg" alt="A group of dogs together at Duncan's Dog Co." loading="lazy"></div>
       <div class="included-copy reveal">
         <h2>What every daycare day includes.</h2>
         <ul class="tick-list">${included.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
@@ -1244,14 +1244,14 @@ function serviceBody(page) {
         <h2>How your dog starts.</h2>
         <ol class="plain-steps">${steps.map(([title, text]) => `<li><div><strong>${esc(title)}</strong><span>${esc(text)}</span></div></li>`).join("")}</ol>
       </div>
-      <div class="start-photo reveal"><img src="/assets/gallery/PHOTO-2026-02-14-02-48-21.jpg" alt="A Duncan's Dog Co. team member with two dogs in the woodland" loading="lazy"></div>
+      <div class="start-photo reveal"><img src="/assets/insta/start.jpg" alt="A Duncan's Dog Co. team member holding a cockapoo" loading="lazy"></div>
     </section>
     <section class="daycare-pricing-teaser">
       <div><h2>Straightforward pricing.</h2><p>£65 a day for one day a week, £60 a day for two, and £55 a day for three or more. Collection and drop-off are included. Weekends are £75, and we ask for a minimum of four days a month.</p></div>
       <a class="button secondary dark" href="/pricing/">See full pricing</a>
     </section>
     <section class="daycare-final-cta">
-      <div class="daycare-final-photo reveal"><img src="${gallerySrc(gallery.groupLineup)}" alt="Group of dogs together in Duncan's Dog Co. woodland daycare" loading="lazy"></div>
+      <div class="daycare-final-photo reveal"><img src="/assets/insta/final.jpg" alt="A happy black labrador in the woodland" loading="lazy"></div>
       <div class="daycare-final-copy reveal">
         <p class="section-kicker">Ready to get started?</p>
         <h2>We'd love to meet your dog.</h2>
@@ -1348,7 +1348,7 @@ function deviceHome() {
     <div class="dv-cal"><div class="dv-dow"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="dv-days">${cells.join("")}</div></div>
     <div class="dv-h3">${sunIcon} Bookings for 14 Oct</div>
     <div class="dv-card">
-      <div class="dv-card-head"><img src="/assets/portal/day-1.jpg" alt=""><div><b>Milo</b><span>${sunIcon} Daycare</span></div></div>
+      <div class="dv-card-head"><img src="/assets/insta/phone-1.jpg" alt=""><div><b>Milo</b><span>${sunIcon} Daycare</span></div></div>
       <div class="dv-card-row"><span>Date</span><b>Wed 14 Oct · 08:00</b></div>
       <div class="dv-card-row"><span>Transport</span><b>Collection & drop-off</b></div>
       <div class="dv-card-row"><span>Status</span><em>✓ Confirmed</em></div>
@@ -1374,9 +1374,9 @@ function deviceChat() {
 function devicePets() {
   return `<div class="dv-screen dv-pets">
     <div class="dv-title">Your pets</div>
-    <div class="dv-pet"><img src="/assets/portal/day-1.jpg" alt=""><div><b>Milo</b><span>Cocker Spaniel · 3 years</span><span class="ok">Vaccinations up to date</span></div></div>
+    <div class="dv-pet"><img src="/assets/insta/phone-1.jpg" alt=""><div><b>Milo</b><span>Cocker Spaniel · 3 years</span><span class="ok">Vaccinations up to date</span></div></div>
     <div class="dv-h3">Today at daycare <span class="dv-badge">4 new photos</span></div>
-    <div class="dv-photos"><img src="/assets/portal/day-2.jpg" alt=""><img src="/assets/portal/day-3.jpg" alt=""><img src="/assets/portal/day-4.jpg" alt=""><img src="/assets/portal/day-1.jpg" alt=""></div>
+    <div class="dv-photos"><img src="/assets/insta/phone-2.jpg" alt=""><img src="/assets/insta/phone-3.jpg" alt=""><img src="/assets/insta/phone-4.jpg" alt=""><img src="/assets/insta/phone-1.jpg" alt=""></div>
     <div class="dv-report"><div class="dv-report-head"><b>Report card</b><span>★★★★★</span></div><p>A big woodland day. Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p><span class="dv-by">Becks · 15:20</span></div>
   </div>`;
 }
@@ -1489,7 +1489,7 @@ function portalScreens() {
     <p class="ps-note">Next invoice is raised on 1 November and collected three working days later.</p>`;
 
   const day = `<div class="ps-pet"><h4>Milo</h4><span>Report card</span></div>
-    <div class="ps-photos"><img src="/assets/portal/day-1.jpg" alt=""><img src="/assets/portal/day-2.jpg" alt=""><img src="/assets/portal/day-3.jpg" alt=""><img src="/assets/portal/day-4.jpg" alt=""></div>
+    <div class="ps-photos"><img src="/assets/insta/phone-1.jpg" alt=""><img src="/assets/insta/phone-2.jpg" alt=""><img src="/assets/insta/phone-3.jpg" alt=""><img src="/assets/insta/phone-4.jpg" alt=""></div>
     <div class="ps-card"><strong>A big woodland day</strong><span class="ps-stars">★★★★★</span><p>Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p></div>`;
 
   return [

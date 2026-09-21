@@ -7746,3 +7746,6 @@ blockquote {
 @media (max-width: 600px) {
   .day-moments { grid-template-columns: 1fr; }
 }
+
+.home-trial-image { max-height: 680px; overflow: hidden; }
+.home-trial-image img { max-height: 680px; }
