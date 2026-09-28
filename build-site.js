@@ -341,7 +341,8 @@ const blogArticleContent = {
     ]],
     ["What licensed daycare actually means", [
       "Dog daycare in England is regulated under the Animal Welfare (Licensing of Activities Involving Animals) Regulations 2018. Any business providing group dog daycare for money must hold a licence issued by their local council. The licence involves an inspection against set welfare standards covering space, staffing, safety, records and animal handling.",
-      "Duncan's Dog Co. holds a 5-star daycare licence issued by Elmbridge Borough Council. That rating reflects our standards across welfare, facilities, staffing and record keeping. It is not self-awarded — it is assessed by an independent council inspector. When choosing daycare, always ask to see the licence certificate and check the rating."
+      "Duncan's Dog Co. holds a 5-star daycare licence issued by Elmbridge Borough Council. That rating reflects our standards across welfare, facilities, staffing and record keeping. It is not self-awarded — it is assessed by an independent council inspector. When choosing daycare, always ask to see the licence certificate and check the rating.",
+      { html: `Each council sets its own licence fee and runs its own inspections, so the same licence costs very different amounts from one borough to the next. We set those figures side by side in the <a href="https://www.generasoftware.com/research/licensing-report-2026" target="_blank" rel="noopener">Genera Licensing Report 2026</a>, which we published with Genera Software.` }
     ]],
     ["Getting started", [
       "The first step is an enquiry. Tell us your postcode, a little about your dog and what kind of routine you are looking for. We will check collection availability and arrange a meet and greet at the facility so you can see the woodland and meet the team before any commitment is made.",
@@ -1135,6 +1136,12 @@ function startupSupportBody() {
       <p>Starting a dog daycare is not as simple as renting a field and opening the gates. Most people run into the same three walls.</p>
     </div>
     ${richFeatureGrid(problemCards)}
+  </section>
+  <section class="section live-content startup-report-section">
+    <div class="section-heading-row reveal">
+      <div><p class="section-kicker">Our Research</p><h2>What a licence costs, council by council</h2><div class="squiggle-line" aria-hidden="true"></div></div>
+      <p>In September 2026 we published the <a href="https://www.generasoftware.com/research/licensing-report-2026" target="_blank" rel="noopener">Genera Licensing Report 2026</a> with Genera Software. It compares what a dog daycare licence costs across England, who inspects it and what enforcement looks like in practice. Every figure links to the council fee table, guidance page or court report it came from.</p>
+    </div>
   </section>
   ${liveIntro({
     kicker: "Where This Comes From",
@@ -2313,7 +2320,7 @@ function aboutUs() {
 
 function blogArticleMarkup(slug, desc) {
   const sections = blogArticleContent[slug] || [];
-  const articleSections = sections.map(([heading, paragraphs]) => `<section class="blog-article-section"><h2>${esc(heading)}</h2>${paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}</section>`).join("");
+  const articleSections = sections.map(([heading, paragraphs]) => `<section class="blog-article-section"><h2>${esc(heading)}</h2>${paragraphs.map((paragraph) => `<p>${typeof paragraph === "string" ? esc(paragraph) : paragraph.html}</p>`).join("")}</section>`).join("");
   return `<p class="article-lede">${esc(desc)}</p>${articleSections}${blogRelatedLinks(slug)}`;
 }
 
