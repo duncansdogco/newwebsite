@@ -169,7 +169,15 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
   const panes = Array.from(device.querySelectorAll("[data-pane]"));
   const copies = Array.from(box.querySelectorAll("[data-copy]"));
   const pills = Array.from(box.querySelectorAll("[data-pick]"));
-  const order = tabs.map((t) => t.dataset.tab);
+  const order = pills.length ? pills.map((p) => p.dataset.pick) : tabs.map((t) => t.dataset.tab);
+  const lock = device.querySelector('[data-pane="alerts"]');
+  let seen = false;
+  const replay = () => {
+    if (!lock || current !== "alerts" || !seen) return;
+    lock.classList.remove("play");
+    void lock.offsetWidth;
+    lock.classList.add("play");
+  };
   let current = device.dataset.start || order[0];
   let picked = false;
   let timer = null;
@@ -180,6 +188,8 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     panes.forEach((p) => p.classList.toggle("is-on", p.dataset.pane === key));
     copies.forEach((c) => c.classList.toggle("is-on", c.dataset.copy === key));
     pills.forEach((p) => p.classList.toggle("is-on", p.dataset.pick === key));
+    device.classList.toggle("is-lock", key === "alerts");
+    replay();
   };
 
   const pick = (key) => {
@@ -200,12 +210,13 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     timer = window.setTimeout(() => {
       show(order[(order.indexOf(current) + 1) % order.length]);
       schedule();
-    }, current === "chat" ? 12000 : 4500);
+    }, current === "chat" ? 12000 : current === "alerts" ? 8000 : 4500);
   };
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) {
+        if (!seen) { seen = true; replay(); }
         if (!timer && !picked) schedule();
       } else if (timer) {
         window.clearTimeout(timer);

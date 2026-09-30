@@ -99,8 +99,10 @@ const servicePages = [
     intro: "Duncan's Dog Co. gives dogs a real outdoor day: supervised woodland walks, social time, rest, enrichment and transport that fits busy owners.",
     heroData: {
       eyebrow: "Doggy Daycare · Cobham, Surrey",
-      displayTitle: "One family,<br><span>one woodland</span>",
-      text: "Open 365 days a year. Collection and drop-off available. All breeds welcome. No exceptions.",
+      displayTitle: "We collect your dog<br><span>seven days a week</span>",
+      text: "Collection and drop-off are included, and your phone tells you when your dog has been collected and when they're home. All breeds welcome, no exceptions.",
+      ctaText: "Book a trial day",
+      ctaHref: "/contact/#enquiry-form",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
       stats: []
     },
@@ -973,7 +975,7 @@ function faqMarkup(faqs) {
   return `<div class="faq-list">${faqs.map(([q, a], i) => `<details${i === 0 ? " open" : ""}><summary><span>${esc(q)}</span><i aria-hidden="true"></i></summary><div class="faq-answer"><p>${a}</p></div></details>`).join("")}</div>`;
 }
 
-function faqSection({ kicker = "Questions", title, intro = "Straight answers to the things families ask before they enquire.", faqs }) {
+function faqSection({ kicker = "Questions", title, intro = "Here are the questions families ask us most often.", faqs }) {
   return `<section class="faq-block">
     <div class="faq-block-copy reveal">
       <p class="section-kicker">${esc(kicker)}</p>
@@ -1197,8 +1199,8 @@ function serviceBody(page) {
       ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
       ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home.jpg", "A team member crouched with a spaniel at the end of the day"]
     ];
-    const included = ["Door-to-door collection and drop-off on our Surrey and South West London routes", "Forty acres of private, fenced woodland", "Groups matched by size, age and energy, with a 1:6 staff ratio", "The same team from collection through to home time", "Open 365 days a year, including bank holidays", "Licensed and rated 5 stars by Elmbridge Council, LN/201800994", "All breeds welcome", "Photos and a report card in your customer portal"];
-    const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Assessment day", "A settling-in session before joining the group, at their pace, with no rushing."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
+    const included = ["Door-to-door collection and drop-off on our Surrey and South West London routes", "A notification on your phone when your dog is collected and when they're home", "Forty acres of private, fenced woodland", "Groups matched by size, age and energy, with a 1:6 staff ratio", "The same team from collection through to home time", "Open 365 days a year, including bank holidays", "Licensed and rated 5 stars by Elmbridge Council, LN/201800994", "All breeds welcome", "Photos and a report card in your customer portal"];
+    const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Trial day", "A settling-in day before joining the group, at their pace, with no rushing. We send you a report card afterwards."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
     return `<section class="daycare-story-section">
       <div class="daycare-story-copy reveal">
         <p class="section-kicker">What We Do</p>
@@ -1219,6 +1221,7 @@ function serviceBody(page) {
       <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>What a daycare day actually looks like</h2></div><p>Open 7:45am to 6:30pm, seven days a week. This is the shape of it.</p></div>
       <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
     </section>
+    ${portalShowcase({ start: "alerts", forDaycare: true })}
     <section class="included-split">
       <div class="included-photo reveal"><img src="/assets/insta/included.jpg" alt="A group of dogs together at Duncan's Dog Co." loading="lazy"></div>
       <div class="included-copy reveal">
@@ -1267,14 +1270,14 @@ function serviceBody(page) {
 function portalPhone() {
   const msgs = [
     { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
-    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Dan's run." },
-    { side: "team", who: "Dan · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
-    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Dan!", typed: true }
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Laura's run." },
+    { side: "team", who: "Laura · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
+    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Laura!", typed: true }
   ];
   return `<div class="portal-phone" data-portal-chat aria-hidden="true">
     <div class="portal-phone-top"><img src="/assets/logo.png" alt=""><div><strong>Duncan's Dog Co.</strong><span>Milo · Daycare Mon, Wed, Thu</span></div></div>
     <div class="portal-phone-day">Today</div>
-    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"${m.typed ? ' data-typed="true"' : ""}><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Dan is typing</b></div></div>
+    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"${m.typed ? ' data-typed="true"' : ""}><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Laura is typing</b></div></div>
     <div class="portal-phone-compose"><span data-draft>Write a message</span><i data-caret></i><b>↑</b></div>
   </div>`;
 }
@@ -1311,6 +1314,7 @@ const DEVICE_TABS = [
 const DEVICE_COPY = {
   home: { title: "Every booking on one calendar", text: "Every day your dog is booked in, past and upcoming. Your regular days are already in there. Tap Create a booking to ask for an extra day, and you get a notification on your phone the moment we approve it." },
   chat: { title: "Talk to the team, and to your driver on the day", text: "Anything you need to tell us goes in one thread we can both see, instead of texts and WhatsApps to different phones. On the days your dog is booked in, the driver on your route is in that thread too." },
+  alerts: { title: "Know when they're collected, and when they're home", text: "When the driver collects your dog, your phone shows a notification with the driver's name. When your dog is dropped back home, you get another one. Add the portal to your home screen and they come through like any other app." },
   pets: { title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile alongside their vaccination dates and care notes." },
   billing: { title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Every invoice stays in the portal with the PDF to download, and you can see at a glance what is paid." },
   profile: { title: "Your details, kept current", text: "Your contact details, emergency contacts and your dog's records, updated by you and seen by the team the moment you save." }
@@ -1347,14 +1351,14 @@ function deviceHome() {
 function deviceChat() {
   const msgs = [
     { side: "owner", who: "You", at: "07:41", text: "Morning! Running late, could Milo be last on the route today?" },
-    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Dan's run." },
-    { side: "team", who: "Dan · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
-    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Dan!", typed: true }
+    { side: "team", who: "Becks · Duncan's Dog Co.", at: "07:44", text: "No problem. I've moved him to the end of Laura's run." },
+    { side: "team", who: "Laura · Driver · on your route today", at: "07:46", text: "That's me. I'll message when I'm ten minutes away.", driver: true },
+    { side: "owner", who: "You", at: "07:47", text: "Perfect, thank you Laura!", typed: true }
   ];
   return `<div class="dv-screen dv-chat" data-portal-chat>
     <div class="dv-chat-head"><b>Duncan's Dog Co.</b><span>Milo · Daycare Mon, Wed, Thu</span></div>
     <div class="dv-daypill">Today</div>
-    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Dan is typing</b></div></div>
+    <div class="portal-phone-thread">${msgs.map((m, i) => `<div class="portal-msg ${m.side}${m.driver ? " driver" : ""}" data-msg="${i}"><span class="portal-msg-who">${esc(m.who)}</span><p>${esc(m.text)}</p><span class="portal-msg-at">${m.at}<em class="portal-msg-seen"> · Seen</em></span></div>`).join("")}<div class="portal-typing" data-typing><span></span><span></span><span></span><b>Laura is typing</b></div></div>
     <div class="portal-phone-compose"><span data-draft>Write a message</span><i data-caret></i><b>↑</b></div>
   </div>`;
 }
@@ -1430,8 +1434,21 @@ function homeScreenPhone() {
   </div>`;
 }
 
+function deviceAlerts() {
+  const card = (cls, title, body, when) => `<div class="dv-lock-n ${cls}"><img src="/assets/logo.png" alt=""><div><b>${title}</b><span>${body}</span></div><em>${when}</em></div>`;
+  return `<div class="dv-lock">
+    <div class="dv-lock-wall"></div>
+    <div class="dv-lock-head"><div class="dv-lock-date">Wednesday 14 October</div><div class="dv-lock-time"><span class="t1">7:52</span><span class="t2">16:38</span></div></div>
+    <div class="dv-lock-stack">
+      ${card("n2", "Milo is home 🏡", "Dropped off safely by Laura after a fun day with us.", "now")}
+      ${card("n1", "Milo has been collected 🐾", "In safe hands with Laura and on the way for a fun day with us.", '<i class="w1">now</i><i class="w2">8h ago</i>')}
+    </div>
+    <div class="dv-lock-buttons"><i></i><i></i></div>
+  </div>`;
+}
+
 function portalDevice(start = "home") {
-  const screens = { home: deviceHome(), chat: deviceChat(), pets: devicePets(), billing: deviceBilling(), profile: deviceProfile() };
+  const screens = { home: deviceHome(), chat: deviceChat(), alerts: deviceAlerts(), pets: devicePets(), billing: deviceBilling(), profile: deviceProfile() };
   return `<div class="dv" data-device data-start="${start}" role="img" aria-label="The Duncan's Dog Co. customer portal on a phone, with bookings, messages, pets, billing and profile tabs.">
     <div class="dv-body">
       <div class="dv-inner">
@@ -1447,12 +1464,15 @@ function portalDevice(start = "home") {
   </div>`;
 }
 
-function portalShowcase({ start = "home", onPortalPage = false } = {}) {
-  const copy = DEVICE_TABS.map((t) => `<div class="dv-copy" data-copy="${t.key}"><h2>${esc(DEVICE_COPY[t.key].title)}</h2><p>${esc(DEVICE_COPY[t.key].text)}</p></div>`).join("");
-  const pills = DEVICE_TABS.map((t) => `<button type="button" data-pick="${t.key}">${t.label}</button>`).join("");
+function portalShowcase({ start = "home", onPortalPage = false, forDaycare = false } = {}) {
+  const steps = [...DEVICE_TABS.slice(0, 2), { key: "alerts", label: "Notifications" }, ...DEVICE_TABS.slice(2)];
+  const copy = steps.map((t) => `<div class="dv-copy" data-copy="${t.key}"><h2>${esc(DEVICE_COPY[t.key].title)}</h2><p>${esc(DEVICE_COPY[t.key].text)}</p></div>`).join("");
+  const pills = steps.map((t) => `<button type="button" data-pick="${t.key}">${t.label}</button>`).join("");
   const actions = onPortalPage
     ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="#setup">First time? Start here</a>`
-    : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="${PORTAL_URL}">Customer login</a>`;
+    : forDaycare
+      ? `<a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary dark" href="/portal/">See what the portal does</a>`
+      : `<a class="button primary" href="/portal/">See what the portal does</a><a class="button secondary dark" href="${PORTAL_URL}">Customer login</a>`;
   return `<section class="portal-showcase" id="portal" data-showcase>
     <div class="portal-showcase-device reveal">${portalDevice(start)}</div>
     <div class="portal-showcase-copy reveal">
@@ -2069,7 +2089,7 @@ function faqPageBody() {
 
 function faqAndContact() {
   const faqs = flattenFaqSections();
-  writePage("faq", layout({ route: "faq", title: "Dog Daycare FAQs | Duncan's Dog Co.", description: "Detailed FAQs about dog daycare in Cobham, collection, transport, puppy daycare, sleepovers, health, pricing, booking and woodland care.", keywords: "dog daycare FAQ Cobham, dog daycare with collection FAQ, puppy daycare FAQ Surrey, dog sleepover FAQ", h1: "Dog Daycare FAQs", intro: "Straight answers before you enquire.", body: faqPageBody(), structured: [faqJson(faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "FAQ", url: "/faq/" }])] }));
+  writePage("faq", layout({ route: "faq", title: "Dog Daycare FAQs | Duncan's Dog Co.", description: "Detailed FAQs about dog daycare in Cobham, collection, transport, puppy daycare, sleepovers, health, pricing, booking and woodland care.", keywords: "dog daycare FAQ Cobham, dog daycare with collection FAQ, puppy daycare FAQ Surrey, dog sleepover FAQ", h1: "Dog Daycare FAQs", intro: "Here's what families usually ask us before their dog's first day.", body: faqPageBody(), structured: [faqJson(faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "FAQ", url: "/faq/" }])] }));
   const contactBody = `<section class="contact-page-section" id="enquiry-form">
     <div class="contact-inner">
       <div class="form-wrap reveal">
