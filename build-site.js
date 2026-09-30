@@ -1314,7 +1314,7 @@ const DEVICE_TABS = [
 const DEVICE_COPY = {
   home: { title: "Every booking on one calendar", text: "Every day your dog is booked in, past and upcoming. Your regular days are already in there. Tap Create a booking to ask for an extra day, and you get a notification on your phone the moment we approve it." },
   chat: { title: "Talk to the team, and to your driver on the day", text: "Anything you need to tell us goes in one thread we can both see, instead of texts and WhatsApps to different phones. On the days your dog is booked in, the driver on your route is in that thread too." },
-  alerts: { title: "Know when they're collected, and when they're home", text: "When the driver collects your dog, your phone shows a notification with the driver's name. When your dog is dropped back home, you get another one. Add the portal to your home screen and they come through like any other app." },
+  alerts: { title: "Know when they're collected, and when they're home", text: "When the driver collects your dog, your phone shows it with the driver's name, and again when your dog is home. You also hear when new photos go up, when we message you and when a booking is approved. Add the portal to your home screen and they come through like any other app." },
   pets: { title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile alongside their vaccination dates and care notes." },
   billing: { title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Every invoice stays in the portal with the PDF to download, and you can see at a glance what is paid." },
   profile: { title: "Your details, kept current", text: "Your contact details, emergency contacts and your dog's records, updated by you and seen by the team the moment you save." }
@@ -1438,10 +1438,13 @@ function deviceAlerts() {
   const card = (cls, title, body, when) => `<div class="dv-lock-n ${cls}"><img src="/assets/logo.png" alt=""><div><b>${title}</b><span>${body}</span></div><em>${when}</em></div>`;
   return `<div class="dv-lock">
     <div class="dv-lock-wall"></div>
-    <div class="dv-lock-head"><div class="dv-lock-date">Wednesday 14 October</div><div class="dv-lock-time"><span class="t1">7:52</span><span class="t2">16:38</span></div></div>
+    <div class="dv-lock-head"><div class="dv-lock-date">Wednesday 14 October</div><div class="dv-lock-time"><span class="t1">7:52</span><span class="t2">11:40</span><span class="t3">12:15</span><span class="t4">16:38</span><span class="t5">19:02</span></div></div>
     <div class="dv-lock-stack">
-      ${card("n2", "Milo is home 🏡", "Dropped off safely by Laura after a fun day with us.", "now")}
-      ${card("n1", "Milo has been collected 🐾", "In safe hands with Laura and on the way for a fun day with us.", '<i class="w1">now</i><i class="w2">8h ago</i>')}
+      ${card("a5", "Booking approved", "Milo's sleepover on Friday 16 October is confirmed.", "19:02")}
+      ${card("a4", "Milo is home 🏡", "Dropped off safely by Laura after a fun day with us.", "16:38")}
+      ${card("a3", "Duncan's Dog Co.", "Becks: Milo's had a lovely morning in the woods with his pals.", "12:15")}
+      ${card("a2", "New photos of Milo 📸", "4 new photos from the woods today.", "11:40")}
+      ${card("a1", "Milo has been collected 🐾", "In safe hands with Laura and on the way for a fun day with us.", "7:52")}
     </div>
     <div class="dv-lock-buttons"><i></i><i></i></div>
   </div>`;

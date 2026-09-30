@@ -8356,9 +8356,9 @@ h1, h2, h3,
 .dv-lock-date { font-size: 20px; font-weight: 600; opacity: 0.92; }
 .dv-lock-time { position: relative; height: 104px; font-size: 96px; font-weight: 700; letter-spacing: -2px; line-height: 1.05; }
 .dv-lock-time span { position: absolute; inset: 0; }
-.dv-lock-time .t2 { opacity: 0; }
+.dv-lock-time span + span { opacity: 0; }
 
-.dv-lock-stack { position: absolute; left: 10px; right: 10px; bottom: 120px; display: grid; gap: 8px; }
+.dv-lock-stack { position: absolute; left: 10px; right: 10px; bottom: 112px; display: grid; gap: 7px; }
 
 .dv-lock-n {
   display: flex;
@@ -8384,18 +8384,24 @@ h1, h2, h3,
 .dv-lock-buttons { position: absolute; left: 44px; right: 44px; bottom: 48px; display: flex; justify-content: space-between; }
 .dv-lock-buttons i { width: 50px; height: 50px; border-radius: 50%; background: rgba(0, 0, 0, 0.35); }
 
-.dv-pane.play .n1 { animation: dvLockIn 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.6s both; }
-.dv-pane.play .dv-lock-time .t1 { animation: dvLockOut 0.35s ease 3.2s both; }
-.dv-pane.play .dv-lock-time .t2 { animation: dvLockFade 0.35s ease 3.3s both; }
-.dv-pane.play .n1 em .w1 { animation: dvLockOut 0.3s ease 3.3s both; }
-.dv-pane.play .n1 em .w2 { animation: dvLockFade 0.3s ease 3.3s both; }
-.dv-pane.play .n2 { animation: dvLockIn 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.15) 3.5s both; }
+.dv-pane.play .a1 { animation: dvLockIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.5s both; }
+.dv-pane.play .dv-lock-time .t1 { animation: dvLockOut 0.25s ease 2.0s forwards; }
+.dv-pane.play .a2 { animation: dvLockIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 2.1s both; }
+.dv-pane.play .dv-lock-time .t2 { animation: dvLockFade 0.25s ease 2.1s both, dvLockOut 0.25s ease 3.6s forwards; }
+.dv-pane.play .a3 { animation: dvLockIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 3.7s both; }
+.dv-pane.play .dv-lock-time .t3 { animation: dvLockFade 0.25s ease 3.7s both, dvLockOut 0.25s ease 5.2s forwards; }
+.dv-pane.play .a4 { animation: dvLockIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 5.3s both; }
+.dv-pane.play .dv-lock-time .t4 { animation: dvLockFade 0.25s ease 5.3s both, dvLockOut 0.25s ease 6.8s forwards; }
+.dv-pane.play .a5 { animation: dvLockIn 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.2) 6.9s both; }
+.dv-pane.play .dv-lock-time .t5 { animation: dvLockFade 0.25s ease 6.9s both; }
+.dv-pane.play .dv-lock-wall { animation: dvWake 7.9s linear both; }
+@keyframes dvWake { 0% { filter: saturate(0.9) brightness(0.5); } 6.3% { filter: saturate(0.9) brightness(0.5); } 8.2% { filter: saturate(1) brightness(0.72); } 17.7% { filter: saturate(0.9) brightness(0.55); } 26.6% { filter: saturate(0.9) brightness(0.5); } 28.5% { filter: saturate(1) brightness(0.72); } 38.0% { filter: saturate(0.9) brightness(0.55); } 46.8% { filter: saturate(0.9) brightness(0.5); } 48.7% { filter: saturate(1) brightness(0.72); } 58.2% { filter: saturate(0.9) brightness(0.55); } 67.1% { filter: saturate(0.9) brightness(0.5); } 69.0% { filter: saturate(1) brightness(0.72); } 78.5% { filter: saturate(0.9) brightness(0.55); } 87.3% { filter: saturate(0.9) brightness(0.5); } 89.2% { filter: saturate(1) brightness(0.72); } 98.7% { filter: saturate(0.9) brightness(0.55); } 100% { filter: saturate(0.9) brightness(0.55); } }
 
 @keyframes dvLockIn { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: none; } }
 @keyframes dvLockFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes dvLockOut { from { opacity: 1; } to { opacity: 0; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .dv-lock-n, .dv-lock-time .t2, .dv-lock-n em .w2 { opacity: 1; animation: none !important; }
-  .dv-lock-time .t1, .dv-lock-n em .w1 { opacity: 0; }
+  .dv-lock-n, .dv-lock-time .t5 { opacity: 1; animation: none !important; }
+  .dv-lock-time .t1, .dv-lock-time .t2, .dv-lock-time .t3, .dv-lock-time .t4 { opacity: 0; }
 }

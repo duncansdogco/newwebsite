@@ -210,7 +210,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     timer = window.setTimeout(() => {
       show(order[(order.indexOf(current) + 1) % order.length]);
       schedule();
-    }, current === "chat" ? 12000 : current === "alerts" ? 8000 : 4500);
+    }, current === "chat" ? 12000 : current === "alerts" ? 10500 : 4500);
   };
 
   const io = new IntersectionObserver((entries) => {
