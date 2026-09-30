@@ -153,7 +153,8 @@ const servicePages = [
       eyebrow: "Sleepovers · Cobham, Surrey",
       displayTitle: "Full days,<br><span>calm nights</span>",
       text: "Home-from-home overnight boarding at our Cobham cottage. A full day in the woodland with every stay.",
-      video: "https://video.wixstatic.com/video/4d2311_8044be8e15474641973691fadcdbc012/1080p/mp4/file.mp4",
+      video: "/assets/sleepovers/hero.mp4",
+      videoPoster: "/assets/sleepovers/poster.jpg",
       stats: []
     },
     sections: [
@@ -168,6 +169,8 @@ const servicePages = [
     ]
   }
 ];
+
+const blogLabels = {"woodland-dog-daycare-vs-indoor-dog-daycare": "Woodland", "dog-daycare-with-collection-wimbledon": "Collection", "dog-daycare-collection-clapham-putney-wandsworth": "Collection", "dog-boarding-vs-kennels": "Sleepovers", "what-to-look-for-in-licensed-dog-daycare": "Choosing a daycare", "puppy-daycare-vs-puppy-classes": "Puppies", "how-trial-days-work": "Getting started", "why-collection-is-part-of-care": "Collection", "rescue-dog-daycare-gentle-introductions": "Rescue dogs", "woodland-daycare-when-it-rains": "Woodland", "dog-daycare-vs-dog-walker": "Choosing a daycare", "is-my-dog-ready-for-daycare": "Getting started", "dog-daycare-cobham-guide": "Choosing a daycare", "first-splash-session": "SPLASH", "signs-your-dog-needs-more-enrichment": "Enrichment", "summer-heat-dog-daycare-safety": "Safety"};
 
 const blogPosts = [
   ["woodland-dog-daycare-vs-indoor-dog-daycare", "Woodland vs Indoor Dog Daycare", "Discover why woodland dog daycare gives dogs more space, richer scents, natural shelter and calmer enrichment compared to indoor daycare facilities in Cobham and Surrey.", "blogFresh1", "2026-05-22"],
@@ -288,7 +291,7 @@ const blogArticleContent = {
       "Your dog's first SPLASH session is a proper introduction, not a test. We do not expect them to swim lengths or enjoy it immediately. Some dogs take to the water straight away. Others need a few minutes to find their feet. Both are completely normal.",
       "The session is taster length. You will receive a First Swim Session Report afterwards with our honest assessment of how your dog got on and what we recommend as a next step."
     ]],
-    ["Life vests. Every dog. No exceptions.", [
+    ["Every dog wears a life vest", [
       "Every dog at SPLASH wears a correctly fitted buoyancy aid, regardless of size, breed or swimming history. This is not optional.",
       "The vest gives the team control, keeps your dog safe and means we can focus on how they are moving and feeling rather than holding them up. It makes the whole session calmer for the dog and the team."
     ]],
@@ -515,14 +518,20 @@ function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
 }
 
+function keepPlaceNames(html) {
+  return html.replace(/(<h[1-3][^>]*>)([\s\S]*?)(<\/h[1-3]>)/g, (m, open, inner, close) =>
+    open + inner.replace(/Walton-on-Thames/g, '<span class="nw">Walton-on-Thames</span>').replace(/St George(&#39;|')s/g, "St&nbsp;George$1s") + close);
+}
+
 function writePage(route, html) {
+  html = keepPlaceNames(html);
   const file = route === "/" ? path.join(ROOT, "index.html") : path.join(ROOT, route, "index.html");
   ensureDir(file);
   fs.writeFileSync(file, html);
 }
 
 function hd(value) {
-  return esc(String(value ?? "").replace(/\.$/, ""));
+  return esc(String(value ?? "").replace(/(?<!\bCo)\.$/, ""));
 }
 
 function esc(value) {
@@ -920,7 +929,7 @@ function loginAndReviews() {
 <p><a class="button primary" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google</a></p>
 <div class="rich-feature-grid review-grid">${cards}</div>
 <h2>Why owners keep coming back</h2>
-${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence LN/201800994 for daycare and LN/202400651 for boarding."], ["The same faces every day", "A small team who know every dog by name, from the collection van to home time."], ["40 acres of private woodland", "Real space to run, paddle and rest, not a yard or an indoor unit."], ["Collection included", "Door to door across Cobham, Surrey and South West London."]])}
+${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence LN/201800994 for daycare and LN/202400651 for boarding."], ["The same faces every day", "A small team who know every dog by name, from collection to home time."], ["40 acres of private woodland", "Real space to run, paddle and rest, not a yard or an indoor unit."], ["Collection included", "Door to door across Cobham, Surrey and South West London."]])}
 </section>${ctaBand("See it for yourself", "Book a trial day", "Tell us about your dog and we will arrange a first day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Reviews", url: "/reviews/" }])] }));
 }
 
@@ -955,7 +964,7 @@ function catchmentSection() {
       </div>
       <div class="catchment-hub" aria-label="Cobham woodland hub">
         <div class="hub-ring"><strong>Cobham</strong><span>40 acres<br>private woodland</span></div>
-        <div class="route-note">A3 · M25 · Door-to-door collection · Drop-off available</div>
+        <div class="route-note">Door-to-door collection or drop-off, just off the A3 and M25</div>
       </div>
       <div class="catchment-list catchment-list-right">
         <span class="catchment-label">Surrey collection</span>
@@ -1109,7 +1118,7 @@ function puppySupportSection() {
 }
 
 function ctaBand(kicker, title, text, href = "/contact/#enquiry-form", label = "Enquire Now") {
-  return `<section class="cta-band"><p class="section-kicker">${esc(kicker)}</p><h2>${esc(title)}</h2><p>${esc(text)}</p><a class="button primary" href="${href}">${esc(label)}</a></section>`;
+  return `<section class="cta-band"><p class="section-kicker">${esc(kicker)}</p><h2>${hd(title)}</h2><p>${esc(text)}</p><a class="button primary" href="${href}">${esc(label)}</a></section>`;
 }
 
 function startupSupportBody() {
@@ -1369,7 +1378,7 @@ function devicePets() {
     <div class="dv-pet"><img src="/assets/insta/phone-1.jpg" alt=""><div><b>Milo</b><span>Cocker Spaniel · 3 years</span><span class="ok">Vaccinations up to date</span></div></div>
     <div class="dv-h3">Today at daycare <span class="dv-badge">4 new photos</span></div>
     <div class="dv-photos"><img src="/assets/insta/phone-2.jpg" alt=""><img src="/assets/insta/phone-3.jpg" alt=""><img src="/assets/insta/phone-4.jpg" alt=""><img src="/assets/insta/phone-1.jpg" alt=""></div>
-    <div class="dv-report"><div class="dv-report-head"><b>Report card</b><span>★★★★★</span></div><p>A big woodland day. Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p><span class="dv-by">Becks · 15:20</span></div>
+    <div class="dv-report"><div class="dv-report-head"><b>Report card</b><span>★★★★★</span></div><p>A big woodland day. Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out on the way home.</p><span class="dv-by">Becks · 15:20</span></div>
   </div>`;
 }
 
@@ -1414,7 +1423,9 @@ function homeScreenPhone() {
     mail: `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="m3 7 9 6 9-6"/></svg>`,
     music: `<svg viewBox="0 0 24 24" fill="#fff"><path d="M9 18a3 3 0 1 1-2-2.8V7l10-2v9.5a3 3 0 1 1-2-2.8V8.2L9 9.8Z"/></svg>`,
     wallet: `<svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="4" rx="1" fill="#ff9f0a"/><rect x="4" y="10" width="16" height="4" rx="1" fill="#34c759"/><rect x="4" y="14" width="16" height="4" rx="1" fill="#5ac8fa"/></svg>`,
-    settings: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="3 2"/><circle cx="12" cy="12" r="2.5" fill="#fff"/></svg>`
+    settings: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="3 2"/><circle cx="12" cy="12" r="2.5" fill="#fff"/></svg>`,
+    phone: `<svg viewBox="0 0 24 24" fill="#fff"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z"/></svg>`,
+    safari: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1f8bff"/><path d="m15.5 8.5-2.3 4.7-4.7 2.3 2.3-4.7z" fill="#fff"/><path d="m10.8 10.8 2.4 2.4-4.7 2.3z" fill="#ff3b30"/></svg>`
   };
   const tile = ([name, bg, key]) => `<div class="hs-app"><span style="background:${bg}">${glyph[key]}</span><small>${name}</small></div>`;
   const ddc = `<div class="hs-app hs-ddc"><span><img src="/assets/logo.png" alt=""><i>1</i></span><small>Duncan's Dog Co.</small></div>`;
@@ -1427,7 +1438,7 @@ function homeScreenPhone() {
         <div class="hs-notif"><img src="/assets/logo.png" alt=""><div><b>Duncan's Dog Co.</b><span>Milo's day on Wednesday is confirmed. Collection from 7:45.</span></div><em>now</em></div>
         <div class="hs-grid">${apps.slice(0, 7).map(tile).join("")}${ddc}${apps.slice(7).map(tile).join("")}</div>
         <div class="hs-dots"><i class="on"></i><i></i></div>
-        <div class="hs-dock">${apps.slice(0, 1).map(tile).join("")}${tile(["Safari", "#fff", "clock"])}${apps.slice(8, 9).map(tile).join("")}${tile(["Phone", "#34c759", "msg"])}</div>
+        <div class="hs-dock">${tile(["Phone", "#34c759", "phone"])}${tile(["Safari", "#fff", "safari"])}${apps.slice(0, 1).map(tile).join("")}${apps.slice(8, 9).map(tile).join("")}</div>
         <div class="dv-homebar light"></div>
       </div>
     </div>
@@ -1539,7 +1550,7 @@ function portalScreens() {
 
   const day = `<div class="ps-pet"><h4>Milo</h4><span>Report card</span></div>
     <div class="ps-photos"><img src="/assets/insta/phone-1.jpg" alt=""><img src="/assets/insta/phone-2.jpg" alt=""><img src="/assets/insta/phone-3.jpg" alt=""><img src="/assets/insta/phone-4.jpg" alt=""></div>
-    <div class="ps-card"><strong>A big woodland day</strong><span class="ps-stars">★★★★★</span><p>Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out in the van on the way home.</p></div>`;
+    <div class="ps-card"><strong>A big woodland day</strong><span class="ps-stars">★★★★★</span><p>Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out on the way home.</p></div>`;
 
   return [
     { screen: portalFrame(calendar, "Home"), title: "Every booking on one calendar", text: "Every day your dog is booked in, past and upcoming, in one place. Your regular days are already in there. Tap a day to see whether we are collecting." },
@@ -1592,7 +1603,7 @@ function portalPage() {
     </section>
     <section class="portal-built">
       <div class="portal-built-copy reveal">
-        <h2>Built here, at Duncan's Dog Co</h2>
+        <h2>Built here, at Duncan's Dog&nbsp;Co.</h2>
         <p>The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built at Duncan's Dog Co. Jess and Duncan started it to run this daycare, and it now runs bookings, invoicing, drivers and messaging for daycares, dog walkers, groomers and boarding kennels across the UK.</p>
         <p>If you spot something that could be better, tell us. Your portal runs on the same software as every other business using Genera, so anything you report gets fixed for all of them.</p>
       </div>
@@ -1761,7 +1772,7 @@ function pricing() {
     ["Per Week", "1 Day", "65", "Per Day", "", ""],
     ["Per Week", "2 Days", "60", "Per Day", "", ""],
     ["Per Week", "3+ Days", "55", "Per Day", "featured", "Most Popular"],
-    ["", "Customer Drop-Off", "55", "Per Day", "", ""],
+    ["Any frequency", "Customer Drop-Off", "55", "Per Day", "", ""],
     ["Weekends & Bank Holidays", "Weekend Rate", "75", "Per Day", "sage", "Weekend and bank holiday rate."]
   ];
   const included = ["Council licensed", "Woodland adventures", "Home collection & drop-off", "Family-run team", "Safe travel in people carriers", "Play and rest balance", "Puppies welcome once fully vaccinated", "Enrichment activities", "Emergency vet support"];
@@ -1848,7 +1859,7 @@ function pricing() {
         ${priceCards.map(([period, title, price, per, tone, note]) => `<article class="price-card ${tone} reveal">
           ${tone === "featured" ? `<div class="price-badge">+ ${esc(note)} +</div>` : ""}
           <span class="card-period">${esc(period)}</span>
-          <h2>${esc(title)}</h2>
+          <h2>${esc(title).replace(/(\S+-\S+)/g, '<span class="nw">$1</span>')}</h2>
           <div class="card-divider"></div>
           <div class="price-amount"><span class="price-symbol">£</span><span class="price-number">${esc(price)}</span></div>
           <span class="price-per">${esc(per)}</span>
@@ -1865,7 +1876,6 @@ function pricing() {
         <span class="blue-light-icon" aria-hidden="true">${motifIcon("licensed")}</span>
         <p><strong>Blue Light Card holders receive 10% off.</strong> Simply show your card when signing up and we'll apply the discount automatically.</p>
       </div>
-      <p class="pricing-note"><strong>Prices are based on weekly visits.</strong> A 4 day minimum charge per calendar month applies.</p>
     </div>
   </section>
   ${calcSection}
@@ -1883,7 +1893,7 @@ function pricing() {
 }
 
 function areaIndex() {
-  const body = `<section class="section"><div class="section-heading-row"><h2>Collection areas for woodland dog daycare</h2><p>Each local page includes collection and drop-off context, nearby route information, local FAQs and a clear trial day CTA.</p></div><div class="area-layout">${areas.map(([slug, name, route]) => `<article class="area-panel"><h2><a href="/areas/${slug}/">Dog daycare collection in ${name}</a></h2><p>${esc(route)}.</p></article>`).join("")}</div></section>`;
+  const body = `<section class="section"><div class="section-heading-row"><h2>Collection areas for woodland dog daycare</h2><p>Every route starts and ends at our woodland in Cobham. Choose your area to see the drive time and how collection works there.</p></div><div class="area-layout">${areas.map(([slug, name, route]) => `<article class="area-panel"><h2><a href="/areas/${slug}/">Dog daycare collection in ${name}</a></h2><p>${esc(route.charAt(0).toUpperCase() + route.slice(1))}.</p></article>`).join("")}</div></section>`;
   writePage("areas", layout({
     route: "areas",
     title: "Dog Daycare Collection Areas | Surrey & SW London",
@@ -1941,7 +1951,7 @@ function areaPages() {
         <p>${esc(legacy?.collectionIntro || `We will confirm the current ${name} route, collection availability and drop-off options when you enquire.`)}</p>
       </div>
       <dl class="plain-features route-plain">${routeItems.map(([label, title, text]) => `<div class="reveal"><dt><small>${esc(label)}</small>${hd(title)}</dt><dd>${esc(text)}</dd></div>`).join("")}</dl>
-      <div class="vehicle-note reveal"><strong>${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ")[0])}.</strong> ${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ").slice(1).join(". "))}</div>
+      <div class="vehicle-note reveal"><strong>${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ")[0].replace(/\.$/, ""))}.</strong> ${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ").slice(1).join(". "))}</div>
       <div class="local-area-cloud reveal"><span>Areas we serve - click to find out more</span><div>${locationLinks}</div></div>
     </section>
     <section class="start-split area-start">
@@ -2012,7 +2022,7 @@ const fullFaqSections = [
     title: "Puppies",
     intro: "How Puppy School works and how young dogs are introduced gently.",
     faqs: [
-      ["Do you take puppies?", "Yes, once fully vaccinated. We introduce puppies gradually and provide extra support as they settle in. Puppies are introduced carefully, with one-to-one time from our team to build their confidence before joining wider daycare life."],
+      ["Do you take puppies?", "Yes, once fully vaccinated. Puppies are introduced carefully, with one-to-one time from our team to build their confidence before joining wider daycare life."],
       ["What is Puppy School?", "Our puppy programme is for fully vaccinated puppies from 12 weeks. Sessions run in our woodland setting using positive reinforcement only. We cover socialisation, basic manners, recall foundations, lead walking, exposure to new environments and structured rest."],
       ["How do you handle puppies differently to adult dogs?", "Puppies have the same collection and drop-off times as regular daycare, but the structure of their day is different: more rest, gentler introductions and a slower pace. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important part: they model good behaviour and help puppies learn what appropriate interaction looks like. Our team are experienced at reading early signals of stress and adjust the day accordingly."]
     ]
@@ -2121,7 +2131,7 @@ function faqAndContact() {
             <div class="form-group"><label for="service">Service interested in</label><select id="service" name="service"><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
           </div>
           <div class="form-notes">
-            <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates below.</div>
+            <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates in the message box below.</div>
             <div class="form-note-card"><strong>School holidays:</strong> We fill up fast, so please enquire well in advance to avoid disappointment.</div>
           </div>
           <div class="form-group">
@@ -2145,8 +2155,8 @@ function faqAndContact() {
   </section>`;
   writePage("contact", layout({ route: "contact", title: "Contact Duncan's Dog Co. | Dog Daycare Cobham", description: "Contact Duncan's Dog Co. about dog daycare, puppy daycare, collection, drop-off and dog sleepovers in Cobham, Surrey.", keywords: "contact dog daycare Cobham, dog daycare enquiry Surrey", h1: "Enquire About Dog Daycare in Cobham", intro: "Tell us about your dog, your area and the care you need.", heroData: { eyebrow: "Duncan's Dog Co · Cobham, Surrey", displayTitle: "Let's get<br><span>your dog started.</span>", text: "Fill in the form below and we'll be in touch within 24 hours to arrange a meet and greet.", video: "https://video.wixstatic.com/video/4d2311_dc5ef7217b904315baa814b81aa6906a/1080p/mp4/file.mp4", ctaHref: "#enquiry-form", ctaText: "Enquire Now", stats: [] }, body: contactBody, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Contact", url: "/contact/" }])] }));
   writePage("thank-you", layout({ route: "thank-you", noindex: true, title: "Thank You | Duncan's Dog Co.", description: "Thank you for enquiring with Duncan's Dog Co.", keywords: "Duncan's Dog Co enquiry thank you", h1: "Enquiry received.", intro: "We've got your message — no need to send it again.", body: `<section class="section contact-section"><div><p class="section-kicker">What happens next</p><h2>We'll be in touch within 24 hours</h2><p>We've received your enquiry and will come back to you about your dog, availability and the right next step. You don't need to contact us again — we have everything we need.</p><p>If you need to reach us urgently, call or email us directly below.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/">Back to homepage</a></div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Thank You", url: "/thank-you/" }])] }));
-  writePage("startup-support", layout({ route: "startup-support", title: "Dog Daycare Startup Support | Duncan's Dog Co.", description: "Startup support for dog daycare founders from Duncan's Dog Co., a family-run woodland daycare in Cobham established in 2011.", keywords: "dog daycare startup support, start a dog daycare, dog business support UK", h1: "Dog Daycare Startup Support", intro: "Practical support for people building thoughtful, licensed dog care businesses.", heroData: { eyebrow: "Dog Daycare Startup Support", displayTitle: "15 years of knowledge.<br><span>Yours from day one.</span>", text: "We share the templates, systems and experience we built from scratch, so you can start faster and avoid the mistakes we made.", video: "https://video.wixstatic.com/video/4d2311_60a7a5c2d3264b3fb778671f4e3e86ec/720p/mp4/file.mp4", ctaHref: "mailto:becks@duncansdogco.com?subject=Enquiry%20about%20help%20with%20my%20licensing", ctaText: "Get in Touch", stats: [] }, body: startupSupportBody(), structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Startup Support", url: "/startup-support/" }])] }));
-  writePage("careers", layout({ route: "careers", title: "Dog Daycare Jobs in Cobham | Duncan's Dog Co.", description: "Join the team at Duncan's Dog Co., a family-run woodland dog daycare in Cobham, Surrey. Dog handler and driver roles, outdoor work and a team that loves what it does.", keywords: "dog daycare jobs Cobham, dog daycare careers Surrey, dog handler jobs Surrey", h1: "Careers at Duncan's Dog Co.", intro: "Join a family-run woodland daycare in Cobham, Surrey.", heroData: { eyebrow: "Careers · Cobham, Surrey", displayTitle: "Come and join<br><span>our pack.</span>", text: "We're a family-run woodland daycare that's been running since 2011. If you love dogs, early mornings, and doing work that actually matters, we'd love to hear from you.", video: videoHero, ctaHref: "#apply", ctaText: "Apply Now", stats: [] }, body: `<section class="section careers-reasons-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Why join us</p><h2>Six good reasons to join the team</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>It is outdoor, practical, dog-focused work with a small team and a setting that feels nothing like a corporate workplace.</p></div>${richFeatureGrid([["Spend your days with dogs", "Every day you are surrounded by cared-for dogs in a private woodland setting."], ["No two days are the same", "Collections, daycare, sleepovers and different dogs make the rhythm varied."], ["Learn as you go", "We teach safe handling, welfare routines and dog behaviour basics."], ["Be part of a tight team", "Every person counts, everyone knows the dogs and the work is personal."], ["Work in our woodland", "Fresh air, open space and over 40 acres of private Cobham woodland."], ["Five-star rated", "Work somewhere local families have trusted for over a decade."]])}</section><section class="section role-section" id="apply"><div class="section-heading-row reveal"><div><p class="section-kicker">Current opening</p><h2>Full Time Driver & Daycare Assistant</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>We are looking for a reliable, dog-loving person to collect and drop off dogs across our catchment area and support the daycare team throughout the day.</p></div><dl class="plain-features"><div class="reveal"><dt>What you'll be doing</dt><dd>Collecting dogs from client homes, dropping them home safely, supervising dogs in the woodland, feeding and monitoring, keeping records and helping maintain site and vehicle standards.</dd></div><div class="reveal"><dt>What we're looking for</dt><dd>A genuine love for dogs, a full clean UK driving licence, calm animal handling, reliability, good people skills, physical fitness and comfort with early starts.</dd></div><article class="rich-feature-card career-apply-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("mail")}</span><h3>Apply now</h3><p>Email us with a bit about yourself, your dog experience and availability.</p><a class="button primary" href="mailto:info@duncansdogco.com?subject=Careers%20application">Apply by email</a></article></dl></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Careers", url: "/careers/" }])] }));
+  writePage("startup-support", layout({ route: "startup-support", title: "Dog Daycare Startup Support | Duncan's Dog Co.", description: "Startup support for dog daycare founders from Duncan's Dog Co., a family-run woodland daycare in Cobham established in 2011.", keywords: "dog daycare startup support, start a dog daycare, dog business support UK", h1: "Dog Daycare Startup Support", intro: "Practical support for people building thoughtful, licensed dog care businesses.", heroData: { eyebrow: "Dog Daycare Startup Support", displayTitle: "15 years of knowledge,<br><span>yours from day one</span>", text: "We share the templates, systems and experience we built from scratch, so you can start faster and avoid the mistakes we made.", video: "https://video.wixstatic.com/video/4d2311_60a7a5c2d3264b3fb778671f4e3e86ec/720p/mp4/file.mp4", ctaHref: "mailto:becks@duncansdogco.com?subject=Enquiry%20about%20help%20with%20my%20licensing", ctaText: "Get in Touch", stats: [] }, body: startupSupportBody(), structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Startup Support", url: "/startup-support/" }])] }));
+  writePage("careers", layout({ route: "careers", title: "Dog Daycare Jobs in Cobham | Duncan's Dog Co.", description: "Join the team at Duncan's Dog Co., a family-run woodland dog daycare in Cobham, Surrey. Dog handler and driver roles, outdoor work and a team that loves what it does.", keywords: "dog daycare jobs Cobham, dog daycare careers Surrey, dog handler jobs Surrey", h1: "Careers at Duncan's Dog Co.", intro: "Join a family-run woodland daycare in Cobham, Surrey.", heroData: { eyebrow: "Careers · Cobham, Surrey", displayTitle: "Come and join<br><span>our pack.</span>", text: "We're a family-run woodland daycare that's been running since 2011. If you love dogs, early mornings, and doing work that actually matters, we'd love to hear from you.", video: videoHero, ctaHref: "#apply", ctaText: "Apply Now", stats: [] }, body: `<section class="section careers-reasons-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Why join us</p><h2>Six good reasons to join the team</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>It is outdoor, practical, dog-focused work with a small team and a setting that feels nothing like a corporate workplace.</p></div>${richFeatureGrid([["Spend your days with dogs", "Every day you are surrounded by cared-for dogs in a private woodland setting."], ["No two days are the same", "Collections, daycare, sleepovers and different dogs make the rhythm varied."], ["Learn as you go", "We teach safe handling, welfare routines and dog behaviour basics."], ["Be part of a tight team", "Every person counts, everyone knows the dogs and the work is personal."], ["Work in our woodland", "Fresh air, open space and over 40 acres of private Cobham woodland."], ["Five-star rated", "Work somewhere local families have trusted for over a decade."]])}</section><section class="section role-section" id="apply"><div class="section-heading-row reveal"><div><p class="section-kicker">Current opening</p><h2>Full-time Driver & Daycare Assistant</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>We are looking for a reliable, dog-loving person to collect and drop off dogs across our catchment area and support the daycare team throughout the day.</p></div><dl class="plain-features"><div class="reveal"><dt>What you'll be doing</dt><dd>Collecting dogs from client homes, dropping them home safely, supervising dogs in the woodland, feeding and monitoring, keeping records and helping maintain site and vehicle standards.</dd></div><div class="reveal"><dt>What we're looking for</dt><dd>A genuine love for dogs, a full clean UK driving licence, calm animal handling, reliability, good people skills, physical fitness and comfort with early starts.</dd></div><article class="rich-feature-card career-apply-card reveal"><span class="mini-icon" aria-hidden="true">${motifIcon("mail")}</span><h3>Apply now</h3><p>Email us with a bit about yourself, your dog experience and availability.</p><a class="button primary" href="mailto:info@duncansdogco.com?subject=Careers%20application">Apply by email</a></article></dl></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Careers", url: "/careers/" }])] }));
   writePage("privacy-policy", layout({ route: "privacy-policy", title: "Privacy Policy | Duncan's Dog Co.", description: "Privacy policy for Duncan's Dog Co., covering how we collect, use and protect the personal information you share with us.", keywords: "privacy policy Duncan's Dog Co", h1: "Privacy Policy", intro: "How Duncan's Dog Co. collects, uses and protects your personal information.", body: `<section class="section article">
 <p><strong>Last updated: May 2025</strong></p>
 <p>Duncan's Dog Co. is a family-run dog daycare, boarding and collection service based in Cobham, Surrey, operating as a sole trader. We are the data controller for the personal information we collect from you. This policy explains what we collect, why, and what your rights are.</p>
@@ -2367,7 +2377,7 @@ function blogRelatedLinks(slug) {
 }
 
 function blog() {
-  writePage("blog", layout({ route: "blog", title: "Dog Daycare Advice & Guides | Duncan's Dog Co.", description: "Guides and advice from Duncan's Dog Co. on woodland dog daycare, puppy socialisation, rescue dogs, boarding, collection and choosing licensed care in Cobham and Surrey.", keywords: "dog daycare blog, puppy socialisation Surrey, dog boarding vs kennels", h1: "Duncan's Dog Co. Blog", intro: "Stories and useful reads for owners comparing daycare, puppy care, collection and sleepovers.", body: `<section class="section blog-index-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Blog</p><h2>Latest reads from the woodland</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Short, useful posts on choosing daycare, puppy socialisation, collection, sleepovers and woodland care.</p></div><div class="blog-card-grid">${blogPosts.map(([slug, title, desc, imageKey]) => `<a class="blog-card reveal" href="/blog/${slug}/"><div class="blog-card-image"><img src="${gallerySrc(gallery[imageKey] || gallery.woodlandGroup)}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></div><div class="blog-card-copy"><span>${esc(title.split(" ")[0])}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p><strong>Read post <span aria-hidden="true">→</span></strong></div></a>`).join("")}</div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }])] }));
+  writePage("blog", layout({ route: "blog", title: "Dog Daycare Advice & Guides | Duncan's Dog Co.", description: "Guides and advice from Duncan's Dog Co. on woodland dog daycare, puppy socialisation, rescue dogs, boarding, collection and choosing licensed care in Cobham and Surrey.", keywords: "dog daycare blog, puppy socialisation Surrey, dog boarding vs kennels", h1: "Duncan's Dog Co. Blog", intro: "Stories and useful reads for owners comparing daycare, puppy care, collection and sleepovers.", body: `<section class="section blog-index-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Blog</p><h2>Latest reads from the woodland</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Short, useful posts on choosing daycare, puppy socialisation, collection, sleepovers and woodland care.</p></div><div class="blog-card-grid">${blogPosts.map(([slug, title, desc, imageKey]) => `<a class="blog-card reveal" href="/blog/${slug}/"><div class="blog-card-image"><img src="${gallerySrc(gallery[imageKey] || gallery.woodlandGroup)}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></div><div class="blog-card-copy"><span>${esc(blogLabels[slug] || "Guide")}</span><h2>${esc(title)}</h2><p>${esc(desc)}</p><strong>Read post <span aria-hidden="true">→</span></strong></div></a>`).join("")}</div></section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }])] }));
   for (const [slug, title, desc, imageKey, date] of blogPosts) {
     const image = gallerySrc(gallery[imageKey] || gallery.woodlandGroup);
     writePage(`blog/${slug}`, layout({ route: `blog/${slug}`, title: `${title} | Duncan's Dog Co.`, description: desc, keywords: `${title}, dog daycare Cobham, dog daycare Surrey`, h1: title, intro: desc, body: `<section class="blog-article-hero"><img src="${image}" alt="${esc(title)} at Duncan's Dog Co." loading="lazy"></section><section class="section article blog-article">${blogArticleMarkup(slug, desc)}</section>`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Blog", url: "/blog/" }, { name: title, url: `/blog/${slug}/` }]), blogPostingJson({ slug, title, description: desc, image, datePublished: date })] }));

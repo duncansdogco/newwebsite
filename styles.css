@@ -8405,3 +8405,96 @@ h1, h2, h3,
   .dv-lock-n, .dv-lock-time .t5 { opacity: 1; animation: none !important; }
   .dv-lock-time .t1, .dv-lock-time .t2, .dv-lock-time .t3, .dv-lock-time .t4 { opacity: 0; }
 }
+
+
+/* ── Site audit fixes, 30 Sep 2026 ── */
+.nw { white-space: nowrap; }
+a[href^="tel:"], a[href*="wa.me"] { white-space: nowrap; }
+
+/* header: the menu folds away before it can collide with the logo (it did from 1,000 to 1,260px) */
+.brand { flex-shrink: 0; }
+@media (max-width: 1279px) {
+  .menu-toggle { display: block; }
+  .site-nav {
+    position: absolute;
+    top: 78px;
+    left: 18px;
+    right: 18px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 8px;
+    background: rgba(20, 35, 19, 0.98);
+  }
+  .site-nav.is-open { display: flex; }
+  .site-nav .nav-cta { margin-left: 0; text-align: center; }
+}
+
+/* header: links stay readable over bright hero photos */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -36px 0;
+  z-index: -1;
+  background: linear-gradient(rgba(12, 24, 12, 0.55), rgba(12, 24, 12, 0));
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+.site-header.is-scrolled::before, .site-header.is-open::before, .page-pricing .site-header::before { opacity: 0; }
+.site-nav a:not(.nav-cta), .brand span { text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35); }
+
+/* the pale paw print sat on top of page headings */
+.page-stars { display: none; }
+
+/* headings no longer leave one word on the last line */
+h1, h2, h3, .live-display-title { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+/* tablets: keep faces in frame, no dark box where the hero fade meets the photo */
+@media (max-width: 980px) {
+  .start-photo img, .included-photo img, .daycare-final-photo img, .portal-driver-photo img { object-position: center 20%; }
+  .live-page-video video { object-position: center 35%; }
+  .live-page-video::before { display: none; }
+}
+
+/* tablets: footer in two columns rather than one long thin one */
+@media (min-width: 601px) and (max-width: 980px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+.footer-grid address, .footer-grid address span { font-style: normal; }
+
+/* small labels were 9 to 10px */
+.card-period, .price-per, .pricing-eyebrow { font-size: 12px !important; }
+.about-team-bar span, .about-team-bar p, .about-team-fave span { font-size: 12px !important; }
+
+/* pricing */
+.pricing-hero h1 { margin-left: auto; margin-right: auto; }
+.pricing-card-grid { gap: 14px; }
+@media (min-width: 701px) and (max-width: 1000px) {
+  .calc-steps { grid-template-columns: 1fr 1fr; }
+  .calc-steps > .calc-step:first-child { grid-column: 1 / -1; }
+}
+
+/* contact: the email and hours icons were drawn filled, so they looked blank */
+.contact-item-icon svg { fill: none !important; stroke: var(--moss); stroke-linecap: round; stroke-linejoin: round; }
+
+/* FAQ: one line under each category heading, not two */
+.faq-category-header { border-bottom: 0; padding-bottom: 0; }
+
+/* homepage services: the second row sits in the middle instead of leaving a gap */
+@media (min-width: 701px) and (max-width: 1180px) {
+  .live-card-grid.five { display: flex; flex-wrap: wrap; justify-content: center; }
+  .live-card-grid.five > * { flex: 0 1 calc((100% - 32px) / 3); }
+}
+
+/* homepage collection section */
+.catchment-list { align-self: start; }
+.hub-ring strong, .hub-ring span { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65); }
+.catchment-footer .button.primary { background: var(--leaf) !important; color: var(--ink) !important; border-color: var(--leaf) !important; }
+
+/* collection areas page: three equal columns */
+@media (min-width: 981px) {
+  .area-layout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
