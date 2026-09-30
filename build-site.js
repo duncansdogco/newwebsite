@@ -1639,7 +1639,7 @@ function home() {
 function splashPageBody() {
   const splashFaqs = [
     ["What happens at the taster session?", "Your dog gets the sole attention of the SPLASH team while we assess their confidence, ability and genuine enjoyment in the water. Not every dog enjoys swimming and that is completely fine. The taster is designed to find out whether SPLASH is right for your dog while making sure their first experience is positive and stress-free."],
-    ["How do I book?", "Get in touch via the form below and we will get back to you within 24 hours about availability, next steps and everything you need ahead of your first session."],
+    ["How do I register my interest?", "Fill in the form below with your dog's details. We will get back to you within 24 hours about availability and what happens next."],
     ["What is included in the £40 taster session?", "A dedicated 1-to-1 swimming experience, a full assessment by the SPLASH team, a First Swim Session Report, and photos and videos of your dog's first swim."],
     ["Is swimming safe for my dog?", "Yes. All sessions are 1-to-1 with the SPLASH team and every dog wears a correctly fitted buoyancy aid for their first session. We assess each dog individually and will never push a dog beyond what they are comfortable with."],
     ["Are there discounts for regular bookings?", "Yes. We offer discounted rates for customers who commit to recurring bookings, as well as savings on bulk session packages. Full pricing is confirmed following your dog's assessment."],
@@ -1703,8 +1703,8 @@ function splashPageBody() {
       <div class="splash-cta-col reveal" style="background-image:url('/assets/splash/taster.jpg')">
         <div class="splash-cta-box">
           <p class="section-kicker">Ready to dive in?</p>
-          <h2>Book a SPLASH taster</h2>
-          <p>Get in touch and we will get back to you within 24 hours about availability and everything you need ahead of your first session.</p>
+          <h2>Register your interest in SPLASH</h2>
+          <p>Tell us about your dog and we will get back to you within 24 hours about availability and what happens next.</p>
           <a class="button primary" href="/contact/#enquiry-form">Register your interest</a>
         </div>
       </div>
@@ -1758,7 +1758,7 @@ function splash() {
       video: "/assets/splash/hero.mp4",
       videoPoster: "/assets/splash/hero-poster.jpg",
       ctaHref: "/contact/#enquiry-form",
-      ctaText: "Book a Taster",
+      ctaText: "Register your interest",
       stats: []
     },
     body: splashPageBody(),
@@ -2369,7 +2369,7 @@ function blogRelatedLinks(slug) {
     "why-collection-is-part-of-care": [["Collection areas", "/areas/"], ["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["Contact", "/contact/#enquiry-form"]],
     "rescue-dog-daycare-gentle-introductions": [["Rescue dogs", "/rescue/"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Enquire", "/contact/#enquiry-form"]],
     "woodland-daycare-when-it-rains": [["Dog daycare", "/daycare/"], ["FAQ", "/faq/"], ["Pricing", "/pricing/"], ["Book a trial day", "/contact/#enquiry-form"]],
-    "first-splash-session": [["SPLASH", "/splash/"], ["Book a taster", "/contact/#enquiry-form"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"]],
+    "first-splash-session": [["SPLASH", "/splash/"], ["Register interest in SPLASH", "/contact/#enquiry-form"], ["Dog daycare", "/daycare/"], ["FAQ", "/faq/"]],
     "signs-your-dog-needs-more-enrichment": [["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["Pricing", "/pricing/"], ["About us", "/about-us/"]],
     "summer-heat-dog-daycare-safety": [["SPLASH", "/splash/"], ["Dog daycare", "/daycare/"], ["Book a trial day", "/contact/#enquiry-form"], ["FAQ", "/faq/"]]
   }[slug] || [["Dog daycare", "/daycare/"], ["Pricing", "/pricing/"], ["FAQ", "/faq/"], ["Contact", "/contact/#enquiry-form"]];
