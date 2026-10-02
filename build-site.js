@@ -716,12 +716,14 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Consent defaults: Google tags store nothing until the visitor accepts cookies -->
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',analytics_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});gtag('set','url_passthrough',true);try{if(localStorage.getItem('ddc-consent')==='granted'){gtag('consent','update',{ad_storage:'granted',analytics_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});}}catch(e){}</script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KDP8MF95');</script>
   <!-- End Google Tag Manager -->
   <!-- Google Ads tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16909987992"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-16909987992');</script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-16909987992',{allow_enhanced_conversions:true});</script>
   <!-- End Google Ads tag -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -813,7 +815,11 @@ function footer() {
     </div>
     <div class="footer-bottom">
       <span>© 2026 Duncan's Dog Co. All rights reserved.</span>
-      <nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-conditions/">Terms & Conditions</a></nav>
+      <nav aria-label="Legal"><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-conditions/">Terms & Conditions</a><a href="#cookie-settings" data-cookie-settings>Cookie settings</a></nav>
+    </div>
+    <div class="cookie-notice" data-cookie-notice hidden role="region" aria-label="Cookie choice">
+      <p>We use cookies to see which adverts and pages bring families to us. If you say no, the site works just the same. <a href="/privacy-policy/#cookies">Privacy policy</a></p>
+      <div class="cookie-actions"><button type="button" class="cookie-choice" data-consent="denied">No thanks</button><button type="button" class="cookie-choice" data-consent="granted">Accept</button></div>
     </div>
     <a class="whatsapp-float" href="https://wa.me/447731798899?text=Hi%20Duncan%27s%20Dog%20Co%2C%20I%27d%20like%20to%20enquire%20about%20dog%20daycare." target="_blank" rel="noopener" aria-label="WhatsApp Duncan's Dog Co. on 07731 798 899">${whatsappIcon()}<span>WhatsApp us</span></a>
   </footer>`;
@@ -2109,6 +2115,7 @@ function faqAndContact() {
         <h2>Send us an enquiry</h2>
         <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="enquiry">
+          <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
           <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
             <div class="form-group"><label for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
@@ -2133,6 +2140,10 @@ function faqAndContact() {
           <div class="form-notes">
             <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates in the message box below.</div>
             <div class="form-note-card"><strong>School holidays:</strong> We fill up fast, so please enquire well in advance to avoid disappointment.</div>
+          </div>
+          <div class="form-group">
+            <label for="heard">How did you hear about us?</label>
+            <select id="heard" name="heard_about_us"><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select>
           </div>
           <div class="form-group">
             <label for="message">Anything else we should know?</label>
@@ -2215,10 +2226,11 @@ function faqAndContact() {
 <p>To exercise any of these rights, email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>. We will respond within 30 days.</p>
 <p>If you are not satisfied with how we handle your data, you have the right to complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p>
 
-<h2>7. Cookies and website data</h2>
-<p>Our website does not use tracking or advertising cookies. We do not use Google Analytics or any third-party analytics tools that collect personally identifiable information through cookies. No cookie consent banner is required as a result.</p>
-<p>If we add any cookies or analytics tools in future, this policy will be updated and a cookie notice will be added to the site.</p>
-
+<h2 id="cookies">7. Cookies and website data</h2>
+<p>We use Google Analytics to see how people find and use our website, and Google Ads to see which adverts lead to enquiries. Both set cookies only if you choose Accept in the cookie notice. If you choose No thanks, the website works the same, and Google receives only basic signals that do not use cookies or identify you.</p>
+<p>When you have accepted cookies and send us an enquiry, we share a scrambled copy of your email address and phone number with Google. This lets Google tell us whether the enquiry came from one of our adverts. The details are scrambled on your device before they are sent, and Google does not use them to show you adverts.</p>
+<p>Our enquiry form also records the page you arrived on and the website or advert that sent you, so we know which of our marketing works.</p>
+<p>We remember your cookie choice on your device so we do not ask again. You can change it at any time with Cookie settings at the bottom of every page.</p>
 <h2>8. Security</h2>
 <p>We take reasonable steps to protect your personal information from unauthorised access, loss or misuse. Our website is served over HTTPS and enquiry form data is transmitted securely through Netlify's infrastructure.</p>
 

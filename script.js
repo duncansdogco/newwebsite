@@ -235,3 +235,107 @@ document.querySelectorAll(".faq-list").forEach((list) => {
     list.querySelectorAll("details[open]").forEach((other) => { if (other !== item) other.open = false; });
   }, true);
 });
+
+// Cookie choice, enquiry tracking and where each enquiry came from.
+const ADS_ID = "AW-16909987992";
+const ADS_LABELS = { enquiry: "2rexCP-h_cYaEJjhp_8-", phone: "Y2m7COLvto0dEJjhp_8-", whatsapp: "kQLMCLm_uY0dEJjhp_8-" };
+const SOURCE_KEYS = ["gclid", "gbraid", "wbraid", "fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+const cookieNotice = document.querySelector("[data-cookie-notice]");
+
+function readStore(store, key) {
+  try { return window[store].getItem(key); } catch (error) { return null; }
+}
+
+function writeStore(store, key, value) {
+  try { window[store].setItem(key, value); } catch (error) { /* storage blocked */ }
+}
+
+function cookiesAccepted() {
+  return readStore("localStorage", "ddc-consent") === "granted";
+}
+
+function rememberSource() {
+  if (readStore("sessionStorage", "ddc-source")) return;
+  const params = new URLSearchParams(window.location.search);
+  const source = { landing_page: window.location.pathname, referrer: document.referrer };
+  SOURCE_KEYS.forEach((key) => {
+    if (params.get(key)) source[key] = params.get(key);
+  });
+  writeStore("sessionStorage", "ddc-source", JSON.stringify(source));
+}
+
+function setCookieChoice(choice) {
+  writeStore("localStorage", "ddc-consent", choice);
+  const state = choice === "granted" ? "granted" : "denied";
+  if (typeof window.gtag === "function") {
+    window.gtag("consent", "update", { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
+  }
+  if (choice === "granted") rememberSource();
+  if (cookieNotice) cookieNotice.hidden = true;
+}
+
+if (cookieNotice && !readStore("localStorage", "ddc-consent")) cookieNotice.hidden = false;
+document.querySelectorAll("[data-consent]").forEach((button) => {
+  button.addEventListener("click", () => setCookieChoice(button.dataset.consent));
+});
+document.querySelectorAll("[data-cookie-settings]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (cookieNotice) cookieNotice.hidden = false;
+  });
+});
+if (cookiesAccepted()) rememberSource();
+
+function sendConversion(kind) {
+  if (typeof window.gtag !== "function") return;
+  window.gtag("event", "conversion", { send_to: `${ADS_ID}/${ADS_LABELS[kind]}` });
+}
+
+document.addEventListener("click", (event) => {
+  const link = event.target.closest('a[href^="tel:"], a[href*="wa.me/"]');
+  if (!link) return;
+  const kind = link.getAttribute("href").startsWith("tel:") ? "phone" : "whatsapp";
+  sendConversion(kind);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: `${kind}_tap` });
+});
+
+function ukPhone(value) {
+  const digits = (value || "").replace(/[^\d+]/g, "");
+  if (!digits) return "";
+  if (digits.startsWith("+")) return digits;
+  return digits.startsWith("0") ? `+44${digits.slice(1)}` : `+44${digits}`;
+}
+
+const enquiryForm = document.querySelector('form[name="enquiry"]');
+if (enquiryForm) {
+  let source = {};
+  try { source = JSON.parse(readStore("sessionStorage", "ddc-source") || "{}"); } catch (error) { source = {}; }
+  const params = new URLSearchParams(window.location.search);
+  SOURCE_KEYS.forEach((key) => {
+    if (!source[key] && params.get(key)) source[key] = params.get(key);
+  });
+  if (!source.landing_page) source.landing_page = window.location.pathname;
+  if (!source.referrer) source.referrer = document.referrer;
+  Object.entries(source).forEach(([key, value]) => {
+    const field = enquiryForm.querySelector(`input[name="${key}"]`);
+    if (field && value) field.value = value;
+  });
+  enquiryForm.addEventListener("submit", () => {
+    if (!cookiesAccepted()) return;
+    writeStore("sessionStorage", "ddc-enquiry", JSON.stringify({
+      email: enquiryForm.email.value.trim().toLowerCase(),
+      phone_number: ukPhone(enquiryForm.phone.value),
+    }));
+  });
+}
+
+if (document.body.classList.contains("page-thank-you")) {
+  let details = null;
+  try { details = JSON.parse(readStore("sessionStorage", "ddc-enquiry") || "null"); } catch (error) { details = null; }
+  if (details && cookiesAccepted() && typeof window.gtag === "function") {
+    window.gtag("set", "user_data", details);
+    sendConversion("enquiry");
+  }
+  try { window.sessionStorage.removeItem("ddc-enquiry"); } catch (error) { /* storage blocked */ }
+}
