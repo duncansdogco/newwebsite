@@ -270,8 +270,31 @@ function setCookieChoice(choice) {
   if (typeof window.gtag === "function") {
     window.gtag("consent", "update", { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
   }
-  if (choice === "granted") rememberSource();
+  if (choice === "granted") { rememberSource(); startClarity(); }
   if (cookieNotice) cookieNotice.hidden = true;
+}
+
+// Microsoft Clarity visit replays, only for visitors who chose Accept.
+// Visits that started from a Google ad are tagged so they can be filtered.
+const CLARITY_ID = "ysf030q4f2";
+function startClarity() {
+  if (!CLARITY_ID || window.clarity) return;
+  (function (c, l, a, r, i, t, y) {
+    c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+    t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", CLARITY_ID);
+  window.clarity("consent");
+  let source = {};
+  try { source = JSON.parse(readStore("sessionStorage", "ddc-source") || "{}"); } catch (error) { source = {}; }
+  const fromAd = source.gclid || source.gbraid || source.wbraid || source.utm_medium === "cpc";
+  window.clarity("set", "traffic", fromAd ? "google-ad" : "other");
+  if (source.landing_page) window.clarity("set", "landing_page", source.landing_page);
+  if (source.utm_campaign) window.clarity("set", "campaign", source.utm_campaign);
+}
+
+function clarityEvent(name) {
+  if (typeof window.clarity === "function") window.clarity("event", name);
 }
 
 if (cookieNotice && !readStore("localStorage", "ddc-consent")) cookieNotice.hidden = false;
@@ -284,7 +307,7 @@ document.querySelectorAll("[data-cookie-settings]").forEach((link) => {
     if (cookieNotice) cookieNotice.hidden = false;
   });
 });
-if (cookiesAccepted()) rememberSource();
+if (cookiesAccepted()) { rememberSource(); startClarity(); }
 
 function sendConversion(kind) {
   if (typeof window.gtag !== "function") return;
@@ -296,6 +319,7 @@ document.addEventListener("click", (event) => {
   if (!link) return;
   const kind = link.getAttribute("href").startsWith("tel:") ? "phone" : "whatsapp";
   sendConversion(kind);
+  clarityEvent(`${kind}_tap`);
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: `${kind}_tap` });
 });
@@ -322,6 +346,7 @@ if (enquiryForm) {
     if (field && value) field.value = value;
   });
   enquiryForm.addEventListener("submit", () => {
+    clarityEvent("enquiry_sent");
     if (!cookiesAccepted()) return;
     writeStore("sessionStorage", "ddc-enquiry", JSON.stringify({
       email: enquiryForm.email.value.trim().toLowerCase(),
