@@ -2396,7 +2396,7 @@ ${factFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
   const localCouncils = [
     ["Elmbridge", "Cobham, Esher, Weybridge, Walton-on-Thames, Hersham, Claygate, Oxshott, St George's Hill", "18 (11 five-star, 7 four-star)", "£432 or £510"],
     ["Wandsworth", "Wandsworth, Putney, Balham, Earlsfield, Southfields, Tooting, part of Clapham", "5 (2 five-star, 2 four-star, 1 three-star)", "£719"],
-    ["Lambeth", "Clapham", "4 (2 five-star, 1 four-star)", "Not published"],
+    ["Lambeth", "Clapham", "4 (2 five-star, 1 four-star)", "£749.53"],
     ["Merton", "Wimbledon, Raynes Park, Morden, Copse Hill, part of Motspur Park", "None listed", "Not published"],
     ["Kingston", "New Malden, part of Motspur Park", "1 (five-star)", "£994 to £1,183"],
     ["Guildford", "Effingham, Horsley", "6 (5 five-star, 1 four-star)", "£1,164.50"],
