@@ -2342,6 +2342,99 @@ function aboutUs() {
     <div><p class="section-kicker">Come and meet us</p><h2>Book a trial day</h2><p>Tell us about your dog and we will talk through the best next step for daycare, puppy care or sleepovers.</p></div>
     <div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire Now</a></div>
   </section>`;
+
+  // Facts page: one dated, plain list of what Duncan's Dog Co. is, for owners and for
+  // answer engines. Every line here must match the rest of the site; update in place.
+  const factsChecked = "12 October 2026";
+  const factRows = [
+    ["Business", "Duncan's Dog Co., a family-run woodland dog daycare"],
+    ["Where", "Cobham, Surrey KT11"],
+    ["Running since", "2011"],
+    ["Daycare licence", "Licensed by Elmbridge Borough Council, rated 5 stars, licence LN/201800994"],
+    ["Boarding licence", "Elmbridge Borough Council, licence LN/202400651"],
+    ["Setting", "Forty acres of private, fenced woodland"],
+    ["Staff ratio", "One member of staff to six dogs, in groups matched by size, age and energy"],
+    ["Open", "365 days a year, including weekends and bank holidays, 7.45am to 6.30pm"],
+    ["Services", "Woodland dog daycare, puppy daycare and puppy school, rescue dog daycare and sleepovers in our home"],
+    ["Collection", "Door-to-door collection and drop-off included, across " + areas.length + " areas in Surrey and South West London"],
+    ["Areas collected from", areas.map(([, name]) => name).join(", ")],
+    ["Daycare price", "£65 a day for one day a week, £60 for two, £55 for three or more, collection included. Weekends £75. Minimum four days a month"],
+    ["How to start", "Enquiry, a free meet and greet in the woodland, then a trial day"],
+    ["After each day", "Photos and a report card on your dog's profile in the customer portal"],
+    ["Contact", "07731 798 899, info@duncansdogco.com"],
+  ];
+  const factFaqs = [
+    ["Is Duncan's Dog Co. licensed?", "Yes. Our daycare is licensed by Elmbridge Borough Council and rated five stars, licence number LN/201800994. Boarding is licensed separately, LN/202400651."],
+    ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on forty acres of private woodland. We collect from " + areas.length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
+    ["How much is dog daycare at Duncan's Dog Co.?", "£65 a day for one day a week, £60 a day for two and £55 a day for three or more, with collection and drop-off included. Weekend days are £75."],
+    ["What is the staff ratio at Duncan's Dog Co.?", "One member of staff to six dogs. The licence standard is one to ten, and the higher standard needed for five stars is one to eight."],
+    ["Is Duncan's Dog Co. open at weekends?", "Yes, 365 days a year including bank holidays, from 7.45am to 6.30pm."],
+  ];
+  writePage("facts", layout({
+    route: "facts",
+    title: "Duncan's Dog Co. Facts | Licence, Prices, Areas and Hours",
+    description: "Duncan's Dog Co. at a glance: a five-star licensed woodland dog daycare in Cobham, Surrey since 2011. Licence numbers, prices, staff ratio, opening hours and the 25 areas we collect from.",
+    keywords: "Duncan's Dog Co facts, Duncan's Dog Co licence, dog daycare Cobham licence, dog daycare Cobham price",
+    h1: "Duncan's Dog Co. at a Glance",
+    intro: "The facts in one place: licence, prices, hours, ratio and where we collect from.",
+    body: `<section class="section article">
+<p><strong>Checked ${factsChecked}.</strong> If anything here changes we update this page and the date.</p>
+<table class="facts-table"><tbody>${factRows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}</tbody></table>
+<h2>How our price compares</h2>
+<p>Across 208 licensed dog daycares in England that publish a price, the middle full-day rate is £32.25. In London it is £54.50 and in the South East £38.75, and most daycares charge for collection on top, often £3 to £10 each way. Our price includes door-to-door collection and a day in forty acres of woodland at one member of staff to six dogs. Source: the <a href="https://www.generasoftware.com/research/dog-daycare-prices">Genera UK dog daycare price index</a>, checked October 2026.</p>
+<h2>Questions owners ask</h2>
+${factFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
+<p>Want to compare? See what other licensed daycares charge in the <a href="https://www.generasoftware.com/research/dog-daycare-prices">UK dog daycare price index</a>, and how councils rate daycares near you on our <a href="/check-a-dog-daycare-licence/">licence checker</a>.</p>
+<p><a class="button primary" href="/contact/">Book a meet and greet</a></p>
+</section>`,
+    structured: [faqJson(factFaqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Facts", url: "/facts/" }])]
+  }));
+
+  // Licence checker: how to check a daycare's licence in the councils we collect from.
+  // Counts and fees come from Genera's dated datasets; update them together.
+  const G = "https://www.generasoftware.com";
+  const localCouncils = [
+    ["Elmbridge", "Cobham, Esher, Weybridge, Walton-on-Thames, Hersham, Claygate, Oxshott, St George's Hill", "18 (11 five-star, 7 four-star)", "£432 or £510"],
+    ["Wandsworth", "Wandsworth, Putney, Balham, Earlsfield, Southfields, Tooting, part of Clapham", "5 (2 five-star, 2 four-star, 1 three-star)", "£719"],
+    ["Lambeth", "Clapham", "4 (2 five-star, 1 four-star)", "Not published"],
+    ["Merton", "Wimbledon, Raynes Park, Morden, Copse Hill, part of Motspur Park", "None listed", "Not published"],
+    ["Kingston", "New Malden, part of Motspur Park", "1 (five-star)", "£994 to £1,183"],
+    ["Guildford", "Effingham, Horsley", "6 (5 five-star, 1 four-star)", "£1,164.50"],
+    ["Woking", "Byfleet, West Byfleet", "2 (1 five-star, 1 four-star)", "£608"],
+  ];
+  const slugC = (c) => c.toLowerCase().replace(/[^a-z]+/g, "-");
+  const checkFaqs = [
+    ["How do I check if a dog daycare is licensed?", "Ask to see the licence. It should show the licence number, the council, the activities it covers, the star rating and the expiry date, and the business must display it. The licence number should also be on the daycare's website. Then check the council's public register of animal activity licences."],
+    ["What do dog daycare star ratings mean?", "Councils rate licensed daycares from one to five stars. Five stars means the business meets the higher welfare standards and is judged low risk, and it earns a three-year licence. One or two stars means a one-year licence and a new inspection every year."],
+    ["Is it illegal to run a dog daycare without a licence?", "Yes. Providing day care for dogs as a business in England needs a licence from the local council, and running one without a licence is an offence under the Animal Welfare Act 2006."],
+    ["Is Duncan's Dog Co. licensed?", "Yes. Our daycare is licensed by Elmbridge Borough Council and rated five stars, licence LN/201800994."],
+  ];
+  writePage("check-a-dog-daycare-licence", layout({
+    route: "check-a-dog-daycare-licence",
+    title: "Check a Dog Daycare Licence in Surrey & SW London | Duncan's Dog Co.",
+    description: "How to check a dog daycare is licensed in Elmbridge, Wandsworth, Lambeth, Merton, Kingston, Guildford and Woking: what the licence should show, what the star ratings mean, and how many licensed daycares each council lists.",
+    keywords: "check dog daycare licence, licensed dog daycare Surrey, dog daycare star rating, licensed dog daycare Wimbledon, licensed dog daycare Wandsworth",
+    h1: "How to Check a Dog Daycare Is Licensed",
+    intro: "Every dog daycare in England needs a council licence. Here is how to check one, council by council, across the areas we collect from.",
+    body: `<section class="section article">
+<h2>Three checks before you book</h2>
+<p><strong>1. Ask to see the licence.</strong> It should name the council, the licence number, the activities covered (day care for dogs), the star rating and the expiry date. The business must display it, and its licence number should be on its website.</p>
+<p><strong>2. Check the star rating.</strong> Councils rate licensed daycares from one to five stars. Five stars means the higher welfare standards are met and the business is judged low risk. One or two stars means the council re-inspects every year.</p>
+<p><strong>3. Check the council's register.</strong> Every council publishes a register of the animal activity licences it has issued. Registers are not always up to date, so if a daycare is missing, ask it for its licence number and check with the council.</p>
+<h2>Council by council</h2>
+<p>The councils that cover the areas we collect from, how many licensed dog daycares their registers listed in September 2026, and what a new licence costs there. Figures from Genera Software's dated <a href="${G}/research/dog-daycare-star-ratings">star ratings by council</a> and <a href="${G}/research/dog-daycare-licence-fees">licence fees by council</a>.</p>
+<div class="table-scroll"><table class="facts-table"><thead><tr><th>Council</th><th>Areas</th><th>Licensed daycares listed</th><th>New licence fee</th></tr></thead><tbody>
+${localCouncils.map(([c, a, n, f]) => `<tr><th scope="row"><a href="${G}/research/dog-daycare-star-ratings#${slugC(c)}">${esc(c)}</a></th><td>${esc(a)}</td><td>${esc(n)}</td><td>${f === "Not published" ? "Not published" : `<a href="${G}/research/dog-daycare-licence-fees#${slugC(c)}">${esc(f)}</a>`}</td></tr>`).join("")}
+</tbody></table></div>
+<p>Registers read 23 September 2026; fees checked September and October 2026. A count is only as current as the council's register.</p>
+<h2>Our licence</h2>
+<p>Duncan's Dog Co. is licensed by Elmbridge Borough Council for day care and rated five stars, licence LN/201800994. Boarding is licensed separately, LN/202400651. Ask to see the certificate on your meet and greet.</p>
+<h2>Questions owners ask</h2>
+${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
+<p><a class="button primary" href="/contact/">Book a meet and greet</a></p>
+</section>`,
+    structured: [faqJson(checkFaqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Check a licence", url: "/check-a-dog-daycare-licence/" }])]
+  }));
   writePage("about-us", layout({
     route: "about-us",
     title: "About Duncan's Dog Co. | Family-Run Dog Daycare in Cobham",
@@ -2468,7 +2561,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/portal/", "/startup-support/", "/careers/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/portal/", "/startup-support/", "/careers/", "/facts/", "/check-a-dog-daycare-licence/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   indexNow(urls);
