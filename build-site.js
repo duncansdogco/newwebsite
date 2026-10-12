@@ -2381,7 +2381,7 @@ function aboutUs() {
 <p><strong>Checked ${factsChecked}.</strong> If anything here changes we update this page and the date.</p>
 <table class="facts-table"><tbody>${factRows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}</tbody></table>
 <h2>How our price compares</h2>
-<p>Across 208 licensed dog daycares in England that publish a price, the middle full-day rate is £32.25. In London it is £54.50 and in the South East £38.75, and most daycares charge for collection on top, often £3 to £10 each way. Our price includes door-to-door collection and a day in forty acres of woodland at one member of staff to six dogs. Source: the <a href="https://www.generasoftware.com/research/dog-daycare-prices">Genera UK dog daycare price index</a>, checked October 2026.</p>
+<p>Across 241 licensed dog daycares in England that publish a price, the middle full-day rate is £32.50. In London it is £55 and in the South East £39.50, and most daycares charge for collection on top, often £3 to £10 each way. Our price includes door-to-door collection and a day in forty acres of woodland at one member of staff to six dogs. Source: the <a href="https://www.generasoftware.com/research/dog-daycare-prices">Genera UK dog daycare price index</a>, checked October 2026.</p>
 <h2>Questions owners ask</h2>
 ${factFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <p>Want to compare? See what other licensed daycares charge in the <a href="https://www.generasoftware.com/research/dog-daycare-prices">UK dog daycare price index</a>, and how councils rate daycares near you on our <a href="/check-a-dog-daycare-licence/">licence checker</a>.</p>
