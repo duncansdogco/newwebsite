@@ -8569,3 +8569,137 @@ p { text-wrap: pretty; }
 .facts-table thead th { border-top: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
 .table-scroll { overflow-x: auto; }
 @media (max-width: 640px) { .facts-table th { width: 40%; } .facts-table th, .facts-table td { padding: 0.6rem 0.5rem; font-size: 0.94rem; } }
+
+/* ══════════════════════════════════════════════════════════════════
+   Soft boxes, 11 Oct 2026.
+   Jess: the boxes looked flat and the type read as AI. Cards take the
+   Genera treatment in DDC colours: rounder corners, a hairline edge,
+   a soft forest-tinted shadow, a faint wash in one corner and a small
+   lift on hover. Body text moves off Arial.
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --card-edge: rgba(25, 52, 25, 0.08);
+  --card-shadow: 0 1px 2px rgba(20, 35, 19, 0.04), 0 14px 34px -12px rgba(20, 35, 19, 0.16);
+  --card-shadow-hover: 0 1px 2px rgba(20, 35, 19, 0.05), 0 22px 44px -14px rgba(20, 35, 19, 0.24);
+  --photo-shadow: 0 26px 56px -22px rgba(20, 35, 19, 0.36);
+  --wash: rgba(196, 226, 170, 0.42);
+}
+
+body,
+button,
+input,
+select,
+textarea,
+.button,
+.site-nav a { font-family: var(--body) !important; }
+
+body { -webkit-font-smoothing: antialiased; }
+
+/* Cards */
+.review-tile,
+.day-moment,
+.price-card,
+.pricing-calc-card,
+.daycare-pricing-teaser,
+.about-team-card,
+.contact-item,
+.contact-card,
+.form-wrap,
+.form-note-card,
+.rich-feature-card {
+  border: 1px solid var(--card-edge) !important;
+  border-radius: 24px !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 260ms ease;
+}
+
+.review-tile,
+.day-moment,
+.price-card:not(.featured):not(.sage),
+.daycare-pricing-teaser,
+.rich-feature-card {
+  background:
+    radial-gradient(120% 80% at 0% 0%, var(--wash), transparent 58%),
+    #fff !important;
+}
+
+.review-tile:hover,
+.day-moment:hover,
+.price-card:hover,
+.about-team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+.day-moment,
+.review-tile,
+.about-team-card { overflow: hidden; }
+
+.day-moment img { border-radius: 0; }
+
+/* Photo cards and framed photos */
+.live-card {
+  border-radius: 24px !important;
+  box-shadow: var(--photo-shadow) !important;
+  transition: transform 260ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 260ms ease;
+}
+
+.live-card:hover { transform: translateY(-4px); }
+
+.included-photo,
+.start-photo,
+.split-image,
+.portal-driver-photo,
+.portal-built-photo,
+.home-trial-image,
+.daycare-final-photo,
+.location-intro-image,
+.live-intro-image {
+  border-radius: 28px !important;
+  box-shadow: var(--photo-shadow) !important;
+}
+
+.photo-strip img,
+.photo-marquee-track img { border-radius: 20px !important; }
+
+/* Quiet strips and notes */
+.pricing-info-strip,
+.blue-light-strip,
+.calc-result,
+.vehicle-note { border-radius: 22px !important; }
+
+.pricing-info-strip { background: var(--cream) !important; }
+
+/* Step numbers and ticks get the glossy tile from the Genera cards */
+.plain-steps li::before {
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--moss), var(--forest));
+  box-shadow: 0 8px 18px -8px var(--forest), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-family: var(--display);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tick-list li::before {
+  background: linear-gradient(135deg, #cfe2c1, var(--leaf));
+  box-shadow: 0 4px 10px -4px var(--moss), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Buttons: a touch rounder to sit with the cards, still no pills */
+.button,
+.hero-cta-live,
+.nav-cta,
+.ps-button { border-radius: 12px !important; }
+
+.form-wrap input,
+.form-wrap select,
+.form-wrap textarea { border-radius: 12px !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .review-tile:hover,
+  .day-moment:hover,
+  .price-card:hover,
+  .about-team-card:hover,
+  .live-card:hover { transform: none; }
+}
