@@ -270,7 +270,7 @@ function setCookieChoice(choice) {
   if (typeof window.gtag === "function") {
     window.gtag("consent", "update", { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
   }
-  if (choice === "granted") { rememberSource(); startClarity(); }
+  if (choice === "granted") { rememberSource(); startClarity(); startMeta(); }
   if (cookieNotice) cookieNotice.hidden = true;
 }
 
@@ -288,13 +288,35 @@ function startClarity() {
   let source = {};
   try { source = JSON.parse(readStore("sessionStorage", "ddc-source") || "{}"); } catch (error) { source = {}; }
   const fromAd = source.gclid || source.gbraid || source.wbraid || source.utm_medium === "cpc";
-  window.clarity("set", "traffic", fromAd ? "google-ad" : "other");
+  const fromMeta = source.fbclid || /^(facebook|instagram|meta|fb|ig)$/i.test(source.utm_source || "");
+  window.clarity("set", "traffic", fromAd ? "google-ad" : fromMeta ? "meta-ad" : "other");
   if (source.landing_page) window.clarity("set", "landing_page", source.landing_page);
   if (source.utm_campaign) window.clarity("set", "campaign", source.utm_campaign);
 }
 
 function clarityEvent(name) {
   if (typeof window.clarity === "function") window.clarity("event", name);
+}
+
+// Meta pixel, only for visitors who chose Accept.
+const META_PIXEL_ID = "762407973950227";
+function startMeta(userData) {
+  if (!META_PIXEL_ID) return;
+  if (!window.fbq) {
+    (function (f, b, e, v, n, t, s) {
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = true; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+  }
+  window.fbq("init", META_PIXEL_ID, userData || {});
+  if (!window.ddcMetaPageView) { window.fbq("track", "PageView"); window.ddcMetaPageView = true; }
+}
+
+function metaEvent(name) {
+  if (typeof window.fbq === "function") window.fbq("track", name);
 }
 
 if (cookieNotice && !readStore("localStorage", "ddc-consent")) cookieNotice.hidden = false;
@@ -307,7 +329,8 @@ document.querySelectorAll("[data-cookie-settings]").forEach((link) => {
     if (cookieNotice) cookieNotice.hidden = false;
   });
 });
-if (cookiesAccepted()) { rememberSource(); startClarity(); }
+if (cookiesAccepted() && !document.body.classList.contains("page-thank-you")) { rememberSource(); startClarity(); startMeta(); }
+else if (cookiesAccepted()) { rememberSource(); startClarity(); }
 
 function sendConversion(kind) {
   if (typeof window.gtag !== "function") return;
@@ -320,6 +343,7 @@ document.addEventListener("click", (event) => {
   const kind = link.getAttribute("href").startsWith("tel:") ? "phone" : "whatsapp";
   sendConversion(kind);
   clarityEvent(`${kind}_tap`);
+  metaEvent("Contact");
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: `${kind}_tap` });
 });
@@ -358,6 +382,10 @@ if (enquiryForm) {
 if (document.body.classList.contains("page-thank-you")) {
   let details = null;
   try { details = JSON.parse(readStore("sessionStorage", "ddc-enquiry") || "null"); } catch (error) { details = null; }
+  if (cookiesAccepted()) {
+    startMeta(details ? { em: details.email, ph: (details.phone_number || "").replace(/\D/g, "") } : {});
+    if (details) metaEvent("Lead");
+  }
   if (details && cookiesAccepted() && typeof window.gtag === "function") {
     window.gtag("set", "user_data", details);
     sendConversion("enquiry");
