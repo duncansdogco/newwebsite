@@ -8464,6 +8464,12 @@ p { text-wrap: pretty; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 .footer-grid address, .footer-grid address span { font-style: normal; }
+/* phones: Services and Company side by side so the footer is not one long list */
+@media (max-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; column-gap: 20px; row-gap: 34px; padding-top: 44px; padding-bottom: 40px; }
+  .footer-grid > .footer-brand, .footer-grid > div:last-child { grid-column: 1 / -1; }
+  .footer-grid > div { gap: 8px; }
+}
 
 /* small labels were 9 to 10px */
 .card-period, .price-per, .pricing-eyebrow { font-size: 12px !important; }

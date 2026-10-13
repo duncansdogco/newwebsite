@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-12-2";
+const assetVersion = "2026-10-13-1";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -810,7 +810,7 @@ function footer() {
         </a>
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
-      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/faq/">FAQ</a><a href="/facts/">Facts at a Glance</a><a href="/check-a-dog-daycare-licence/">Check a Licence</a><a href="/reviews/">Reviews</a><a href="/contact/">Contact</a><a href="/portal/">Customer Portal</a><a href="${PORTAL_URL}">Customer Login</a></div>
+      <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/facts/">Facts at a Glance</a><a href="/check-a-dog-daycare-licence/">Check a Licence</a><a href="/reviews/">Reviews</a><a href="${PORTAL_URL}">Customer Login</a></div>
       <div><h2>Contact</h2><a href="tel:07731798899">07731 798 899</a><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><address><span>Cobham, Surrey, KT11</span></address><span>Daycare LN/201800994</span><span>Boarding LN/202400651</span></div>
     </div>
     <div class="footer-bottom">
