@@ -263,6 +263,31 @@ exports.handler = async function (event) {
       return { statusCode: 500, body: err };
     }
 
+    // Copy for the enquiry log sheet. A script in jess@ reads these into the sheet
+    // and archives them, one "Field: value" per line.
+    const logLines = {
+      "Date": new Date(payload.created_at || Date.now()).toISOString(),
+      "Name": d.name || "", "Email": d.email || "", "Phone": d.phone || "",
+      "Dog": d.dog_name || "", "Service": d.service || "",
+      "Came from": cameFrom, "How they heard": d.heard_about_us || "",
+      "First page": d.landing_page || "", "Address": (d.address || "").replace(/\s+/g, " "),
+      "Campaign": [d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].filter(Boolean).join(" / "),
+    };
+    const logRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        from: "Duncan's Dog Co <forms@duncansdogco.com>",
+        to:   ["jess@duncansdogco.com"],
+        subject: `Enquiry log: ${name} — ${dogName}`,
+        text: Object.entries(logLines).map(([k, v]) => `${k}: ${String(v).replace(/\n/g, " ")}`).join("\n")
+      })
+    });
+    if (!logRes.ok) console.error("Resend log copy error:", await logRes.text());
+
     return { statusCode: 200, body: "OK" };
 
   } catch (err) {
