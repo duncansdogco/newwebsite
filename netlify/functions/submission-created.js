@@ -263,30 +263,30 @@ exports.handler = async function (event) {
       return { statusCode: 500, body: err };
     }
 
-    // Copy for the enquiry log sheet. A script in jess@ reads these into the sheet
-    // and archives them, one "Field: value" per line.
-    const logLines = {
-      "Date": new Date(payload.created_at || Date.now()).toISOString(),
-      "Name": d.name || "", "Email": d.email || "", "Phone": d.phone || "",
-      "Dog": d.dog_name || "", "Service": d.service || "",
-      "Came from": cameFrom, "How they heard": d.heard_about_us || "",
-      "First page": d.landing_page || "", "Address": (d.address || "").replace(/\s+/g, " "),
-      "Campaign": [d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].filter(Boolean).join(" / "),
+    // Add a row to the "DDC enquiries" Google Sheet through its linked log form
+    const logFields = {
+      "entry.146323642":  d.name || "",
+      "entry.735896542":  d.email || "",
+      "entry.497429921":  d.phone || "",
+      "entry.1708324317": d.dog_name || "",
+      "entry.691513638":  d.service || "",
+      "entry.753102070":  cameFrom,
+      "entry.1626790123": d.heard_about_us || "",
+      "entry.1053996749": d.landing_page || "",
+      "entry.757933321":  (d.address || "").replace(/\s+/g, " "),
+      "entry.608451693":  [d.utm_source, d.utm_medium, d.utm_campaign, d.utm_content].filter(Boolean).join(" / "),
+      "entry.1616965716": submittedAt,
     };
-    const logRes = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.RESEND_API_KEY}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        from: "Duncan's Dog Co <forms@duncansdogco.com>",
-        to:   ["jess@duncansdogco.com"],
-        subject: `Enquiry log: ${name} — ${dogName}`,
-        text: Object.entries(logLines).map(([k, v]) => `${k}: ${String(v).replace(/\n/g, " ")}`).join("\n")
-      })
-    });
-    if (!logRes.ok) console.error("Resend log copy error:", await logRes.text());
+    try {
+      const logRes = await fetch("https://docs.google.com/forms/d/e/1FAIpQLScgorfR4L1ZsEopV6byg3s4xgJd5w1csDonMUOZDGhuSDAyKg/formResponse", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(logFields).toString()
+      });
+      if (!logRes.ok) console.error("Enquiry log sheet error:", logRes.status);
+    } catch (logErr) {
+      console.error("Enquiry log sheet error:", logErr);
+    }
 
     return { statusCode: 200, body: "OK" };
 
