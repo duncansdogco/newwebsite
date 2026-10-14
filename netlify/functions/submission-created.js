@@ -30,7 +30,39 @@ exports.handler = async function (event) {
       hour: "2-digit", minute: "2-digit"
     });
 
-    const subject = `New enquiry: ${name} — ${dogName}`;
+    // Where the enquiry came from, read from the form's hidden fields
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const src    = (d.utm_source || "").toLowerCase();
+    const medium = (d.utm_medium || "").toLowerCase();
+    let refHost = "";
+    try { refHost = d.referrer ? new URL(d.referrer).hostname.replace(/^www\./, "") : ""; } catch (e) { refHost = ""; }
+
+    let cameFrom;
+    if (d.gclid || d.gbraid || d.wbraid || (src === "google" && /cpc|paid/.test(medium))) {
+      cameFrom = "Google ad";
+    } else if (/^(meta|facebook|instagram|fb|ig)$/.test(src) && /paid|cpc|ad/.test(medium)) {
+      cameFrom = `Meta ad${d.utm_content ? ` (${d.utm_content} ad)` : ""}`;
+    } else if (d.fbclid) {
+      cameFrom = "Instagram or Facebook link (not an ad)";
+    } else if (src) {
+      cameFrom = `Link tagged ${src}${medium ? ` / ${medium}` : ""}`;
+    } else if (/(^|\.)google\./.test(refHost) || /(^|\.)bing\.com$/.test(refHost)) {
+      cameFrom = "Google or Bing search (not an ad)";
+    } else if (/instagram|facebook/.test(refHost)) {
+      cameFrom = "Instagram or Facebook (not an ad)";
+    } else if (refHost && !refHost.endsWith("duncansdogco.com")) {
+      cameFrom = `Link on ${refHost}`;
+    } else if (!refHost) {
+      cameFrom = "Typed our address or used a bookmark";
+    } else {
+      cameFrom = "Not known (they may have said no to cookies)";
+    }
+    const firstPage   = d.landing_page || "Not known";
+    const theirAnswer = d.heard_about_us || "Not answered";
+    const sourceShort = cameFrom.startsWith("Google ad") ? "Google ad"
+      : cameFrom.startsWith("Meta ad") ? "Meta ad" : "";
+
+    const subject = `New enquiry: ${name} — ${dogName}${sourceShort ? ` (${sourceShort})` : ""}`;
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -160,6 +192,34 @@ exports.handler = async function (event) {
         <p style="margin:0;font-size:14px;color:#111;line-height:1.6;background:#f9fafb;border-radius:8px;padding:12px 14px;">${message.replace(/\n/g, "<br>")}</p>
       </td>
     </tr>` : ""}
+
+    <!-- Divider -->
+    <tr><td style="padding:20px 28px 0;"><hr style="border:none;border-top:1px solid #f3f4f6;margin:0;"></td></tr>
+
+    <!-- Source -->
+    <tr>
+      <td style="padding:16px 28px 0;">
+        <p style="margin:0 0 12px;font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:#9ca3af;">Where they came from</p>
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+          <tr>
+            <td width="50%" style="vertical-align:top;padding-bottom:14px;">
+              <p style="margin:0;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:#9ca3af;">Came from</p>
+              <p style="margin:3px 0 0;font-size:14px;color:#111;">${esc(cameFrom)}</p>
+            </td>
+            <td width="50%" style="vertical-align:top;padding-bottom:14px;">
+              <p style="margin:0;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:#9ca3af;">How they said they heard</p>
+              <p style="margin:3px 0 0;font-size:14px;color:#111;">${esc(theirAnswer)}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="vertical-align:top;padding-bottom:4px;">
+              <p style="margin:0;font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:0.4px;color:#9ca3af;">First page they saw</p>
+              <p style="margin:3px 0 0;font-size:14px;color:#111;">${esc(firstPage)}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
     <!-- Footer -->
     <tr>
