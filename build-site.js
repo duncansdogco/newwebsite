@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-13-meta";
+const assetVersion = "2026-10-17-form";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -102,7 +102,7 @@ const servicePages = [
       displayTitle: "We collect your dog<br><span>seven days a week</span>",
       text: "Collection and drop-off are included, and your phone tells you when your dog has been collected and when they're home. All breeds welcome, no exceptions.",
       ctaText: "Book a trial day",
-      ctaHref: "/contact/#enquiry-form",
+      ctaHref: "#enquiry",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
       stats: []
     },
@@ -1123,6 +1123,41 @@ function puppySupportSection() {
   </section>`;
 }
 
+// Short enquiry form for the daycare and puppy pages. Same "enquiry" form as the
+// contact page (a subset of its fields), so the email, the enquiry log and the
+// ad tracking all work the same way.
+function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name" }) {
+  const id = `quick-${service.toLowerCase().replace(/[^a-z]+/g, "-")}`;
+  return `<section class="daycare-final-cta quick-enquiry" id="enquiry">
+      <div class="daycare-final-photo reveal"><img src="${photo}" alt="${esc(alt)}" loading="lazy"></div>
+      <div class="daycare-final-copy reveal">
+        <p class="section-kicker">${esc(kicker)}</p>
+        <h2>${esc(title)}</h2>
+        <p>${esc(text)}</p>
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" class="quick-enquiry-form">
+          <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="service" value="${esc(service)}">
+          <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
+          <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-row">
+            <div class="form-group"><label for="${id}-name">Your name</label><input type="text" id="${id}-name" name="name" autocomplete="name" required></div>
+            <div class="form-group"><label for="${id}-phone">Phone number</label><input type="tel" id="${id}-phone" name="phone" autocomplete="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="${id}-email">Email address</label><input type="email" id="${id}-email" name="email" autocomplete="email" required></div>
+            <div class="form-group"><label for="${id}-postcode">Your postcode</label><input type="text" id="${id}-postcode" name="address" autocomplete="postal-code" required placeholder="e.g. KT11 1AA"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="${id}-dog">${esc(namePrompt)}</label><input type="text" id="${id}-dog" name="dog_name" required></div>
+            <div class="form-group"><label for="${id}-age">${esc(agePrompt)}</label><select id="${id}-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+          </div>
+          <div class="form-group"><label for="${id}-message">Which days would suit you, and what is your dog like?</label><textarea id="${id}-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
+          <button type="submit" class="button primary form-submit">Send</button>
+          <p class="quick-enquiry-call">Or call us on <a href="tel:07731798899">07731 798 899</a></p>
+        </form>
+      </div>
+    </section>`;
+}
+
 function ctaBand(kicker, title, text, href = "/contact/#enquiry-form", label = "Enquire Now") {
   return `<section class="cta-band"><p class="section-kicker">${esc(kicker)}</p><h2>${hd(title)}</h2><p>${esc(text)}</p><a class="button primary" href="${href}">${esc(label)}</a></section>`;
 }
@@ -1257,20 +1292,12 @@ function serviceBody(page) {
       <a class="button secondary dark" href="/pricing/">See full pricing</a>
     </section>
     ${faqSection({ kicker: "Questions", title: "Daycare questions", faqs: page.faqs })}
-    <section class="daycare-final-cta">
-      <div class="daycare-final-photo reveal"><img src="/assets/insta/final.jpg" alt="A happy black labrador in the woodland" loading="lazy"></div>
-      <div class="daycare-final-copy reveal">
-        <p class="section-kicker">Ready to get started?</p>
-        <h2>We'd love to meet your dog</h2>
-        <p>Enquire now and we'll be in touch within 24 hours.</p>
-        <a class="button primary" href="/contact/#enquiry-form">Enquire now</a>
-      </div>
-    </section>`;
+    ${quickEnquiry({ service: "Doggy Daycare", photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Ready to get started?", title: "We'd love to meet your dog", text: "Leave your details here and we'll call you within 24 hours to arrange a trial day." })}`;
   }
 
   if (page.slug === "puppies") {
     const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, provided they have had their primary vaccinations and received veterinary clearance to socialise with other dogs."], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
-    return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${richFeatureGrid([["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models."], ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day."], ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm."], ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."], ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach."], ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home."]])}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${ctaBand("Ready for Puppy School?", "Book a puppy introduction.", "Spaces in Puppy School are limited. Get in touch to check availability and arrange the right first step.", "/contact/#enquiry-form", "Enquire about Puppy School")}`;
+    return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${richFeatureGrid([["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models."], ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day."], ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm."], ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team."], ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach."], ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home."]])}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${quickEnquiry({ service: "Puppy School", photo: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co.", kicker: "Ready for Puppy School?", title: "Book a puppy introduction", text: "Spaces are limited. Tell us your puppy's age and we'll call you within 24 hours about their first day.", agePrompt: "Puppy's age", namePrompt: "Your puppy's name" })}`;
   }
 
   if (page.slug === "sleepovers") {
@@ -2146,8 +2173,8 @@ function faqAndContact() {
             <select id="heard" name="heard_about_us"><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select>
           </div>
           <div class="form-group">
-            <label for="message">Anything else we should know?</label>
-            <textarea id="message" name="message" placeholder="Tell us a bit about your dog - temperament, any quirks, how many days a week you're thinking..."></textarea>
+            <label for="message">Tell us about your dog *</label>
+            <textarea id="message" name="message" required placeholder="Tell us a bit about your dog: temperament, any quirks, and which days a week you're thinking of."></textarea>
           </div>
           <button type="submit" class="form-submit">Send Enquiry</button>
         </form>

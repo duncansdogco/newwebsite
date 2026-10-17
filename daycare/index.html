@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap">
-  <link rel="stylesheet" href="/styles.css?v=2026-10-13-meta">
+  <link rel="stylesheet" href="/styles.css?v=2026-10-17-form">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://duncansdogco.com/#business","name":"Duncan's Dog Co.","url":"https://duncansdogco.com","telephone":"+447731798899","email":"info@duncansdogco.com","foundingDate":"2011","priceRange":"££","description":"Woodland dog daycare in Cobham, with safe collection across Surrey and South West London.","address":{"@type":"PostalAddress","addressLocality":"Cobham","addressRegion":"Surrey","postalCode":"KT11","addressCountry":"GB"},"areaServed":["Cobham","Wimbledon","Clapham","Wandsworth","Putney","Esher","Balham","Earlsfield","Southfields","Raynes Park","New Malden","Morden","Tooting","Weybridge","Walton-on-Thames","Hersham","Claygate","Oxshott","Byfleet","West Byfleet","Effingham","Horsley","St George's Hill","Copse Hill","Motspur Park"],"openingHours":"Mo-Su 07:45-18:30","image":"https://duncansdogco.com/assets/woodland.jpg","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"49","bestRating":"5","worstRating":"1"}}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Woodland Dog Daycare in Cobham, Surrey","description":"Woodland dog daycare in Cobham, Surrey, with safe collection across Surrey and SW London, 10 acres of private woodland, and 5-star licensed care.","provider":{"@id":"https://duncansdogco.com/#business"},"areaServed":["Cobham","Wimbledon","Clapham","Wandsworth","Putney","Esher","Balham","Earlsfield","Southfields","Raynes Park","New Malden","Morden","Tooting","Weybridge","Walton-on-Thames","Hersham","Claygate","Oxshott","Byfleet","West Byfleet","Effingham","Horsley","St George's Hill","Copse Hill","Motspur Park"],"serviceType":"Daycare","url":"https://duncansdogco.com/daycare/"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this dog daycare in Cobham suitable for nervous dogs?","acceptedAnswer":{"@type":"Answer","text":"Often, yes. We assess dogs individually and introduce them gently, starting with a visit before regular daycare begins."}},{"@type":"Question","name":"Do you collect dogs from SW London?","acceptedAnswer":{"@type":"Answer","text":"Yes, route-dependent collection is available across areas including Wimbledon, Clapham, Putney, Wandsworth, Balham and Earlsfield."}},{"@type":"Question","name":"Is woodland daycare better than a dog walker?","acceptedAnswer":{"@type":"Answer","text":"It depends on the dog. Daycare suits dogs who benefit from longer enrichment, supervised social groups and a consistent routine."}}]}</script>
@@ -72,7 +72,7 @@
       <div class="live-display-title" aria-hidden="true">We collect your dog<br><span>seven days a week</span></div>
       <p>Collection and drop-off are included, and your phone tells you when your dog has been collected and when they&#39;re home. All breeds welcome, no exceptions.</p>
       
-      <a class="hero-cta-live" href="/contact/#enquiry-form">Book a trial day →</a>
+      <a class="hero-cta-live" href="#enquiry">Book a trial day →</a>
       <p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p>
     </div>
     <div class="live-page-video"><video poster="/assets/woodland.jpg" autoplay muted loop playsinline preload="auto"><source src="https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4" type="video/mp4"></video></div>
@@ -195,13 +195,32 @@
     </div>
     <div class="reveal"><div class="faq-list"><details open><summary><span>Is this dog daycare in Cobham suitable for nervous dogs?</span><i aria-hidden="true"></i></summary><div class="faq-answer"><p>Often, yes. We assess dogs individually and introduce them gently, starting with a visit before regular daycare begins.</p></div></details><details><summary><span>Do you collect dogs from SW London?</span><i aria-hidden="true"></i></summary><div class="faq-answer"><p>Yes, route-dependent collection is available across areas including Wimbledon, Clapham, Putney, Wandsworth, Balham and Earlsfield.</p></div></details><details><summary><span>Is woodland daycare better than a dog walker?</span><i aria-hidden="true"></i></summary><div class="faq-answer"><p>It depends on the dog. Daycare suits dogs who benefit from longer enrichment, supervised social groups and a consistent routine.</p></div></details></div></div>
   </section>
-    <section class="daycare-final-cta">
+    <section class="daycare-final-cta quick-enquiry" id="enquiry">
       <div class="daycare-final-photo reveal"><img src="/assets/insta/final.jpg" alt="A happy black labrador in the woodland" loading="lazy"></div>
       <div class="daycare-final-copy reveal">
         <p class="section-kicker">Ready to get started?</p>
-        <h2>We'd love to meet your dog</h2>
-        <p>Enquire now and we'll be in touch within 24 hours.</p>
-        <a class="button primary" href="/contact/#enquiry-form">Enquire now</a>
+        <h2>We&#39;d love to meet your dog</h2>
+        <p>Leave your details here and we&#39;ll call you within 24 hours to arrange a trial day.</p>
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" class="quick-enquiry-form">
+          <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="service" value="Doggy Daycare">
+          <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
+          <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-doggy-daycare-name">Your name</label><input type="text" id="quick-doggy-daycare-name" name="name" autocomplete="name" required></div>
+            <div class="form-group"><label for="quick-doggy-daycare-phone">Phone number</label><input type="tel" id="quick-doggy-daycare-phone" name="phone" autocomplete="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-doggy-daycare-email">Email address</label><input type="email" id="quick-doggy-daycare-email" name="email" autocomplete="email" required></div>
+            <div class="form-group"><label for="quick-doggy-daycare-postcode">Your postcode</label><input type="text" id="quick-doggy-daycare-postcode" name="address" autocomplete="postal-code" required placeholder="e.g. KT11 1AA"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-doggy-daycare-dog">Your dog&#39;s name</label><input type="text" id="quick-doggy-daycare-dog" name="dog_name" required></div>
+            <div class="form-group"><label for="quick-doggy-daycare-age">Dog&#39;s age</label><select id="quick-doggy-daycare-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+          </div>
+          <div class="form-group"><label for="quick-doggy-daycare-message">Which days would suit you, and what is your dog like?</label><textarea id="quick-doggy-daycare-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
+          <button type="submit" class="button primary form-submit">Send</button>
+          <p class="quick-enquiry-call">Or call us on <a href="tel:07731798899">07731 798 899</a></p>
+        </form>
       </div>
     </section>
   </main>
@@ -240,7 +259,7 @@
     </div>
     <a class="whatsapp-float" href="https://wa.me/447731798899?text=Hi%20Duncan%27s%20Dog%20Co%2C%20I%27d%20like%20to%20enquire%20about%20dog%20daycare." target="_blank" rel="noopener" aria-label="WhatsApp Duncan's Dog Co. on 07731 798 899"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.1 2a9.8 9.8 0 0 0-8.4 14.9L2.5 22l5.3-1.2A9.8 9.8 0 1 0 12.1 2Zm0 2a7.8 7.8 0 0 1 0 15.6c-1.3 0-2.6-.3-3.7-.9l-.4-.2-2.6.6.6-2.5-.3-.4A7.8 7.8 0 0 1 12.1 4Zm-3.3 3.8c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.8 4.4 3.8 2.2.9 2.6.7 3.1.7.5 0 1.6-.7 1.8-1.3.2-.6.2-1.2.1-1.3-.1-.1-.2-.2-.5-.4l-1.8-.9c-.3-.1-.5-.2-.7.2l-.7.9c-.2.2-.3.3-.6.1-.3-.1-1.1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2.1-.4 0-.6l-.8-1.9c-.2-.5-.4-.5-.6-.5h-.5Z"/></svg><span>WhatsApp us</span></a>
   </footer>
-  <script src="/script.js?v=2026-10-13-meta"></script>
+  <script src="/script.js?v=2026-10-17-form"></script>
   
 </body>
 </html>

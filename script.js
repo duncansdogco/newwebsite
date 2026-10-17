@@ -371,6 +371,10 @@ if (enquiryForm) {
   });
   enquiryForm.addEventListener("submit", () => {
     clarityEvent("enquiry_sent");
+    // A flag only, no personal details: lets the thank-you page count the enquiry
+    // for Google even when the visitor said no to cookies (Google then counts it
+    // without cookies).
+    writeStore("sessionStorage", "ddc-enquiry-sent", "1");
     if (!cookiesAccepted()) return;
     writeStore("sessionStorage", "ddc-enquiry", JSON.stringify({
       email: enquiryForm.email.value.trim().toLowerCase(),
@@ -386,9 +390,10 @@ if (document.body.classList.contains("page-thank-you")) {
     startMeta(details ? { em: details.email, ph: (details.phone_number || "").replace(/\D/g, "") } : {});
     if (details) metaEvent("Lead");
   }
-  if (details && cookiesAccepted() && typeof window.gtag === "function") {
-    window.gtag("set", "user_data", details);
+  const sent = details || readStore("sessionStorage", "ddc-enquiry-sent") === "1";
+  if (sent && typeof window.gtag === "function") {
+    if (details && cookiesAccepted()) window.gtag("set", "user_data", details);
     sendConversion("enquiry");
   }
-  try { window.sessionStorage.removeItem("ddc-enquiry"); } catch (error) { /* storage blocked */ }
+  try { window.sessionStorage.removeItem("ddc-enquiry"); window.sessionStorage.removeItem("ddc-enquiry-sent"); } catch (error) { /* storage blocked */ }
 }

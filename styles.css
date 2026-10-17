@@ -8709,3 +8709,16 @@ body { -webkit-font-smoothing: antialiased; }
   .about-team-card:hover,
   .live-card:hover { transform: none; }
 }
+
+/* Short enquiry form on the daycare and puppy pages */
+.quick-enquiry .daycare-final-copy h2 { font-size: clamp(36px, 5vw, 60px); }
+.quick-enquiry-form { margin-top: 22px; }
+.quick-enquiry-form .form-row { gap: 14px; }
+.quick-enquiry-form .form-group { margin-bottom: 14px; }
+.quick-enquiry-form .form-submit { width: 100%; }
+.quick-enquiry-call { margin-top: 14px; font-size: 16px; }
+.quick-enquiry-call a { color: var(--forest); font-weight: 700; }
+@media (max-width: 980px) {
+  .quick-enquiry { grid-template-columns: 1fr; padding-top: 56px; padding-bottom: 56px; }
+  .quick-enquiry .daycare-final-photo img { height: 260px; }
+}
