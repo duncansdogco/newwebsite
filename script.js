@@ -271,7 +271,7 @@ function setCookieChoice(choice) {
     window.gtag("consent", "update", { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
   }
   if (choice === "granted") { rememberSource(); startClarity(); startMeta(); }
-  if (cookieNotice) cookieNotice.hidden = true;
+  if (cookieNotice) { cookieNotice.hidden = true; document.body.classList.remove("has-cookie-notice"); }
 }
 
 // Microsoft Clarity visit replays, only for visitors who chose Accept.
@@ -319,14 +319,38 @@ function metaEvent(name) {
   if (typeof window.fbq === "function") window.fbq("track", name);
 }
 
-if (cookieNotice && !readStore("localStorage", "ddc-consent")) cookieNotice.hidden = false;
+// The cookie box must never sit over a form. While it shows, the page gets
+// room at the bottom so nothing is stuck under it, and it steps aside (no
+// choice saved, so no cookies) as soon as someone starts on a form or a form
+// comes into view. It shows again on the next page.
+function showCookieNotice() {
+  if (!cookieNotice) return;
+  cookieNotice.hidden = false;
+  document.body.style.setProperty("--cookie-space", `${cookieNotice.offsetHeight + 40}px`);
+  document.body.classList.add("has-cookie-notice");
+}
+function tuckCookieNotice() {
+  if (!cookieNotice || cookieNotice.hidden) return;
+  cookieNotice.hidden = true;
+  document.body.classList.remove("has-cookie-notice");
+}
+if (cookieNotice && !readStore("localStorage", "ddc-consent")) showCookieNotice();
+document.querySelectorAll("form").forEach((form) => {
+  form.addEventListener("focusin", tuckCookieNotice);
+  if ("IntersectionObserver" in window) {
+    const watch = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { tuckCookieNotice(); watch.disconnect(); }
+    }, { threshold: 0.25 });
+    watch.observe(form);
+  }
+});
 document.querySelectorAll("[data-consent]").forEach((button) => {
   button.addEventListener("click", () => setCookieChoice(button.dataset.consent));
 });
 document.querySelectorAll("[data-cookie-settings]").forEach((link) => {
   link.addEventListener("click", (event) => {
     event.preventDefault();
-    if (cookieNotice) cookieNotice.hidden = false;
+    showCookieNotice();
   });
 });
 if (cookiesAccepted() && !document.body.classList.contains("page-thank-you")) { rememberSource(); startClarity(); startMeta(); }

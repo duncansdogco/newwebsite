@@ -8528,6 +8528,10 @@ p { text-wrap: pretty; }
   display: none;
 }
 
+body.has-cookie-notice {
+  padding-bottom: var(--cookie-space, 0);
+}
+
 .cookie-notice p {
   margin: 0;
 }
