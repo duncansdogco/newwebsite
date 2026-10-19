@@ -9175,3 +9175,12 @@ b, strong, label, th { font-weight: 700; }
   .benefit-rows.portrait .benefit-row.flip { grid-template-columns: 1fr; }
   .benefit-rows.portrait .benefit-row img { max-height: 460px; }
 }
+
+.postcode-result:empty { display: none; }
+.postcode-result { margin-top: 14px; text-align: center; }
+.postcode-result p { margin: 0 0 10px; color: var(--text); font-size: 15px; line-height: 1.45; }
+.postcode-choices { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.postcode-enquire { border: 0; background: none; color: var(--forest); font: inherit; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.postcode-check .postcode-result { display: block; }
+.postcode-check .postcode-result:empty { display: none; }
+.postcode-check .postcode-choices { display: flex; }

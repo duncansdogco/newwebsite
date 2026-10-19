@@ -971,6 +971,12 @@ function catchmentSection() {
   const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
   const areaBySlug = Object.fromEntries(areas.map(([slug, name]) => [slug, name]));
   // Each town is a fingerpost pointing in at Cobham: London from the left, Surrey from the right (19 Oct 2026)
+  // Postcode district to area pages, so the postcode box can send people to their area
+  const postcodeAreas = {};
+  areas.forEach(([slug, name]) => {
+    const district = (areaDetails[slug] || {}).postcode;
+    if (district) (postcodeAreas[district] = postcodeAreas[district] || []).push([slug, name]);
+  });
   const posts = (slugs, side) => slugs.map((slug) => `<a class="fingerpost ${side}" href="/areas/${slug}/">${areaBySlug[slug]}</a>`).join("");
 
   return `<section class="catchment-section catchment-signs" aria-labelledby="catchment-title">
@@ -983,9 +989,10 @@ function catchmentSection() {
       <div class="signs-side signs-left"><span class="signs-label">South West London</span>${posts(swLondon, "to-right")}</div>
       <div class="signs-centre">
         <div class="signs-hub" aria-hidden="true"><i class="signs-pulse"></i><i class="signs-pulse"></i><i class="signs-pulse"></i><div class="signs-circle"><strong>Cobham</strong><span>10 acres of private woodland</span></div></div>
-        <form class="postcode-check" action="/contact/#enquiry-form">
+        <form class="postcode-check" action="/contact/#enquiry-form" data-areas="${esc(JSON.stringify(postcodeAreas))}">
           <label for="postcode-check">Do we collect from you?</label>
           <div><input id="postcode-check" name="postcode" autocomplete="postal-code" placeholder="Your postcode"><button class="button primary" type="submit">Check</button></div>
+          <div class="postcode-result" aria-live="polite"></div>
         </form>
       </div>
       <div class="signs-side signs-right"><span class="signs-label">Surrey</span>${posts(surrey, "to-left")}</div>

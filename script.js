@@ -422,25 +422,49 @@ if (document.body.classList.contains("page-thank-you")) {
   try { window.sessionStorage.removeItem("ddc-enquiry"); window.sessionStorage.removeItem("ddc-enquiry-sent"); } catch (error) { /* storage blocked */ }
 }
 
-// Postcode box in the collection section: fill the enquiry form's postcode
-// on this page, or carry it to the contact form (kept out of the URL).
+// Postcode box in the collection section: send people to their area page.
+// Shared districts (KT10 is Esher and Claygate) offer a choice; anywhere else
+// goes to the enquiry form with the postcode filled in (kept out of the URL).
 const postcodeCheck = document.querySelector(".postcode-check");
 const postcodeTarget = () => document.querySelector('form[name="enquiry"] input[name="address"]');
+const goToEnquiry = (postcode) => {
+  const target = postcodeTarget();
+  if (target) {
+    if (postcode) target.value = postcode;
+    const form = target.closest("form");
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    const first = form.querySelector('input[name="name"]');
+    if (first) setTimeout(() => first.focus({ preventScroll: true }), 600);
+  } else {
+    if (postcode) writeStore("sessionStorage", "ddc-postcode", postcode);
+    window.location.href = "/contact/#enquiry-form";
+  }
+};
 if (postcodeCheck) {
+  let areaMap = {};
+  try { areaMap = JSON.parse(postcodeCheck.dataset.areas || "{}"); } catch (error) { /* no map */ }
+  const result = postcodeCheck.querySelector(".postcode-result");
   postcodeCheck.addEventListener("submit", (event) => {
     event.preventDefault();
-    const postcode = postcodeCheck.querySelector("input").value.trim();
-    const target = postcodeTarget();
-    if (target) {
-      if (postcode) target.value = postcode;
-      const form = target.closest("form");
-      form.scrollIntoView({ behavior: "smooth", block: "start" });
-      const first = form.querySelector('input[name="name"]');
-      if (first) setTimeout(() => first.focus({ preventScroll: true }), 600);
-    } else {
-      if (postcode) writeStore("sessionStorage", "ddc-postcode", postcode);
-      window.location.href = "/contact/#enquiry-form";
+    const raw = postcodeCheck.querySelector("input").value.trim();
+    const compact = raw.toUpperCase().replace(/\s+/g, "");
+    const district = /^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/.test(compact) ? compact.slice(0, -3) : compact;
+    const matches = areaMap[district] || [];
+    result.innerHTML = "";
+    if (!raw) { postcodeCheck.querySelector("input").focus(); return; }
+    clarityEvent("postcode_check");
+    if (matches.length === 1) {
+      writeStore("sessionStorage", "ddc-postcode", raw);
+      window.location.href = `/areas/${matches[0][0]}/`;
+      return;
     }
+    if (matches.length > 1) {
+      result.innerHTML = `<p>Yes, we collect from ${district}. Which is closest?</p><div class="postcode-choices">${matches.map(([slug, name]) => `<a class="fingerpost to-right" href="/areas/${slug}/">${name}</a>`).join("")}</div>`;
+      writeStore("sessionStorage", "ddc-postcode", raw);
+      return;
+    }
+    result.innerHTML = `<p>${district} isn't on one of our regular routes yet, but routes change. Send us your details and we'll check.</p><button type="button" class="postcode-enquire">Ask us about ${district}</button>`;
+    result.querySelector(".postcode-enquire").addEventListener("click", () => goToEnquiry(raw));
   });
 }
 {
