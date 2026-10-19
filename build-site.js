@@ -1672,7 +1672,7 @@ function home() {
   ${homeReviews()}
   ${photoMarquee()}
   ${catchmentSection()}
-  ${homeTrialFormSection()}`;
+  ${quickEnquiry({ service: "Homepage", photo: "/assets/insta/home-trial.jpg", alt: "A flat-coated retriever over the shoulder of a Duncan's Dog Co. team member in the woodland", kicker: "Start here", title: "Book a trial day", text: "Leave your details and we'll call you within 24 hours to arrange a meet and greet, then a trial day." })}`;
   writePage("/", layout({
     route: "/",
     title: "Dog Daycare Cobham, Surrey & SW London | Duncan's Dog Co.",

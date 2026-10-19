@@ -177,15 +177,34 @@
       <a class="button secondary dark" href="/contact/#enquiry-form">Check your postcode</a>
     </div>
   </section>
-  <section class="home-trial-section" id="homepage-enquiry">
-    <div class="home-trial-image reveal"><img src="/assets/insta/home-trial.jpg" alt="A flat-coated retriever over the shoulder of a Duncan's Dog Co. team member in the woodland"></div>
-    <div class="home-trial-panel reveal">
-      <p class="section-kicker">Start here</p>
-      <h2>Book a trial day</h2>
-      <p>Send us an enquiry and we will arrange a meet and greet so we can get to know your dog properly. Then we can get a trial day set up and talk through the best routine for your dog.</p>
-      <div class="home-trial-actions"><a class="button primary" href="/contact/#enquiry-form">Open enquiry form</a><a class="button secondary dark" href="tel:07731798899">Call 07731 798 899</a></div>
-    </div>
-  </section>
+  <section class="daycare-final-cta quick-enquiry" id="enquiry">
+      <div class="daycare-final-photo reveal"><img src="/assets/insta/home-trial.jpg" alt="A flat-coated retriever over the shoulder of a Duncan&#39;s Dog Co. team member in the woodland" loading="lazy"></div>
+      <div class="daycare-final-copy reveal">
+        <p class="section-kicker">Start here</p>
+        <h2>Book a trial day</h2>
+        <p>Leave your details and we&#39;ll call you within 24 hours to arrange a meet and greet, then a trial day.</p>
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" class="quick-enquiry-form">
+          <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="service" value="Homepage">
+          <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
+          <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-homepage-name">Your name</label><input type="text" id="quick-homepage-name" name="name" autocomplete="name" required></div>
+            <div class="form-group"><label for="quick-homepage-phone">Phone number</label><input type="tel" id="quick-homepage-phone" name="phone" autocomplete="tel" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-homepage-email">Email address</label><input type="email" id="quick-homepage-email" name="email" autocomplete="email" required></div>
+            <div class="form-group"><label for="quick-homepage-postcode">Your postcode</label><input type="text" id="quick-homepage-postcode" name="address" autocomplete="postal-code" required placeholder="e.g. KT11 1AA"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="quick-homepage-dog">Your dog&#39;s name</label><input type="text" id="quick-homepage-dog" name="dog_name" required></div>
+            <div class="form-group"><label for="quick-homepage-age">Dog&#39;s age</label><select id="quick-homepage-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+          </div>
+          <div class="form-group"><label for="quick-homepage-message">Which days would suit you, and what is your dog like?</label><textarea id="quick-homepage-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
+          <button type="submit" class="button primary form-submit">Send</button>
+          <p class="quick-enquiry-call">Or call us on <a href="tel:07731798899">07731 798 899</a></p>
+        </form>
+      </div>
+    </section>
   </main>
   <footer class="site-footer">
     <div class="footer-grid">
