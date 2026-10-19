@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-19-pills";
+const assetVersion = "2026-10-19-hero";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -840,7 +840,7 @@ function socialIcon(name) {
 
 function heroBlock(h1, intro) {
   return `<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-media" aria-label="Dogs exploring Duncan's Dog Co. woodland"><video src="${videoHero}" poster="/assets/woodland.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+  <div class="hero-media" aria-label="Drone view over the Duncan's Dog Co. woodland, then dogs playing under the pines"><video poster="/assets/video/hero-poster.jpg" autoplay muted loop playsinline preload="auto"><source src="/assets/video/hero-tall.mp4" type="video/mp4" media="(max-aspect-ratio: 3/4)"><source src="/assets/video/hero-wide.mp4" type="video/mp4"></video></div>
   <div class="hero-copy reveal"><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div></div>
   <div class="star-spray paw-spray-a" aria-hidden="true"></div>
   <div class="star-spray paw-spray-b" aria-hidden="true"></div>
@@ -1265,15 +1265,16 @@ function serviceBody(page) {
   if (page.slug === "daycare") {
     const day = [
       ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
-      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. 10 acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland.jpg", "A group of dogs heading along the woodland path"],
+      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. 10 acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland-2.jpg", "A pack of dogs together on the woodland path"],
       ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
       ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home.jpg", "A team member crouched with a spaniel at the end of the day"]
     ];
     const included = [
-      ["The same team, door to door", "Collection and drop-off on our Surrey and South West London routes, with a notification on your phone when your dog is collected and when they're home. The person who collects your dog is with them all day.", "/assets/insta/home-trial.jpg", "A Duncan's Dog Co. team member carrying a flat-coated retriever over his shoulder"],
-      ["10 acres of private woodland", "Fenced, with shade in summer and shelter when it rains. Open 365 days a year, including bank holidays.", "/assets/insta/m-07.jpg", "A cockapoo walking towards the camera through the pine woodland"],
-      ["Small groups, well matched", "Groups matched by size, age and energy, with a 1:6 staff ratio. All breeds welcome.", "/assets/insta/included.jpg", "A group of dogs together on the trampoline at Duncan's Dog Co."],
-      ["Photos and a report card", "Photos from the day and a report card in your customer portal, so you know how their day went.", "/assets/insta/m-11.jpg", "A happy spaniel looking up in the woodland"]
+      ["Collected by someone who spends the day with them", "The person at your door in the morning is one of the daycare team, and they're with your dog in the woodland all day. You get a message when they're collected and when they're home.", "/assets/insta/why-collect.jpg", "A team member hugging a fox red retriever in the pine woodland"],
+      ["A woodland to themselves", "10 acres of private, fenced pine woodland in Cobham, with shade in summer and shelter when it rains.", "/assets/insta/why-woodland.jpg", "Sunlight through tall pines with a dog in the clearing"],
+      ["A team that stays", "Several of our team have been with us for over ten years, and every one of them is first aid trained.", "/assets/insta/why-team.jpg", "A team member with a red setter under the gazebo"],
+      ["Open every day of the year for our regulars", "Weekends, bank holidays and Christmas included.", "/assets/insta/why-365.jpg", "A pointer in a red Christmas bow in the woodland"],
+      ["Photos of their day", "Photos and a report card from the day in your customer portal, so you know how it went.", "/assets/insta/why-photos.jpg", "Two Australian shepherds grinning on a wooden pallet"]
     ];
     const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Trial day", "A settling-in day before joining the group, at their pace, with no rushing. We send you a report card afterwards."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
     return `<section class="daycare-story-section">
@@ -1299,7 +1300,7 @@ function serviceBody(page) {
     ${portalShowcase({ start: "alerts", forDaycare: true })}
     <section class="included-rows">
       <div class="section-heading-row reveal"><div><h2>What every daycare day includes</h2></div></div>
-      <div class="benefit-rows">${included.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>
+      ${photoRows(included, "portrait")}
       <div class="split-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary dark" href="/areas/">Check your area</a></div>
     </section>
     <section class="start-split">
