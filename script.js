@@ -463,7 +463,7 @@ if (postcodeCheck) {
       writeStore("sessionStorage", "ddc-postcode", raw);
       return;
     }
-    result.innerHTML = `<p>${district} isn't on one of our regular routes yet, but routes change. Send us your details and we'll check.</p><button type="button" class="postcode-enquire">Ask us about ${district}</button>`;
+    result.innerHTML = `<p>${district} isn't on one of our regular collection routes, but you're very welcome to drop off and pick up at our woodland in Cobham, just off the A3 and M25.</p><button type="button" class="postcode-enquire">Book a trial day with drop-off</button>`;
     result.querySelector(".postcode-enquire").addEventListener("click", () => goToEnquiry(raw));
   });
 }
