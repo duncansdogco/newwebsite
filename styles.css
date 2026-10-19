@@ -9280,3 +9280,41 @@ b, strong, label, th { font-weight: 700; }
   border-radius: 28px !important;
   box-shadow: var(--photo-shadow) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Calmer colours, 19 Oct 2026. Jess: too many colours, banner too dark.
+   Three colours only: white, one light green, one dark green (footer + header).
+   Light green is B, #B9C5A8, between Saxon Green and its tint.
+   ══════════════════════════════════════════════════════════════════ */
+:root { --cream: #B9C5A8 !important; --vert: #B9C5A8 !important; }
+/* Inner page banners: light instead of dark */
+.live-page-hero { background: var(--cream) !important; color: var(--ink) !important; }
+.live-page-copy .live-display-title, .live-page-copy h1, .live-page-copy .live-display-title span { color: var(--forest) !important; }
+.live-page-copy > p:not(.eyebrow):not(.hero-trust) { color: #3D4A40 !important; }
+.live-page-copy .eyebrow { color: var(--moss) !important; }
+.hero-cta-live { background: var(--forest) !important; border-color: var(--forest) !important; color: #fff !important; }
+.live-page-video { border-radius: 0 0 0 40px; overflow: hidden; }
+/* Reviews band and photo strip */
+.home-reviews { background: var(--cream) !important; }
+.photo-marquee { background: #fff !important; }
+.review-avatar { background: #fff !important; }
+/* Enquiry form: light green, white fields, dark button */
+.quick-enquiry { background: var(--cream) !important; }
+.quick-enquiry .daycare-final-copy h2 { color: var(--forest) !important; }
+.quick-enquiry .daycare-final-copy > p, .quick-enquiry label, .quick-enquiry-call { color: #3D4A40 !important; }
+.quick-enquiry .section-kicker { color: var(--moss) !important; }
+.quick-enquiry-call a { color: var(--forest) !important; }
+.quick-enquiry input, .quick-enquiry select, .quick-enquiry textarea { border: 1px solid #D3D7C8 !important; }
+/* Collection: white so colour and white alternate */
+.catchment-section.catchment-signs { background: #fff !important; }
+.signs-circle { box-shadow: 0 0 0 8px #fff, 0 0 0 9px rgba(46,59,50,.25), 0 30px 60px -20px rgba(31,38,32,.45) !important; }
+
+/* Genera badge: white card with the real Genera logo (replaces the teal card) */
+.genera-badge.genera-card { background: #fff !important; box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.5) !important; padding: 14px 18px !important; gap: 6px !important; }
+.genera-badge.genera-card small { order: 2; color: #3D4A40 !important; font-size: 12.5px !important; letter-spacing: 0 !important; }
+.genera-badge.genera-card img { order: 1; width: 120px !important; }
+.quick-enquiry input, .quick-enquiry select, .quick-enquiry textarea { border-color: transparent !important; }
+/* Inner pages: solid Studio Green header over the light banner (no dark fade) */
+body:has(.live-page-hero) .site-header { background: var(--forest) !important; }
+body:has(.live-page-hero) .site-header::before { opacity: 0 !important; }
+body:has(.live-page-hero) .site-nav a:not(.nav-cta), body:has(.live-page-hero) .brand span { text-shadow: none !important; }
