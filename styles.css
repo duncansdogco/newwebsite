@@ -9164,3 +9164,14 @@ b, strong, label, th { font-weight: 700; }
 .faq-price-grid strong,
 .faq-price-panel strong,
 .startup-stat-card strong { font-family: var(--display) !important; font-style: normal !important; font-weight: 600 !important; }
+
+/* Puppy School: the six points as photo rows, portrait frames so no ears are cropped */
+.puppy-care-section .benefit-rows { margin-top: 48px; }
+.benefit-rows.portrait .benefit-row { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.benefit-rows.portrait .benefit-row.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.benefit-rows.portrait .benefit-row img { aspect-ratio: 4 / 5; max-height: 520px; object-position: center 35%; }
+@media (max-width: 760px) {
+  .benefit-rows.portrait .benefit-row,
+  .benefit-rows.portrait .benefit-row.flip { grid-template-columns: 1fr; }
+  .benefit-rows.portrait .benefit-row img { max-height: 460px; }
+}
