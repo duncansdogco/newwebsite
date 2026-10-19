@@ -795,7 +795,7 @@ function footer() {
         <strong>Duncan's Dog Co.</strong>
         <span>Woodland dog daycare in Cobham, with collection across Surrey and South West London.</span>
         <div class="social-links">${socialLinks.map(([name, href]) => `<a href="${href}" target="_blank" rel="noopener" aria-label="${esc(name)}: ${href.replace("https://www.", "")}" title="${esc(name)}">${socialIcon(name)}<span>${esc(name)}</span></a>`).join("")}</div>
-        <a href="https://www.generasoftware.com" class="genera-badge genera-card" target="_blank" rel="noopener" aria-label="Bookings and payments by Genera, the dog daycare software built at Duncan's Dog Co"><small>Our bookings and payments</small><img src="/assets/genera-logo-forest.png" alt="Genera" width="120" height="32" loading="lazy"></a>
+        <a href="https://www.generasoftware.com" class="genera-badge genera-card" target="_blank" rel="noopener" aria-label="Powered by Genera, the dog daycare software built at Duncan's Dog Co"><small>Powered by</small><img src="/assets/genera-logo-forest.png" alt="Genera" width="130" height="35" loading="lazy"></a>
       </div>
       <div><h2>Services</h2><a href="/daycare/">Doggy Daycare</a><a href="/puppies/">Puppy School</a><a href="/sleepovers/">Sleepovers</a><a href="/splash/">SPLASH Swimming</a><a href="/rescue/">Rescue Dogs</a><a href="/pricing/">Pricing</a></div>
       <div><h2>Company</h2><a href="/about-us/">About Us</a><a href="/areas/">Collection Areas</a><a href="/startup-support/">Startup Support</a><a href="/careers/">Careers</a><a href="/blog/">Blog</a><a href="/facts/">Facts at a Glance</a><a href="/check-a-dog-daycare-licence/">Check a Licence</a><a href="/reviews/">Reviews</a><a href="${PORTAL_URL}">Customer Login</a></div>

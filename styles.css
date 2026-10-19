@@ -9318,3 +9318,7 @@ b, strong, label, th { font-weight: 700; }
 body:has(.live-page-hero) .site-header { background: var(--forest) !important; }
 body:has(.live-page-hero) .site-header::before { opacity: 0 !important; }
 body:has(.live-page-hero) .site-nav a:not(.nav-cta), body:has(.live-page-hero) .brand span { text-shadow: none !important; }
+/* "Powered by" sits above the logo, small and quiet */
+.genera-badge.genera-card { gap: 4px !important; }
+.genera-badge.genera-card small { order: 0 !important; color: #6B7466 !important; font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.12em !important; text-transform: uppercase; }
+.genera-badge.genera-card img { order: 1 !important; width: 130px !important; }
