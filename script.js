@@ -194,6 +194,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
 
   const pick = (key) => {
     picked = true;
+    box.classList.remove("is-cycling");
     if (timer) { window.clearTimeout(timer); timer = null; }
     show(key);
   };
@@ -207,6 +208,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
 
   // The chat thread needs time to play before the cycle moves on.
   const schedule = () => {
+    box.classList.add("is-cycling");
     timer = window.setTimeout(() => {
       show(order[(order.indexOf(current) + 1) % order.length]);
       schedule();
@@ -221,6 +223,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
       } else if (timer) {
         window.clearTimeout(timer);
         timer = null;
+        box.classList.remove("is-cycling");
       }
     });
   }, { threshold: 0.35 });

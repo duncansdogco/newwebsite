@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-19-heritage-2";
+const assetVersion = "2026-10-19-pills";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1543,7 +1543,10 @@ function portalDevice(start = "home") {
 function portalShowcase({ start = "home", onPortalPage = false, forDaycare = false } = {}) {
   const steps = [...DEVICE_TABS.slice(0, 2), { key: "alerts", label: "Notifications" }, ...DEVICE_TABS.slice(2)];
   const copy = steps.map((t) => `<div class="dv-copy" data-copy="${t.key}"><h2>${esc(DEVICE_COPY[t.key].title)}</h2><p>${esc(DEVICE_COPY[t.key].text)}</p></div>`).join("");
-  const pills = steps.map((t) => `<button type="button" data-pick="${t.key}">${t.label}</button>`).join("");
+  // Pills carry the phone's own tab icons; the open one shows a line that fills while the phone waits (19 Oct 2026)
+  const bell = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>`;
+  const wait = (key) => (key === "chat" ? 12 : key === "alerts" ? 10.5 : 4.5);
+  const pills = steps.map((t) => `<button type="button" data-pick="${t.key}" style="--wait:${wait(t.key)}s"><span class="pill-icon" aria-hidden="true">${t.icon || bell}</span>${t.label}</button>`).join("");
   const actions = onPortalPage
     ? `<a class="button primary" href="${PORTAL_URL}">Open the portal</a><a class="button secondary dark" href="#setup">First time? Start here</a>`
     : forDaycare

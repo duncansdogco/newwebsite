@@ -9187,3 +9187,62 @@ b, strong, label, th { font-weight: 700; }
 
 /* WhatsApp button: Gill Sans at 950 turned into Ultra Bold. Normal bold, sentence case. */
 .whatsapp-float { font-size: 15px !important; font-weight: 600 !important; letter-spacing: 0.01em !important; text-transform: none !important; }
+
+/* Portal pills, upgraded (19 Oct 2026): one soft track, the phone's own tab icons,
+   the open screen lifts out as a white chip with a line that fills while the phone waits */
+.dv-pills {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  gap: 4px !important;
+  margin-top: 26px !important;
+  padding: 5px;
+  border-radius: 18px;
+  background: #EEEEE6;
+}
+
+.dv-pills button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  overflow: hidden;
+  padding: 9px 14px !important;
+  border: 0 !important;
+  border-radius: 13px !important;
+  background: transparent !important;
+  color: var(--text) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  transition: background 200ms ease, color 200ms ease, box-shadow 200ms ease;
+}
+
+.dv-pills .pill-icon svg { display: block; width: 17px; height: 17px; }
+.dv-pills button:hover { background: rgba(255, 255, 255, 0.6) !important; color: var(--forest) !important; }
+
+.dv-pills button.is-on {
+  background: #fff !important;
+  box-shadow: 0 1px 2px rgba(31, 38, 32, 0.08), 0 6px 14px -6px rgba(31, 38, 32, 0.25) !important;
+  color: var(--forest) !important;
+}
+
+.dv-pills button::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: 4px;
+  left: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--moss);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.is-cycling .dv-pills button.is-on::after { animation: pillWait var(--wait, 4.5s) linear forwards; }
+@keyframes pillWait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .dv-pills button::after { display: none; } }
+
+@media (max-width: 600px) {
+  .dv-pills { display: flex !important; }
+  .dv-pills button { flex: 1 1 auto; justify-content: center; padding: 9px 10px !important; font-size: 14px !important; }
+}
