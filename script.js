@@ -421,3 +421,33 @@ if (document.body.classList.contains("page-thank-you")) {
   }
   try { window.sessionStorage.removeItem("ddc-enquiry"); window.sessionStorage.removeItem("ddc-enquiry-sent"); } catch (error) { /* storage blocked */ }
 }
+
+// Postcode box in the collection section: fill the enquiry form's postcode
+// on this page, or carry it to the contact form (kept out of the URL).
+const postcodeCheck = document.querySelector(".postcode-check");
+const postcodeTarget = () => document.querySelector('form[name="enquiry"] input[name="address"]');
+if (postcodeCheck) {
+  postcodeCheck.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const postcode = postcodeCheck.querySelector("input").value.trim();
+    const target = postcodeTarget();
+    if (target) {
+      if (postcode) target.value = postcode;
+      const form = target.closest("form");
+      form.scrollIntoView({ behavior: "smooth", block: "start" });
+      const first = form.querySelector('input[name="name"]');
+      if (first) setTimeout(() => first.focus({ preventScroll: true }), 600);
+    } else {
+      if (postcode) writeStore("sessionStorage", "ddc-postcode", postcode);
+      window.location.href = "/contact/#enquiry-form";
+    }
+  });
+}
+{
+  const saved = readStore("sessionStorage", "ddc-postcode");
+  const target = postcodeTarget();
+  if (saved && target && !postcodeCheck) {
+    if (!target.value) target.value = saved;
+    writeStore("sessionStorage", "ddc-postcode", "");
+  }
+}

@@ -261,7 +261,7 @@ a {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   padding: 8px 13px;
   text-transform: uppercase;
@@ -277,7 +277,7 @@ a {
   margin: 0 0 16px;
   color: var(--moss);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -357,7 +357,7 @@ h1 {
   padding: 13px 24px;
   box-shadow: 0 10px 24px rgba(31, 38, 32, 0.12);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.02em;
   text-decoration: none;
   transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
@@ -439,7 +439,7 @@ h1 {
 .hero-card span {
   color: rgba(255, 255, 255, 0.82);
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .trust-band {
@@ -620,7 +620,7 @@ h1 {
   backdrop-filter: blur(10px);
   color: rgba(255, 255, 255, 0.9);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   padding: 8px 12px;
   text-transform: uppercase;
@@ -664,7 +664,7 @@ h1 {
 .card-link {
   color: var(--leaf);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -879,7 +879,7 @@ h1 {
 .live-stat-pill small {
   color: rgba(184, 191, 166, 0.7);
   font-size: 9px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   line-height: 1.25;
   text-transform: uppercase;
@@ -891,7 +891,7 @@ h1 {
   background: var(--leaf);
   color: var(--ink);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.08em;
   padding: 16px 30px;
   text-decoration: none;
@@ -945,7 +945,7 @@ h1 {
   background: #fff;
   color: var(--forest);
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   padding: 10px 14px;
   text-decoration: none;
 }
@@ -1077,7 +1077,7 @@ h1 {
   margin-bottom: 12px;
   color: rgba(184, 191, 166, 0.72);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -1120,7 +1120,7 @@ h1 {
   margin-bottom: 14px;
   color: rgba(184, 191, 166, 0.72);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -1137,7 +1137,7 @@ h1 {
   background: rgba(255, 255, 255, 0.07);
   color: rgba(255, 255, 255, 0.78);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 700;
   padding: 9px 12px;
   text-decoration: none;
 }
@@ -1192,7 +1192,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 34px;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .local-steps-grid h2 {
@@ -1355,7 +1355,7 @@ h1 {
   color: #fff;
   padding: 9px 13px;
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-align: center;
   text-transform: uppercase;
@@ -1402,7 +1402,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 28px;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .difference-feature h3 {
@@ -1411,7 +1411,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 26px;
   font-style: italic;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.06;
 }
 
@@ -1461,7 +1461,7 @@ h1 {
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.72);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1635,7 +1635,7 @@ h1 {
   margin: 0 auto;
   color: rgba(255, 255, 255, 0.58);
   font-size: 17px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.65;
 }
 
@@ -1671,7 +1671,7 @@ h1 {
   background: #eef4e9;
   color: var(--forest);
   font-size: 20px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .puppy-built-card h3 {
@@ -1680,7 +1680,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 27px;
   font-style: italic;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.05;
 }
 
@@ -1784,7 +1784,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 34px;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .daycare-feature-card h2 {
@@ -1845,7 +1845,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 30px;
   font-style: italic;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1903,7 +1903,7 @@ h1 {
 .daycare-day-list span {
   color: var(--moss);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -2049,7 +2049,7 @@ h1 {
   margin-bottom: 10px;
   color: var(--moss);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -2075,7 +2075,7 @@ h1 {
   margin-top: auto;
   color: var(--forest);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2201,7 +2201,7 @@ h1 {
   background: var(--cream);
   color: var(--forest);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 700;
   padding: 11px 15px;
 }
 
@@ -2286,7 +2286,7 @@ h1 {
   margin: 14px 0 12px;
   color: rgba(255, 255, 255, 0.84);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -2308,11 +2308,11 @@ h1 {
 .puppy-care-section .section-heading-row p {
   color: #3D4A40;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .puppy-care-section .rich-feature-card h3 {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .puppy-faq-section {
@@ -2447,7 +2447,7 @@ h1 {
   margin-bottom: 5px;
   color: var(--moss);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -2550,7 +2550,7 @@ h1 {
   margin-bottom: 12px;
   color: rgba(184, 191, 166, 0.86);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -2563,7 +2563,7 @@ h1 {
   border-bottom: 1px solid rgba(184, 191, 166, 0.09);
   color: rgba(255, 255, 255, 0.76);
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
   transition: color 160ms ease, transform 160ms ease;
 }
@@ -2631,7 +2631,7 @@ h1 {
   margin-top: 8px;
   color: rgba(255, 255, 255, 0.76);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -2643,7 +2643,7 @@ h1 {
   background: rgba(255, 255, 255, 0.07);
   color: rgba(255, 255, 255, 0.68);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.45;
   padding: 12px 16px;
   text-align: center;
@@ -2755,7 +2755,7 @@ h1 {
   display: inline-flex;
   margin-top: 10px;
   color: var(--leaf);
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -2861,7 +2861,7 @@ blockquote {
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   color: #fff;
   flex-shrink: 0;
 }
@@ -2976,7 +2976,7 @@ blockquote {
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--forest);
   flex-shrink: 0;
   border: 2px solid rgba(25,52,25,0.08);
@@ -3035,7 +3035,7 @@ blockquote {
   color: var(--moss);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 54px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0.7;
 }
 
@@ -3051,7 +3051,7 @@ blockquote {
   margin-top: auto;
   color: var(--forest);
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .home-trial-section {
@@ -3196,7 +3196,7 @@ blockquote {
 .home-contact-actions small {
   color: rgba(184, 191, 166, 0.72);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -3248,7 +3248,7 @@ blockquote {
   margin-top: 10px;
   color: rgba(184, 191, 166, 0.75);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.45;
   text-transform: uppercase;
@@ -3290,7 +3290,7 @@ blockquote {
 .faq-grid summary {
   cursor: pointer;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .faq-grid p {
@@ -3329,7 +3329,7 @@ blockquote {
 
 .faq-page-intro a {
   color: var(--forest);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .faq-page-sections {
@@ -3366,7 +3366,7 @@ blockquote {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 22px;
   font-style: italic;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .faq-category-header h2 {
@@ -3389,7 +3389,7 @@ blockquote {
 .faq-category-header small {
   color: var(--moss);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -3447,7 +3447,7 @@ blockquote {
   display: block;
   color: rgba(255, 255, 255, 0.64);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -3483,7 +3483,7 @@ blockquote {
   padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -3565,7 +3565,7 @@ blockquote {
 .hours-panel span {
   color: #3D4A40;
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -3629,7 +3629,7 @@ blockquote {
   gap: 8px;
   color: var(--forest);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.03em;
 }
 
@@ -3727,7 +3727,7 @@ blockquote {
   margin-bottom: 8px;
   color: var(--moss);
   font-size: 12px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -3790,7 +3790,7 @@ blockquote {
   color: var(--leaf);
   cursor: pointer;
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.08em;
   padding: 16px 32px;
   text-transform: uppercase;
@@ -3847,7 +3847,7 @@ blockquote {
   margin-bottom: 4px;
   color: var(--moss);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -3855,7 +3855,7 @@ blockquote {
 .contact-item-value {
   color: var(--forest);
   font-size: 14.5px;
-  font-weight: 900;
+  font-weight: 700;
   overflow-wrap: anywhere;
 }
 
@@ -3940,7 +3940,7 @@ blockquote {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
@@ -4050,7 +4050,7 @@ blockquote {
 }
 .genera-badge .genera-name {
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
   color: #003E45;
 }
@@ -4648,7 +4648,7 @@ blockquote {
   margin: 0 0 10px;
   color: #3D4A40;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.32em;
   text-transform: uppercase;
 }
@@ -4722,7 +4722,7 @@ blockquote {
 .price-list-table span {
   color: var(--forest);
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .price-list-table strong {
@@ -4735,7 +4735,7 @@ blockquote {
 .price-list-table small {
   color: #3D4A40;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -4909,7 +4909,7 @@ blockquote {
 
 #c-count {
   font-size: 1.8rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--forest);
   min-width: 28px;
   text-align: center;
@@ -4951,7 +4951,7 @@ blockquote {
 
 .calc-result-price {
   font-size: 2.2rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
   color: #fff;
 }
@@ -5064,7 +5064,7 @@ blockquote {
   background: var(--leaf);
   color: var(--forest);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.18em;
   padding: 9px 18px;
   text-transform: uppercase;
@@ -5076,7 +5076,7 @@ blockquote {
 .price-per {
   color: rgba(100, 127, 79, 0.82);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -5173,7 +5173,7 @@ blockquote {
   padding: 18px 24px;
   color: #3D4A40;
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -5194,7 +5194,7 @@ blockquote {
   color: #fff;
   font-size: 12px;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .blue-light-strip {
@@ -5224,7 +5224,7 @@ blockquote {
 .blue-light-strip p {
   margin: 0;
   font-size: 16px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.6;
 }
 
@@ -5268,7 +5268,7 @@ blockquote {
   background: var(--forest);
   color: rgba(255, 255, 255, 0.74);
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   padding: 15px 16px;
   text-align: center;
@@ -5289,14 +5289,14 @@ blockquote {
   background: #fff;
   color: var(--forest);
   font-size: 15px;
-  font-weight: 900;
+  font-weight: 700;
   padding: 15px 16px;
   text-align: center;
 }
 
 .features-table td:first-child {
   color: #3D4A40;
-  font-weight: 800;
+  font-weight: 700;
   text-align: left;
 }
 
@@ -5392,7 +5392,7 @@ blockquote {
   margin: 7px 0 0;
   color: rgba(200, 217, 184, 0.76);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.35;
   text-transform: uppercase;
@@ -5405,7 +5405,7 @@ blockquote {
   background: rgba(200, 217, 184, 0.12);
   color: var(--leaf);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   padding: 8px 10px;
   white-space: nowrap;
@@ -5445,7 +5445,7 @@ blockquote {
   flex: 0 0 auto;
   color: rgba(100, 127, 79, 0.78);
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -5453,7 +5453,7 @@ blockquote {
 .about-team-fave strong {
   color: var(--forest);
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -5627,7 +5627,7 @@ blockquote {
 
 .splash-benefit-num {
   font-size: 44px;
-  font-weight: 800;
+  font-weight: 700;
   color: rgba(126, 232, 239, 0.25);
   line-height: 1;
   margin-bottom: 14px;
@@ -5858,7 +5858,7 @@ blockquote {
   background: linear-gradient(90deg, #00b4cc, #4dd9e0);
   color: #003a47;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
   padding: 6px 16px;
@@ -6708,7 +6708,7 @@ blockquote {
   background: rgba(184, 191, 166, 0.35);
   color: var(--forest);
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -6774,7 +6774,7 @@ blockquote {
   color: var(--ink);
   text-align: center;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .ps-tick {
@@ -6787,7 +6787,7 @@ blockquote {
   background: rgba(184, 191, 166, 0.45);
   color: var(--forest);
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .ps-sub {
@@ -6807,7 +6807,7 @@ blockquote {
 
 .ps-detail span { color: #3D4A40; }
 .ps-detail b { font-weight: 600; }
-.ps-detail b.ok { color: var(--moss); font-weight: 800; }
+.ps-detail b.ok { color: var(--moss); font-weight: 700; }
 
 .ps-dd {
   display: flex;
@@ -6853,7 +6853,7 @@ blockquote {
   color: var(--forest);
   font-size: 9px;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .ps-note {
@@ -6878,7 +6878,7 @@ blockquote {
   background: var(--clay);
   color: #fff;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .ps-photos {
@@ -7106,7 +7106,7 @@ blockquote {
   color: var(--forest);
   font: inherit;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
   transition: background 160ms ease, color 160ms ease;
 }
@@ -7360,7 +7360,7 @@ blockquote {
 
 /* Billing */
 .dv-dd { display: flex; align-items: center; gap: 12px; margin-top: 14px; border-radius: 14px; background: #ecfdf5; padding: 14px; }
-.dv-dd b { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: #047857; color: #fff; font-size: 13px; font-weight: 800; }
+.dv-dd b { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: #047857; color: #fff; font-size: 13px; font-weight: 700; }
 .dv-dd strong { display: block; font-size: 15px; font-weight: 700; color: #1c1917; }
 .dv-dd span { font-size: 12.5px; color: #6b7280; }
 .dv-dd em { margin-left: auto; border-radius: 999px; background: #d1fae5; padding: 3px 10px; color: #047857; font-size: 12px; font-style: normal; font-weight: 700; }
@@ -7494,7 +7494,7 @@ blockquote {
   border-radius: 50%;
   background: var(--leaf);
   color: var(--forest);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 @media (max-width: 1180px) {
@@ -7575,7 +7575,7 @@ blockquote {
   margin-bottom: 8px;
   color: var(--clay);
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -8538,7 +8538,7 @@ body.has-cookie-notice {
 
 .cookie-notice a {
   color: var(--forest);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .cookie-actions {
@@ -8554,7 +8554,7 @@ body.has-cookie-notice {
   background: var(--paper);
   color: var(--forest);
   font: inherit;
-  font-weight: 900;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -8863,13 +8863,8 @@ h1, h2, h3,
   .benefit-rows { gap: 40px; }
 }
 
-/* Collection section: faint Ordnance Survey style map behind it, with woodland symbols around Cobham. Static. */
-.catchment-section {
-  background: url("/assets/os-map.svg") center top / 1280px auto no-repeat, var(--forest) !important;
-}
-
 .catchment-section::before,
-.catchment-section::after { opacity: 0 !important; }
+.catchment-section::after { display: none !important; }
 
 /* "Check your postcode" sat dark on the dark band and could not be seen */
 .catchment-section .button.secondary.dark {
@@ -8975,3 +8970,188 @@ body { color: var(--ink); }
 
 /* Footer in Hague Blue */
 .site-footer { background: var(--hague) !important; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Heritage greens, 19 Oct 2026 (round 3).
+   Jess picked option C for collection (the Cobham circle with pulsing
+   rings and fingerposts pointing home, no map lines) and Gill Sans.
+   No mustard, no blue: every accent is a Farrow & Ball style green.
+   Gill Sans comes from the visitor's own device (every iPhone and Mac
+   has it); Cabin, drawn after Gill and Johnston, stands in elsewhere.
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  --display: "Gill Sans", "Gill Sans MT", "Gill Sans Nova", "Cabin", system-ui, sans-serif;
+  --body: "Gill Sans", "Gill Sans MT", "Gill Sans Nova", "Cabin", system-ui, sans-serif;
+  --clay: #56684A;
+  --india: #56684A;
+}
+
+h1, h2, h3,
+.home-hero-title,
+.live-display-title,
+.live-card h2,
+.fact strong,
+.home-reviews .section-heading-row h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+}
+
+body { font-size: 17px; }
+
+/* Labels and stars in green */
+.section-kicker,
+.eyebrow,
+.day-time,
+.signs-label { color: var(--moss) !important; }
+
+.hero .eyebrow,
+.live-page-copy .eyebrow,
+.cta-band .section-kicker,
+.quick-enquiry .section-kicker { color: var(--vert) !important; }
+
+.fact-stars,
+.ht-stars svg { color: var(--moss) !important; fill: var(--moss) !important; }
+.fact-licence small { color: var(--cardroom) !important; }
+
+/* Buttons: sage on dark, Studio Green on light and on the Calke Green form */
+.hero .button.primary,
+.hero-cta-live,
+.cta-band .button.primary,
+.nav-cta {
+  border-color: var(--vert) !important;
+  background: var(--vert) !important;
+  color: var(--forest) !important;
+}
+
+.hero .button.primary:hover,
+.hero-cta-live:hover,
+.nav-cta:hover { background: #c8cdb8 !important; }
+
+.quick-enquiry .button.primary {
+  border-color: var(--forest) !important;
+  background: var(--forest) !important;
+  color: #fff !important;
+}
+
+.quick-enquiry input:focus,
+.quick-enquiry select:focus,
+.quick-enquiry textarea:focus { outline-color: var(--vert) !important; }
+
+/* Footer back to Studio Green */
+.site-footer { background: var(--forest) !important; }
+
+/* Collection: the Cobham circle with fingerposts pointing home */
+.catchment-section.catchment-signs {
+  background: var(--cream) !important;
+  color: var(--ink);
+  padding: 96px clamp(18px, 5vw, 64px) 104px !important;
+}
+
+.signs-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
+.signs-head h2 { margin: 0 0 14px; color: var(--forest) !important; font-size: clamp(34px, 4.4vw, 52px) !important; line-height: 1.06; }
+.signs-head p { margin: 0 auto; color: var(--text); font-size: 18px; }
+
+.signs-map {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.signs-side { display: flex; flex-direction: column; gap: 9px; }
+.signs-left { align-items: flex-end; }
+.signs-right { align-items: flex-start; }
+.signs-label { margin-bottom: 6px; font-size: 15px; font-weight: 700; }
+
+.fingerpost {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 3px;
+  background: var(--forest);
+  color: var(--cream) !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.fingerpost.to-right { padding-right: 26px; clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%); }
+.fingerpost.to-left { padding-left: 26px; clip-path: polygon(13px 0, 100% 0, 100% 100%, 13px 100%, 0 50%); }
+.fingerpost:hover { background: var(--moss); }
+.fingerpost.to-right:hover { transform: translateX(3px); }
+.fingerpost.to-left:hover { transform: translateX(-3px); }
+
+.signs-centre { display: grid; justify-items: center; gap: 40px; }
+.signs-hub { position: relative; display: grid; place-items: center; width: 300px; aspect-ratio: 1; }
+
+.signs-circle {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(rgba(20, 30, 22, 0.25), rgba(20, 30, 22, 0.45)), url("/assets/woodland.jpg") center / cover;
+  box-shadow: 0 0 0 8px var(--cream), 0 0 0 9px rgba(46, 59, 50, 0.25), 0 30px 60px -20px rgba(31, 38, 32, 0.45);
+  color: #fff;
+  text-align: center;
+}
+
+.signs-circle strong { font-family: var(--display); font-size: 46px; font-weight: 600; line-height: 1; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4); }
+.signs-circle span { margin-top: 8px; font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5); }
+
+.signs-pulse {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--moss);
+  border-radius: 50%;
+  opacity: 0;
+  animation: signsPulse 4.5s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+
+.signs-pulse:nth-child(2) { animation-delay: 1.5s; }
+.signs-pulse:nth-child(3) { animation-delay: 3s; }
+
+@keyframes signsPulse {
+  0% { opacity: 0.55; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signs-pulse { animation: none; }
+}
+
+.postcode-check {
+  width: 300px;
+  padding: 18px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 14px 34px -14px rgba(31, 38, 32, 0.25);
+}
+
+.postcode-check label { display: block; margin-bottom: 10px; color: var(--forest); font-weight: 700; text-align: center; }
+.postcode-check div { display: flex; gap: 8px; }
+.postcode-check input { flex: 1; min-width: 0; padding: 12px 14px; border: 1px solid #d6d6c8; border-radius: 12px; font-size: 16px; }
+.postcode-check .button.primary { min-height: 46px; padding: 10px 18px; }
+
+@media (max-width: 900px) {
+  .signs-map { grid-template-columns: 1fr; }
+  .signs-centre { order: -1; }
+  .signs-left,
+  .signs-right { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; }
+  .signs-label { width: 100%; text-align: center; }
+  .signs-hub { width: 240px; }
+}
+
+/* Gill Sans on Apple devices maps 800 and 900 to its Ultra Bold cut, which is far too heavy */
+b, strong, label, th { font-weight: 700; }
+.form-group label,
+.quick-enquiry label { font-size: 14px !important; font-weight: 600 !important; letter-spacing: 0.02em !important; text-transform: none !important; }
+.postcode-check .button.primary { border-color: var(--forest) !important; background: var(--forest) !important; color: #fff !important; }
+.postcode-check .button.primary:hover { background: var(--moss) !important; }

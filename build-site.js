@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-19-countryside";
+const assetVersion = "2026-10-19-heritage";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -751,7 +751,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   <title>${esc(title)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/styles.css?v=${assetVersion}">
   ${[localBusinessJson(), ...structured].map(jsonLd).join("\n  ")}
 </head>
@@ -880,7 +880,7 @@ function livePageHero(h1, data, noTrust = false) {
 // Three facts in large type under the hero, with the licence as a country show rosette (19 Oct 2026)
 function licenceRosette() {
   const petals = Array.from({ length: 18 }, (_, i) => `<ellipse cx="85" cy="20" rx="13" ry="22" transform="rotate(${i * 20} 85 85)"/>`).join("");
-  return `<svg class="licence-rosette" viewBox="0 0 170 230" role="img" aria-label="Rosette: 5 star licence from Elmbridge Council"><path d="M58 120 L40 225 L62 208 L78 228 L85 125Z" fill="#A5603F"/><path d="M112 120 L130 225 L108 208 L92 228 L85 125Z" fill="#2E3B32"/><g fill="#C8913A">${petals}</g><circle cx="85" cy="85" r="52" fill="#2E3B32"/><circle cx="85" cy="85" r="45" fill="none" stroke="#C8913A" stroke-width="1.5" stroke-dasharray="3 4"/><text x="85" y="82" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="30" fill="#fff">5 ★</text><text x="85" y="103" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#F4F3EE">LICENCE</text></svg>`;
+  return `<svg class="licence-rosette" viewBox="0 0 170 230" role="img" aria-label="Rosette: 5 star licence from Elmbridge Council"><path d="M58 120 L40 225 L62 208 L78 228 L85 125Z" fill="#56684A"/><path d="M112 120 L130 225 L108 208 L92 228 L85 125Z" fill="#2E3B32"/><g fill="#7D8670">${petals}</g><circle cx="85" cy="85" r="52" fill="#2E3B32"/><circle cx="85" cy="85" r="45" fill="none" stroke="#B8BFA6" stroke-width="1.5" stroke-dasharray="3 4"/><text x="85" y="82" text-anchor="middle" font-family="Gill Sans, Gill Sans MT, Cabin, sans-serif" font-weight="700" font-size="30" fill="#fff">5 ★</text><text x="85" y="103" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#F4F3EE">LICENCE</text></svg>`;
 }
 
 function trustBand() {
@@ -970,32 +970,25 @@ function catchmentSection() {
   const swLondon = ["wimbledon", "clapham", "wandsworth", "putney", "balham", "earlsfield", "southfields", "raynes-park", "new-malden", "morden", "tooting", "copse-hill", "motspur-park"];
   const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
   const areaBySlug = Object.fromEntries(areas.map(([slug, name]) => [slug, name]));
-  const links = (slugs) => slugs.map((slug) => `<a href="/areas/${slug}/"><span></span>${areaBySlug[slug]}</a>`).join("");
+  // Each town is a fingerpost pointing in at Cobham: London from the left, Surrey from the right (19 Oct 2026)
+  const posts = (slugs, side) => slugs.map((slug) => `<a class="fingerpost ${side}" href="/areas/${slug}/">${areaBySlug[slug]}</a>`).join("");
 
-  return `<section class="catchment-section" aria-labelledby="catchment-title">
-    <div class="catchment-header reveal">
-      <p class="section-kicker">Collection Catchment</p>
+  return `<section class="catchment-section catchment-signs" aria-labelledby="catchment-title">
+    <div class="signs-head reveal">
+      <p class="section-kicker">Collection</p>
       <h2 id="catchment-title">Dog daycare collection across Surrey and South West London</h2>
-      <p>Our Cobham woodland is the calm centre point. Collection routes are planned carefully around dogs, journey times and regular weekly attendance.</p>
+      <p>Every sign points home to our woodland in Cobham, just off the A3 and M25.</p>
     </div>
-    <div class="catchment-map reveal">
-      <div class="catchment-list">
-        <span class="catchment-label">South West London collection</span>
-        ${links(swLondon)}
+    <div class="signs-map">
+      <div class="signs-side signs-left"><span class="signs-label">South West London</span>${posts(swLondon, "to-right")}</div>
+      <div class="signs-centre">
+        <div class="signs-hub" aria-hidden="true"><i class="signs-pulse"></i><i class="signs-pulse"></i><i class="signs-pulse"></i><div class="signs-circle"><strong>Cobham</strong><span>10 acres of private woodland</span></div></div>
+        <form class="postcode-check" action="/contact/#enquiry-form">
+          <label for="postcode-check">Do we collect from you?</label>
+          <div><input id="postcode-check" name="postcode" autocomplete="postal-code" placeholder="Your postcode"><button class="button primary" type="submit">Check</button></div>
+        </form>
       </div>
-      <div class="catchment-hub" aria-label="Cobham woodland hub">
-        <div class="hub-ring"><strong>Cobham</strong><span>10 acres<br>private woodland</span></div>
-        <div class="route-note">Door-to-door collection or drop-off, just off the A3 and M25</div>
-      </div>
-      <div class="catchment-list catchment-list-right">
-        <span class="catchment-label">Surrey collection</span>
-        ${links(surrey)}
-      </div>
-    </div>
-    <div class="catchment-footer reveal">
-      <p><strong>Not sure if we collect from you?</strong> Send your postcode and we will check the current route. Drop-off to Cobham is always worth considering if collection is not the best fit.</p>
-      <a class="button primary" href="/areas/">View all areas</a>
-      <a class="button secondary dark" href="/contact/#enquiry-form">Check your postcode</a>
+      <div class="signs-side signs-right"><span class="signs-label">Surrey</span>${posts(surrey, "to-left")}</div>
     </div>
   </section>`;
 }
