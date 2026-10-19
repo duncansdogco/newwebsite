@@ -897,7 +897,7 @@ function cards(items) {
 
 function homepageServiceStrip() {
   const items = [
-    { href: "/daycare/", image: "/assets/insta/svc-daycare.jpg", tag: "365 days a year", title: "Doggy Daycare", text: "A full day in the woodland with collection and drop-off across Surrey and SW London." },
+    { href: "/daycare/", image: "/assets/insta/svc-daycare-2.jpg", tag: "365 days a year", title: "Doggy Daycare", text: "A full day in the woodland with collection and drop-off across Surrey and SW London." },
     { href: "/puppies/", image: "/assets/insta/svc-puppy.jpg", tag: "From 12 weeks", title: "Puppy School", text: "Gentle socialisation, habituation and woodland adventure for a confident start." },
     { href: "/sleepovers/", image: "/assets/insta/svc-sleepover.jpg", tag: "Licensed boarding", title: "Sleepovers", text: "Overnight stays in our home for dogs who already know us." },
     { href: "/rescue/", image: "/assets/insta/svc-rescue.jpg", tag: "All breeds welcome", title: "Rescue Dogs", text: "Calm introductions at the dog's own pace, with no pressure and no rush." },
@@ -1254,7 +1254,7 @@ function serviceBody(page) {
       ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
       ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. 10 acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland-2.jpg", "A pack of dogs together on the woodland path"],
       ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
-      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home.jpg", "A team member crouched with a spaniel at the end of the day"]
+      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home-2.jpg", "A team member holding a spaniel at the end of the day"]
     ];
     const included = [
       ["Collected by someone who spends the day with them", "The person at your door in the morning is one of the daycare team, and they're with your dog in the woodland all day. You get a message when they're collected and when they're home.", "/assets/insta/why-collect.jpg", "A team member hugging a fox red retriever in the pine woodland"],
@@ -1276,8 +1276,8 @@ function serviceBody(page) {
         <div class="info-badge"><span>★</span>Family-run since 2011 · all breeds welcome</div>
       </div>
       <div class="daycare-photo-stack reveal">
-        <img src="/assets/insta/story-1.jpg" alt="Dogs walking through the woodland at Duncan's Dog Co.">
-        <img src="/assets/insta/story-2.jpg" alt="Dogs together on a log in the woodland">
+        <img src="/assets/insta/story-3.jpg" alt="A group of dogs together in the woodland at Duncan's Dog Co.">
+        <img src="/assets/insta/story-4.jpg" alt="Dogs together on a log in the woodland">
       </div>
     </section>
     <section class="day-strip">
