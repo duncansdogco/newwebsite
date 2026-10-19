@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-17-cookie";
+const assetVersion = "2026-10-19-countryside";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -751,7 +751,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
   <title>${esc(title)}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Figtree:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/styles.css?v=${assetVersion}">
   ${[localBusinessJson(), ...structured].map(jsonLd).join("\n  ")}
 </head>
@@ -777,7 +777,8 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
     </nav>
   </header>
   <main>
-    ${route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData) : pageHero(h1, intro, image)}
+    ${route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData, route === "daycare") : pageHero(h1, intro, image)}
+    ${route === "/" || route === "daycare" ? trustBand() : ""}
     ${body}
   </main>
   ${footer()}
@@ -840,7 +841,7 @@ function socialIcon(name) {
 function heroBlock(h1, intro) {
   return `<section class="hero" aria-labelledby="hero-title">
   <div class="hero-media" aria-label="Dogs exploring Duncan's Dog Co. woodland"><video src="${videoHero}" poster="/assets/woodland.jpg" autoplay muted loop playsinline preload="auto"></video></div>
-  <div class="hero-copy reveal"><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div><p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p></div>
+  <div class="hero-copy reveal"><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div></div>
   <div class="star-spray paw-spray-a" aria-hidden="true"></div>
   <div class="star-spray paw-spray-b" aria-hidden="true"></div>
 </section>`;
@@ -861,7 +862,7 @@ function pricingHero(h1, intro) {
   </section>`;
 }
 
-function livePageHero(h1, data) {
+function livePageHero(h1, data, noTrust = false) {
   return `<section class="live-page-hero" aria-labelledby="page-title">
     <div class="live-page-copy reveal">
       <p class="eyebrow">${esc(data.eyebrow)}</p>
@@ -870,9 +871,23 @@ function livePageHero(h1, data) {
       <p>${esc(data.text)}</p>
       ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
       <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
-      <p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p>
+      ${noTrust ? "" : `<p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p>`}
     </div>
     <div class="live-page-video"><video poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"><source src="${esc(data.video)}" type="video/mp4"></video></div>
+  </section>`;
+}
+
+// Three facts in large type under the hero, with the licence as a country show rosette (19 Oct 2026)
+function licenceRosette() {
+  const petals = Array.from({ length: 18 }, (_, i) => `<ellipse cx="85" cy="20" rx="13" ry="22" transform="rotate(${i * 20} 85 85)"/>`).join("");
+  return `<svg class="licence-rosette" viewBox="0 0 170 230" role="img" aria-label="Rosette: 5 star licence from Elmbridge Council"><path d="M58 120 L40 225 L62 208 L78 228 L85 125Z" fill="#A5603F"/><path d="M112 120 L130 225 L108 208 L92 228 L85 125Z" fill="#2E3B32"/><g fill="#C8913A">${petals}</g><circle cx="85" cy="85" r="52" fill="#2E3B32"/><circle cx="85" cy="85" r="45" fill="none" stroke="#C8913A" stroke-width="1.5" stroke-dasharray="3 4"/><text x="85" y="82" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="700" font-size="30" fill="#fff">5 ★</text><text x="85" y="103" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="#F4F3EE">LICENCE</text></svg>`;
+}
+
+function trustBand() {
+  return `<section class="fact-band" aria-label="Reviews, licence and history">
+    <div class="fact"><strong>5.0 <span class="fact-stars" aria-hidden="true">★★★★★</span></strong><span>On Google, from the families who come every week</span></div>
+    <div class="fact fact-licence">${licenceRosette()}<span>Licensed and rated 5 stars by Elmbridge Council<small>LN/201800994</small></span></div>
+    <div class="fact"><strong>Since 2011</strong><span>Family-run on one site in Cobham</span></div>
   </section>`;
 }
 
@@ -1067,7 +1082,7 @@ function daycareDifferenceSection() {
     ["04", "Natural enrichment", "Sensory stimulation is part of being in nature: scent, texture, weather, sound and space to explore."],
     ["05", "One familiar team", "The same staff are with the dogs from collection through to home time, keeping the whole day familiar."]
   ];
-  const stats = [["15+", "Years Running"], ["40+", "Acres of Woodland"], ["1:6", "Staff Ratio"], ["365", "Days a Year"], ["5★", "Licensed Rating"]];
+  const stats = [["15+", "Years Running"], ["10", "Acres of Woodland"], ["1:6", "Staff Ratio"], ["365", "Days a Year"], ["5★", "Licensed Rating"]];
   return `<section class="daycare-difference-section">
     <div class="difference-header reveal">
       <p class="section-kicker">Duncan's Dog Co. · Est. 2011</p>
@@ -1245,11 +1260,16 @@ function serviceBody(page) {
   if (page.slug === "daycare") {
     const day = [
       ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
-      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. Forty acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland.jpg", "A group of dogs heading along the woodland path"],
+      ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. 10 acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland.jpg", "A group of dogs heading along the woodland path"],
       ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
       ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home.jpg", "A team member crouched with a spaniel at the end of the day"]
     ];
-    const included = ["Door-to-door collection and drop-off on our Surrey and South West London routes", "A notification on your phone when your dog is collected and when they're home", "Forty acres of private, fenced woodland", "Groups matched by size, age and energy, with a 1:6 staff ratio", "The same team from collection through to home time", "Open 365 days a year, including bank holidays", "Licensed and rated 5 stars by Elmbridge Council, LN/201800994", "All breeds welcome", "Photos and a report card in your customer portal"];
+    const included = [
+      ["The same team, door to door", "Collection and drop-off on our Surrey and South West London routes, with a notification on your phone when your dog is collected and when they're home. The person who collects your dog is with them all day.", "/assets/insta/home-trial.jpg", "A Duncan's Dog Co. team member carrying a flat-coated retriever over his shoulder"],
+      ["10 acres of private woodland", "Fenced, with shade in summer and shelter when it rains. Open 365 days a year, including bank holidays.", "/assets/insta/m-07.jpg", "A cockapoo walking towards the camera through the pine woodland"],
+      ["Small groups, well matched", "Groups matched by size, age and energy, with a 1:6 staff ratio. All breeds welcome.", "/assets/insta/included.jpg", "A group of dogs together on the trampoline at Duncan's Dog Co."],
+      ["Photos and a report card", "Photos from the day and a report card in your customer portal, so you know how their day went.", "/assets/insta/m-11.jpg", "A happy spaniel looking up in the woodland"]
+    ];
     const steps = [["Enquire", "Send us your postcode, your dog's details and the days you are thinking of."], ["Meet and greet", "A complimentary visit to the woodland so your dog can see the space and we can meet them properly."], ["Trial day", "A settling-in day before joining the group, at their pace, with no rushing. We send you a report card afterwards."], ["Regular days", "We agree the days, put them in the portal and your dog becomes part of the routine."]];
     return `<section class="daycare-story-section">
       <div class="daycare-story-copy reveal">
@@ -1272,13 +1292,10 @@ function serviceBody(page) {
       <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
     </section>
     ${portalShowcase({ start: "alerts", forDaycare: true })}
-    <section class="included-split">
-      <div class="included-photo reveal"><img src="/assets/insta/included.jpg" alt="A group of dogs together at Duncan's Dog Co." loading="lazy"></div>
-      <div class="included-copy reveal">
-        <h2>What every daycare day includes</h2>
-        <ul class="tick-list">${included.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
-        <div class="split-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary dark" href="/areas/">Check your area</a></div>
-      </div>
+    <section class="included-rows">
+      <div class="section-heading-row reveal"><div><h2>What every daycare day includes</h2></div></div>
+      <div class="benefit-rows">${included.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>
+      <div class="split-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary dark" href="/areas/">Check your area</a></div>
     </section>
     <section class="start-split">
       <div class="start-copy reveal">
@@ -2380,7 +2397,7 @@ function aboutUs() {
     ["Running since", "2011"],
     ["Daycare licence", "Licensed by Elmbridge Borough Council, rated 5 stars, licence LN/201800994"],
     ["Boarding licence", "Elmbridge Borough Council, licence LN/202400651"],
-    ["Setting", "Forty acres of private, fenced woodland"],
+    ["Setting", "10 acres of private, fenced woodland"],
     ["Staff ratio", "One member of staff to six dogs, in groups matched by size, age and energy"],
     ["Open", "365 days a year, including weekends and bank holidays, 7.45am to 6.30pm"],
     ["Services", "Woodland dog daycare, puppy daycare and puppy school, rescue dog daycare and sleepovers in our home"],
@@ -2393,7 +2410,7 @@ function aboutUs() {
   ];
   const factFaqs = [
     ["Is Duncan's Dog Co. licensed?", "Yes. Our daycare is licensed by Elmbridge Borough Council and rated five stars, licence number LN/201800994. Boarding is licensed separately, LN/202400651."],
-    ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on forty acres of private woodland. We collect from " + areas.length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
+    ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on 10 acres of private woodland. We collect from " + areas.length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
     ["How much is dog daycare at Duncan's Dog Co.?", "£65 a day for one day a week, £60 a day for two and £55 a day for three or more, with collection and drop-off included. Weekend days are £75."],
     ["What is the staff ratio at Duncan's Dog Co.?", "One member of staff to six dogs. The licence standard is one to ten, and the higher standard needed for five stars is one to eight."],
     ["Is Duncan's Dog Co. open at weekends?", "Yes, 365 days a year including bank holidays, from 7.45am to 6.30pm."],
@@ -2409,7 +2426,7 @@ function aboutUs() {
 <p><strong>Checked ${factsChecked}.</strong> If anything here changes we update this page and the date.</p>
 <table class="facts-table"><tbody>${factRows.map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`).join("")}</tbody></table>
 <h2>How our price compares</h2>
-<p>Across 241 licensed dog daycares in England that publish a price, the middle full-day rate is £32.50. In London it is £55 and in the South East £39.50, and most daycares charge for collection on top, often £3 to £10 each way. Our price includes door-to-door collection and a day in forty acres of woodland at one member of staff to six dogs. Source: the <a href="https://www.generasoftware.com/research/dog-daycare-prices">Genera UK dog daycare price index</a>, checked October 2026.</p>
+<p>Across 241 licensed dog daycares in England that publish a price, the middle full-day rate is £32.50. In London it is £55 and in the South East £39.50, and most daycares charge for collection on top, often £3 to £10 each way. Our price includes door-to-door collection and a day in 10 acres of woodland at one member of staff to six dogs. Source: the <a href="https://www.generasoftware.com/research/dog-daycare-prices">Genera UK dog daycare price index</a>, checked October 2026.</p>
 <h2>Licensed daycares near us, and what they charge</h2>
 <p>Published full-day prices for one dog at licensed daycares in the councils around our collection areas, read from each daycare's own website. Many charge for collection on top; ours is included. Prices change, so follow the link for the current figure.</p>
 <div class="table-scroll"><table class="facts-table"><thead><tr><th>Daycare</th><th>Council</th><th>Full day</th><th>Notes</th><th>Checked</th></tr></thead><tbody>
