@@ -9159,3 +9159,8 @@ b, strong, label, th { font-weight: 700; }
 /* Reviews page cards match the homepage reviews: plain dark text, green stars */
 .review-card blockquote,
 .review-card p { color: var(--forest) !important; font-family: var(--body) !important; font-style: normal !important; }
+
+/* Last Georgia italic numbers: FAQ prices and startup support stats */
+.faq-price-grid strong,
+.faq-price-panel strong,
+.startup-stat-card strong { font-family: var(--display) !important; font-style: normal !important; font-weight: 600 !important; }
