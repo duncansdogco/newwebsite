@@ -9264,3 +9264,19 @@ b, strong, label, th { font-weight: 700; }
 .genera-badge.genera-card:hover { transform: translateY(-2px); }
 .genera-badge.genera-card small { color: #FFE099; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
 .genera-badge.genera-card img { display: block; width: 150px; height: auto; }
+
+/* Daycare intro: one photo at its natural shape instead of two squashed side by side */
+.daycare-photo-stack.single { display: block !important; }
+.daycare-photo-stack.single img {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 680px;
+  aspect-ratio: 4 / 5 !important;
+  object-fit: cover;
+  object-position: center 40%;
+  margin: 0 !important;
+  transform: none !important;
+  border-radius: 28px !important;
+  box-shadow: var(--photo-shadow) !important;
+}

@@ -1275,9 +1275,8 @@ function serviceBody(page) {
         <p>We are one facility, not a chain or a handover system. Our staff are with the dogs from collection all the way through to home time, keeping faces, routines and care familiar.</p>
         <div class="info-badge"><span>★</span>Family-run since 2011 · all breeds welcome</div>
       </div>
-      <div class="daycare-photo-stack reveal">
+      <div class="daycare-photo-stack single reveal">
         <img src="/assets/insta/story-3.jpg" alt="A group of dogs together in the woodland at Duncan's Dog Co.">
-        <img src="/assets/insta/story-4.jpg" alt="Dogs together on a log in the woodland">
       </div>
     </section>
     <section class="day-strip">
