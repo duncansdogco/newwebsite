@@ -9155,3 +9155,7 @@ b, strong, label, th { font-weight: 700; }
 .quick-enquiry label { font-size: 14px !important; font-weight: 600 !important; letter-spacing: 0.02em !important; text-transform: none !important; }
 .postcode-check .button.primary { border-color: var(--forest) !important; background: var(--forest) !important; color: #fff !important; }
 .postcode-check .button.primary:hover { background: var(--moss) !important; }
+
+/* Reviews page cards match the homepage reviews: plain dark text, green stars */
+.review-card blockquote,
+.review-card p { color: var(--forest) !important; font-family: var(--body) !important; font-style: normal !important; }

@@ -777,8 +777,8 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
     </nav>
   </header>
   <main>
-    ${route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData, route === "daycare") : pageHero(h1, intro, image)}
-    ${route === "/" || route === "daycare" ? trustBand() : ""}
+    ${route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData, true) : pageHero(h1, intro, image)}
+    ${route === "/" || heroData ? trustBand() : ""}
     ${body}
   </main>
   ${footer()}
@@ -951,7 +951,7 @@ function loginAndReviews() {
 <div class="rich-feature-grid review-grid">${cards}</div>
 <h2>Why owners keep coming back</h2>
 ${richFeatureGrid([["Licensed and inspected", "Elmbridge Borough Council licence LN/201800994 for daycare and LN/202400651 for boarding."], ["The same faces every day", "A small team who know every dog by name, from collection to home time."], ["10 acres of private woodland", "Real space to run, paddle and rest, not a yard or an indoor unit."], ["Collection included", "Door to door across Cobham, Surrey and South West London."]])}
-</section>${ctaBand("See it for yourself", "Book a trial day", "Tell us about your dog and we will arrange a first day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Reviews", url: "/reviews/" }])] }));
+</section>${quickEnquiry({ service: "Reviews page", photo: "/assets/insta/m-06.jpg", alt: "A curly-coated dog on the trampoline at Duncan's Dog Co.", kicker: "See it for yourself", title: "Book a trial day", text: "Tell us about your dog and we will arrange a first day in the woodland." })}`, structured: [breadcrumbJson([{ name: "Home", url: "/" }, { name: "Reviews", url: "/reviews/" }])] }));
 }
 
 function homeTrialFormSection() {
@@ -1247,7 +1247,7 @@ function serviceBody(page) {
     </section>
     ${authenticPhotoRibbon({ photos: ["rescue-1", "rescue-2", "rescue-3", "rescue-4"] })}
     ${faqSection({ kicker: "FAQs", title: `Questions about rescue dogs`, faqs: page.faqs })}
-    <section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day</h2><p>Tell us about your dog and we will talk through confidence, collection options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
+    ${quickEnquiry({ service: "Rescue Dogs", photo: "/assets/insta/svc-rescue.jpg", alt: "A rescue dog settled in the woodland at Duncan's Dog Co.", kicker: "Next step", title: "Book a trial day", text: "Tell us about your dog and we will talk through confidence, collection options and the right introduction." })}`;
   }
 
   if (page.slug === "daycare") {
@@ -1311,7 +1311,7 @@ function serviceBody(page) {
   }
 
   if (page.slug === "sleepovers") {
-    return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel, our home", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like. Your dog stays overnight in our home as part of the family, sleeping alongside the team.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "/assets/insta/intro-sleep.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["sleep-1", "sleep-2", "sleep-3", "sleep-4"] })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Full days in daycare", "Every sleepover includes a full woodland day. Same exercise, same familiar team, same routines. Your dog arrives at bedtime genuinely tired and happy."], ["Calm nights at home", "When the day winds down, dogs settle in with the team at our home. Warm, comfortable and familiar. Never a kennel."], ["24-hour supervision", "Someone is always on hand through the night. The same care standards, around the clock."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${ctaBand("Planning a trip?", "Book your dog's sleepover.", "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates.")}`;
+    return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel, our home", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like. Your dog stays overnight in our home as part of the family, sleeping alongside the team.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "/assets/insta/intro-sleep.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["sleep-1", "sleep-2", "sleep-3", "sleep-4"] })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Full days in daycare", "Every sleepover includes a full woodland day. Same exercise, same familiar team, same routines. Your dog arrives at bedtime genuinely tired and happy."], ["Calm nights at home", "When the day winds down, dogs settle in with the team at our home. Warm, comfortable and familiar. Never a kennel."], ["24-hour supervision", "Someone is always on hand through the night. The same care standards, around the clock."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${quickEnquiry({ service: "Sleepovers", photo: "/assets/insta/svc-sleepover.jpg", alt: "A dog relaxing at a Duncan's Dog Co. sleepover", kicker: "Planning a trip?", title: "Book your dog's sleepover", text: "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates." })}`;
   }
 
   return `<section class="section">${cards(page.sections)}</section>${authenticPhotoRibbon()}${faqSection({ kicker: "FAQs", title: `Questions about ${esc(page.nav.toLowerCase())}`, faqs: page.faqs })}<section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day</h2><p>Tell us about your dog and we will advise availability, route options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
@@ -1653,7 +1653,7 @@ function portalPage() {
       <div class="portal-built-photo reveal"><img src="/assets/team/licence.jpg" alt="Jess and Duncan with the Duncan's Dog Co. licence certificate and the dogs" loading="lazy"></div>
     </section>
     ${faqSection({ kicker: "FAQs", title: `Questions about the portal`, faqs: faqs })}
-    ${ctaBand("New to Duncan's", "Not a customer yet?", "Tell us about your dog and we will arrange a meet and greet and a trial day in the woodland.", "/contact/#enquiry-form", "Enquire Now")}`,
+    ${quickEnquiry({ service: "Portal page", photo: "/assets/insta/m-14.jpg", alt: "A black flat-coated retriever sitting in the pine woodland", kicker: "New to Duncan's", title: "Not a customer yet?", text: "Tell us about your dog and we will arrange a meet and greet and a trial day in the woodland." })}`,
     structured: [faqJson(faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Customer Portal", url: "/portal/" }])]
   }));
 }
@@ -2011,7 +2011,7 @@ function areaPages() {
     </section>
     <section class="section local-services-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Useful next pages</p><h2>Plan your dog's care</h2></div><p>Compare daycare, puppy care, sleepovers, pricing and FAQs before you enquire from ${esc(name)}.</p></div>${linkPanel()}</section>
     ${faqSection({ kicker: "Local FAQs", title: `Dog daycare questions for ${esc(name)}`, faqs: faqs })}
-    <section class="contact-section"><div><p class="section-kicker">Trial Day</p><h2>Book a trial day from ${esc(name)}</h2><p>Tell us about your dog and we will check collection, drop-off and suitability.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Book a trial day from ${esc(name)}</a></div></section>`;
+    ${quickEnquiry({ service: `Doggy Daycare (${name})`, photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Trial day", title: `Book a trial day from ${name}`, text: "Tell us about your dog and we will check collection, drop-off and suitability." })}`;
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
       title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
@@ -2375,10 +2375,7 @@ function aboutUs() {
       ["Clear communication", "We keep owners in the loop and encourage honest questions about behaviour, routines and fit."]
     ])}
   </section>
-  <section class="contact-section">
-    <div><p class="section-kicker">Come and meet us</p><h2>Book a trial day</h2><p>Tell us about your dog and we will talk through the best next step for daycare, puppy care or sleepovers.</p></div>
-    <div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire Now</a></div>
-  </section>`;
+  ${quickEnquiry({ service: "About page", photo: "/assets/insta/m-04.jpg", alt: "A fox red labrador looking up in the woodland", kicker: "Come and meet us", title: "Book a trial day", text: "Tell us about your dog and we will talk through the best next step for daycare, puppy care or sleepovers." })}`;
 
   // Facts page: one dated, plain list of what Duncan's Dog Co. is, for owners and for
   // answer engines. Every line here must match the rest of the site; update in place.
