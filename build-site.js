@@ -840,7 +840,7 @@ function socialIcon(name) {
 
 function heroBlock(h1, intro) {
   return `<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-media" aria-label="Drone view over the Duncan's Dog Co. woodland, then dogs playing under the pines"><video poster="/assets/video/hero-poster.jpg" autoplay muted loop playsinline preload="auto"><source src="/assets/video/hero-tall.mp4" type="video/mp4" media="(max-aspect-ratio: 3/4)"><source src="/assets/video/hero-wide.mp4" type="video/mp4"></video></div>
+  <div class="hero-media" aria-label="Drone view over the Duncan's Dog Co. woodland, then dogs playing under the pines"><video poster="/assets/video/hero-poster.jpg?v=6" autoplay muted loop playsinline preload="auto"><source src="/assets/video/hero-tall.mp4?v=6" type="video/mp4" media="(max-aspect-ratio: 3/4)"><source src="/assets/video/hero-wide.mp4?v=6" type="video/mp4"></video></div>
   <div class="hero-copy reveal"><h1 id="hero-title" class="home-hero-title"><span>Dog Daycare in Cobham</span><span>with Collection Across SW London</span></h1><div class="squiggle-line" aria-hidden="true"></div><p class="hero-lede">${esc(intro)}</p><div class="hero-actions"><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div></div>
   <div class="star-spray paw-spray-a" aria-hidden="true"></div>
   <div class="star-spray paw-spray-b" aria-hidden="true"></div>
