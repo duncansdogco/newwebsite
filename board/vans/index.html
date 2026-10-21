@@ -111,6 +111,20 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .miles{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fafafa;border-bottom:1px solid var(--line)}
 .miles .v{flex:1;min-width:0;font-size:13px;color:var(--muted)}
 .miles .v b{font-family:var(--serif);font-size:19px;color:var(--black);font-weight:700;margin-right:4px}
+.logrow{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+.logrow:hover{background:#fafafa}
+.logrow .v{flex:1;min-width:0;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.logrow .v q{color:var(--black);font-style:normal;quotes:none}
+.note-form textarea{width:100%;min-height:84px;border:1px solid var(--line-strong);border-radius:var(--r);padding:10px 12px;background:#fff;resize:vertical;outline:none;font:inherit;font-size:16px}
+.note-form textarea:focus{border-color:var(--black)}
+.inp.ini{width:90px;flex:none;text-transform:uppercase;text-align:center;font-weight:700;letter-spacing:.08em}
+.entries{display:flex;flex-direction:column;margin-top:4px}
+.entry{padding:12px 0;border-top:1px solid var(--line)}
+.entry .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.entry .meta b{color:var(--black);font-size:13px;letter-spacing:.04em}
+.entry p{margin:6px 0 0;font-size:14px;white-space:pre-line}
+.entry .acts{display:flex;gap:6px;margin-top:8px}
+.entry.done p{color:var(--muted)}
 .check{display:grid;grid-template-columns:28px 1fr auto;gap:0 10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;background:#fff;width:100%;border-left:none;border-right:none;border-top:none;text-align:left}
 .check:last-of-type{border-bottom:none}
 .check:hover{background:#fafafa}
@@ -239,6 +253,10 @@ function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&
 function uid(p){ return p+Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
 function fmtShort(s){ return fmtDate(s).replace(/^\w+ /,''); }
 function miles(n){ return Math.round(n).toLocaleString('en-GB'); }
+function clip(t,n){ t=String(t||'').replace(/\s+/g,' ').trim(); return t.length>n?t.slice(0,n-1).trim()+'…':t; }
+function stamp(iso){ return new Date(iso).toLocaleString('en-GB',{timeZone:'Europe/London',weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',',''); }
+function myInitials(){ try{ return localStorage.getItem('ddc-initials')||''; }catch{ return ''; } }
+function rememberInitials(v){ try{ localStorage.setItem('ddc-initials',v); }catch{} }
 function vehicleById(id){ return fleet.vehicles.find(v=>v.id===id); }
 function pillHTML(info){
   if(info.status==='unset') return '<span class="pill unset">Add the last date</span>';
@@ -304,21 +322,29 @@ $('gateForm').addEventListener('submit',e=>{ e.preventDefault(); const v=$('pin'
 /* ===================== RENDER ===================== */
 function render(){ renderNeeds(); renderVehicles(); renderDrivers(); }
 
+function openIssues(){ return fleet.vehicles.flatMap(v=>(v.log||[]).filter(n=>n.issue && !n.sorted).map(n=>({v,n}))).sort((a,b)=>a.n.at<b.n.at?1:-1); }
 function renderNeeds(){
   const el=$('needs');
   const items=allItems(fleet,TODAY).filter(it=>it.info.status==='overdue'||it.info.status==='soon').sort((a,b)=>a.info.daysLeft-b.info.daysLeft);
   const unset=allItems(fleet,TODAY).filter(it=>it.info.status==='unset').length;
+  const issues=openIssues();
   if(!fleet.vehicles.length){ el.className='needs clear'; el.innerHTML='<h3><span class="emo">🚐</span>Add your vehicles below to get started.</h3>'; return; }
-  if(!items.length && unset){
+  if(!items.length && !issues.length && unset){
     el.className='needs';
     el.innerHTML=`<h3><span class="emo">✍️</span>Fill in the last dates below <span class="count">${unset}</span></h3><p class="hint" style="margin:0">Reminders start as soon as a date is in. Tap any line marked "Add the last date".</p>`;
     return;
   }
-  if(!items.length){ el.className='needs clear'; el.innerHTML='<h3><span class="emo">✅</span>Nothing due in the next month.</h3>'; return; }
+  if(!items.length && !issues.length){ el.className='needs clear'; el.innerHTML='<h3><span class="emo">✅</span>Nothing due in the next month and no open problems.</h3>'; return; }
   el.className='needs';
-  el.innerHTML=`<h3><span class="emo">⚠️</span>Needs booking <span class="count">${items.length}</span></h3>`+(unset?`<p class="hint" style="margin:-4px 0 6px">${unset} date${unset===1?'':'s'} still to fill in below.</p>`:'')+items.map((it,i)=>
+  let h='';
+  if(items.length) h+=`<h3><span class="emo">⚠️</span>Needs booking <span class="count">${items.length}</span></h3>`+items.map((it,i)=>
     `<div class="need" data-i="${i}"><span class="emo">${it.def.emo}</span><div class="t"><b>${esc(it.def.label)}</b> <span>· ${esc(it.who)} · ${fmtShort(it.info.due)}</span></div>${pillHTML(it.info)}</div>`).join('');
-  el.querySelectorAll('.need').forEach(n=>n.onclick=()=>openItem(items[+n.dataset.i]));
+  if(issues.length) h+=`<h3${items.length?' style="margin-top:14px"':''}><span class="emo">🔧</span>Open problems <span class="count">${issues.length}</span></h3>`+issues.map((x,i)=>
+    `<div class="need" data-k="${i}"><span class="emo">📝</span><div class="t"><b>${esc(clip(x.n.text,70))}</b> <span>· ${esc(vehicleName(x.v))} · ${esc(x.n.by)}, ${stamp(x.n.at)}</span></div><span class="pill soon">Open</span></div>`).join('');
+  if(unset) h+=`<p class="hint" style="margin:10px 0 0">${unset} date${unset===1?'':'s'} still to fill in below.</p>`;
+  el.innerHTML=h;
+  el.querySelectorAll('.need[data-i]').forEach(n=>n.onclick=()=>openItem(items[+n.dataset.i]));
+  el.querySelectorAll('.need[data-k]').forEach(n=>n.onclick=()=>openLog(issues[+n.dataset.k].v));
 }
 
 function checkRow(def, st, v){
@@ -338,6 +364,7 @@ function renderVehicles(){
       <div class="veh-head"><span class="emo">🚐</span><div class="nm"><h3>${esc(v.name||'Vehicle')}</h3>${v.notes?`<div class="sub">${esc(v.notes)}</div>`:''}</div>${v.reg?`<span class="plate">${esc(v.reg)}</span>`:''}
         <button class="icon-btn" type="button" data-edit title="Edit vehicle"><svg viewBox="0 0 24 24"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2Zm13.7-7.6a.9.9 0 0 0 0-1.3l-2-2a.9.9 0 0 0-1.3 0l-1.5 1.5 2.8 2.8 2-1Z"/></svg></button></div>
       <div class="miles"><div class="v">${last?`<b>${miles(last.miles)}</b>miles · logged ${last.date===TODAY?'today':fmtShort(last.date)}${mpd?` · about ${miles(mpd*7)} a week`:''}`:'No mileage logged yet'}</div><button class="btn green sm" type="button" data-miles>Log mileage</button></div>
+      <div class="logrow" data-log></div>
       <div class="checks"></div>
       <div class="veh-foot"><button class="btn line sm" type="button" data-add>Add another check</button><span class="spacer"></span><button class="btn line sm" type="button" data-edit2>Edit or remove</button></div>`;
     const checks=card.querySelector('.checks');
@@ -348,6 +375,10 @@ function renderVehicles(){
     card.querySelector('[data-edit]').onclick=()=>openVehicle(v);
     card.querySelector('[data-edit2]').onclick=()=>openVehicle(v);
     card.querySelector('[data-miles]').onclick=()=>openMileage(v);
+    const log=v.log||[], open=log.filter(n=>n.issue&&!n.sorted).length, latest=log[0];
+    const lr=card.querySelector('[data-log]');
+    lr.innerHTML=`<div class="v"><span class="emo">📝</span>${latest?`<q>${esc(clip(latest.text,48))}</q><span>${esc(latest.by)}, ${stamp(latest.at)}</span>`:'No notes yet'}${open?`<span class="pill soon">${open} open problem${open===1?'':'s'}</span>`:''}</div><button class="btn line sm" type="button">Notes${log.length?` (${log.length})`:''}</button>`;
+    lr.onclick=()=>openLog(v);
     card.querySelector('[data-add]').onclick=()=>openCustom(v);
     wrap.appendChild(card);
   });
@@ -453,6 +484,41 @@ function openMileage(v){
     commit(); closeSheet(); toast(miles(n)+' miles saved');
   };
   el.querySelectorAll('.hist button').forEach(b=>b.onclick=()=>{ const m=hist[+b.dataset.i]; v.mileage=v.mileage.filter(x=>x!==m); commit(); openMileage(v); });
+}
+
+// Each vehicle keeps a log, newest first. Every note carries the time and the writer's initials.
+function openLog(v, kind){
+  kind = kind || 'issue';
+  const log=v.log||[];
+  const el=sheet(`<span class="emo">📝</span>Notes · ${esc(v.name||v.reg||'Vehicle')}`, `
+    <div class="note-form">
+      <div class="field"><span class="micro">Write a note</span><textarea id="nText" maxlength="600" placeholder="e.g. Rear passenger door sticking, needs a hard pull to shut"></textarea></div>
+      <div class="field"><div class="seg" id="nKind"><button type="button" data-v="issue" class="${kind==='issue'?'on':''}">Problem to sort</button><button type="button" data-v="note" class="${kind==='note'?'on':''}">Just a note</button></div></div>
+      <div class="field"><span class="micro">Your initials</span><div class="inrow"><input class="inp ini" id="nBy" maxlength="4" autocomplete="off" value="${esc(myInitials())}" placeholder="JM"><button class="btn green" type="button" id="nSave">Save note</button></div></div>
+    </div>
+    <div class="field" style="margin:22px 0 0"><span class="micro">Log ${log.length?`(${log.length})`:''}</span>
+      <div class="entries">${log.length?log.map((n,i)=>`<div class="entry${n.sorted||!n.issue?' done':''}">
+        <div class="meta"><b>${esc(n.by)}</b><span>${stamp(n.at)}</span>${n.issue?(n.sorted?`<span class="pill ok">Sorted by ${esc(n.sorted.by)}, ${stamp(n.sorted.at)}</span>`:'<span class="pill soon">Open problem</span>'):''}</div>
+        <p>${esc(n.text)}</p>
+        <div class="acts">${n.issue&&!n.sorted?`<button class="btn line sm" type="button" data-sort="${i}">Mark as sorted</button>`:''}<button class="btn danger sm" type="button" data-del="${i}">Remove</button></div>
+      </div>`).join(''):'<p class="hint" style="margin:6px 0 0">Nothing written yet.</p>'}</div></div>`);
+  let k=kind;
+  const text=el.querySelector('#nText'), by=el.querySelector('#nBy');
+  el.querySelectorAll('#nKind button').forEach(b=>b.onclick=()=>{ k=b.dataset.v; el.querySelectorAll('#nKind button').forEach(x=>x.classList.toggle('on',x===b)); });
+  const initials=()=>{ const i=by.value.replace(/[^a-z]/gi,'').toUpperCase(); if(!i){ toast('Put your initials in first'); by.focus(); return ''; } rememberInitials(i); return i; };
+  el.querySelector('#nSave').onclick=()=>{
+    const t=text.value.trim(); if(!t){ toast('Write the note first'); text.focus(); return; }
+    const i=initials(); if(!i) return;
+    v.log=[{ id:uid('n'), at:new Date().toISOString(), by:i, text:t, issue:k==='issue' }, ...(v.log||[])].slice(0,300);
+    commit(); openLog(v,k); toast('Note saved');
+  };
+  el.querySelectorAll('[data-sort]').forEach(b=>b.onclick=()=>{
+    const i=initials(); if(!i) return;
+    const n=log[+b.dataset.sort]; n.sorted={ by:i, at:new Date().toISOString() };
+    commit(); openLog(v,k); toast('Marked as sorted');
+  });
+  el.querySelectorAll('[data-del]').forEach(b=>armDelete(b,()=>{ const n=log[+b.dataset.del]; v.log=v.log.filter(x=>x.id!==n.id); commit(); openLog(v,k); }));
+  if(!log.length) text.focus();
 }
 
 function openVehicle(v){
