@@ -39,6 +39,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .btn svg{width:15px;height:15px;fill:currentColor}
 .btn.danger{background:#fff;color:var(--terra);border-color:var(--line-strong)}
 .btn.danger:hover{border-color:var(--terra)}
+.btn.danger.armed{background:var(--terra);border-color:var(--terra);color:#fff}
 
 /* ---------- PIN GATE ---------- */
 #gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:#111 url(/assets/team/gate.jpg) center/cover no-repeat;position:relative}
@@ -116,6 +117,7 @@ h1,h2,h3{font-family:var(--serif);margin:0;font-weight:700;letter-spacing:0}
 .check .emo{font-size:18px;text-align:center}
 .check .l b{display:block;font-size:14px;color:var(--black)}
 .check .l small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.veh-foot .spacer{flex:1}
 .veh-foot{display:flex;gap:6px;padding:10px 14px;border-top:1px solid var(--line);background:#fafafa}
 .addveh{border:2px dashed var(--line-strong);background:transparent;border-radius:12px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--muted);font-weight:700;font-size:14px}
 .addveh .emo{font-size:30px}
@@ -337,13 +339,14 @@ function renderVehicles(){
         <button class="icon-btn" type="button" data-edit title="Edit vehicle"><svg viewBox="0 0 24 24"><path d="M4 17.2V20h2.8l8.3-8.3-2.8-2.8L4 17.2Zm13.7-7.6a.9.9 0 0 0 0-1.3l-2-2a.9.9 0 0 0-1.3 0l-1.5 1.5 2.8 2.8 2-1Z"/></svg></button></div>
       <div class="miles"><div class="v">${last?`<b>${miles(last.miles)}</b>miles · logged ${last.date===TODAY?'today':fmtShort(last.date)}${mpd?` · about ${miles(mpd*7)} a week`:''}`:'No mileage logged yet'}</div><button class="btn green sm" type="button" data-miles>Log mileage</button></div>
       <div class="checks"></div>
-      <div class="veh-foot"><button class="btn line sm" type="button" data-add>Add another check</button></div>`;
+      <div class="veh-foot"><button class="btn line sm" type="button" data-add>Add another check</button><span class="spacer"></span><button class="btn line sm" type="button" data-edit2>Edit or remove</button></div>`;
     const checks=card.querySelector('.checks');
     const rows=[...CHECKS.map(def=>({def, st:v.checks?.[def.key], custom:null})),
                 ...(v.custom||[]).map(c=>({def:{key:'c-'+c.id,label:c.label,emo:'📌',every:+c.every||12,ask:'Date it was last done'}, st:c, custom:c}))];
     checks.innerHTML=rows.map(r=>checkRow(r.def,r.st,v)).join('');
     checks.querySelectorAll('.check').forEach((b,i)=>b.onclick=()=>openCheck(v, rows[i].def, rows[i].custom));
     card.querySelector('[data-edit]').onclick=()=>openVehicle(v);
+    card.querySelector('[data-edit2]').onclick=()=>openVehicle(v);
     card.querySelector('[data-miles]').onclick=()=>openMileage(v);
     card.querySelector('[data-add]').onclick=()=>openCustom(v);
     wrap.appendChild(card);
@@ -371,6 +374,15 @@ function sheet(title, bodyHTML){
   scrim.addEventListener('click',e=>{ if(e.target===scrim) closeSheet(); });
   scrim.querySelector('.x').onclick=closeSheet;
   document.body.appendChild(scrim); return scrim;
+}
+// Removing asks for a second tap on the same button. Browser pop-ups are blocked in some phone apps.
+function armDelete(btn, run){
+  if(!btn) return; const label=btn.textContent; let armed=false, t=null;
+  btn.addEventListener('click',()=>{
+    if(armed){ clearTimeout(t); run(); return; }
+    armed=true; btn.textContent='Tap again to remove'; btn.classList.add('armed');
+    t=setTimeout(()=>{ armed=false; btn.textContent=label; btn.classList.remove('armed'); },4000);
+  });
 }
 function closeSheet(){ $('sheet')?.remove(); }
 function toast(msg){ document.querySelectorAll('.toast').forEach(t=>t.remove()); const t=document.createElement('div'); t.className='toast'; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2600); }
@@ -417,7 +429,7 @@ function openCheck(v, def, custom){
     else { v.checks=v.checks||{}; v.checks[def.key]={ last:d.last, every:d.every, ...(isService?{lastMiles:d.lastMiles}:{}), ...(d.off?{off:true}:{}) }; }
     commit(); closeSheet(); toast(d.off?'Turned off':d.last?`${custom?custom.label:def.label} saved`:'Saved');
   };
-  el.querySelector('#cDel')?.addEventListener('click',()=>{ if(!confirm(`Remove "${custom.label}" from ${v.name||'this vehicle'}?`)) return; v.custom=v.custom.filter(c=>c!==custom); commit(); closeSheet(); });
+  armDelete(el.querySelector('#cDel'),()=>{ v.custom=v.custom.filter(c=>c.id!==custom.id); commit(); closeSheet(); toast(custom.label+' removed'); });
   show(); if(!st.last) last.focus();
 }
 
@@ -460,7 +472,7 @@ function openVehicle(v){
     else Object.assign(v,{ name, reg, notes });
     commit(); closeSheet();
   };
-  el.querySelector('#vDel')?.addEventListener('click',()=>{ if(!confirm(`Remove ${vehicleName(v)} and all its dates?`)) return; fleet.vehicles=fleet.vehicles.filter(x=>x!==v); commit(); closeSheet(); });
+  armDelete(el.querySelector('#vDel'),()=>{ fleet.vehicles=fleet.vehicles.filter(x=>x.id!==v.id); commit(); closeSheet(); toast(vehicleName(v)+' removed'); });
 }
 
 function openCustom(v){
@@ -499,7 +511,7 @@ function openDriver(d){
     if(isNew) fleet.drivers.push({ id:uid('d'), name, licence }); else Object.assign(d,{ name, licence });
     commit(); closeSheet();
   };
-  el.querySelector('#dDel')?.addEventListener('click',()=>{ if(!confirm(`Remove ${d.name}?`)) return; fleet.drivers=fleet.drivers.filter(x=>x!==d); commit(); closeSheet(); });
+  armDelete(el.querySelector('#dDel'),()=>{ fleet.drivers=fleet.drivers.filter(x=>x.id!==d.id); commit(); closeSheet(); toast(d.name+' removed'); });
 }
 
 /* ===================== WIRING ===================== */
