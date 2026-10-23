@@ -9327,3 +9327,18 @@ body:has(.live-page-hero) .site-nav a:not(.nav-cta), body:has(.live-page-hero) .
 .genera-badge.genera-card:hover { transform: none; opacity: 0.85; }
 .genera-badge.genera-card small { color: #B8BFA6 !important; font-size: 11.5px !important; letter-spacing: 0.14em !important; }
 .genera-badge.genera-card img { width: 170px !important; }
+
+/* Animal Focused Alliance member badge, footer Contact column. White circle so the navy line art reads on the dark footer. */
+.site-footer .afa-badge, footer .afa-badge {
+  display: inline-block;
+  width: 88px;
+  height: 88px;
+  margin-top: 14px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #fff;
+  line-height: 0;
+  transition: transform 0.2s ease;
+}
+footer .afa-badge:hover { transform: translateY(-2px); }
+footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
