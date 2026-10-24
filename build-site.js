@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-24-bing";
+const assetVersion = "2026-10-24-areaflow-bing";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -709,7 +709,7 @@ function serviceJson(page) {
   };
 }
 
-function layout({ route, title, description, keywords, h1, intro, body, hero = false, heroData = null, image = "assets/woodland.jpg", structured = [], noindex = false, scripts = "" }) {
+function layout({ route, title, description, keywords, h1, intro, body, hero = false, heroData = null, image = "assets/woodland.jpg", structured = [], noindex = false, scripts = "", heroHtml = "" }) {
   const url = `${SITE}${route === "/" ? "/" : `/${route}/`}`;
   const routeClass = route === "/" ? "home" : route.replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "");
   const ogImage = image && image.startsWith("http") ? image : `${SITE}/${image || "assets/woodland.jpg"}`;
@@ -777,7 +777,7 @@ function layout({ route, title, description, keywords, h1, intro, body, hero = f
     </nav>
   </header>
   <main>
-    ${route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData, true) : pageHero(h1, intro, image)}
+    ${heroHtml ? heroHtml : route === "pricing" ? pricingHero(h1, intro) : hero ? heroBlock(h1, intro) : heroData ? livePageHero(h1, heroData, true) : pageHero(h1, intro, image)}
     ${route === "/" || heroData ? trustBand() : ""}
     ${body}
   </main>
@@ -919,10 +919,11 @@ function photoMarquee() {
   return `<section class="photo-marquee" aria-label="Dogs at Duncan's Dog Co."><div class="photo-marquee-track">${imgs}${imgs}</div></section>`;
 }
 
-function homeReviews() {
+function homeReviews(areaName = "") {
   const starSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
-  const cards = testimonials.map((r) => `<blockquote class="review-tile reveal"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><p>${esc(r.quote)}</p><footer><span class="review-avatar" aria-hidden="true">${esc(r.initial)}</span><span><strong>${esc(r.name)}</strong><small>${esc(r.dog)}</small></span></footer></blockquote>`).join("");
-  return `<section class="home-reviews" aria-labelledby="reviews-title">
+  const ordered = areaName ? [...testimonials].sort((a, b) => (b.dog.endsWith(areaName) ? 1 : 0) - (a.dog.endsWith(areaName) ? 1 : 0)) : testimonials;
+  const cards = ordered.map((r) => `<blockquote class="review-tile reveal"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><p>${esc(r.quote)}</p><footer><span class="review-avatar" aria-hidden="true">${esc(r.initial)}</span><span><strong>${esc(r.name)}</strong><small>${esc(r.dog)}</small></span></footer></blockquote>`).join("");
+  return `<section class="home-reviews${areaName ? " area-reviews" : ""}" aria-labelledby="reviews-title">
     <div class="section-heading-row reveal"><div><p class="section-kicker">What owners say</p><h2 id="reviews-title">Five stars on Google, from the families who come every week</h2></div><div class="review-google"><div class="ht-google-badge"><div class="ht-g-dot" aria-hidden="true">G</div><div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div><span class="ht-badge-text">5.0 · Google Reviews</span></div><a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div></div>
     <div class="review-tiles">${cards}</div>
   </section>`;
@@ -956,6 +957,13 @@ function homeTrialFormSection() {
 // Area groups for the homepage fingerposts and the signs on each area page
 const swLondon = ["wimbledon", "clapham", "wandsworth", "putney", "balham", "earlsfield", "southfields", "raynes-park", "new-malden", "morden", "tooting", "copse-hill", "motspur-park"];
 const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
+
+// Other areas on each area page: place names in ruled columns, grouped like the homepage signs
+function areaListMarkup(slug) {
+  const nameOf = (s) => areas.find(([a]) => a === s)[1];
+  const groups = [["South West London", swLondon.filter((s) => s !== slug)], ["Surrey", surrey.filter((s) => s !== slug)]];
+  return `<div class="area-index reveal"><h3>Other areas we collect from</h3><div class="area-index-groups">${groups.map(([label, list]) => `<div><h4>${label}</h4><ul>${list.map((s) => `<li><a href="/areas/${s}/">${esc(nameOf(s))}</a></li>`).join("")}</ul></div>`).join("")}</div></div>`;
+}
 
 function catchmentSection() {
   const areaBySlug = Object.fromEntries(areas.map(([slug, name]) => [slug, name]));
@@ -1135,10 +1143,10 @@ function photoRows(rows, shape = "") {
   return `<div class="benefit-rows${shape ? ` ${shape}` : ""}">${rows.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>`;
 }
 
-function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name" }) {
+function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", aside = "" }) {
   const id = `quick-${service.toLowerCase().replace(/[^a-z]+/g, "-")}`;
-  return `<section class="daycare-final-cta quick-enquiry" id="enquiry">
-      <div class="daycare-final-photo reveal"><img src="${photo}" alt="${esc(alt)}" loading="lazy"></div>
+  return `<section class="daycare-final-cta quick-enquiry${aside ? " has-aside" : ""}" id="enquiry">
+      ${aside || `<div class="daycare-final-photo reveal"><img src="${photo}" alt="${esc(alt)}" loading="lazy"></div>`}
       <div class="daycare-final-copy reveal">
         <p class="section-kicker">${esc(kicker)}</p>
         <h2>${esc(title)}</h2>
@@ -1974,49 +1982,45 @@ function areaPages() {
       [`How long does the journey from ${name} take?`, `Dogs travelling from ${name}${postcodeText} typically reach our Cobham woodland in ${journeyText} via the ${roadText}. They travel in our bespoke people carriers with familiar handlers throughout.`],
       [`Can I drop off my dog from ${name}?`, `Yes. Drop-off at our Cobham facility works well for ${name} families, especially those commuting via the ${roadText} or nearby Surrey routes. It is a straightforward drive to the site.`]
     ];
-    const featureItems = (legacy?.features?.length ? legacy.features : [
-      ["Open 7 days a week, 365 days a year", "Including weekends and bank holidays, for consistent care whenever you need it."],
-      ["Exclusive access to private, secure woodland", "10 acres of Surrey woodland with space to run, explore and be a dog."],
-      [dropOffOnly ? `Easy access from ${name}` : "Door-to-door collection from 7:45am", dropOffOnly ? "Drop-off at our Cobham facility works well for families using the A3, M25 or nearby Surrey routes." : "We come to you in custom people carriers, with routes planned carefully around the dogs."],
-      ["5-star licensed by Elmbridge Council", "One of the first daycares in the country to be inspected and rated."]
-    ]);
-    const routeItems = (legacy?.routes?.length ? legacy.routes : [
-      [dropOffOnly ? "Drop Off" : "Collection Route", `${name} ${dropOffOnly ? "to Cobham" : "and surrounding areas"}`, legacy?.collectionIntro || `We will confirm the most sensible ${name} option before booking a trial day.`],
-      ["Drop Off Yourself", "Prefer to drive in?", "Our Cobham facility is convenient for many families using the A3, M25 and surrounding Surrey routes."]
-    ]);
-    const body = `<section class="location-intro-section">
-      <div class="location-intro-copy reveal">
-        <p class="section-kicker">${esc(legacy?.whyEyebrow || `Doggy Daycare in ${name}`)}</p>
-        <h2>${hd(legacy?.whyTitle || `Woodland dog daycare for ${name} dogs`)}</h2>
-        <p>${esc(legacy?.whyText || detail.intro || `Duncan's Dog Co. gives ${name} dogs a real outdoor day in private Cobham woodland, with collection and drop-off options planned around sensible routes.`)}</p>
-        <div class="local-feature-list">${featureItems.map(([title, text]) => `<div class="local-feature"><span></span><p><strong>${esc(title)}</strong>${esc(text)}</p></div>`).join("")}</div>
+    const collectCopy = dropOffOnly
+      ? `${name} is close enough that most families drop their dog at the woods themselves. If you need a pick-up, ask us and we will look at the route.`
+      : "Our own team does the driving, so whoever picks your dog up is with them in the woods all day. Dogs ride in people carriers, not individual cages, and you can message your driver in the portal on the days you are booked.";
+    const heroHtml = `<section class="area-hero">
+      <img src="/assets/woodland-wide.jpg" alt="Tall pines and dappled light in the Duncan's Dog Co. woodland in Cobham">
+      <div class="area-hero-copy reveal">
+        <h1>Dog daycare for ${esc(name)}, in 10 acres of private woodland</h1>
+        <p>${dropOffOnly ? `A proper day in the woods in Cobham, a short drive from ${esc(name)}.` : (slug === "cobham" ? "We pick your dog up from home, give them a proper day in our woods and bring them back to you." : `We pick your dog up from home in ${esc(name)}, give them a proper day in the woods in Cobham and bring them back to you.`)}</p>
+        <div class="area-hero-actions"><a class="button primary" href="#enquiry">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div>
       </div>
-      <div class="location-intro-image reveal"><img src="/assets/insta/area-1.jpg" alt="Dogs on the woodland path at Duncan's Dog Co."></div>
-    </section>
-    <section class="local-route-section">
-      <div class="local-route-heading reveal">
-        <p class="section-kicker">${esc(legacy?.collectionKicker || "Collection & Drop-Off")}</p>
-        <h2>${hd(legacy?.collectionTitle || `Collection and drop-off for ${name}`)}</h2>
-        <p>${esc(legacy?.collectionIntro || `We will confirm the current ${name} route, collection availability and drop-off options when you enquire.`)}</p>
+    </section>`;
+    const body = `${homeReviews(name)}
+    <section class="area-woods">
+      <div class="area-woods-copy reveal">
+        <h2>What their day is like</h2>
+        <p>Your dog spends the day in 10 acres of private woodland in Cobham, with room to run, sniff, paddle and play with friends they see every week. The team know every dog by name, and the afternoon ends with a proper rest before home.</p>
       </div>
-      <dl class="plain-features route-plain">${routeItems.map(([label, title, text]) => `<div class="reveal"><dt><small>${esc(label)}</small>${hd(title)}</dt><dd>${esc(text)}</dd></div>`).join("")}</dl>
-      <div class="area-signs reveal"><h3>Other areas we collect from</h3><div class="area-signs-groups">${[["South West London", swLondon], ["Surrey", surrey]].map(([label, slugs]) => `<div><span class="signs-label">${label}</span><div class="area-signs-row">${slugs.filter((s) => s !== slug).map((s) => `<a class="fingerpost to-right" href="/areas/${s}/">${esc(areas.find(([a]) => a === s)[1])}</a>`).join("")}</div></div>`).join("")}</div></div>
-    </section>
-    <section class="start-split area-start">
-      <div class="start-copy reveal">
-        <h2>How it works</h2>
-        <ol class="plain-steps">
-          <li><div><strong>Get in touch</strong><span>Fill in our enquiry form or give us a call. Tell us about your dog, your area and what kind of weekly care you need.</span></div></li>
-          <li><div><strong>Meet and greet</strong><span>A complimentary visit to our Cobham woodland so your dog can see the space and our team can meet them properly.</span></div></li>
-          <li><div><strong>Assessment day</strong><span>Every dog does a settling-in session before joining the group. We take it at their pace with no rushing and no pressure.</span></div></li>
-          <li><div><strong>First woodland day</strong><span>${dropOffOnly ? "Drop them at our facility each morning and we will care for them all day, ready to head home happy and tired." : "Once everyone is happy, your dog joins us. We collect from your door, care for them all day and drop them home happy and tired. On booked days you can message your driver from the customer portal."}</span></div></li>
-        </ol>
+      <div class="area-woods-photos reveal">
+        <img src="/assets/insta/story-1.jpg" alt="Dogs exploring a sunny trail through the woodland" loading="lazy">
+        <img src="/assets/insta/svc-daycare-2.jpg" alt="Dogs playing on the log seats in the woods" loading="lazy">
+        <img src="/assets/insta/m-14.jpg" alt="A black flat-coated retriever standing among the pines" loading="lazy">
       </div>
-      <div class="start-photo reveal"><img src="/assets/insta/area-2.jpg" alt="A Duncan's Dog Co. team member at the gate with a dog" loading="lazy"></div>
     </section>
-    <section class="section local-services-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Useful next pages</p><h2>Plan your dog's care</h2></div><p>Compare daycare, puppy care, sleepovers, pricing and FAQs before you enquire from ${esc(name)}.</p></div>${linkPanel()}</section>
-    ${faqSection({ kicker: "Local FAQs", title: `Dog daycare questions for ${esc(name)}`, faqs: faqs })}
-    ${quickEnquiry({ service: `Doggy Daycare (${name})`, photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Trial day", title: `Book a trial day from ${name}`, text: "Tell us about your dog and we will check collection, drop-off and suitability." })}`;
+    <section class="area-getting">
+      <div class="area-getting-inner">
+        <div class="area-getting-top">
+          <div>
+            <h2>Getting your dog to the woods</h2>
+            <div class="area-getting-ways">
+              <div class="reveal"><h3>${dropOffOnly ? "Drop off at the woods" : "We collect from your door"}</h3><p>${esc(collectCopy)}</p></div>
+              <div class="reveal"><h3>${dropOffOnly ? "Need a pick-up?" : "Or drop off yourself"}</h3><p>${dropOffOnly ? "Tell us your postcode and we will tell you honestly whether a pick-up works." : "The woods are just off the A3 and M25 in Cobham, so it is an easy drive in."}</p></div>
+            </div>
+          </div>
+          <div class="area-price reveal"><span>From</span><strong>£55</strong><span>a day</span><p>Collection and drop-off are included. <a href="/pricing/">See prices</a></p></div>
+        </div>
+        ${areaListMarkup(slug)}
+      </div>
+    </section>
+    ${quickEnquiry({ service: `Doggy Daycare (${name})`, photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Trial day", title: `Book a trial day from ${name}`, text: "Tell us about your dog and we will check collection, drop-off and suitability.", aside: `<div class="area-faq reveal"><h2>Questions from ${esc(name)} families</h2>${faqMarkup(faqs)}<p class="faq-block-contact">Still got a question? Call <a href="tel:07731798899">07731 798 899</a>, <a href="https://wa.me/447731798899" target="_blank" rel="noopener">WhatsApp us</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>.</p></div>` })}`;
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
       title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
@@ -2026,6 +2030,7 @@ function areaPages() {
       intro: legacy?.heroText || `Woodland dog daycare in Cobham with collection and drop-off options for ${name} families.`,
       heroData: legacy ? { eyebrow: legacy.heroEyebrow || `Doggy Daycare · ${name}`, displayTitle: legacy.heroTitle || `${esc(name)} dogs,<br><span>private woodland days</span>`, text: legacy.heroText, video: legacy.video || videoHero, ctaHref: "/contact/#enquiry-form", ctaText: "Enquire Now", stats: [] } : null,
       body,
+      heroHtml,
       structured: [faqJson(faqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Areas", url: "/areas/" }, { name, url: `/areas/${slug}/` }])]
     }));
   }

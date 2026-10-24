@@ -9352,14 +9352,112 @@ footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
 .fingerpost:hover { background: #cdd5c1; }
 .signs-map { align-items: start; }
 .signs-centre { align-self: center; }
-
-/* Area pages: the same fingerpost signs, grouped, on the dark band */
-.area-signs { max-width: 1050px; margin: 48px auto 0; padding-top: 36px; border-top: 1px solid rgba(255, 255, 255, 0.18); }
-.area-signs h3 { margin: 0 0 22px; color: #fff; font-size: 24px; }
-.area-signs-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
-.area-signs .signs-label { display: block; width: auto; margin-bottom: 12px; color: var(--leaf) !important; text-align: left; }
-.area-signs-row { display: flex; flex-wrap: wrap; gap: 9px; }
-@media (max-width: 760px) {
-  .area-signs-groups { grid-template-columns: 1fr; }
-}
 .local-route-heading .section-kicker { color: var(--leaf) !important; }
+
+/* ── Area pages, 24 Oct 2026: photo banner, reviews, the woods, getting there, questions beside the form ── */
+.area-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: min(88vh, 780px);
+  padding: 150px clamp(18px, 5vw, 64px) clamp(48px, 7vw, 88px);
+  overflow: hidden;
+  color: #fff;
+}
+.area-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; }
+.area-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 30, 22, 0.55) 0%, rgba(20, 30, 22, 0.05) 26%, rgba(20, 30, 22, 0.35) 52%, rgba(20, 30, 22, 0.88) 100%), linear-gradient(90deg, rgba(20, 30, 22, 0.55) 0%, rgba(20, 30, 22, 0) 62%);
+}
+.area-hero-copy { position: relative; z-index: 1; max-width: 780px; }
+.area-hero h1 { margin: 0 0 18px; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35); color: #fff !important; font-size: clamp(40px, 5.6vw, 74px) !important; line-height: 1.02; }
+.area-hero p { max-width: 580px; margin: 0 0 30px; color: rgba(255, 255, 255, 0.92); font-size: 19px; line-height: 1.55; }
+.area-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.area-hero .button.primary { border-color: #fff !important; background: #fff !important; color: var(--forest) !important; }
+.area-hero .button.primary:hover { background: var(--cream) !important; border-color: var(--cream) !important; }
+.area-hero .button.secondary { border: 1px solid rgba(255, 255, 255, 0.7) !important; background: transparent !important; color: #fff !important; }
+
+.area-woods { padding: 104px clamp(18px, 5vw, 64px); background: #fff; }
+.area-woods-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; max-width: 1180px; margin: 0 auto 40px; }
+.area-woods-copy h2 { margin: 0; color: var(--forest) !important; font-size: clamp(34px, 4vw, 52px) !important; line-height: 1.05; }
+.area-woods-copy p { margin: 0; color: var(--text); font-size: 18px; line-height: 1.65; }
+.area-woods-photos { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 540px; gap: 12px; max-width: 1180px; margin: 0 auto; }
+.area-woods-photos img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: cover; border-radius: 8px; }
+
+.area-getting { padding: 104px clamp(18px, 5vw, 64px); background: var(--forest); color: #fff; }
+.area-getting-inner { max-width: 1050px; margin: 0 auto; }
+.area-getting h2 { margin: 0 0 44px; color: #fff !important; font-size: clamp(34px, 4vw, 52px) !important; line-height: 1.05; }
+.area-getting-ways { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.area-getting-ways > div { padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, 0.2); }
+.area-getting-ways h3 { margin: 0 0 12px; color: #fff; font-size: 26px; }
+.area-getting-ways p { margin: 0; color: rgba(255, 255, 255, 0.78); font-size: 17px; line-height: 1.7; }
+.area-price { margin: 48px 0 0; color: #fff; font-family: var(--display); font-size: 22px; }
+.area-price a { margin-left: 10px; color: var(--leaf); text-underline-offset: 4px; }
+
+.quick-enquiry.has-aside { align-items: start; }
+.area-faq h2 { margin: 0 0 24px; color: var(--forest) !important; font-size: clamp(30px, 3.4vw, 44px) !important; line-height: 1.08; }
+.area-faq .faq-list details { background: #fff; border-radius: 8px; margin-bottom: 10px; }
+.area-faq .faq-block-contact { margin-top: 20px; color: var(--text); }
+.area-faq .faq-block-contact a { color: var(--forest); }
+
+@media (max-width: 900px) {
+  .area-woods-copy, .area-getting-ways { grid-template-columns: 1fr; gap: 24px; }
+  .area-woods-photos { grid-template-columns: 1fr 1fr; grid-template-rows: 320px 220px; }
+  .area-woods-photos img:first-child { grid-column: 1 / -1; }
+  .quick-enquiry.has-aside { grid-template-columns: 1fr; }
+  .area-woods, .area-getting { padding-top: 64px; padding-bottom: 64px; }
+}
+@media (max-width: 720px) {
+  .area-reviews .review-tile:nth-child(n+3) { display: none; }
+}
+
+/* Area pages: other areas as ruled columns of place names */
+.area-index { margin-top: 64px; }
+.area-index h3 { margin: 0 0 28px; color: #fff; font-size: 26px; }
+.area-index-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.area-index h4 { margin: 0 0 6px; color: var(--leaf); font-size: 15px; font-weight: 700; }
+.area-index ul { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 32px; }
+.area-index li { break-inside: avoid; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.area-index a { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 13px 0; color: #fff; font-family: var(--display); font-size: 19px; text-decoration: none; transition: color 160ms ease, padding 160ms ease; }
+.area-index a::after { content: "→"; color: var(--leaf); opacity: 0.55; transition: opacity 160ms ease; }
+.area-index a:hover { color: var(--leaf); padding-left: 4px; }
+.area-index a:hover::after { opacity: 1; }
+
+@media (max-width: 760px) {
+  .area-index-groups { grid-template-columns: 1fr; gap: 36px; }
+  .area-index a { font-size: 18px; padding: 12px 0; }
+}
+
+/* Area pages, getting there on a light background: price leads, the place list steps back */
+.area-getting { background: #fff; color: var(--ink); }
+.area-getting h2 { color: var(--forest) !important; margin-bottom: 36px; }
+.area-getting-top { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 64px; align-items: start; }
+.area-getting-ways { gap: 40px; }
+.area-getting-ways > div { border-top-color: var(--line); }
+.area-getting-ways h3 { color: var(--forest); font-size: 22px; }
+.area-getting-ways p { color: var(--text); font-size: 16px; }
+.area-price { margin: 0; padding: 30px 28px; border-radius: 8px; background: var(--forest); color: #fff; font-family: inherit; font-size: inherit; }
+.area-price span { display: block; color: var(--leaf); font-size: 15px; font-weight: 700; }
+.area-price strong { display: block; margin: 2px 0 0; font-family: var(--display); font-size: 84px; font-weight: 600; line-height: 1; }
+.area-price span + strong + span { margin-top: 4px; color: #fff; font-size: 18px; font-weight: 600; }
+.area-price p { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.18); color: rgba(255, 255, 255, 0.8); font-size: 15px; line-height: 1.55; }
+.area-price a { margin-left: 0; color: #fff; }
+.area-getting .area-index { margin-top: 72px; }
+.area-getting .area-index h3 { color: var(--forest); font-size: 18px; margin-bottom: 18px; }
+.area-getting .area-index h4 { color: var(--moss); font-size: 13px; }
+.area-getting .area-index ul { columns: 3; }
+.area-getting .area-index li { border-bottom-color: var(--line); }
+.area-getting .area-index a { padding: 9px 0; color: var(--ink); font-family: inherit; font-size: 15px; }
+.area-getting .area-index a::after { color: var(--moss); }
+.area-getting .area-index a:hover { color: var(--moss); }
+@media (max-width: 900px) {
+  .area-getting-top { grid-template-columns: 1fr; gap: 36px; }
+  .area-price { max-width: 360px; }
+  .area-getting .area-index ul { columns: 2; }
+}
+/* A rule and a tighter gap under the woodland photos */
+.area-getting { padding-top: 0; }
+.area-woods { padding-bottom: 72px; }
+.area-getting-inner { padding-top: 72px; border-top: 1px solid var(--line); }
