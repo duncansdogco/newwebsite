@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-19-calm";
+const assetVersion = "2026-10-24-align";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -2181,15 +2181,15 @@ function faqAndContact() {
           </div>
           <div class="form-row">
             <div class="form-group"><label for="address">Your address *</label><textarea id="address" name="address" required placeholder="House number, street, town and postcode"></textarea></div>
-            <div class="form-group"><label for="service">Service interested in</label><select id="service" name="service"><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
+            <div class="form-group"><label for="service">Service interested in *</label><select id="service" name="service" required><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
           </div>
           <div class="form-notes">
             <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates in the message box below.</div>
             <div class="form-note-card"><strong>School holidays:</strong> We fill up fast, so please enquire well in advance to avoid disappointment.</div>
           </div>
           <div class="form-group">
-            <label for="heard">How did you hear about us?</label>
-            <select id="heard" name="heard_about_us"><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select>
+            <label for="heard">How did you hear about us? *</label>
+            <select id="heard" name="heard_about_us" required><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select>
           </div>
           <div class="form-group">
             <label for="message">Tell us about your dog *</label>

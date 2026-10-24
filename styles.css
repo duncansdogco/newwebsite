@@ -9342,3 +9342,16 @@ body:has(.live-page-hero) .site-nav a:not(.nav-cta), body:has(.live-page-hero) .
 }
 footer .afa-badge:hover { transform: translateY(-2px); }
 footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Area pages: the two columns line up with the note and the area list below */
+.local-route-section .route-plain { max-width: 1050px; margin: 24px auto 0; }
+.local-route-section .route-plain dd { text-wrap: pretty; }
+
+/* Area pages: area pills light green with dark text on the dark band */
+.local-area-cloud a {
+  border-color: transparent;
+  background: var(--cream);
+  color: var(--forest);
+}
+.local-area-cloud a:hover { background: #cdd5c1; }
+.local-area-cloud a.is-active { background: #fff; color: var(--forest); }
