@@ -9347,11 +9347,19 @@ footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
 .local-route-section .route-plain { max-width: 1050px; margin: 24px auto 0; }
 .local-route-section .route-plain dd { text-wrap: pretty; }
 
-/* Area pages: area pills light green with dark text on the dark band */
-.local-area-cloud a {
-  border-color: transparent;
-  background: var(--cream);
-  color: var(--forest);
+/* Homepage collection signs: light green with dark text; both sides start level */
+.fingerpost { background: var(--cream); color: var(--forest) !important; }
+.fingerpost:hover { background: #cdd5c1; }
+.signs-map { align-items: start; }
+.signs-centre { align-self: center; }
+
+/* Area pages: the same fingerpost signs, grouped, on the dark band */
+.area-signs { max-width: 1050px; margin: 48px auto 0; padding-top: 36px; border-top: 1px solid rgba(255, 255, 255, 0.18); }
+.area-signs h3 { margin: 0 0 22px; color: #fff; font-size: 24px; }
+.area-signs-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 48px; }
+.area-signs .signs-label { display: block; width: auto; margin-bottom: 12px; color: var(--leaf) !important; text-align: left; }
+.area-signs-row { display: flex; flex-wrap: wrap; gap: 9px; }
+@media (max-width: 760px) {
+  .area-signs-groups { grid-template-columns: 1fr; }
 }
-.local-area-cloud a:hover { background: #cdd5c1; }
-.local-area-cloud a.is-active { background: #fff; color: var(--forest); }
+.local-route-heading .section-kicker { color: var(--leaf) !important; }

@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-24-align";
+const assetVersion = "2026-10-24-signs";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -953,9 +953,11 @@ function homeTrialFormSection() {
   </section>`;
 }
 
+// Area groups for the homepage fingerposts and the signs on each area page
+const swLondon = ["wimbledon", "clapham", "wandsworth", "putney", "balham", "earlsfield", "southfields", "raynes-park", "new-malden", "morden", "tooting", "copse-hill", "motspur-park"];
+const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
+
 function catchmentSection() {
-  const swLondon = ["wimbledon", "clapham", "wandsworth", "putney", "balham", "earlsfield", "southfields", "raynes-park", "new-malden", "morden", "tooting", "copse-hill", "motspur-park"];
-  const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
   const areaBySlug = Object.fromEntries(areas.map(([slug, name]) => [slug, name]));
   // Each town is a fingerpost pointing in at Cobham: London from the left, Surrey from the right (19 Oct 2026)
   // Postcode district to area pages, so the postcode box can send people to their area
@@ -1982,11 +1984,6 @@ function areaPages() {
       [dropOffOnly ? "Drop Off" : "Collection Route", `${name} ${dropOffOnly ? "to Cobham" : "and surrounding areas"}`, legacy?.collectionIntro || `We will confirm the most sensible ${name} option before booking a trial day.`],
       ["Drop Off Yourself", "Prefer to drive in?", "Our Cobham facility is convenient for many families using the A3, M25 and surrounding Surrey routes."]
     ]);
-    const areaTags = legacy?.areaTags?.length ? legacy.areaTags : areas.map(([areaSlug, areaName]) => ({ slug: areaSlug, label: areaName, active: areaSlug === slug }));
-    const locationLinks = areaTags
-      .filter((tag) => areas.some(([areaSlug]) => areaSlug === tag.slug))
-      .map((tag) => `<a class="${tag.active ? "is-active" : ""}" href="/areas/${tag.slug}/">${tag.active ? "Current: " : ""}${esc(tag.label)}</a>`)
-      .join("");
     const body = `<section class="location-intro-section">
       <div class="location-intro-copy reveal">
         <p class="section-kicker">${esc(legacy?.whyEyebrow || `Doggy Daycare in ${name}`)}</p>
@@ -2003,8 +2000,7 @@ function areaPages() {
         <p>${esc(legacy?.collectionIntro || `We will confirm the current ${name} route, collection availability and drop-off options when you enquire.`)}</p>
       </div>
       <dl class="plain-features route-plain">${routeItems.map(([label, title, text]) => `<div class="reveal"><dt><small>${esc(label)}</small>${hd(title)}</dt><dd>${esc(text)}</dd></div>`).join("")}</dl>
-      <div class="vehicle-note reveal"><strong>${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ")[0].replace(/\.$/, ""))}.</strong> ${esc((legacy?.vehicleFact || "Routes are planned carefully every day.").split(". ").slice(1).join(". "))}</div>
-      <div class="local-area-cloud reveal"><span>Areas we serve - click to find out more</span><div>${locationLinks}</div></div>
+      <div class="area-signs reveal"><h3>Other areas we collect from</h3><div class="area-signs-groups">${[["South West London", swLondon], ["Surrey", surrey]].map(([label, slugs]) => `<div><span class="signs-label">${label}</span><div class="area-signs-row">${slugs.filter((s) => s !== slug).map((s) => `<a class="fingerpost to-right" href="/areas/${s}/">${esc(areas.find(([a]) => a === s)[1])}</a>`).join("")}</div></div>`).join("")}</div></div>
     </section>
     <section class="start-split area-start">
       <div class="start-copy reveal">
