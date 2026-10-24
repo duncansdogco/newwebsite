@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-24-signs";
+const assetVersion = "2026-10-24-bing";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -2269,7 +2269,7 @@ function faqAndContact() {
 <p>If you are not satisfied with how we handle your data, you have the right to complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or by calling 0303 123 1113.</p>
 
 <h2 id="cookies">7. Cookies and website data</h2>
-<p>We use Google Analytics to see how people find and use our website, and Google Ads to see which adverts lead to enquiries. We also use Microsoft Clarity, which records how visitors scroll and click so we can see where the website is unclear. It does not record what you type into forms. We use the Meta pixel to see which of our Facebook and Instagram adverts lead to enquiries. All four set cookies only if you choose Accept in the cookie notice. If you choose No thanks, the website works the same, and Google receives only basic signals that do not use cookies or identify you.</p>
+<p>We use Google Analytics to see how people find and use our website, and Google Ads to see which adverts lead to enquiries. We also use Microsoft Clarity, which records how visitors scroll and click so we can see where the website is unclear. It does not record what you type into forms. We use the Meta pixel to see which of our Facebook and Instagram adverts lead to enquiries, and Microsoft Advertising to see which of our Bing adverts lead to enquiries. All five set cookies only if you choose Accept in the cookie notice. If you choose No thanks, the website works the same, and Google and Microsoft receive only basic signals that do not use cookies or identify you.</p>
 <p>When you have accepted cookies and send us an enquiry, we share a scrambled copy of your email address and phone number with Google and Meta. This lets them tell us whether the enquiry came from one of our adverts. The details are scrambled on your device before they are sent.</p>
 <p>Our enquiry form also records the page you arrived on and the website or advert that sent you, so we know which of our marketing works.</p>
 <p>We remember your cookie choice on your device so we do not ask again. You can change it at any time with Cookie settings at the bottom of every page.</p>

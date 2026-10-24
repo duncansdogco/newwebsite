@@ -273,6 +273,8 @@ function setCookieChoice(choice) {
   if (typeof window.gtag === "function") {
     window.gtag("consent", "update", { ad_storage: state, analytics_storage: state, ad_user_data: state, ad_personalization: state });
   }
+  window.uetq = window.uetq || [];
+  window.uetq.push("consent", "update", { ad_storage: state });
   if (choice === "granted") { rememberSource(); startClarity(); startMeta(); }
   if (cookieNotice) { cookieNotice.hidden = true; document.body.classList.remove("has-cookie-notice"); }
 }
@@ -322,6 +324,33 @@ function metaEvent(name) {
   if (typeof window.fbq === "function") window.fbq("track", name);
 }
 
+// Microsoft Ads (Bing) tag. Loads for everyone, like the Google tag, but only
+// stores cookies after Accept; otherwise Microsoft counts without cookies.
+const UET_TAG_ID = "97278037";
+function startUet() {
+  if (!UET_TAG_ID || window.ddcUetStarted) return;
+  window.ddcUetStarted = true;
+  window.uetq = window.uetq || [];
+  window.uetq.push("consent", "default", { ad_storage: cookiesAccepted() ? "granted" : "denied" });
+  (function (w, d, t, r, u) {
+    var f, n, i;
+    w[u] = w[u] || [];
+    f = function () { var o = { ti: UET_TAG_ID, enableAutoSpaTracking: true }; o.q = w[u]; w[u] = new UET(o); w[u].push("pageLoad"); };
+    n = d.createElement(t); n.src = r; n.async = 1;
+    n.onload = n.onreadystatechange = function () {
+      var s = this.readyState;
+      if (!s || s === "loaded" || s === "complete") { f(); n.onload = n.onreadystatechange = null; }
+    };
+    i = d.getElementsByTagName(t)[0]; i.parentNode.insertBefore(n, i);
+  })(window, document, "script", "https://bat.bing.com/bat.js", "uetq");
+}
+startUet();
+
+function uetEvent(name) {
+  window.uetq = window.uetq || [];
+  window.uetq.push("event", name, {});
+}
+
 // The cookie box must never sit over a form. While it shows, the page gets
 // room at the bottom so nothing is stuck under it, and it steps aside (no
 // choice saved, so no cookies) as soon as someone starts on a form or a form
@@ -369,6 +398,7 @@ document.addEventListener("click", (event) => {
   if (!link) return;
   const kind = link.getAttribute("href").startsWith("tel:") ? "phone" : "whatsapp";
   sendConversion(kind);
+  uetEvent(`${kind}_tap`);
   clarityEvent(`${kind}_tap`);
   metaEvent("Contact");
   window.dataLayer = window.dataLayer || [];
@@ -418,6 +448,7 @@ if (document.body.classList.contains("page-thank-you")) {
     if (details) metaEvent("Lead");
   }
   const sent = details || readStore("sessionStorage", "ddc-enquiry-sent") === "1";
+  if (sent) uetEvent("contact_form");
   if (sent && typeof window.gtag === "function") {
     if (details && cookiesAccepted()) window.gtag("set", "user_data", details);
     sendConversion("enquiry");
