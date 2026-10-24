@@ -1974,12 +1974,11 @@ function areaPages() {
     const detail = areaDetails[slug] || {};
     const h1 = `Dog Daycare Collection in ${name}`;
     const dropOffOnly = legacy && /don't collect/i.test(legacy.collectionIntro || "");
-    const journeyText = detail.journeyMins ? `around ${detail.journeyMins} minutes` : "a short drive";
     const postcodeText = detail.postcode ? ` (${detail.postcode})` : "";
     const roadText = detail.mainRoad || route;
     const faqs = [
-      [`Do you collect dogs from ${name}?`, dropOffOnly ? `${name}${postcodeText} is currently best suited to drop-off at our Cobham facility, with easy access from nearby main routes.` : `Yes. Collection from ${name}${postcodeText} is available subject to route capacity and your dog's routine. The journey to our Cobham woodland takes ${journeyText} via the ${roadText}.`],
-      [`How long does the journey from ${name} take?`, `Dogs travelling from ${name}${postcodeText} typically reach our Cobham woodland in ${journeyText} via the ${roadText}. They travel in our bespoke people carriers with familiar handlers throughout.`],
+      [`Do you collect dogs from ${name}?`, dropOffOnly ? `${name}${postcodeText} is currently best suited to drop-off at our Cobham facility, with easy access from nearby main routes.` : `Yes. Collection from ${name}${postcodeText} is available subject to route capacity and your dog's routine. Dogs come to our Cobham woodland via the ${roadText}.`],
+      [`How do dogs travel from ${name}?`, `Dogs from ${name}${postcodeText} travel to our Cobham woodland via the ${roadText} in our people carriers, with the same team who look after them all day. We plan the routes every evening so no dog is in the car longer than it needs to be.`],
       [`Can I drop off my dog from ${name}?`, `Yes. Drop-off at our Cobham facility works well for ${name} families, especially those commuting via the ${roadText} or nearby Surrey routes. It is a straightforward drive to the site.`]
     ];
     const collectCopy = dropOffOnly
@@ -2024,7 +2023,7 @@ function areaPages() {
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
       title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
-      description: `Dog daycare collection in ${name}${postcodeText} — ${journeyText} to our private Cobham woodland via the ${roadText}. Licensed, family-run care with door-to-door collection.`,
+      description: `Dog daycare with collection from ${name}${postcodeText} to 10 acres of private woodland in Cobham, via the ${roadText}. Licensed by Elmbridge Council, with door-to-door collection.`,
       keywords: `dog daycare ${name}, dog daycare collection ${name}, dog daycare with collection, dog daycare Surrey, dog daycare SW London`,
       h1,
       intro: legacy?.heroText || `Woodland dog daycare in Cobham with collection and drop-off options for ${name} families.`,
