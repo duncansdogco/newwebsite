@@ -1212,6 +1212,11 @@ function startupSupportBody() {
       <p>In September 2026 we published the <a href="https://www.generasoftware.com/research/licensing-report-2026" target="_blank" rel="noopener">Genera Licensing Report 2026</a> with Genera Software. It compares what a dog daycare licence costs across England, who inspects it and what enforcement looks like in practice. Every figure links to the council fee table, guidance page or court report it came from.</p>
     </div>
   </section>
+  <section class="section live-content startup-report-section">
+    <div class="section-heading-row reveal">
+      <div><p class="section-kicker">Free Guides</p><h2>Pricing your days and choosing your software</h2><div class="squiggle-line" aria-hidden="true"></div></div>
+      <p>We also write free guides on the Genera blog. <a href="https://www.generasoftware.com/blog/how-much-to-charge-dog-daycare-uk-2026" target="_blank" rel="noopener">How much to charge for dog daycare</a> shows what 242 licensed daycares in England charge and how to work out a price from your own costs, and the <a href="https://www.generasoftware.com/tools/dog-daycare-price-calculator" target="_blank" rel="noopener">daycare price calculator</a> does the sum with your own figures. When you come to choose booking software, <a href="https://www.generasoftware.com/blog/dog-daycare-software-uk-compared-2026" target="_blank" rel="noopener">twelve daycare systems compared</a> prices each one for a small daycare.</p>
+    </div>
   ${liveIntro({
     kicker: "Where This Comes From",
     title: "We're sharing what we wish we'd had.",
