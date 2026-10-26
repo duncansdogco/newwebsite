@@ -9629,3 +9629,32 @@ html body .form-wrap .enquiry-start .button.enquiry-open { border-radius: 16px !
 }
 /* the Lab on the daycare and homepage trial-day photo keeps his ears in the shorter frame */
 .quick-enquiry .daycare-final-photo img[src*="final.jpg"] { object-position: center 18%; }
+
+/* ── Depth, softer (26 Oct 2026, Jess: yes to the softer version) ──
+   Dark blocks get a faint light patch and a fine grain, cards a whisper of sage, a
+   bright top edge and a soft shadow, and the photos one gentle grade so they match. */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --card-light: inset 0 1px 0 #fff, 0 1px 2px rgba(31, 38, 32, 0.04), 0 20px 40px -24px rgba(31, 38, 32, 0.22);
+}
+/* Dark blocks: Studio Green with a soft light patch and fine grain, like Genera's footer */
+.site-footer, .page-hero, .cta-band {
+  background: var(--grain), radial-gradient(90% 130% at 8% 0%, rgba(122, 146, 100, 0.32), rgba(122, 146, 100, 0) 60%), radial-gradient(70% 90% at 100% 100%, rgba(10, 16, 10, 0.18), rgba(10, 16, 10, 0) 60%), #2E3B32 !important;
+}
+.site-footer { border-top: 1px solid rgba(255, 255, 255, 0.08); }
+.home-reviews::before, .quick-enquiry::before { background: var(--grain), linear-gradient(180deg, rgba(31, 38, 32, 0.68), rgba(31, 38, 32, 0.82)), url(/assets/woodland-wide.jpg) center / cover !important; }
+/* Cards: white falling to the faintest sage, a bright top edge, a long soft shadow, a small lift */
+.about-team-card, .rich-feature-card, .day-moment, .contact-item, .price-card:not(.featured):not(.sage), .postcode-check, .daycare-pricing-teaser, .pricing-calc-card, .form-wrap, .reviews-page .review-tile {
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAF5 100%) !important;
+  border: 1px solid rgba(46, 59, 50, 0.08) !important;
+  box-shadow: var(--card-light) !important;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.35s ease;
+}
+.about-team-card:hover, .rich-feature-card:hover, .day-moment:hover, .contact-item:hover, .price-card:hover, .reviews-page .review-tile:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 #fff, 0 2px 4px rgba(31, 38, 32, 0.05), 0 26px 48px -24px rgba(31, 38, 32, 0.3) !important; }
+/* The dark "most popular" price card gets the same glow as the footer */
+.price-card[class*="feat"], .price-card[class*="popular"], .area-price { background: var(--grain), radial-gradient(100% 90% at 20% 0%, rgba(110, 132, 92, 0.3), rgba(110, 132, 92, 0) 60%), #2E3B32 !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 30px 60px -26px rgba(31, 38, 32, 0.55) !important; }
+/* One look across the photos: a touch warmer, calmer colour, a little more contrast */
+img[src*="/assets/insta/"], img[src*="/assets/photos/"], img[src*="/assets/gallery/"], img[src*="/assets/team"], img[src*="woodland"], img[src*="/assets/sleep"], img[src*="/assets/splash/"] { filter: saturate(0.94) contrast(1.03) sepia(0.04); }
+/* Headings: a little tighter, the way print headlines are set */
+h1, h2 { letter-spacing: -0.015em; }
+.price-card.sage { background: var(--grain), radial-gradient(100% 90% at 20% 0%, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 60%), #6E8B5A !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 30px 60px -26px rgba(31, 38, 32, 0.5) !important; }
