@@ -201,6 +201,7 @@ if ("IntersectionObserver" in window) {
     layer.scrollTop = 0;
     const field = fieldOf(group);
     deck.querySelector(".step-enter").hidden = field.tagName !== "INPUT";
+    clarityEvent(`enquiry_question_${step + 1}`);
     setTimeout(() => {
       if (field.tagName === "SELECT") deck.querySelector(".step-question").focus({ preventScroll: true });
       else field.focus({ preventScroll: true });
@@ -210,6 +211,7 @@ if ("IntersectionObserver" in window) {
     if (!layer.hidden) return;
     scrollY = window.scrollY;
     layer.hidden = false;
+    clarityEvent("enquiry_opened");
     document.documentElement.classList.add("enquiry-open");
     document.body.style.top = `-${scrollY}px`;
     show(step);
