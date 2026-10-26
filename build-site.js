@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-26-hero-first-screen";
+const assetVersion = "2026-10-26-full-forms";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1137,15 +1137,15 @@ function puppySupportSection() {
   </section>`;
 }
 
-// Short enquiry form for the daycare and puppy pages. Same "enquiry" form as the
-// contact page (a subset of its fields), so the email, the enquiry log and the
-// ad tracking all work the same way.
+// Enquiry form for the service, area and other pages. Same "enquiry" form and the
+// same questions as the contact page (the page fills in the service), so every
+// enquiry arrives complete and the email, log and ad tracking work the same way.
 // One photo, one idea: alternating photo rows (daycare "what every day includes", puppy school)
 function photoRows(rows, shape = "") {
   return `<div class="benefit-rows${shape ? ` ${shape}` : ""}">${rows.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>`;
 }
 
-function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", aside = "" }) {
+function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", breedPrompt = "Dog's breed", aside = "" }) {
   const id = `quick-${service.toLowerCase().replace(/[^a-z]+/g, "-")}`;
   return `<section class="daycare-final-cta quick-enquiry${aside ? " has-aside" : ""}" id="enquiry">
       ${aside || `<div class="daycare-final-photo reveal"><img src="${photo}" alt="${esc(alt)}" loading="lazy"></div>`}
@@ -1163,11 +1163,19 @@ function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "D
           </div>
           <div class="form-row">
             <div class="form-group"><label for="${id}-email">Email address</label><input type="email" id="${id}-email" name="email" autocomplete="email" required></div>
-            <div class="form-group"><label for="${id}-postcode">Your postcode</label><input type="text" id="${id}-postcode" name="address" autocomplete="postal-code" required placeholder="e.g. KT11 1AA"></div>
+            <div class="form-group"><label for="${id}-address">Your address</label><input type="text" id="${id}-address" name="address" required placeholder="House number, street, town and postcode"></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label for="${id}-dog">${esc(namePrompt)}</label><input type="text" id="${id}-dog" name="dog_name" required></div>
+            <div class="form-group"><label for="${id}-breed">${esc(breedPrompt)}</label><input type="text" id="${id}-breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
+          </div>
+          <div class="form-row">
             <div class="form-group"><label for="${id}-age">${esc(agePrompt)}</label><select id="${id}-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+            <div class="form-group"><label for="${id}-sex">Male or female?</label><select id="${id}-sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label for="${id}-neutered">Neutered or spayed?</label><select id="${id}-neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
+            <div class="form-group"><label for="${id}-heard">How did you hear about us?</label><select id="${id}-heard" name="heard_about_us" required><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select></div>
           </div>
           <div class="form-group"><label for="${id}-message">Which days would suit you, and what is your dog like?</label><textarea id="${id}-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
           <button type="submit" class="button primary form-submit">Send</button>
@@ -1330,7 +1338,7 @@ function serviceBody(page) {
 ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team.", "/assets/insta/puppy-row-4.jpg", "A cocker spaniel puppy running towards the camera"],
 ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach.", "/assets/insta/puppy-row-5.jpg", "A cavapoo puppy settled among the ferns"],
 ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home.", "/assets/insta/puppy-row-6.jpg", "A cocker spaniel puppy in a red jumper carrying a stick"]
-], "portrait")}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${quickEnquiry({ service: "Puppy School", photo: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co.", kicker: "Ready for Puppy School?", title: "Book a puppy introduction", text: "Spaces are limited. Tell us your puppy's age and we'll call you within 24 hours about their first day.", agePrompt: "Puppy's age", namePrompt: "Your puppy's name" })}`;
+], "portrait")}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${quickEnquiry({ service: "Puppy School", photo: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co.", kicker: "Ready for Puppy School?", title: "Book a puppy introduction", text: "Spaces are limited. Tell us your puppy's age and we'll call you within 24 hours about their first day.", agePrompt: "Puppy's age", breedPrompt: "Puppy's breed", namePrompt: "Your puppy's name" })}`;
   }
 
   if (page.slug === "sleepovers") {

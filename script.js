@@ -81,6 +81,28 @@ if ("IntersectionObserver" in window) {
   statEls.forEach((el) => statsObserver.observe(el));
 }());
 
+/* ── Enquiry forms: no blank answers, a full phone number, an address with a postcode ── */
+(function () {
+  const forms = document.querySelectorAll('form[name="enquiry"]');
+  if (!forms.length) return;
+  const postcode = /\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/i;
+  function problem(field) {
+    const value = field.value.trim();
+    if (!value) return "Please fill this in.";
+    if (field.name === "phone" && value.replace(/\D/g, "").length < 10) return "Please enter your full phone number.";
+    if (field.name === "address" && !postcode.test(value)) return "Please include your full address and postcode.";
+    return "";
+  }
+  forms.forEach((form) => {
+    form.querySelectorAll("input[required], textarea[required], select[required]").forEach((field) => {
+      const check = () => field.setCustomValidity(problem(field));
+      field.addEventListener("input", check);
+      field.addEventListener("change", check);
+      check();
+    });
+  });
+}());
+
 /* ── Prevent duplicate form submissions ── */
 (function () {
   const form = document.querySelector("form[data-netlify]");
