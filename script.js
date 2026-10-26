@@ -103,6 +103,108 @@ if ("IntersectionObserver" in window) {
   });
 }());
 
+/* ── Enquiry forms, one question at a time ──
+   The form is still the plain Netlify form underneath (it works with scripts off);
+   this shows one question per screen, turns drop-downs into tap answers and only
+   moves on when the answer is filled in. */
+(function () {
+  document.querySelectorAll('form[name="enquiry"]').forEach((form) => {
+    const groups = [...form.querySelectorAll(".form-group[data-q]")];
+    const submit = form.querySelector("[type=submit]");
+    if (!groups.length || !submit) return;
+    const fieldOf = (group) => group.querySelector("input, select, textarea");
+    const notes = form.querySelector(".form-notes");
+    const fallback = form.dataset.dog || "your dog";
+
+    const deck = document.createElement("div");
+    deck.className = "step-deck";
+    deck.innerHTML = '<div class="step-progress" aria-hidden="true"><span></span></div>' +
+      '<p class="step-count"></p><h3 class="step-question" tabindex="-1"></h3><p class="step-hint"></p>' +
+      '<div class="step-body"></div><p class="step-error" role="alert"></p>' +
+      '<div class="step-nav"><button type="button" class="step-back">Back</button>' +
+      '<button type="button" class="button primary step-next">Next</button></div>';
+    submit.before(deck);
+    const body = deck.querySelector(".step-body");
+    groups.forEach((group) => body.append(group));
+    if (notes) body.append(notes);
+    form.querySelectorAll(".form-row").forEach((row) => { if (!row.children.length) row.remove(); });
+    form.classList.add("is-stepped");
+
+    // Drop-downs become a list of answers to tap
+    groups.forEach((group) => {
+      const select = group.querySelector("select");
+      if (!select) return;
+      const list = document.createElement("div");
+      list.className = "step-choices";
+      [...select.options].filter((o) => o.value).forEach((option, i) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "step-choice";
+        button.innerHTML = `<span>${String.fromCharCode(65 + i)}</span>`;
+        button.append(option.text);
+        button.addEventListener("click", () => {
+          select.value = option.value;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          list.querySelectorAll(".step-choice").forEach((b) => b.setAttribute("aria-pressed", b === button ? "true" : "false"));
+          setTimeout(next, 220);
+        });
+        list.append(button);
+      });
+      select.after(list);
+    });
+
+    let step = 0;
+    const dogName = () => {
+      const field = form.querySelector('[name="dog_name"]');
+      return (field && field.value.trim()) || fallback;
+    };
+    function show(index, focus) {
+      step = index;
+      const group = groups[step];
+      groups.forEach((g) => g.classList.toggle("is-current", g === group));
+      form.classList.toggle("on-last", step === groups.length - 1);
+      deck.querySelector(".step-progress span").style.width = `${Math.round((step / groups.length) * 100)}%`;
+      deck.querySelector(".step-count").textContent = `Question ${step + 1} of ${groups.length}`;
+      deck.querySelector(".step-question").textContent = group.dataset.q.replace("{dog}", dogName());
+      deck.querySelector(".step-hint").textContent = group.dataset.hint || "";
+      deck.querySelector(".step-error").textContent = "";
+      deck.querySelector(".step-back").disabled = step === 0;
+      deck.querySelector(".step-next").textContent = step === groups.length - 1 ? "Send enquiry" : "Next";
+      if (!focus) return;
+      const top = deck.getBoundingClientRect().top;
+      if (top < 80) window.scrollBy({ top: top - 100 });
+      const field = fieldOf(group);
+      if (field.tagName === "SELECT") deck.querySelector(".step-question").focus({ preventScroll: true });
+      else field.focus({ preventScroll: true });
+    }
+    function problem(field) {
+      if (field.checkValidity()) return "";
+      if (field.validity.typeMismatch) return "That email address doesn't look right.";
+      if (field.tagName === "SELECT") return "Please pick one.";
+      return field.validationMessage || "Please fill this in.";
+    }
+    function next() {
+      const field = fieldOf(groups[step]);
+      const error = problem(field);
+      if (error) {
+        deck.querySelector(".step-error").textContent = error;
+        if (field.tagName !== "SELECT") field.focus();
+        return;
+      }
+      if (step < groups.length - 1) { show(step + 1, true); return; }
+      const firstBad = groups.findIndex((g) => !fieldOf(g).checkValidity());
+      if (firstBad > -1) { show(firstBad, true); next(); return; }
+      submit.click();
+    }
+    deck.querySelector(".step-next").addEventListener("click", next);
+    deck.querySelector(".step-back").addEventListener("click", () => { if (step > 0) show(step - 1, true); });
+    form.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && event.target.tagName === "INPUT") { event.preventDefault(); next(); }
+    });
+    show(0, false);
+  });
+}());
+
 /* ── Prevent duplicate form submissions ── */
 (function () {
   const form = document.querySelector("form[data-netlify]");

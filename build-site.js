@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-26-full-forms";
+const assetVersion = "2026-10-26-step-forms";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1145,7 +1145,7 @@ function photoRows(rows, shape = "") {
   return `<div class="benefit-rows${shape ? ` ${shape}` : ""}">${rows.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>`;
 }
 
-function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", breedPrompt = "Dog's breed", aside = "" }) {
+function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", breedPrompt = "Dog's breed", dogWord = "dog", aside = "" }) {
   const id = `quick-${service.toLowerCase().replace(/[^a-z]+/g, "-")}`;
   return `<section class="daycare-final-cta quick-enquiry${aside ? " has-aside" : ""}" id="enquiry">
       ${aside || `<div class="daycare-final-photo reveal"><img src="${photo}" alt="${esc(alt)}" loading="lazy"></div>`}
@@ -1153,31 +1153,31 @@ function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "D
         <p class="section-kicker">${esc(kicker)}</p>
         <h2>${esc(title)}</h2>
         <p>${esc(text)}</p>
-        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" class="quick-enquiry-form">
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" class="quick-enquiry-form" data-dog="your ${dogWord}">
           <input type="hidden" name="form-name" value="enquiry"><input type="hidden" name="service" value="${esc(service)}">
           <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
           <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
-            <div class="form-group"><label for="${id}-name">Your name</label><input type="text" id="${id}-name" name="name" autocomplete="name" required></div>
-            <div class="form-group"><label for="${id}-phone">Phone number</label><input type="tel" id="${id}-phone" name="phone" autocomplete="tel" required></div>
+            <div class="form-group" data-q="What's your name?"><label for="${id}-name">Your name</label><input type="text" id="${id}-name" name="name" autocomplete="name" required></div>
+            <div class="form-group" data-q="What's the best number to call you on?"><label for="${id}-phone">Phone number</label><input type="tel" id="${id}-phone" name="phone" autocomplete="tel" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="${id}-email">Email address</label><input type="email" id="${id}-email" name="email" autocomplete="email" required></div>
-            <div class="form-group"><label for="${id}-address">Your address</label><input type="text" id="${id}-address" name="address" required placeholder="House number, street, town and postcode"></div>
+            <div class="form-group" data-q="And your email address?"><label for="${id}-email">Email address</label><input type="email" id="${id}-email" name="email" autocomplete="email" required></div>
+            <div class="form-group" data-q="What's your address?" data-hint="House number, street, town and postcode."><label for="${id}-address">Your address</label><input type="text" id="${id}-address" name="address" required placeholder="House number, street, town and postcode"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="${id}-dog">${esc(namePrompt)}</label><input type="text" id="${id}-dog" name="dog_name" required></div>
-            <div class="form-group"><label for="${id}-breed">${esc(breedPrompt)}</label><input type="text" id="${id}-breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
+            <div class="form-group" data-q="What's your ${dogWord} called?"><label for="${id}-dog">${esc(namePrompt)}</label><input type="text" id="${id}-dog" name="dog_name" required></div>
+            <div class="form-group" data-q="What breed is {dog}?"><label for="${id}-breed">${esc(breedPrompt)}</label><input type="text" id="${id}-breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="${id}-age">${esc(agePrompt)}</label><select id="${id}-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
-            <div class="form-group"><label for="${id}-sex">Male or female?</label><select id="${id}-sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+            <div class="form-group" data-q="How old is {dog}?"><label for="${id}-age">${esc(agePrompt)}</label><select id="${id}-age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+            <div class="form-group" data-q="Is {dog} male or female?"><label for="${id}-sex">Male or female?</label><select id="${id}-sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="${id}-neutered">Neutered or spayed?</label><select id="${id}-neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
-            <div class="form-group"><label for="${id}-heard">How did you hear about us?</label><select id="${id}-heard" name="heard_about_us" required><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select></div>
+            <div class="form-group" data-q="Is {dog} neutered or spayed?"><label for="${id}-neutered">Neutered or spayed?</label><select id="${id}-neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
+            <div class="form-group" data-q="How did you hear about us?"><label for="${id}-heard">How did you hear about us?</label><select id="${id}-heard" name="heard_about_us" required><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select></div>
           </div>
-          <div class="form-group"><label for="${id}-message">Which days would suit you, and what is your dog like?</label><textarea id="${id}-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
+          <div class="form-group" data-q="Which days would suit you, and what is {dog} like?"><label for="${id}-message">Which days would suit you, and what is your dog like?</label><textarea id="${id}-message" name="message" rows="3" required placeholder="e.g. Mondays and Fridays. She's a friendly spaniel who loves other dogs."></textarea></div>
           <button type="submit" class="button primary form-submit">Send</button>
           <p class="quick-enquiry-call">Or call us on <a href="tel:07731798899">07731 798 899</a></p>
         </form>
@@ -1338,7 +1338,7 @@ function serviceBody(page) {
 ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team.", "/assets/insta/puppy-row-4.jpg", "A cocker spaniel puppy running towards the camera"],
 ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach.", "/assets/insta/puppy-row-5.jpg", "A cavapoo puppy settled among the ferns"],
 ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home.", "/assets/insta/puppy-row-6.jpg", "A cocker spaniel puppy in a red jumper carrying a stick"]
-], "portrait")}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${quickEnquiry({ service: "Puppy School", photo: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co.", kicker: "Ready for Puppy School?", title: "Book a puppy introduction", text: "Spaces are limited. Tell us your puppy's age and we'll call you within 24 hours about their first day.", agePrompt: "Puppy's age", breedPrompt: "Puppy's breed", namePrompt: "Your puppy's name" })}`;
+], "portrait")}</section>${faqSection({ kicker: "Common questions", title: `Puppy School FAQs`, faqs: puppyFaqs })}${quickEnquiry({ service: "Puppy School", photo: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co.", kicker: "Ready for Puppy School?", title: "Book a puppy introduction", text: "Spaces are limited. Tell us your puppy's age and we'll call you within 24 hours about their first day.", agePrompt: "Puppy's age", breedPrompt: "Puppy's breed", dogWord: "puppy", namePrompt: "Your puppy's name" })}`;
   }
 
   if (page.slug === "sleepovers") {
@@ -2174,39 +2174,39 @@ function faqAndContact() {
     <div class="contact-inner">
       <div class="form-wrap reveal">
         <h2>Send us an enquiry</h2>
-        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field">
+        <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-dog="your dog">
           <input type="hidden" name="form-name" value="enquiry">
           <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">
           <p class="sr-only"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-row">
-            <div class="form-group"><label for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
-            <div class="form-group"><label for="email">Email address *</label><input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@example.com"></div>
+            <div class="form-group" data-q="What would you like to ask about?"><label for="service">Service interested in *</label><select id="service" name="service" required><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
+            <div class="form-group" data-q="What's your name?"><label for="name">Your name *</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Smith"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="phone">Phone number *</label><input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="07700 900000"></div>
-            <div class="form-group"><label for="dog-name">Your dog's name *</label><input type="text" id="dog-name" name="dog_name" required placeholder="Buddy"></div>
+            <div class="form-group" data-q="What's the best number to call you on?"><label for="phone">Phone number *</label><input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="07700 900000"></div>
+            <div class="form-group" data-q="And your email address?"><label for="email">Email address *</label><input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@example.com"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="breed">Dog's breed *</label><input type="text" id="breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
-            <div class="form-group"><label for="age">Dog's age *</label><select id="age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
+            <div class="form-group" data-q="What's your address?" data-hint="House number, street, town and postcode."><label for="address">Your address *</label><textarea id="address" name="address" required placeholder="House number, street, town and postcode"></textarea></div>
+            <div class="form-group" data-q="What's your dog called?"><label for="dog-name">Your dog's name *</label><input type="text" id="dog-name" name="dog_name" required placeholder="Buddy"></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="neutered">Neutered / spayed? *</label><select id="neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
-            <div class="form-group"><label for="sex">Dog's sex *</label><select id="sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+            <div class="form-group" data-q="What breed is {dog}?"><label for="breed">Dog's breed *</label><input type="text" id="breed" name="breed" required placeholder="e.g. Labrador, Spaniel"></div>
+            <div class="form-group" data-q="How old is {dog}?"><label for="age">Dog's age *</label><select id="age" name="dog_age" required><option value="">Select age</option><option>Under 6 months</option><option>6-12 months</option><option>1-2 years</option><option>2-5 years</option><option>5+ years</option></select></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="address">Your address *</label><textarea id="address" name="address" required placeholder="House number, street, town and postcode"></textarea></div>
-            <div class="form-group"><label for="service">Service interested in *</label><select id="service" name="service" required><option value="">Select service</option><option>Doggy Daycare</option><option>Puppy School</option><option>Sleepovers</option><option>Rescue Dog Daycare</option><option>Startup Support</option><option>Careers</option><option>Just enquiring</option></select></div>
+            <div class="form-group" data-q="Is {dog} male or female?"><label for="sex">Dog's sex *</label><select id="sex" name="sex" required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+            <div class="form-group" data-q="Is {dog} neutered or spayed?"><label for="neutered">Neutered / spayed? *</label><select id="neutered" name="neutered" required><option value="">Select</option><option>Yes</option><option>No</option><option>Not yet (puppy)</option></select></div>
           </div>
           <div class="form-notes">
             <div class="form-note-card"><strong>Sleepovers:</strong> Subject to a trial daycare visit and a few settled days in the run-up, so we know your dog is truly happy before their stay. Spaces are limited, so please enquire early and include your dates in the message box below.</div>
             <div class="form-note-card"><strong>School holidays:</strong> We fill up fast, so please enquire well in advance to avoid disappointment.</div>
           </div>
-          <div class="form-group">
+          <div class="form-group" data-q="How did you hear about us?">
             <label for="heard">How did you hear about us? *</label>
             <select id="heard" name="heard_about_us" required><option value="">Select one</option><option>Google search</option><option>Google Maps</option><option>Instagram or Facebook</option><option>A friend or family member</option><option>Saw our van</option><option>A vet, groomer or shop</option><option>Other</option></select>
           </div>
-          <div class="form-group">
+          <div class="form-group" data-q="Tell us about {dog}" data-hint="Their temperament, any quirks, and which days a week you're thinking of. For a sleepover, add your dates.">
             <label for="message">Tell us about your dog *</label>
             <textarea id="message" name="message" required placeholder="Tell us a bit about your dog: temperament, any quirks, and which days a week you're thinking of."></textarea>
           </div>

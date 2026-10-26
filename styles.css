@@ -9479,3 +9479,37 @@ footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
   .page-daycare .live-page-copy > p.hero-text, .page-puppies .live-page-copy > p.hero-text, .page-sleepovers .live-page-copy > p.hero-text { font-size: 15px !important; }
   .page-puppies .live-display-title { font-size: 31px !important; }
 }
+
+
+/* Enquiry forms, one question at a time (26 Oct 2026). Plain stacked form when scripts are off. */
+.is-stepped .form-group { display: none; margin: 0; }
+.is-stepped .form-group.is-current { display: block; }
+.is-stepped .form-group > label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.is-stepped .form-notes { display: none; margin: 0 0 16px; }
+.is-stepped.on-last .form-notes { display: grid; order: -1; }
+.is-stepped > .form-submit { display: none !important; }
+.step-deck { position: relative; padding-top: 22px; }
+.step-body { display: flex; flex-direction: column; }
+.step-progress { position: absolute; top: 0; left: 0; right: 0; height: 4px; border-radius: 4px; background: rgba(46, 59, 50, 0.12); overflow: hidden; }
+.step-progress span { display: block; height: 100%; width: 0; background: var(--forest); transition: width 0.35s ease; }
+.step-count { margin: 0 0 8px; color: var(--moss); font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.step-question { margin: 0; color: var(--forest); font-family: var(--display); font-size: clamp(24px, 2.6vw, 32px); font-weight: 700; line-height: 1.15; outline: none; }
+.step-hint { margin: 8px 0 0; color: var(--text, #3D4A40); font-size: 15px; line-height: 1.5; }
+.step-hint:empty { display: none; }
+.step-body { margin-top: 20px; }
+.is-stepped .form-group input,
+.is-stepped .form-group textarea { font-size: 18px; padding: 15px 18px; border-radius: 12px; }
+.is-stepped .form-group textarea { min-height: 120px; }
+.is-stepped .form-group select { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.step-choices { display: grid; gap: 10px; }
+.step-choice { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 18px; border: 1px solid #dfe5d6; border-radius: 12px; background: #fff; color: var(--forest); font: inherit; font-size: 17px; font-weight: 600; text-align: left; cursor: pointer; transition: border-color 0.15s ease, background 0.15s ease; }
+.step-choice span { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 28px; height: 28px; border-radius: 8px; background: var(--cream); color: var(--moss); font-size: 13px; font-weight: 700; }
+.step-choice:hover { border-color: var(--moss); }
+.step-choice[aria-pressed="true"] { border-color: var(--forest); background: var(--forest); color: #fff; }
+.step-choice[aria-pressed="true"] span { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.step-error { min-height: 22px; margin: 10px 0 0; color: var(--clay); font-size: 14px; font-weight: 600; }
+.step-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 6px; }
+.step-back { border: 0; background: none; color: var(--moss); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; padding: 10px 0; }
+.step-back:disabled { visibility: hidden; }
+.step-next { min-width: 160px; border: 0; cursor: pointer; }
+.form-wrap .step-next { border-radius: 999px; background: var(--forest); color: #fff; font-weight: 700; padding: 15px 30px; }
