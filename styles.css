@@ -9461,3 +9461,20 @@ footer .afa-badge img { width: 100%; height: 100%; object-fit: contain; }
 .area-getting { padding-top: 0; }
 .area-woods { padding-bottom: 72px; }
 .area-getting-inner { padding-top: 72px; border-top: 1px solid var(--line); }
+
+/* Daycare hero: the price and the trial button on the first phone screen, above
+   the cookie box; the woodland video sits underneath instead of on top (26 Oct 2026) */
+.hero-price { display: flex !important; flex-direction: column; gap: 4px; max-width: none !important;
+  margin: 0 0 22px !important; padding: 2px 0 2px 14px; border-left: 3px solid var(--moss); }
+.hero-price strong { font-size: 28px; font-weight: 700; line-height: 1.1; color: var(--forest); }
+.hero-price span { font-size: 15px; line-height: 1.4; color: var(--ink); }
+.live-page-copy > p.hero-text { margin: 22px 0 0 !important; }
+@media (max-width: 980px) {
+  .page-daycare .live-page-video { order: 2 !important; min-height: 0 !important; height: clamp(240px, 42vw, 380px) !important; }
+  .page-daycare .live-page-video video { width: 100%; height: 100% !important; object-fit: cover; }
+  .page-daycare .live-page-hero { min-height: 0 !important; }
+  .page-daycare .live-page-copy { padding: 104px 22px 24px !important; }
+  .page-daycare .live-display-title { font-size: 36px !important; margin-bottom: 16px !important; }
+  .page-daycare .live-page-copy .eyebrow { margin-bottom: 10px !important; }
+  .page-daycare .live-page-copy > p.hero-text { font-size: 15px !important; }
+}

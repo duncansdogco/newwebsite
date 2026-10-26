@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-24-areaflow-bing";
+const assetVersion = "2026-10-26-daycare-price";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -100,7 +100,9 @@ const servicePages = [
     heroData: {
       eyebrow: "Doggy Daycare · Cobham, Surrey",
       displayTitle: "We collect your dog<br><span>seven days a week</span>",
-      text: "Collection and drop-off are included, and your phone tells you when your dog has been collected and when they're home. All breeds welcome, no exceptions.",
+      text: "Your phone tells you when your dog has been collected and when they're home. All breeds welcome, no exceptions.",
+      price: "From £55 a day",
+      priceNote: "Collection and drop-off included",
       ctaText: "Book a trial day",
       ctaHref: "#enquiry",
       video: "https://video.wixstatic.com/video/4d2311_4f69513e7b90432091a736d2048ba14b/720p/mp4/file.mp4",
@@ -855,9 +857,9 @@ function livePageHero(h1, data, noTrust = false) {
       <p class="eyebrow">${esc(data.eyebrow)}</p>
       <h1 id="page-title" class="sr-only">${esc(h1)}</h1>
       ${data.logo ? `<img class="hero-logo-badge" src="${esc(data.logo)}" alt="${esc(h1)}" aria-hidden="true">` : `<div class="live-display-title" aria-hidden="true">${String(data.displayTitle).replace(/\.(\s*<\/span>|\s*<br>|\s*$)/g, "$1")}</div>`}
-      <p>${esc(data.text)}</p>
+      ${data.price ? `<p class="hero-price"><strong>${esc(data.price)}</strong><span>${esc(data.priceNote)}</span></p>` : `<p>${esc(data.text)}</p>`}
       ${data.stats && data.stats.length ? `<div class="live-stats">${data.stats.map(([num, label]) => `<div class="live-stat-pill"><span>${esc(num)}</span><small>${label}</small></div>`).join("")}</div>` : ""}
-      <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>
+      <a class="hero-cta-live" href="${data.ctaHref || "/contact/"}">${esc(data.ctaText || "Enquire Now")} →</a>${data.price ? `\n      <p class="hero-text">${esc(data.text)}</p>` : ""}
       ${noTrust ? "" : `<p class="hero-trust"><span><b>★★★★★</b> 5.0 on Google</span><span>Licensed by Elmbridge Council</span><span>Family-run in Cobham since 2011</span></p>`}
     </div>
     <div class="live-page-video"><video poster="${esc(data.videoPoster || "/assets/woodland.jpg")}" autoplay muted loop playsinline preload="auto"><source src="${esc(data.video)}" type="video/mp4"></video></div>
