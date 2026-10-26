@@ -9538,3 +9538,76 @@ html.enquiry-open .whatsapp-float, html.enquiry-open [data-cookie-notice] { disp
 .step-back:disabled { visibility: hidden; }
 @media (hover: none) { .step-enter { display: none; } }
 @media (max-width: 640px) { .enquiry-layer-inner { align-items: flex-start; padding-top: 72px; } }
+
+/* ── Liquid glass (26 Oct 2026, Jess picked B) ──
+   A floating glass menu, glass over the woodland photos, white glass buttons, and the
+   reviews and trial-day sections on the darkened woods instead of flat sage. The glass
+   sits on pseudo-elements so the menu's drop-down can blur the page too. */
+:root {
+  --lg-blur: blur(28px) saturate(180%);
+  --lg-edge: inset 0 1.5px 0 rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --lg-light-button: inset 0 1px 0 #fff, inset 0 -6px 14px rgba(185, 197, 168, 0.45), 0 12px 30px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Menu: a floating glass bar */
+html body .site-header.site-header { top: 12px; left: 12px; right: 12px; max-width: 1240px; margin: 0 auto; padding: 12px 22px; border-radius: 22px; background: transparent !important; box-shadow: none !important; }
+.site-header::before { display: none; }
+.site-header::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: rgba(31, 38, 32, 0.32); -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: var(--lg-edge), 0 18px 40px -20px rgba(0, 0, 0, 0.5); transition: background 0.2s ease; pointer-events: none; }
+.site-header.is-scrolled::after, .site-header.is-open::after, body:has(.live-page-hero) .site-header::after, .page-pricing .site-header::after { background: rgba(31, 38, 32, 0.78); }
+.nav-cta { border-radius: 14px !important; background: rgba(255, 255, 255, 0.86) !important; color: var(--forest) !important; box-shadow: var(--lg-light-button); }
+@media (max-width: 1279px) {
+  .site-nav { top: calc(100% + 8px) !important; left: 0 !important; right: 0 !important; border-radius: 18px !important; background: rgba(31, 38, 32, 0.86) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); box-shadow: var(--lg-edge), 0 24px 50px -20px rgba(0, 0, 0, 0.6); }
+}
+@media (max-width: 700px) {
+  html body .site-header.site-header { top: 8px; left: 8px; right: 8px; padding: 10px 14px; border-radius: 18px; }
+}
+
+/* Homepage: the title catches the light, buttons and the facts strip are glass on the woods */
+.home-hero-title { background: linear-gradient(180deg, #fff 35%, #dfe8d2 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.28)); }
+.hero .button { border-radius: 16px !important; }
+.hero .button.primary { background: rgba(255, 255, 255, 0.86) !important; color: var(--forest) !important; border: 1px solid rgba(255, 255, 255, 0.9) !important; box-shadow: var(--lg-light-button); }
+.hero .button.secondary { background: rgba(255, 255, 255, 0.14) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.42) !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.2); }
+.page-home .hero { padding-bottom: 260px; }
+.page-home .fact-band { position: relative; z-index: 3; width: min(1180px, calc(100% - 48px)); margin: -210px auto 40px !important; border-radius: 30px; background: rgba(255, 255, 255, 0.2) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.7), inset 0 -1px 0 rgba(255, 255, 255, 0.15), 0 30px 60px -24px rgba(0, 0, 0, 0.45); }
+.page-home .fact-band.fact-band * { color: rgba(255, 255, 255, 0.9) !important; border-color: rgba(255, 255, 255, 0.25) !important; }
+@media (max-width: 700px) {
+  .page-home .hero { padding-bottom: 230px; }
+  .page-home .fact-band { width: calc(100% - 24px); margin-top: -190px !important; background: rgba(46, 59, 50, 0.78) !important; }
+}
+
+/* Photo cards: the words sit on a glass panel */
+.live-card-overlay { background: linear-gradient(180deg, rgba(31, 38, 32, 0) 55%, rgba(31, 38, 32, 0.2)) !important; }
+.live-card-content { position: absolute !important; left: 10px !important; right: 10px !important; bottom: 10px !important; padding: 14px 14px 12px !important; border-radius: 20px; background: rgba(31, 38, 32, 0.3); -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.35); box-shadow: var(--lg-edge); }
+
+/* Reviews and the trial-day form sit on the darkened woods */
+.home-reviews, .quick-enquiry { position: relative; isolation: isolate; background: #1f2620 !important; color: #fff; }
+.home-reviews::before, .quick-enquiry::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(31, 38, 32, 0.68), rgba(31, 38, 32, 0.82)), url(/assets/woodland-wide.jpg) center / cover; }
+html body .home-reviews h2, html body .quick-enquiry h2 { background: linear-gradient(180deg, #fff 40%, #cfdcbf 110%); -webkit-background-clip: text; background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent; }
+.home-reviews .section-kicker, .quick-enquiry .section-kicker { color: #cfdcbf !important; }
+html body .quick-enquiry p, html body .quick-enquiry .daycare-final-copy > p, html body .quick-enquiry .quick-enquiry-call, html body .quick-enquiry-call a, html body .home-reviews .ht-cta, html body .quick-enquiry .faq-block-contact a { color: rgba(255, 255, 255, 0.88) !important; }
+.home-reviews .review-google { background: transparent !important; }
+.home-reviews .review-tile { position: relative; overflow: hidden; background: rgba(255, 255, 255, 0.12) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.32) !important; box-shadow: var(--lg-edge), 0 30px 60px -30px rgba(0, 0, 0, 0.6) !important; color: #fff !important; }
+.home-reviews .review-tile::before { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 60% at 0% 0%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 55%); pointer-events: none; }
+.home-reviews .review-tile p { color: #fff !important; }
+.home-reviews .review-tile .ht-stars svg { fill: #E0B25C !important; color: #E0B25C !important; }
+.home-reviews .review-tile footer strong { color: #fff !important; }
+.home-reviews .review-tile footer small { color: rgba(255, 255, 255, 0.72) !important; }
+.home-reviews .review-tile footer { border-color: rgba(255, 255, 255, 0.2) !important; }
+.home-reviews .review-tile .review-avatar { background: rgba(255, 255, 255, 0.2) !important; color: #fff !important; }
+.quick-enquiry .area-faq details { margin-bottom: 10px; padding: 0 18px; border: 1px solid rgba(255, 255, 255, 0.28) !important; border-radius: 18px; background: rgba(255, 255, 255, 0.1); -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); box-shadow: var(--lg-edge); }
+.quick-enquiry .area-faq summary, .quick-enquiry .area-faq summary span, .quick-enquiry .area-faq .faq-answer p { color: #fff !important; }
+.quick-enquiry .area-faq summary i { border-color: rgba(255, 255, 255, 0.6) !important; color: #fff !important; }
+.quick-enquiry .area-faq summary i::before, .quick-enquiry .area-faq summary i::after { background: #fff !important; }
+.quick-enquiry .enquiry-start .button.enquiry-open { border-radius: 16px !important; background: rgba(255, 255, 255, 0.88) !important; color: var(--forest) !important; box-shadow: var(--lg-light-button); }
+
+/* Other sage sections get a little depth instead of one flat colour */
+.feature-split, .day-strip, .start-split, .pricing-calc-section, .portal-driver, .portal-built { background: linear-gradient(160deg, #c9d3ba 0%, #b9c5a8 45%, #a9b896 100%) !important; }
+
+/* Buttons elsewhere: rounder, with a soft shine */
+.button.primary:not(.hero .button):not(.enquiry-open), .hero-cta-live { border-radius: 16px !important; background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 55%) !important; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 12px 28px -12px rgba(31, 38, 32, 0.7); }
+
+/* The enquiry form: glass over the blurred page */
+.enquiry-layer { background: rgba(31, 38, 32, 0.55) !important; -webkit-backdrop-filter: blur(34px) saturate(180%); backdrop-filter: blur(34px) saturate(180%); }
+.step-choice { background: rgba(255, 255, 255, 0.12) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.35) !important; box-shadow: var(--lg-edge); }
+.step-choice[aria-pressed="true"] { background: rgba(255, 255, 255, 0.88) !important; color: var(--forest) !important; }
+.step-next { background: rgba(255, 255, 255, 0.88) !important; border-radius: 16px; box-shadow: var(--lg-light-button); }
