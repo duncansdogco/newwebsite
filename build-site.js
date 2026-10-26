@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-26-menu-room";
+const assetVersion = "2026-10-26-enquiry-gaps";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -2174,6 +2174,7 @@ function faqAndContact() {
     <div class="contact-inner">
       <div class="form-wrap reveal">
         <h2>Send us an enquiry</h2>
+        <p class="form-wrap-lede">Tell us about your dog and we'll call you within 24 hours to arrange a meet and greet, then a trial day.</p>
         <form name="enquiry" method="POST" action="/thank-you/" data-netlify="true" netlify-honeypot="bot-field" data-dog="your dog">
           <input type="hidden" name="form-name" value="enquiry">
           <input type="hidden" name="gclid"><input type="hidden" name="gbraid"><input type="hidden" name="wbraid"><input type="hidden" name="fbclid"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_term"><input type="hidden" name="utm_content"><input type="hidden" name="landing_page"><input type="hidden" name="referrer">

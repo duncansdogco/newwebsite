@@ -9613,3 +9613,19 @@ html body .quick-enquiry p, html body .quick-enquiry .daycare-final-copy > p, ht
 .step-choice { background: rgba(255, 255, 255, 0.12) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.35) !important; box-shadow: var(--lg-edge); }
 .step-choice[aria-pressed="true"] { background: rgba(255, 255, 255, 0.88) !important; color: var(--forest) !important; }
 .step-next { background: rgba(255, 255, 255, 0.88) !important; border-radius: 16px; box-shadow: var(--lg-light-button); }
+
+/* The enquiry is one button now, so the boxes around it shrink to fit (26 Oct 2026).
+   Contact page: the enquiry card fills its column, on the darkened woods like the
+   trial-day sections. Trial-day sections: the photo is sized to the words beside it. */
+.contact-inner { align-items: stretch; }
+.form-wrap:has(.enquiry-start) { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.18) !important; background: #1f2620 !important; padding: clamp(28px, 4vw, 52px) !important; }
+.form-wrap:has(.enquiry-start)::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(31, 38, 32, 0.62), rgba(31, 38, 32, 0.84)), url(/assets/woodland-wide.jpg) center / cover; }
+html body .form-wrap:has(.enquiry-start) h2 { margin-bottom: 14px; color: #fff !important; font-size: clamp(30px, 3.4vw, 44px); }
+.form-wrap-lede { margin: 0; max-width: 460px; color: rgba(255, 255, 255, 0.86); font-size: 17px; line-height: 1.6; }
+.form-wrap:not(:has(.enquiry-start)) .form-wrap-lede { color: inherit; margin-bottom: 20px; }
+html body .form-wrap .enquiry-start .button.enquiry-open { border-radius: 16px !important; background: rgba(255, 255, 255, 0.88) !important; color: var(--forest) !important; box-shadow: var(--lg-light-button); }
+@media (min-width: 981px) {
+  .quick-enquiry:not(.has-aside) .daycare-final-photo img { height: clamp(340px, 30vw, 440px) !important; }
+}
+/* the Lab on the daycare and homepage trial-day photo keeps his ears in the shorter frame */
+.quick-enquiry .daycare-final-photo img[src*="final.jpg"] { object-position: center 18%; }
