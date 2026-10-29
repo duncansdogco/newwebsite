@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-27-trial-photo";
+const assetVersion = "2026-10-29-puppy-start";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1330,7 +1330,7 @@ function serviceBody(page) {
   }
 
   if (page.slug === "puppies") {
-    const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, provided they have had their primary vaccinations and received veterinary clearance to socialise with other dogs."], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
+    const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one, with your vet's OK to socialise with other dogs. <a href='/when-can-my-puppy-start-daycare/'>Work out your puppy's start date.</a>"], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
     return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${photoRows([
 ["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models.", "/assets/insta/puppy-row-1.jpg", "Two puppies playing together on the grass"],
 ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day.", "/assets/insta/puppy-row-2.jpg", "Two puppies sitting and looking up, waiting for the next cue"],
@@ -2501,6 +2501,75 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 </section>`,
     structured: [faqJson(checkFaqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Check a licence", url: "/check-a-dog-daycare-licence/" }])]
   }));
+  // Puppy start date guide: 12 weeks old and at least 2 weeks after the primary course
+  // (Defra dog day care guidance para 9.4, updated 1 June 2026). Wording agreed with Jess 29 Oct 2026.
+  const puppyFaqs = [
+    ["When can my puppy start daycare?", "Puppies can start daycare at Duncan's Dog Co. from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one. The two week wait is part of the licence every dog daycare in England works under."],
+    ["What do you need before my puppy's first day?", "We need to see your puppy's vaccination card or vet record showing the primary course is finished. We also ask for the kennel cough vaccine for every dog, puppies included, and your vet's OK for your puppy to mix with other dogs."],
+    ["Why do puppies wait two weeks after their last jab?", "A vaccine needs time to protect your puppy properly. That is why licensed daycares wait at least two weeks after the primary course. If you are looking at daycares, it is a good question to ask each one."],
+    ["How often should a puppy come to daycare?", "Once a week is our minimum, but twice a week works better for puppies. Every visit stops feeling like the first day at school, and they settle into a routine much faster."],
+    ["What about neutering?", "We recommend neutering once your dog is fully grown, or sooner if their behaviour shows it is time. Your vet can help you decide. After the operation, your dog comes back once they have fully healed."],
+  ];
+  writePage("when-can-my-puppy-start-daycare", layout({
+    route: "when-can-my-puppy-start-daycare",
+    title: "When Can My Puppy Start Daycare? Start Date Checker | Duncan's Dog Co.",
+    description: "Puppies can start daycare from 12 weeks old, at least two weeks after their last puppy jab. Work out your puppy's start date and see what we need before the first day.",
+    keywords: "when can my puppy start daycare, what age can a puppy go to daycare, puppy daycare age, puppy daycare after vaccinations, puppy daycare Surrey, puppy daycare Cobham",
+    h1: "When Can My Puppy Start Daycare?",
+    intro: "Work out your puppy's start date, and see what we need before their first day in the woods.",
+    body: `<section class="section article puppy-start">
+<h2>The short answer</h2>
+<p>Puppies can start daycare at Duncan's Dog Co. from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one. The two week wait is part of the licence every dog daycare in England works under.</p>
+<div class="pricing-calc-card puppy-calc">
+  <h2>Work out your puppy's start date</h2>
+  <div class="calc-steps puppy-calc-steps">
+    <label class="calc-step"><span class="calc-step-label">Date of birth</span><input class="puppy-date" id="p-dob" type="date"></label>
+    <label class="calc-step"><span class="calc-step-label">Date of last puppy jab</span><input class="puppy-date" id="p-jab" type="date"></label>
+  </div>
+  <div class="calc-result puppy-calc-result">
+    <div class="calc-result-col">
+      <span class="calc-result-label">Start date</span>
+      <strong class="calc-result-price" id="p-result">Add your puppy's dates</strong>
+      <span class="calc-result-sub" id="p-note">12 weeks old, and two weeks after the last jab</span>
+    </div>
+  </div>
+  <a class="button primary" href="/contact/#enquiry-form">Book a trial day</a>
+</div>
+<h2>What we need before the first day</h2>
+<ul>
+<li><strong>Vaccination record.</strong> We need to see your puppy's card or vet record showing the primary course is finished.</li>
+<li><strong>Kennel cough vaccine.</strong> We ask for this for every dog, puppies included.</li>
+<li><strong>Your vet's OK to mix with other dogs.</strong></li>
+</ul>
+<h2>Why the two week wait</h2>
+<p>A vaccine needs time to protect your puppy properly. That is why licensed daycares wait at least two weeks after the primary course. If you are looking at daycares, it is a good question to ask each one.</p>
+<h2>What a puppy's day looks like</h2>
+<p>Every morning we match each dog to the right area and activity for them that day. Puppies get a gentler pace and proper rest built in, because young dogs often can't tell when they have had enough. Calm, friendly adult dogs are part of the day too, and they show puppies how to behave in a group. Eleanor, our puppy specialist, runs <a href="/puppies/">Puppy School</a>, so puppies learn the basics as they go: good manners, recall and settling.</p>
+<h2>How often should a puppy come?</h2>
+<p>Once a week is our minimum, but twice a week works better for puppies. Every visit stops feeling like the first day at school, and they settle into a routine much faster.</p>
+<h2>What about neutering?</h2>
+<p>We recommend neutering once your dog is fully grown, or sooner if their behaviour shows it is time. Your vet can help you decide. After the operation, your dog comes back once they have fully healed.</p>
+<p><a class="button primary" href="/contact/#enquiry-form">Book a trial day</a></p>
+</section>
+<script>
+(function(){
+  var dob=document.getElementById('p-dob'),jab=document.getElementById('p-jab'),out=document.getElementById('p-result'),note=document.getElementById('p-note');
+  function day(v){var p=v.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function add(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x;}
+  function fmt(d){var o={weekday:'long',day:'numeric',month:'long'};if(d.getFullYear()!==new Date().getFullYear())o.year='numeric';return d.toLocaleDateString('en-GB',o);}
+  function render(){
+    if(!dob.value&&!jab.value){out.textContent="Add your puppy's dates";note.textContent='12 weeks old, and two weeks after the last jab';return;}
+    var a=dob.value?add(day(dob.value),84):null,b=jab.value?add(day(jab.value),14):null;
+    var start=a&&b?(a>b?a:b):(a||b),today=new Date();today.setHours(0,0,0,0);
+    if(start<=today){out.textContent='Your puppy can start now';note.textContent=dob.value&&jab.value?'They are over 12 weeks old and past the two week wait.':'Add both dates to check the 12 weeks and the two week wait.';return;}
+    out.textContent='Your puppy can start from '+fmt(start);
+    note.textContent=!jab.value?'At 12 weeks old. Add the last jab date to check the two week wait.':!dob.value?'Two weeks after the last jab. Add the date of birth to check they are 12 weeks old.':(a>b?'When your puppy turns 12 weeks old':'Two weeks after the last jab');
+  }
+  dob.addEventListener('input',render);jab.addEventListener('input',render);
+})();
+<\/script>`,
+    structured: [faqJson(puppyFaqs), breadcrumbJson([{ name: "Home", url: "/" }, { name: "Puppies", url: "/puppies/" }, { name: "When can my puppy start daycare?", url: "/when-can-my-puppy-start-daycare/" }])]
+  }));
   writePage("about-us", layout({
     route: "about-us",
     title: "About Duncan's Dog Co. | Family-Run Dog Daycare in Cobham",
@@ -2627,7 +2696,7 @@ function redirectsAndMeta() {
   fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nDisallow: /board/\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);
   // Copy favicon to root so Google's crawler finds it at /favicon.ico directly
   fs.copyFileSync(path.join(ROOT, "assets/favicon-32x32.png"), path.join(ROOT, "favicon.ico"));
-  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/portal/", "/startup-support/", "/careers/", "/facts/", "/check-a-dog-daycare-licence/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
+  const urls = ["/", ...servicePages.map((p) => `/${p.slug}/`), "/splash/", "/pricing/", "/about-us/", "/areas/", ...areas.map(([slug]) => `/areas/${slug}/`), "/faq/", "/contact/", "/reviews/", "/portal/", "/startup-support/", "/careers/", "/facts/", "/check-a-dog-daycare-licence/", "/when-can-my-puppy-start-daycare/", "/blog/", ...blogPosts.map(([slug]) => `/blog/${slug}/`)];
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((url) => `  <url><loc>${SITE}${url}</loc></url>`).join("\n")}\n</urlset>\n`);
   fs.writeFileSync(path.join(ROOT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
   indexNow(urls);

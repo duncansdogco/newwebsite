@@ -9673,3 +9673,14 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .fingerpost:hover { background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.45) 100%), rgba(170, 186, 150, 0.5) !important; }
 /* homepage trial-day photo: frame on the dog and the person carrying him, not the sky */
 .quick-enquiry .daycare-final-photo img[src*="home-trial.jpg"] { object-position: 50% 58%; }
+
+/* Puppy start date checker */
+.puppy-calc { margin: 28px 0 36px; }
+.puppy-calc h2 { margin-top: 0; }
+.puppy-calc-steps { grid-template-columns: 1fr 1fr; margin-bottom: 24px; }
+.puppy-date { font: inherit; font-size: 1rem; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--forest); width: 100%; box-sizing: border-box; }
+.puppy-calc-result { margin-bottom: 24px; }
+.puppy-calc-result .calc-result-price { font-size: clamp(1.25rem, 2.6vw, 1.7rem); line-height: 1.25; }
+@media (max-width: 640px) { .puppy-calc-steps { grid-template-columns: 1fr; } }
+.puppy-calc .calc-step-label, .puppy-calc .calc-result-label { text-transform: none; letter-spacing: normal; font-size: 0.95rem; }
+.puppy-calc .calc-result-sub { font-size: 0.9rem; opacity: 0.85; }
