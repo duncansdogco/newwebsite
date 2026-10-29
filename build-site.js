@@ -2517,6 +2517,7 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     keywords: "when can my puppy start daycare, what age can a puppy go to daycare, puppy daycare age, puppy daycare after vaccinations, puppy daycare Surrey, puppy daycare Cobham",
     h1: "When Can My Puppy Start Daycare?",
     intro: "Work out your puppy's start date, and see what we need before their first day in the woods.",
+    image: "assets/insta/puppy-row-1.jpg",
     body: `<section class="section article puppy-start">
 <h2>The short answer</h2>
 <p>Puppies can start daycare at Duncan's Dog Co. from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one. The two week wait is part of the licence every dog daycare in England works under.</p>
@@ -2545,6 +2546,12 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <p>A vaccine needs time to protect your puppy properly. That is why licensed daycares wait at least two weeks after the primary course. If you are looking at daycares, it is a good question to ask each one.</p>
 <h2>What a puppy's day looks like</h2>
 <p>Every morning we match each dog to the right area and activity for them that day. Puppies get a gentler pace and proper rest built in, because young dogs often can't tell when they have had enough. Calm, friendly adult dogs are part of the day too, and they show puppies how to behave in a group. Eleanor, our puppy specialist, runs <a href="/puppies/">Puppy School</a>, so puppies learn the basics as they go: good manners, recall and settling.</p>
+<h2>Puppy School with Eleanor</h2>
+<div class="puppy-clips">
+<figure><video src="/assets/puppies/hand-target.mp4" poster="/assets/puppies/hand-target.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Eleanor teaching a puppy to touch her hand in the field"></video><figcaption>Coming to the hand, out in the field</figcaption></figure>
+<figure><video src="/assets/puppies/magic-fist.mp4" poster="/assets/puppies/magic-fist.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A puppy learning to wait politely for a treat in Eleanor's closed hand"></video><figcaption>Learning to wait politely for a treat</figcaption></figure>
+<figure><video src="/assets/puppies/tunnel.mp4" poster="/assets/puppies/tunnel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A puppy coming through a tunnel on a treasure hunt in the woods"></video><figcaption>A treasure hunt through the tunnel</figcaption></figure>
+</div>
 <h2>How often should a puppy come?</h2>
 <p>Once a week is our minimum, but twice a week works better for puppies. Every visit stops feeling like the first day at school, and they settle into a routine much faster.</p>
 <h2>What about neutering?</h2>

@@ -9684,3 +9684,9 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 @media (max-width: 640px) { .puppy-calc-steps { grid-template-columns: 1fr; } }
 .puppy-calc .calc-step-label, .puppy-calc .calc-result-label { text-transform: none; letter-spacing: normal; font-size: 0.95rem; }
 .puppy-calc .calc-result-sub { font-size: 0.9rem; opacity: 0.85; }
+.page-when-can-my-puppy-start-daycare .page-hero img { object-position: 50% 0%; }
+.puppy-clips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0 36px; }
+.puppy-clips figure { margin: 0; }
+.puppy-clips video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; display: block; background: var(--forest); }
+.puppy-clips figcaption { margin-top: 8px; font-size: 0.95rem; color: var(--moss); }
+@media (max-width: 640px) { .puppy-clips { grid-template-columns: repeat(3, 1fr); gap: 8px; } .puppy-clips figcaption { font-size: 0.8rem; } }
