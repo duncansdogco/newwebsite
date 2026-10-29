@@ -9694,6 +9694,53 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .page-clip { float: right; width: 240px; margin: 4px 0 20px 32px; }
 .page-clip video { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; background: var(--forest); }
 .page-clip figcaption { margin-top: 8px; font-size: 0.9rem; line-height: 1.4; color: var(--moss); }
-.puppy-start h2 { clear: both; }
 @media (max-width: 760px) { .benefit-row.flip .row-clip { order: 0; } }
 @media (max-width: 640px) { .page-clip { float: none; width: 64%; margin: 8px auto 24px; } .page-clip figcaption { text-align: center; } }
+
+/* Puppy guide layout B (29 Oct 2026): tighter titles, answer beside the checker, clips alternating, hand-drawn touches */
+.puppy-start.section.article { max-width: 1080px; padding-top: 56px; padding-bottom: 64px; }
+.puppy-start h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; margin: 44px 0 12px; font-weight: 600; }
+.puppy-start p, .puppy-start ul { max-width: 680px; }
+.puppy-start .lead-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.puppy-start .lead-grid h2 { margin-top: 8px; }
+.puppy-start .lead-grid p { font-size: 20px; line-height: 1.55; }
+.puppy-start .puppy-calc { margin: 0; padding: 28px; }
+.puppy-start .puppy-calc h2 { font-size: 24px; margin: 0 0 16px; }
+.puppy-start .puppy-calc-steps { gap: 14px; margin-bottom: 16px; }
+.puppy-start .page-clip { width: 260px; margin: 0 0 16px 48px; }
+.puppy-start h2 { clear: none; }
+.puppy-start .page-clip { width: 230px; margin: 6px 0 18px 44px; float: right; }
+.puppy-start .page-clip.left { float: left; margin: 6px 44px 18px 0; }
+.puppy-start p, .puppy-start ul { max-width: none; }
+.puppy-start > h2:last-of-type, .puppy-start > p:last-child { clear: both; }
+.puppy-start .page-clip figcaption { font-family: 'Caveat', cursive; font-size: 24px; line-height: 1.1; color: #193419; text-align: center; margin-top: 30px; position: relative; }
+.puppy-start .page-clip figcaption::before { content: ""; position: absolute; left: 50%; top: -30px; width: 46px; height: 30px; margin-left: -23px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 30'%3E%3Cpath d='M8 27c6-2 14-6 20-13 3-4 5-7 7-11' fill='none' stroke='%23193419' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M27 5c3-1 6-2 8-2 0 3 0 6 1 9' fill='none' stroke='%23193419' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain; }
+.puppy-start .ring { position: relative; white-space: nowrap; }
+.puppy-start .ring::after { content: ""; position: absolute; left: -10px; right: -10px; top: -8px; bottom: -8px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60' preserveAspectRatio='none'%3E%3Cpath d='M18 40C10 27 30 10 70 7c40-3 98 0 112 14 12 13-14 30-64 33C64 57 20 52 12 40 7 32 22 20 40 15' fill='none' stroke='%23647F4F' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%; pointer-events: none; }
+.puppy-start .paws { display: block; width: 120px; height: 44px; margin: -6px 0 6px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 44'%3E%3Cg fill='%23B9C5A8'%3E%3Cg transform='translate(10 26) rotate(-20)'%3E%3Cellipse cx='0' cy='4' rx='5' ry='4.2'/%3E%3Ccircle cx='-5' cy='-3' r='2'/%3E%3Ccircle cx='-1.5' cy='-5.5' r='2'/%3E%3Ccircle cx='2.5' cy='-5.5' r='2'/%3E%3Ccircle cx='6' cy='-3' r='2'/%3E%3C/g%3E%3Cg transform='translate(42 16) rotate(-8)'%3E%3Cellipse cx='0' cy='4' rx='5' ry='4.2'/%3E%3Ccircle cx='-5' cy='-3' r='2'/%3E%3Ccircle cx='-1.5' cy='-5.5' r='2'/%3E%3Ccircle cx='2.5' cy='-5.5' r='2'/%3E%3Ccircle cx='6' cy='-3' r='2'/%3E%3C/g%3E%3Cg transform='translate(74 26) rotate(10)'%3E%3Cellipse cx='0' cy='4' rx='5' ry='4.2'/%3E%3Ccircle cx='-5' cy='-3' r='2'/%3E%3Ccircle cx='-1.5' cy='-5.5' r='2'/%3E%3Ccircle cx='2.5' cy='-5.5' r='2'/%3E%3Ccircle cx='6' cy='-3' r='2'/%3E%3C/g%3E%3Cg transform='translate(106 14) rotate(18)'%3E%3Cellipse cx='0' cy='4' rx='5' ry='4.2'/%3E%3Ccircle cx='-5' cy='-3' r='2'/%3E%3Ccircle cx='-1.5' cy='-5.5' r='2'/%3E%3Ccircle cx='2.5' cy='-5.5' r='2'/%3E%3Ccircle cx='6' cy='-3' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat left center/contain; }
+.puppy-start .paws { opacity: 1; filter: brightness(0.75); }
+.puppy-start .hand-arrow { display: block; width: 150px; height: 70px; margin: 18px 0 0 auto; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 70'%3E%3Cpath d='M6 58c26 6 62 4 92-12 14-8 26-20 36-34' fill='none' stroke='%23647F4F' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M118 14c6-3 12-5 17-6 0 6-1 12 0 18' fill='none' stroke='%23647F4F' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain; }
+.puppy-start .lead-grid > div:first-child { position: relative; }
+.puppy-start .page-clip figcaption { font-size: 22px; }
+@media (max-width: 860px) {
+  .puppy-start .lead-grid { grid-template-columns: 1fr; gap: 24px; }
+  .puppy-start .hand-arrow { display: none; }
+}
+@media (max-width: 640px) {
+  .puppy-start.section.article { padding-top: 36px; }
+  .puppy-start .page-clip, .puppy-start .page-clip.left { float: none; width: 64%; margin: 8px auto 20px; }
+  .puppy-start h2 { margin-top: 36px; }
+}
+/* Puppy guide: light banner and light result box, matching the Puppies page (29 Oct 2026) */
+.page-when-can-my-puppy-start-daycare .page-hero { background: var(--cream) !important; color: var(--ink) !important; }
+.page-when-can-my-puppy-start-daycare .page-hero h1 { color: var(--forest) !important; }
+.page-when-can-my-puppy-start-daycare .page-hero p:not(.eyebrow) { color: #3D4A40 !important; }
+.page-when-can-my-puppy-start-daycare .page-hero .eyebrow { color: var(--moss) !important; }
+.page-when-can-my-puppy-start-daycare .page-hero .page-stars { display: none; }
+.page-when-can-my-puppy-start-daycare .site-header { background: var(--forest) !important; }
+.page-when-can-my-puppy-start-daycare .site-header::before { opacity: 0 !important; }
+.page-when-can-my-puppy-start-daycare .site-header::after { background: rgba(31, 38, 32, 0.78); }
+.page-when-can-my-puppy-start-daycare .site-nav a:not(.nav-cta), .page-when-can-my-puppy-start-daycare .brand span { text-shadow: none !important; }
+.puppy-start .puppy-calc-result { background: var(--cream) !important; color: var(--ink) !important; }
+.puppy-start .puppy-calc-result .calc-result-price { color: var(--forest) !important; }
+.puppy-start .puppy-calc-result .calc-result-label, .puppy-start .puppy-calc-result .calc-result-sub { color: #3D4A40 !important; opacity: 1; }

@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-29-puppy-clips";
+const assetVersion = "2026-10-29-puppy-layout-b";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -2525,10 +2525,16 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
     h1: "When Can My Puppy Start Daycare?",
     intro: "Work out your puppy's start date, and see what we need before their first day in the woods.",
     image: "assets/insta/puppy-row-1.jpg",
-    body: `<section class="section article puppy-start">
+    body: `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">
+<section class="section article puppy-start">
+<div class="lead-grid">
+<div>
 <h2>The short answer</h2>
-<p>Puppies can start daycare at Duncan's Dog Co. from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one. The two week wait is part of the licence every dog daycare in England works under.</p>
+<p>Puppies can start daycare at Duncan's Dog Co. from <span class="ring">12 weeks old</span>, once they have finished their primary vaccinations and at least two weeks have passed since the last one. The two week wait is part of the licence every dog daycare in England works under.</p>
+<span class="hand-arrow" aria-hidden="true"></span>
+</div>
 <div class="pricing-calc-card puppy-calc">
+  <span class="paws" aria-hidden="true"></span>
   <h2>Work out your puppy's start date</h2>
   <div class="calc-steps puppy-calc-steps">
     <label class="calc-step"><span class="calc-step-label">Date of birth</span><input class="puppy-date" id="p-dob" type="date"></label>
@@ -2543,6 +2549,7 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
   </div>
   <a class="button primary" href="/contact/#enquiry-form">Book a trial day</a>
 </div>
+</div>
 <h2>What we need before the first day</h2>
 <ul>
 <li><strong>Vaccination record.</strong> We need to see your puppy's card or vet record showing the primary course is finished.</li>
@@ -2553,7 +2560,7 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/tunnel.jpg" src="/assets/puppies/tunnel.mp4" aria-label="A puppy coming out of a tunnel on a treasure hunt in the woods"></video><figcaption>Finding out that new places are nothing to worry about.</figcaption></figure>
 <p>A vaccine needs time to protect your puppy properly. That is why licensed daycares wait at least two weeks after the primary course. If you are looking at daycares, it is a good question to ask each one.</p>
 <h2>What a puppy's day looks like</h2>
-<figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/hand-target.jpg" src="/assets/puppies/hand-target.mp4" aria-label="Eleanor teaching a puppy to touch her hand in the field"></video><figcaption>Learning calm hellos with new people.</figcaption></figure>
+<figure class="page-clip left"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/hand-target.jpg" src="/assets/puppies/hand-target.mp4" aria-label="Eleanor teaching a puppy to touch her hand in the field"></video><figcaption>Learning calm hellos with new people.</figcaption></figure>
 <p>Every morning we match each dog to the right area and activity for them that day. Puppies get a gentler pace and proper rest built in, because young dogs often can't tell when they have had enough. Calm, friendly adult dogs are part of the day too, and they show puppies how to behave in a group. Eleanor, our puppy specialist, runs <a href="/puppies/">Puppy School</a>, so puppies learn the basics as they go: good manners, recall and settling.</p>
 <h2>How often should a puppy come?</h2>
 <figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/magic-fist.jpg" src="/assets/puppies/magic-fist.mp4" aria-label="A puppy learning to wait politely for a treat in Eleanor&#39;s closed hand"></video><figcaption>Learning patience, which is harder than it looks.</figcaption></figure>
