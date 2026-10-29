@@ -9744,3 +9744,20 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .puppy-start .puppy-calc-result { background: var(--cream) !important; color: var(--ink) !important; }
 .puppy-start .puppy-calc-result .calc-result-price { color: var(--forest) !important; }
 .puppy-start .puppy-calc-result .calc-result-label, .puppy-start .puppy-calc-result .calc-result-sub { color: #3D4A40 !important; opacity: 1; }
+/* Puppies page: the six points as a compact grid, picture or clip on top (29 Oct 2026) */
+.benefit-rows.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 32px; align-items: start; }
+.benefit-rows.tiles .benefit-row, .benefit-rows.tiles .benefit-row.flip { display: flex; flex-direction: column; gap: 14px; }
+.benefit-rows.tiles .benefit-row > img, .benefit-rows.tiles .row-clip, .benefit-rows.tiles .benefit-row.flip .row-clip, .benefit-rows.tiles .benefit-row.flip > img { order: 0; }
+.benefit-rows.tiles .benefit-row > img, .benefit-rows.tiles .row-clip video { width: 100%; max-width: none; max-height: none; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; margin: 0; }
+.benefit-rows.tiles .row-clip figcaption { font-family: 'Caveat', cursive; font-size: 21px; line-height: 1.1; color: var(--forest); margin-top: 8px; }
+.benefit-rows.tiles h3 { font-size: clamp(20px, 1.8vw, 24px); margin: 0 0 6px; }
+.benefit-rows.tiles p { font-size: 16px; line-height: 1.5; max-width: none; }
+@media (max-width: 900px) { .benefit-rows.tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; } }
+@media (max-width: 520px) {
+  .benefit-rows.tiles { gap: 24px 14px; }
+  .benefit-rows.tiles .benefit-row > img, .benefit-rows.tiles .row-clip video { border-radius: 14px; }
+  .benefit-rows.tiles h3 { font-size: 18px; }
+  .benefit-rows.tiles p { font-size: 14px; }
+  .benefit-rows.tiles .row-clip figcaption { font-size: 18px; }
+}
+.benefit-rows.tiles .row-clip figcaption { display: none; }
