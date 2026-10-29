@@ -686,3 +686,14 @@ if (postcodeCheck) {
     writeStore("sessionStorage", "ddc-postcode", "");
   }
 }
+// Short silent clips load and play only while on screen (data-lazy-play), so pages stay quick on phones
+{
+  const clips = document.querySelectorAll("video[data-lazy-play]");
+  if (clips.length) {
+    const play = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((entries) => entries.forEach((e) => { if (e.isIntersecting) play(e.target); else e.target.pause(); }), { rootMargin: "200px 0px" });
+      clips.forEach((v) => io.observe(v));
+    } else clips.forEach(play);
+  }
+}

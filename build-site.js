@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-10-29-puppy-start";
+const assetVersion = "2026-10-29-puppy-clips";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -130,7 +130,8 @@ const servicePages = [
       eyebrow: "Puppy Daycare · Cobham, Surrey",
       displayTitle: "The best start<br><span>your puppy will ever get</span>",
       text: "Socialisation, training, habituation and woodland adventure, woven into every single day.",
-      video: "https://video.wixstatic.com/video/4d2311_5b23afdf17844bf682dc5825d78931c9/720p/mp4/file.mp4",
+      video: "/assets/puppies/hero.mp4",
+      videoPoster: "/assets/puppies/hero.jpg",
       stats: []
     },
     sections: [
@@ -1141,8 +1142,14 @@ function puppySupportSection() {
 // same questions as the contact page (the page fills in the service), so every
 // enquiry arrives complete and the email, log and ad tracking work the same way.
 // One photo, one idea: alternating photo rows (daycare "what every day includes", puppy school)
+// A row's media can be a short silent clip (.mp4, poster = same name .jpg) with a one-line caption; it plays when scrolled to
+function rowMedia(src, alt, caption) {
+  if (!src.endsWith(".mp4")) return `<img src="${src}" alt="${esc(alt)}" loading="lazy">`;
+  return `<figure class="row-clip"><video data-lazy-play muted loop playsinline preload="none" poster="${src.replace(/\.mp4$/, ".jpg")}" src="${src}" aria-label="${esc(alt)}"></video>${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+}
+
 function photoRows(rows, shape = "") {
-  return `<div class="benefit-rows${shape ? ` ${shape}` : ""}">${rows.map(([title, text, src, alt], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>`;
+  return `<div class="benefit-rows${shape ? ` ${shape}` : ""}">${rows.map(([title, text, src, alt, caption], i) => `<div class="benefit-row${i % 2 ? " flip" : ""} reveal">${rowMedia(src, alt, caption)}<div><h3>${esc(title)}</h3><p>${esc(text)}</p></div></div>`).join("")}</div>`;
 }
 
 function quickEnquiry({ service, photo, alt, kicker, title, text, agePrompt = "Dog's age", namePrompt = "Your dog's name", breedPrompt = "Dog's breed", dogWord = "dog", aside = "" }) {
@@ -1332,9 +1339,9 @@ function serviceBody(page) {
   if (page.slug === "puppies") {
     const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one, with your vet's OK to socialise with other dogs. <a href='/when-can-my-puppy-start-daycare/'>Work out your puppy's start date.</a>"], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
     return `${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${photoRows([
-["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models.", "/assets/insta/puppy-row-1.jpg", "Two puppies playing together on the grass"],
-["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day.", "/assets/insta/puppy-row-2.jpg", "Two puppies sitting and looking up, waiting for the next cue"],
-["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm.", "/assets/insta/puppy-row-3.jpg", "A staffie puppy lying calmly on the grass"],
+["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models.", "/assets/puppies/hand-target.mp4", "Eleanor teaching a puppy to touch her hand in the field", "Learning calm hellos with new people."],
+["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day.", "/assets/puppies/magic-fist.mp4", "A puppy learning to wait politely for a treat in Eleanor's closed hand", "Learning patience, which is harder than it looks."],
+["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm.", "/assets/puppies/tunnel.mp4", "A puppy coming out of a tunnel on a treasure hunt in the woods", "Finding out that new places are nothing to worry about."],
 ["Recall & independence", "Off-lead confidence, safe woodland recall and learning to self-regulate with guidance from the team.", "/assets/insta/puppy-row-4.jpg", "A cocker spaniel puppy running towards the camera"],
 ["Routine & structure", "A consistent rhythm helps puppies understand expectations and settle faster with the same calm approach.", "/assets/insta/puppy-row-5.jpg", "A cavapoo puppy settled among the ferns"],
 ["Progress & support", "Regular updates, honest guidance and help with questions about behaviour, training and settling at home.", "/assets/insta/puppy-row-6.jpg", "A cocker spaniel puppy in a red jumper carrying a stick"]
@@ -2543,16 +2550,13 @@ ${checkFaqs.map(([q, a]) => `<h3>${esc(q)}</h3><p>${esc(a)}</p>`).join("\n")}
 <li><strong>Your vet's OK to mix with other dogs.</strong></li>
 </ul>
 <h2>Why the two week wait</h2>
+<figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/tunnel.jpg" src="/assets/puppies/tunnel.mp4" aria-label="A puppy coming out of a tunnel on a treasure hunt in the woods"></video><figcaption>Finding out that new places are nothing to worry about.</figcaption></figure>
 <p>A vaccine needs time to protect your puppy properly. That is why licensed daycares wait at least two weeks after the primary course. If you are looking at daycares, it is a good question to ask each one.</p>
 <h2>What a puppy's day looks like</h2>
+<figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/hand-target.jpg" src="/assets/puppies/hand-target.mp4" aria-label="Eleanor teaching a puppy to touch her hand in the field"></video><figcaption>Learning calm hellos with new people.</figcaption></figure>
 <p>Every morning we match each dog to the right area and activity for them that day. Puppies get a gentler pace and proper rest built in, because young dogs often can't tell when they have had enough. Calm, friendly adult dogs are part of the day too, and they show puppies how to behave in a group. Eleanor, our puppy specialist, runs <a href="/puppies/">Puppy School</a>, so puppies learn the basics as they go: good manners, recall and settling.</p>
-<h2>Puppy School with Eleanor</h2>
-<div class="puppy-clips">
-<figure><video src="/assets/puppies/hand-target.mp4" poster="/assets/puppies/hand-target.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Eleanor teaching a puppy to touch her hand in the field"></video><figcaption>Coming to the hand, out in the field</figcaption></figure>
-<figure><video src="/assets/puppies/magic-fist.mp4" poster="/assets/puppies/magic-fist.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A puppy learning to wait politely for a treat in Eleanor's closed hand"></video><figcaption>Learning to wait politely for a treat</figcaption></figure>
-<figure><video src="/assets/puppies/tunnel.mp4" poster="/assets/puppies/tunnel.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A puppy coming through a tunnel on a treasure hunt in the woods"></video><figcaption>A treasure hunt through the tunnel</figcaption></figure>
-</div>
 <h2>How often should a puppy come?</h2>
+<figure class="page-clip"><video data-lazy-play muted loop playsinline preload="none" poster="/assets/puppies/magic-fist.jpg" src="/assets/puppies/magic-fist.mp4" aria-label="A puppy learning to wait politely for a treat in Eleanor&#39;s closed hand"></video><figcaption>Learning patience, which is harder than it looks.</figcaption></figure>
 <p>Once a week is our minimum, but twice a week works better for puppies. Every visit stops feeling like the first day at school, and they settle into a routine much faster.</p>
 <h2>What about neutering?</h2>
 <p>We recommend neutering once your dog is fully grown, or sooner if their behaviour shows it is time. Your vet can help you decide. After the operation, your dog comes back once they have fully healed.</p>
