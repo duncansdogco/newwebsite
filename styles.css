@@ -9664,7 +9664,8 @@ h1, h2 { letter-spacing: -0.015em; }
 body:has(.live-page-hero) .fact-band { position: relative; z-index: 3; width: min(1180px, calc(100% - 48px)); margin: -206px auto 40px !important; border-radius: 30px; background: rgba(31, 38, 32, 0.58) !important; -webkit-backdrop-filter: var(--lg-blur); backdrop-filter: var(--lg-blur); border: 1px solid rgba(255, 255, 255, 0.4) !important; box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.12), 0 30px 60px -24px rgba(0, 0, 0, 0.45); }
 body:has(.live-page-hero) .fact-band.fact-band * { color: rgba(255, 255, 255, 0.9) !important; border-color: rgba(255, 255, 255, 0.22) !important; }
 @media (min-width: 981px) { body:has(.live-page-hero) .live-page-copy { padding-bottom: 236px !important; } }
-@media (max-width: 980px) { body:has(.live-page-hero) .fact-band { width: calc(100% - 24px); margin-top: -110px !important; background: rgba(31, 38, 32, 0.8) !important; } }
+/* Phones and tablets: the banner video is short, so the strip sits under it, not over it (2 Nov 2026) */
+@media (max-width: 980px) { body:has(.live-page-hero) .fact-band { width: calc(100% - 24px); margin-top: 16px !important; background: rgba(31, 38, 32, 0.8) !important; } }
 
 /* Collection signs: frosted sage glass over a faint wash of the woods (26 Oct 2026) */
 .catchment-section.catchment-signs { position: relative; isolation: isolate; }
