@@ -2063,7 +2063,7 @@ const fullFaqSections = [
     intro: "Meet and greets, trial days and what happens before your dog joins us.",
     faqs: [
       ["Can we meet you before starting?", "Absolutely. We offer complimentary meet-and-greet sessions at our Cobham facility. This lets us get to know your dog's needs, temperament and energy levels, and gives you the chance to see exactly how everything works before committing."],
-      ["Do you offer a trial or assessment day?", "Yes. All dogs complete an assessment and settling-in session before joining daycare. This lets us see how your dog interacts with the group, and gives your dog the chance to settle at their own pace without any pressure."],
+      ["Do you offer a trial or assessment day?", "Yes. All dogs complete a trial day before joining daycare, charged at our normal day rate of £65. This lets us see how your dog interacts with the group, and gives your dog the chance to settle at their own pace without any pressure."],
       ["Is my dog suitable for daycare?", "Daycare suits social, people-friendly dogs who enjoy group environments. Every dog is assessed individually. All breeds are welcome, and if we have any concerns we'll always have an honest conversation rather than just saying no."],
       ["What are the next steps after enquiring?", "After you get in touch, we'll arrange a meet and greet at the facility. Once everyone's happy, you register online, add your dog's details and care notes, then manage bookings from there. On the day, we collect your dog, look after them all day and drop them home safe and happy."]
     ]
@@ -2427,6 +2427,7 @@ function aboutUs() {
     ["Areas collected from", areas.map(([, name]) => name).join(", ")],
     ["Daycare price", "£65 a day for one day a week, £60 for two, £55 for three or more, collection included. Weekends £75. Minimum four days a month"],
     ["How to start", "Enquiry, a free meet and greet in the woodland, then a trial day"],
+    ["Trial day", "A paid day at our normal day rate of £65. We do not offer a free trial day"],
     ["After each day", "Photos and a report card on your dog's profile in the customer portal"],
     ["Contact", "07731 798 899, info@duncansdogco.com"],
   ];
