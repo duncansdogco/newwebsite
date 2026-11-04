@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-11-02-facts-under-video";
+const assetVersion = "2026-11-05-drop-off-areas";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -286,7 +286,7 @@ const blogArticleContent = {
     ]],
     ["Getting started from Cobham, Surrey and SW London", [
       "If you think your dog might be ready, or you are not sure and want a professional opinion, the best first step is a conversation. Tell us about your dog, your area and what you are hoping daycare will do for them. We will be straightforward about whether it sounds like a good fit.",
-      "Collection is available across Surrey and South West London including Wimbledon, Esher, Putney, Wandsworth, Weybridge and more. Enquire through the website and we will take it from there."
+      "Collection is available across Surrey and South West London including Wimbledon, Esher, Putney, Wandsworth, Oxshott and more. Enquire through the website and we will take it from there."
     ]]
   ],
   "first-splash-session": [
@@ -345,7 +345,7 @@ const blogArticleContent = {
     ]],
     ["How collection works across Surrey", [
       "Collection is one of the things that makes a Cobham woodland daycare genuinely practical for families who cannot drive out themselves. Route capacity is limited so that dogs are not sitting in vehicles for unreasonable lengths of time. Most collection journeys from the core areas take between 10 and 40 minutes depending on the postcode.",
-      "Families in Wimbledon, Clapham, Putney, Wandsworth, Balham, Earlsfield and Southfields make up our South West London routes. Surrey collection covers Esher, Cobham, Claygate, Oxshott, Hersham, Weybridge, Walton-on-Thames and the surrounding areas. If you are unsure whether your postcode is covered, it is always worth asking."
+      "Families in Wimbledon, Clapham, Putney, Wandsworth, Balham, Earlsfield and Southfields make up our South West London routes. Surrey collection covers Cobham, Esher, Claygate and Oxshott. Families elsewhere in Surrey are very welcome to drop off with us in Cobham. If you are unsure whether your postcode is covered, it is always worth asking."
     ]],
     ["What licensed daycare actually means", [
       "Dog daycare in England is regulated under the Animal Welfare (Licensing of Activities Involving Animals) Regulations 2018. Any business providing group dog daycare for money must hold a licence issued by their local council. The licence involves an inspection against set welfare standards covering space, staffing, safety, records and animal handling.",
@@ -960,12 +960,17 @@ function homeTrialFormSection() {
 // Area groups for the homepage fingerposts and the signs on each area page
 const swLondon = ["wimbledon", "clapham", "wandsworth", "putney", "balham", "earlsfield", "southfields", "raynes-park", "new-malden", "morden", "tooting", "copse-hill", "motspur-park"];
 const surrey = ["cobham", "esher", "oxshott", "claygate", "hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley"];
+// Areas with no route for new families: their pages, the homepage signs and the postcode box all say drop off (5 Nov 2026)
+const dropOffAreas = new Set(["hersham", "st-georges-hill", "weybridge", "walton-on-thames", "byfleet", "west-byfleet", "effingham", "horsley", "morden"]);
+const isCollected = (slug) => !dropOffAreas.has(slug);
 
 // Other areas on each area page: place names in ruled columns, grouped like the homepage signs
 function areaListMarkup(slug) {
   const nameOf = (s) => areas.find(([a]) => a === s)[1];
-  const groups = [["South West London", swLondon.filter((s) => s !== slug)], ["Surrey", surrey.filter((s) => s !== slug)]];
-  return `<div class="area-index reveal"><h3>Other areas we collect from</h3><div class="area-index-groups">${groups.map(([label, list]) => `<div><h4>${label}</h4><ul>${list.map((s) => `<li><a href="/areas/${s}/">${esc(nameOf(s))}</a></li>`).join("")}</ul></div>`).join("")}</div></div>`;
+  const groups = [["South West London", swLondon.filter((s) => s !== slug && isCollected(s))], ["Surrey", surrey.filter((s) => s !== slug && isCollected(s))]];
+  const dropOffList = [...surrey, ...swLondon].filter((s) => s !== slug && !isCollected(s));
+  const areaLink = (s) => `<li><a href="/areas/${s}/">${esc(nameOf(s))}</a></li>`;
+  return `<div class="area-index reveal"><h3>Other areas we collect from</h3><div class="area-index-groups">${groups.map(([label, list]) => `<div><h4>${label}</h4><ul>${list.map(areaLink).join("")}</ul></div>`).join("")}</div><div class="area-index-dropoff"><h3>Areas where families drop off</h3><ul>${dropOffList.map(areaLink).join("")}</ul></div></div>`;
 }
 
 function catchmentSection() {
@@ -973,11 +978,11 @@ function catchmentSection() {
   // Each town is a fingerpost pointing in at Cobham: London from the left, Surrey from the right (19 Oct 2026)
   // Postcode district to area pages, so the postcode box can send people to their area
   const postcodeAreas = {};
-  areas.forEach(([slug, name]) => {
+  areas.filter(([slug]) => isCollected(slug)).forEach(([slug, name]) => {
     const district = (areaDetails[slug] || {}).postcode;
     if (district) (postcodeAreas[district] = postcodeAreas[district] || []).push([slug, name]);
   });
-  const posts = (slugs, side) => slugs.map((slug) => `<a class="fingerpost ${side}" href="/areas/${slug}/">${areaBySlug[slug]}</a>`).join("");
+  const posts = (slugs, side) => slugs.filter(isCollected).map((slug) => `<a class="fingerpost ${side}" href="/areas/${slug}/">${areaBySlug[slug]}</a>`).join("");
 
   return `<section class="catchment-section catchment-signs" aria-labelledby="catchment-title">
     <div class="signs-head reveal">
@@ -997,6 +1002,7 @@ function catchmentSection() {
       </div>
       <div class="signs-side signs-right"><span class="signs-label">Surrey</span>${posts(surrey, "to-left")}</div>
     </div>
+    <p class="signs-dropoff reveal">Families in <a href="/areas/walton-on-thames/">Walton-on-Thames</a>, <a href="/areas/hersham/">Hersham</a>, <a href="/areas/weybridge/">Weybridge</a>, <a href="/areas/st-georges-hill/">St George's Hill</a>, <a href="/areas/byfleet/">Byfleet</a>, <a href="/areas/west-byfleet/">West Byfleet</a>, <a href="/areas/effingham/">Effingham</a>, <a href="/areas/horsley/">Horsley</a> and <a href="/areas/morden/">Morden</a> drop off with us in Cobham.</p>
   </section>`;
 }
 
@@ -1977,7 +1983,7 @@ function pricing() {
 }
 
 function areaIndex() {
-  const body = `<section class="section"><div class="section-heading-row"><h2>Collection areas for woodland dog daycare</h2><p>Every route starts and ends at our woodland in Cobham. Choose your area to see the drive time and how collection works there.</p></div><div class="area-layout">${areas.map(([slug, name, route]) => `<article class="area-panel"><h2><a href="/areas/${slug}/">Dog daycare collection in ${name}</a></h2><p>${esc(route.charAt(0).toUpperCase() + route.slice(1))}.</p></article>`).join("")}</div></section>`;
+  const body = `<section class="section"><div class="section-heading-row"><h2>Collection areas for woodland dog daycare</h2><p>Every route starts and ends at our woodland in Cobham. Choose your area to see how collection or drop-off works there.</p></div><div class="area-layout">${areas.map(([slug, name, route]) => `<article class="area-panel"><h2><a href="/areas/${slug}/">Dog daycare ${isCollected(slug) ? "collection in" : "near"} ${name}</a></h2><p>${isCollected(slug) ? esc(route.charAt(0).toUpperCase() + route.slice(1)) + "." : "Families here drop off with us in Cobham."}</p></article>`).join("")}</div></section>`;
   writePage("areas", layout({
     route: "areas",
     title: "Dog Daycare Collection Areas | Surrey & SW London",
@@ -1994,23 +2000,27 @@ function areaPages() {
   for (const [slug, name, route] of areas) {
     const legacy = legacyAreaPage(slug);
     const detail = areaDetails[slug] || {};
-    const h1 = `Dog Daycare Collection in ${name}`;
-    const dropOffOnly = legacy && /don't collect/i.test(legacy.collectionIntro || "");
+    const dropOffOnly = !isCollected(slug);
+    const h1 = dropOffOnly ? `Dog Daycare near ${name}` : `Dog Daycare Collection in ${name}`;
     const postcodeText = detail.postcode ? ` (${detail.postcode})` : "";
     const roadText = detail.mainRoad || route;
-    const faqs = [
-      [`Do you collect dogs from ${name}?`, dropOffOnly ? `${name}${postcodeText} is currently best suited to drop-off at our Cobham facility, with easy access from nearby main routes.` : `Yes. Collection from ${name}${postcodeText} is available subject to route capacity and your dog's routine. Dogs come to our Cobham woodland via the ${roadText}.`],
+    const faqs = dropOffOnly ? [
+      [`Do you collect dogs from ${name}?`, `Not for new families at the moment. Families in ${name}${postcodeText} drop their dog with us in Cobham and collect them at the end of the day.`],
+      [`How do I get to you from ${name}?`, `Come via the ${roadText} to our woodland in Cobham. We will send you the address and our drop-off and collection times when you get in touch.`],
+      ["How much is it if I drop off?", "It is £55 a day, however many days you come. We ask for at least four days a month."]
+    ] : [
+      [`Do you collect dogs from ${name}?`, `Yes. Collection from ${name}${postcodeText} is available subject to route capacity and your dog's routine. Dogs come to our Cobham woodland via the ${roadText}.`],
       [`How do dogs travel from ${name}?`, `Dogs from ${name}${postcodeText} travel to our Cobham woodland via the ${roadText} in our people carriers, with the same team who look after them all day. We plan the routes every evening so no dog is in the car longer than it needs to be.`],
       [`Can I drop off my dog from ${name}?`, `Yes. Drop-off at our Cobham facility works well for ${name} families, especially those commuting via the ${roadText} or nearby Surrey routes. It is a straightforward drive to the site.`]
     ];
     const collectCopy = dropOffOnly
-      ? `${name} is close enough that most families drop their dog at the woods themselves. If you need a pick-up, ask us and we will look at the route.`
+      ? `We aren't taking new pick-ups from ${name} at the moment, so families here drop their dog with us in Cobham and collect them at the end of the day. The woods are just off the A3 and M25, so it is an easy drive in.`
       : "Our own team does the driving, so whoever picks your dog up is with them in the woods all day. Dogs ride in people carriers, not individual cages, and you can message your driver in the portal on the days you are booked.";
     const heroHtml = `<section class="area-hero">
       <img src="/assets/woodland-wide.jpg" alt="Tall pines and dappled light in the Duncan's Dog Co. woodland in Cobham">
       <div class="area-hero-copy reveal">
         <h1>Dog daycare for ${esc(name)}, in 10 acres of private woodland</h1>
-        <p>${dropOffOnly ? `A proper day in the woods in Cobham, a short drive from ${esc(name)}.` : (slug === "cobham" ? "We pick your dog up from home, give them a proper day in our woods and bring them back to you." : `We pick your dog up from home in ${esc(name)}, give them a proper day in the woods in Cobham and bring them back to you.`)}</p>
+        <p>${dropOffOnly ? "You drop your dog with us in Cobham, they get a proper day in the woods, and you collect them happy and tired." : (slug === "cobham" ? "We pick your dog up from home, give them a proper day in our woods and bring them back to you." : `We pick your dog up from home in ${esc(name)}, give them a proper day in the woods in Cobham and bring them back to you.`)}</p>
         <div class="area-hero-actions"><a class="button primary" href="#enquiry">Book a trial day</a><a class="button secondary" href="tel:07731798899">Call 07731 798 899</a></div>
       </div>
     </section>`;
@@ -2033,22 +2043,22 @@ function areaPages() {
             <h2>Getting your dog to the woods</h2>
             <div class="area-getting-ways">
               <div class="reveal"><h3>${dropOffOnly ? "Drop off at the woods" : "We collect from your door"}</h3><p>${esc(collectCopy)}</p></div>
-              <div class="reveal"><h3>${dropOffOnly ? "Need a pick-up?" : "Or drop off yourself"}</h3><p>${dropOffOnly ? "Tell us your postcode and we will tell you honestly whether a pick-up works." : "The woods are just off the A3 and M25 in Cobham, so it is an easy drive in."}</p></div>
+              <div class="reveal"><h3>${dropOffOnly ? "Come as often as suits you" : "Or drop off yourself"}</h3><p>${dropOffOnly ? "We ask for at least four days a month, and you choose which ones. There are no set days to stick to." : "The woods are just off the A3 and M25 in Cobham, so it is an easy drive in."}</p></div>
             </div>
           </div>
-          <div class="area-price reveal"><span>From</span><strong>£55</strong><span>a day</span><p>Collection and drop-off are included. <a href="/pricing/">See prices</a></p></div>
+          <div class="area-price reveal">${dropOffOnly ? "" : "<span>From</span>"}<strong>£55</strong><span>a day</span><p>${dropOffOnly ? "You pay £55 however many days you come." : "Collection and drop-off are included."} <a href="/pricing/">See prices</a></p></div>
         </div>
         ${areaListMarkup(slug)}
       </div>
     </section>
-    ${quickEnquiry({ service: `Doggy Daycare (${name})`, photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Trial day", title: `Book a trial day from ${name}`, text: "Tell us about your dog and we will check collection, drop-off and suitability.", aside: `<div class="area-faq reveal"><h2>Questions from ${esc(name)} families</h2>${faqMarkup(faqs)}<p class="faq-block-contact">Still got a question? Call <a href="tel:07731798899">07731 798 899</a>, <a href="https://wa.me/447731798899" target="_blank" rel="noopener">WhatsApp us</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>.</p></div>` })}`;
+    ${quickEnquiry({ service: `Doggy Daycare (${name})`, photo: "/assets/insta/final.jpg", alt: "A happy black labrador in the woodland", kicker: "Trial day", title: `Book a trial day from ${name}`, text: dropOffOnly ? "Tell us about your dog and we will check your days and suitability." : "Tell us about your dog and we will check collection, drop-off and suitability.", aside: `<div class="area-faq reveal"><h2>Questions from ${esc(name)} families</h2>${faqMarkup(faqs)}<p class="faq-block-contact">Still got a question? Call <a href="tel:07731798899">07731 798 899</a>, <a href="https://wa.me/447731798899" target="_blank" rel="noopener">WhatsApp us</a> or email <a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a>.</p></div>` })}`;
     writePage(`areas/${slug}`, layout({
       route: `areas/${slug}`,
-      title: (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
-      description: `Dog daycare with collection from ${name}${postcodeText} to 10 acres of private woodland in Cobham, via the ${roadText}. Licensed by Elmbridge Council, with door-to-door collection.`,
-      keywords: `dog daycare ${name}, dog daycare collection ${name}, dog daycare with collection, dog daycare Surrey, dog daycare SW London`,
+      title: dropOffOnly ? `${h1} | Duncan's Dog Co.` : (`Dog Daycare Collection in ${name} | Duncan's Dog Co.`.length > 60) ? `Dog Daycare in ${name} | Duncan's Dog Co.` : `${h1} | Duncan's Dog Co.`,
+      description: dropOffOnly ? `Dog daycare near ${name}${postcodeText}, in 10 acres of private woodland in Cobham. Drop your dog with us via the ${roadText}. Licensed by Elmbridge Council.` : `Dog daycare with collection from ${name}${postcodeText} to 10 acres of private woodland in Cobham, via the ${roadText}. Licensed by Elmbridge Council, with door-to-door collection.`,
+      keywords: dropOffOnly ? `dog daycare ${name}, dog daycare near ${name}, dog daycare Cobham, dog daycare Surrey` : `dog daycare ${name}, dog daycare collection ${name}, dog daycare with collection, dog daycare Surrey, dog daycare SW London`,
       h1,
-      intro: legacy?.heroText || `Woodland dog daycare in Cobham with collection and drop-off options for ${name} families.`,
+      intro: dropOffOnly ? `Woodland dog daycare in Cobham, with drop-off for ${name} families.` : legacy?.heroText || `Woodland dog daycare in Cobham with collection and drop-off options for ${name} families.`,
       heroData: legacy ? { eyebrow: legacy.heroEyebrow || `Doggy Daycare · ${name}`, displayTitle: legacy.heroTitle || `${esc(name)} dogs,<br><span>private woodland days</span>`, text: legacy.heroText, video: legacy.video || videoHero, ctaHref: "/contact/#enquiry-form", ctaText: "Enquire Now", stats: [] } : null,
       body,
       heroHtml,
@@ -2423,8 +2433,9 @@ function aboutUs() {
     ["Staff ratio", "One member of staff to six dogs, in groups matched by size, age and energy"],
     ["Open", "365 days a year, including weekends and bank holidays, 7.45am to 6.30pm"],
     ["Services", "Woodland dog daycare, puppy daycare and puppy school, rescue dog daycare and sleepovers in our home"],
-    ["Collection", "Door-to-door collection and drop-off included, across " + areas.length + " areas in Surrey and South West London"],
-    ["Areas collected from", areas.map(([, name]) => name).join(", ")],
+    ["Collection", "Door-to-door collection and drop-off included, across " + areas.filter(([slug]) => isCollected(slug)).length + " areas in Surrey and South West London"],
+    ["Areas collected from", areas.filter(([slug]) => isCollected(slug)).map(([, name]) => name).join(", ")],
+    ["Areas where families drop off", areas.filter(([slug]) => !isCollected(slug)).map(([, name]) => name).join(", ")],
     ["Daycare price", "£65 a day for one day a week, £60 for two, £55 for three or more, collection included. Weekends £75. Minimum four days a month"],
     ["How to start", "Enquiry, a free meet and greet in the woodland, then a trial day"],
     ["Trial day", "A paid day at our normal day rate of £65. We do not offer a free trial day"],
@@ -2433,7 +2444,7 @@ function aboutUs() {
   ];
   const factFaqs = [
     ["Is Duncan's Dog Co. licensed?", "Yes. Our daycare is licensed by Elmbridge Borough Council and rated five stars, licence number LN/201800994. Boarding is licensed separately, LN/202400651."],
-    ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on 10 acres of private woodland. We collect from " + areas.length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
+    ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on 10 acres of private woodland. We collect from " + areas.filter(([slug]) => isCollected(slug)).length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
     ["How much is dog daycare at Duncan's Dog Co.?", "£65 a day for one day a week, £60 a day for two and £55 a day for three or more, with collection and drop-off included. Weekend days are £75."],
     ["What is the staff ratio at Duncan's Dog Co.?", "One member of staff to six dogs. The licence standard is one to ten, and the higher standard needed for five stars is one to eight."],
     ["Is Duncan's Dog Co. open at weekends?", "Yes, 365 days a year including bank holidays, from 7.45am to 6.30pm."],
@@ -2441,7 +2452,7 @@ function aboutUs() {
   writePage("facts", layout({
     route: "facts",
     title: "Duncan's Dog Co. Facts | Licence, Prices, Areas and Hours",
-    description: "Duncan's Dog Co. at a glance: a five-star licensed woodland dog daycare in Cobham, Surrey since 2011. Licence numbers, prices, staff ratio, opening hours and the 25 areas we collect from.",
+    description: "Duncan's Dog Co. at a glance: a five-star licensed woodland dog daycare in Cobham, Surrey since 2011. Licence numbers, prices, staff ratio, opening hours and the areas we collect from.",
     keywords: "Duncan's Dog Co facts, Duncan's Dog Co licence, dog daycare Cobham licence, dog daycare Cobham price",
     h1: "Duncan's Dog Co. at a Glance",
     intro: "The facts in one place: licence, prices, hours, ratio and where we collect from.",

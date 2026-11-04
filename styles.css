@@ -9762,3 +9762,9 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
   .benefit-rows.tiles .row-clip figcaption { font-size: 18px; }
 }
 .benefit-rows.tiles .row-clip figcaption { display: none; }
+
+/* Drop-off areas (5 Nov 2026): second list on area pages, price panel without "From", line under the homepage signs */
+.area-index-dropoff { margin-top: 40px; }
+.area-price strong + span { margin-top: 4px; color: #fff; font-size: 18px; font-weight: 600; }
+.signs-dropoff { position: relative; max-width: 760px; margin: 36px auto 0; color: var(--forest); font-size: 17px; line-height: 1.55; text-align: center; }
+.signs-dropoff a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
