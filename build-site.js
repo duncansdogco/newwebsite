@@ -646,7 +646,6 @@ function localBusinessJson() {
     description: "Woodland dog daycare in Cobham, with safe collection across Surrey and South West London.",
     address: { "@type": "PostalAddress", addressLocality: "Cobham", addressRegion: "Surrey", postalCode: "KT11", addressCountry: "GB" },
     areaServed: areas.map(([, name]) => name),
-    openingHours: "Mo-Su 07:45-18:30",
     image: `${SITE}/assets/woodland.jpg`,
     aggregateRating: {
       "@type": "AggregateRating",
@@ -1289,10 +1288,10 @@ function serviceBody(page) {
 
   if (page.slug === "daycare") {
     const day = [
-      ["7:45am", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
+      ["First thing", "Collection", "The driver at your door is one of the daycare team, and they are with your dog in the woodland all day. Message them from the portal if anything changes.", "/assets/insta/day-collection.jpg", "A Duncan's Dog Co. team member at the gate with a dog"],
       ["Morning", "Into the woodland", "Groups matched by size, age and energy head out under the trees. 10 acres, fenced, with shade in summer and shelter when it rains.", "/assets/insta/day-woodland-2.jpg", "A pack of dogs together on the woodland path"],
       ["Midday", "Proper rest", "Downtime is built in, indoors or in the shade, so dogs come home tired rather than wired. Wet dogs are towel-dried before they travel.", "/assets/insta/day-rest.jpg", "A dog stretched out resting in the sun"],
-      ["From 3pm", "Home time", "Drop-offs run through the afternoon and the last dogs are home by 6:30pm. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home-2.jpg", "A team member holding a spaniel at the end of the day"]
+      ["Afternoon", "Home time", "Drop-offs run through the afternoon. If something is worth knowing about their day, you hear it from the person who was there.", "/assets/insta/day-home-2.jpg", "A team member holding a spaniel at the end of the day"]
     ];
     const included = [
       ["Collected by someone who spends the day with them", "The person at your door in the morning is one of the daycare team, and they're with your dog in the woodland all day. You get a message when they're collected and when they're home.", "/assets/insta/why-collect.jpg", "A team member hugging a fox red retriever in the pine woodland"],
@@ -1318,7 +1317,7 @@ function serviceBody(page) {
       </div>
     </section>
     <section class="day-strip">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>What a daycare day actually looks like</h2></div><p>Open 7:45am to 6:30pm, seven days a week. This is the shape of it.</p></div>
+      <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>What a daycare day actually looks like</h2></div><p>Open seven days a week. This is the shape of it.</p></div>
       <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
     </section>
     ${portalShowcase({ start: "alerts", forDaycare: true })}
@@ -1522,7 +1521,7 @@ function homeScreenPhone() {
         <div class="dv-status light"><span>9:41</span><span class="dv-status-icons"><i class="sig"></i><i class="wifi"></i><i class="bat"></i></span></div>
         <div class="dv-island"></div>
         <div class="hs-wall"></div>
-        <div class="hs-notif"><img src="/assets/logo.png" alt=""><div><b>Duncan's Dog Co.</b><span>Milo's day on Wednesday is confirmed. Collection from 7:45.</span></div><em>now</em></div>
+        <div class="hs-notif"><img src="/assets/logo.png" alt=""><div><b>Duncan's Dog Co.</b><span>Milo's day on Wednesday is confirmed.</span></div><em>now</em></div>
         <div class="hs-grid">${apps.slice(0, 7).map(tile).join("")}${ddc}${apps.slice(7).map(tile).join("")}</div>
         <div class="hs-dots"><i class="on"></i><i></i></div>
         <div class="hs-dock">${tile(["Phone", "#34c759", "phone"])}${tile(["Safari", "#fff", "safari"])}${apps.slice(0, 1).map(tile).join("")}${apps.slice(8, 9).map(tile).join("")}</div>
@@ -2085,7 +2084,7 @@ const fullFaqSections = [
       ["What vehicles do you use?", "We use people carriers, not vans: bright, airy vehicles with custom-built guards for safety. Dogs are not caged individually. The vehicles are unbranded for discretion, and your dog can see and interact with the driver throughout the journey."],
       ["How long are dogs in the car?", "Routes are planned every single night to minimise travel time for each dog. We do not run fixed routes. We work out the most efficient order each evening based on who is coming the next day, so no dog is in the car any longer than necessary."],
       ["Who does the driving?", "Our own daycare staff do the driving: the same people who care for your dog throughout the day. The driver who collects your dog in the morning is part of the same team looking after them in the woodland. No strangers, no handoffs."],
-      ["What time does collection start?", "Collection begins from 7:45am. Drop-off in the afternoon is included in all weekly daycare prices. If you have specific timing requirements, speak to us when you sign up and we'll do our best to accommodate you."],
+      ["What time does collection start?", "Collection starts in the morning, and the time depends on where you live and the route that day. Drop-off in the afternoon is included in all weekly daycare prices. If you have specific timing requirements, speak to us when you sign up and we'll do our best to accommodate you."],
       ["Can I contact the driver on the day?", "Yes. Every family has a customer portal with messaging built in. Anything you need to tell us goes in one thread the whole team can see, and on the days your dog is booked in, the driver on your route joins that thread. Running late, a new gate code or a change of address on the day goes straight to the person driving."],
       ["How are the collection groups organised?", "Our team plans each vehicle's passengers thoughtfully, grouping dogs by route, temperament and existing friendships. Dogs who know each other travel together where possible, making the journey calmer for everyone."]
     ]
@@ -2234,12 +2233,12 @@ function faqAndContact() {
       <aside class="contact-details reveal" aria-label="Direct contact details">
         <div>
           <h2>Get in touch directly</h2>
-          <p>Prefer to call or email? We're happy to chat. We're usually available Monday-Sunday, 7:30am-6:30pm.</p>
+          <p>Prefer to call or email? We're happy to chat. We're usually available seven days a week.</p>
         </div>
-        <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><span class="contact-item-label">Phone</span><div class="contact-item-value"><a href="tel:07731798899">07731 798 899</a></div><div class="contact-item-sub">Mon-Sun, 7:30am-6:30pm</div></div></div>
+        <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><span class="contact-item-label">Phone</span><div class="contact-item-value"><a href="tel:07731798899">07731 798 899</a></div><div class="contact-item-sub">Seven days a week</div></div></div>
         <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg></div><div><span class="contact-item-label">Email</span><div class="contact-item-value"><a href="mailto:info@duncansdogco.com">info@duncansdogco.com</a></div><div class="contact-item-sub">We reply within 24 hours</div></div></div>
         <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><span class="contact-item-label">Location</span><div class="contact-item-value">Cobham, Surrey</div><div class="contact-item-sub">Exact address given on booking</div></div></div>
-        <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><span class="contact-item-label">Hours</span><div class="contact-item-value">7 days a week</div><div class="contact-item-sub">Collection from 7:45am · Drop-off by 6pm</div></div></div>
+        <div class="contact-item"><div class="contact-item-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><span class="contact-item-label">Hours</span><div class="contact-item-value">7 days a week</div><div class="contact-item-sub">Collection in the morning, drop-off in the afternoon</div></div></div>
       </aside>
     </div>
   </section>`;
@@ -2431,7 +2430,7 @@ function aboutUs() {
     ["Boarding licence", "Elmbridge Borough Council, licence LN/202400651"],
     ["Setting", "10 acres of private, fenced woodland"],
     ["Staff ratio", "One member of staff to six dogs, in groups matched by size, age and energy"],
-    ["Open", "365 days a year, including weekends and bank holidays, 7.45am to 6.30pm"],
+    ["Open", "365 days a year, including weekends and bank holidays"],
     ["Services", "Woodland dog daycare, puppy daycare and puppy school, rescue dog daycare and sleepovers in our home"],
     ["Collection", "Door-to-door collection and drop-off included, across " + areas.filter(([slug]) => isCollected(slug)).length + " areas in Surrey and South West London"],
     ["Areas collected from", areas.filter(([slug]) => isCollected(slug)).map(([, name]) => name).join(", ")],
@@ -2447,7 +2446,7 @@ function aboutUs() {
     ["Where is Duncan's Dog Co.?", "In Cobham, Surrey, on 10 acres of private woodland. We collect from " + areas.filter(([slug]) => isCollected(slug)).length + " areas across Surrey and South West London, including Wimbledon, Putney, Clapham and Wandsworth."],
     ["How much is dog daycare at Duncan's Dog Co.?", "£65 a day for one day a week, £60 a day for two and £55 a day for three or more, with collection and drop-off included. Weekend days are £75."],
     ["What is the staff ratio at Duncan's Dog Co.?", "One member of staff to six dogs. The licence standard is one to ten, and the higher standard needed for five stars is one to eight."],
-    ["Is Duncan's Dog Co. open at weekends?", "Yes, 365 days a year including bank holidays, from 7.45am to 6.30pm."],
+    ["Is Duncan's Dog Co. open at weekends?", "Yes, 365 days a year including bank holidays."],
   ];
   writePage("facts", layout({
     route: "facts",
