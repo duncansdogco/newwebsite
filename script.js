@@ -347,13 +347,50 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
   const copies = Array.from(box.querySelectorAll("[data-copy]"));
   const pills = Array.from(box.querySelectorAll("[data-pick]"));
   const order = pills.length ? pills.map((p) => p.dataset.pick) : tabs.map((t) => t.dataset.tab);
-  const lock = device.querySelector('[data-pane="alerts"]');
+  const waits = Object.fromEntries(pills.map((p) => [p.dataset.pick, Number(p.dataset.wait) * 1000 || 4500]));
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let seen = false;
+
+  // Numbers that run inside a screen: the balance on Billing, the photo count on Pets.
+  const money = (n) => `£${Math.max(0, n).toFixed(2)}`;
+  const runCounts = (pane) => {
+    pane.querySelectorAll("[data-count]").forEach((el) => {
+      const [from, to] = el.dataset.count.split(",").map(Number);
+      const delay = Number(el.dataset.delay) || 0;
+      const step = Number(el.dataset.step) || 0;
+      const dur = Number(el.dataset.dur) || 800;
+      const isMoney = el.hasAttribute("data-money");
+      const text = (n) => (isMoney ? money(n) : `${n} ${el.dataset.unit}${n === 1 ? "" : "s"}`);
+      const token = (el.dvToken = (el.dvToken || 0) + 1);
+      const t0 = performance.now() + delay;
+      el.textContent = text(from);
+      const tick = (now) => {
+        if (el.dvToken !== token) return;
+        const t = now - t0;
+        if (step) {
+          const n = Math.min(to, from + Math.max(0, Math.floor(t / step)));
+          el.textContent = text(n);
+          if (n < to) requestAnimationFrame(tick);
+          return;
+        }
+        const p = Math.min(1, Math.max(0, t / dur));
+        el.textContent = text(from + (to - from) * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
+
+  // Each screen plays its own short animation whenever it opens (once the phone has been seen).
   const replay = () => {
-    if (!lock || current !== "alerts" || !seen) return;
-    lock.classList.remove("play");
-    void lock.offsetWidth;
-    lock.classList.add("play");
+    if (!seen) return;
+    const pane = panes.find((p) => p.dataset.pane === current);
+    if (!pane) return;
+    panes.forEach((p) => { if (p !== pane) p.classList.remove("play"); });
+    pane.classList.remove("play");
+    void pane.offsetWidth;
+    pane.classList.add("play");
+    runCounts(pane);
   };
   let current = device.dataset.start || order[0];
   let picked = false;
@@ -366,8 +403,45 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     copies.forEach((c) => c.classList.toggle("is-on", c.dataset.copy === key));
     pills.forEach((p) => p.classList.toggle("is-on", p.dataset.pick === key));
     device.classList.toggle("is-lock", key === "alerts");
+    device.classList.toggle("is-profile", key === "profile");
     replay();
   };
+
+  // The phone turns a little towards the pointer, or follows the scroll on touch screens (18 Nov 2026).
+  if (!reduced) {
+    const css = window.getComputedStyle(device);
+    const baseY = parseFloat(css.getPropertyValue("--ry")) || 0;
+    const baseX = parseFloat(css.getPropertyValue("--rx")) || 0;
+    const tilt = (y, x, glare) => {
+      device.style.setProperty("--ry", `${y.toFixed(2)}deg`);
+      device.style.setProperty("--rx", `${x.toFixed(2)}deg`);
+      device.style.setProperty("--gx", `${glare.toFixed(1)}%`);
+    };
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      box.addEventListener("pointermove", (e) => {
+        const r = device.getBoundingClientRect();
+        const nx = Math.max(-1, Math.min(1, (e.clientX - (r.left + r.width / 2)) / (r.width * 1.5)));
+        const ny = Math.max(-1, Math.min(1, (e.clientY - (r.top + r.height / 2)) / r.height));
+        device.classList.add("is-tilting");
+        tilt(baseY + nx * 10, baseX - ny * 7, nx * -28);
+      });
+      box.addEventListener("pointerleave", () => {
+        device.classList.remove("is-tilting");
+        ["--ry", "--rx", "--gx"].forEach((v) => device.style.removeProperty(v));
+      });
+    } else {
+      let frame = 0;
+      const follow = () => {
+        frame = 0;
+        const r = device.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        const t = Math.max(-1, Math.min(1, ((r.top + r.height / 2) / window.innerHeight - 0.5) * 2));
+        tilt(baseY + t * 9, baseX + t * 5, t * 26);
+      };
+      window.addEventListener("scroll", () => { if (!frame) frame = window.requestAnimationFrame(follow); }, { passive: true });
+      follow();
+    }
+  }
 
   const pick = (key) => {
     picked = true;
@@ -380,16 +454,15 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
   pills.forEach((p) => p.addEventListener("click", () => pick(p.dataset.pick)));
   show(current);
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced || !("IntersectionObserver" in window)) return;
 
-  // The chat thread needs time to play before the cycle moves on.
+  // Each screen stays up long enough for its own animation (chat and notifications longest).
   const schedule = () => {
     box.classList.add("is-cycling");
     timer = window.setTimeout(() => {
       show(order[(order.indexOf(current) + 1) % order.length]);
       schedule();
-    }, current === "chat" ? 12000 : current === "alerts" ? 10500 : 4500);
+    }, waits[current] || 4500);
   };
 
   const io = new IntersectionObserver((entries) => {
