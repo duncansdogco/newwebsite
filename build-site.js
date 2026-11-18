@@ -5,7 +5,7 @@ const path = require("path");
 const ROOT = __dirname;
 const SITE = "https://duncansdogco.com";
 const PORTAL_URL = "https://app.generasoftware.com/duncans-dog-co";
-const assetVersion = "2026-11-18-portal-phone";
+const assetVersion = "2026-11-18-portal-readable";
 const videoHero = "https://video.wixstatic.com/video/4d2311_8d73542c956846bbac4039b0b7d1acd8/720p/mp4/file.mp4";
 
 const areas = [
@@ -1416,7 +1416,7 @@ const DEVICE_COPY = {
   alerts: { title: "Know when they're collected, and when they're home", text: "When the driver collects your dog, your phone shows it with the driver's name, and again when your dog is home. You also hear when new photos go up, when we message you and when a booking is approved. Add the portal to your home screen and they come through like any other app." },
   pets: { title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile alongside their vaccination dates and care notes." },
   billing: { title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Your statement lists every invoice and payment with a running balance, like a bank statement, so you can see at a glance what is paid." },
-  profile: { title: "Your details, kept current", text: "Your contact details, emergency contacts and your dog's records, updated by you and seen by the team the moment you save." }
+  profile: { title: "Your details, behind your name", text: "Tap your initials for your booking history, your contact details and emergency contacts, and which notifications you get. Change something and the team sees it the moment you save." }
 };
 
 const sunIcon = `<svg class="dv-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -1429,9 +1429,9 @@ const poundIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 // then the next seven days as day cards (no month calendar). Wed 14 Oct; Milo comes Mon, Wed, Thu.
 function deviceHome() {
   const day = (label, num, inner, today = false) => `<div class="dv-dayc${today ? " is-today" : ""}"><div class="dv-dayc-date"><span>${label}</span><b>${num}</b></div><div class="dv-dayc-list">${inner}<div class="dv-add">+ Add booking</div></div></div>`;
-  const daycare = `<div class="dv-bk"><div class="dv-bk-top">${sunIcon}<b>Daycare</b><span class="dv-bk-tr">${vanIcon}Collection</span><em class="ok">Confirmed</em></div><span class="dv-bk-sub">Milo</span></div>`;
+  const daycare = `<div class="dv-bk"><div class="dv-bk-top">${sunIcon}<b>Daycare</b><em class="ok">Confirmed</em></div><span class="dv-bk-sub">Milo · <span class="dv-bk-tr">${vanIcon}Collection</span></span></div>`;
   const sleepover = `<div class="dv-bk is-pending"><div class="dv-bk-top">${moonIcon}<b>Sleepover</b><span class="dv-bk-pills"><em class="pend">Pending</em><em class="ok">Confirmed</em></span></div><span class="dv-bk-sub">Milo · 1 night</span><span class="dv-bk-wait">Waiting for the team to confirm</span></div>`;
-  return `<div class="dv-screen dv-home"><div class="dv-scroll">
+  return `<div class="dv-screen dv-home"><div class="dv-scroll" data-scroll-to="top:.dv-weekhead">
     <div class="dv-date">Wednesday 14 October</div>
     <div class="dv-hi">Hi Sophie</div>
     <div class="dv-req"><i></i><div><p><b>1 request waiting</b> · Sleepover, Fri 16 Oct</p><span>Sent 2 hours ago, we'll let you know when it's confirmed</span></div></div>
@@ -1463,20 +1463,20 @@ function deviceChat() {
 }
 
 function devicePets() {
-  return `<div class="dv-screen dv-pets">
+  return `<div class="dv-screen dv-pets"><div class="dv-scroll" data-scroll-to="bottom:.dv-report">
     <div class="dv-title">Your pets</div>
     <div class="dv-pet"><img src="/assets/insta/phone-1.jpg" alt=""><div><b>Milo</b><span>Cocker Spaniel · 3 years</span><span class="ok">Vaccinations up to date</span></div></div>
     <div class="dv-h3">Today at daycare <span class="dv-badge" data-count="1,4" data-unit="new photo" data-delay="500" data-step="350">4 new photos</span></div>
     <div class="dv-photos">${["phone-2", "phone-3", "phone-4", "phone-1"].map((p, i) => `<img src="/assets/insta/${p}.jpg" alt="" style="--i:${i}">`).join("")}</div>
     <div class="dv-report"><div class="dv-report-head"><b>Report card</b><span class="dv-stars">${"<i>★</i>".repeat(5)}</span></div><p>A big woodland day. Straight into the trees with Bailey and the spaniels, a paddle in the lake, then flat out on the way home.</p><span class="dv-by">Becks · 15:20</span></div>
-  </div>`;
+  </div></div>`;
 }
 
 // Billing as the live portal's statement: balance today, then every invoice and payment with a running balance.
 // When the screen opens, October's Direct Debit lands and the balance runs down to nothing.
 function deviceBilling() {
   const row = (cls, date, what, amount, balance) => `<div class="dv-st ${cls}"><div><b>${what}</b><span>${date}</span></div><div class="dv-st-r"><strong>${amount}</strong><span>Balance ${balance}</span></div></div>`;
-  return `<div class="dv-screen dv-billing">
+  return `<div class="dv-screen dv-billing"><div class="dv-scroll" data-scroll-to="bottom:.dv-stmt">
     <div class="dv-title">Billing</div>
     <div class="dv-seg"><span>Overview</span><span class="on">Statement</span></div>
     <div class="dv-bal">
@@ -1491,18 +1491,27 @@ function deviceBilling() {
       ${row("inv", "1 Oct 2026", "Invoice · Milo", "£715.00", "£715.00")}
       ${row("pay is-new", "6 Oct 2026", "Payment · Direct Debit", "£715.00", "£0.00")}
     </div>
-  </div>`;
+  </div></div>`;
 }
 
+// Profile as the live portal draws it: the menu behind your initials slides up over the page.
+// No address, phone number, email or gate code on show, even made-up ones (Jess, 18 Nov 2026).
 function deviceProfile() {
-  return `<div class="dv-screen dv-profile">
-    <div class="dv-title">Profile</div>
-    <div class="dv-person"><span>ST</span><div><b>Sophie Turner</b><span>Customer since 2024</span></div></div>
-    <div class="dv-group"><div class="dv-field"><span>Mobile</span><b>07700 900 412</b></div><div class="dv-field"><span>Email</span><b>sophie@example.com</b></div><div class="dv-field"><span>Address</span><b>14 Elm Road, Esher KT10</b></div><div class="dv-field"><span>Gate code</span><b>4471</b></div></div>
-    <div class="dv-h3">Emergency contact</div>
-    <div class="dv-group"><div class="dv-field"><span>Name</span><b>Tom Turner</b></div><div class="dv-field"><span>Mobile</span><b>07700 900 318</b></div></div>
-    <div class="dv-h3">Milo's records</div>
-    <div class="dv-group"><div class="dv-field"><span>Booster due</span><b>3 Mar 2027</b></div><div class="dv-field"><span>Vet</span><b>Esher Vets, 01372 000 000</b></div><div class="dv-field"><span>Food</span><b>Own food, in the bag</b></div></div>
+  const ic = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const rows = [
+    [ic('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'), "Booking history", "›"],
+    [ic('<circle cx="12" cy="8" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/>'), "Your profile", "›"],
+    [ic('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'), "Notifications", "›"],
+    [ic('<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20"/>'), "How to use the app", "↗"]
+  ];
+  return `<div class="dv-profile-wrap">
+    <div class="dv-dim"></div>
+    <div class="dv-sheet">
+      <div class="dv-sheet-head"><span class="dv-sheet-me">ST</span><div><b>Sophie</b><span>Customer since 2024</span></div><i>×</i></div>
+      ${rows.map(([icon, label, go], i) => `<div class="dv-sheet-row" style="--i:${i}">${icon}<span>${label}</span><em>${go}</em></div>`).join("")}
+      <div class="dv-sheet-app" style="--i:4">${ic('<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/>')}<div><b>Get the app</b><span>Add Duncan's Dog Co. to your phone's home screen</span></div><em>Install</em></div>
+      <div class="dv-sheet-row out" style="--i:5">${ic('<path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M9 8l-4 4 4 4M5 12h10"/>')}<span>Sign out</span></div>
+    </div>
   </div>`;
 }
 
@@ -1607,7 +1616,7 @@ function portalShowcase({ start = "home", onPortalPage = false, forDaycare = fal
       <div class="dv-copies">${copy}</div>
       <div class="dv-pills" role="group" aria-label="Choose a screen">${pills}</div>
       <div class="split-actions">${actions}</div>
-      <p class="portal-built-here">The portal runs on <a href="https://www.generasoftware.com" target="_blank" rel="noopener">Genera, the dog daycare software</a> we built here at Duncan's Dog Co.</p>
+      <a class="genera-made" href="https://www.generasoftware.com" target="_blank" rel="noopener"><img src="/assets/genera-logo-forest.png" alt="Genera" width="440" height="117" loading="lazy"><span><b>Our portal runs on Genera</b><small>The dog daycare software we built here at Duncan's Dog Co.</small></span><i aria-hidden="true">→</i></a>
     </div>
   </section>`;
 }

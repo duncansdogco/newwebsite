@@ -381,6 +381,27 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     });
   };
 
+  // Screens that are taller than the phone scroll to the part that matters:
+  // "top:<sel>" brings that element up under the header, "bottom:<sel>" lifts its bottom clear of the tab bar.
+  // Measured with the screen at rest, before its animation starts.
+  const measureScroll = (pane) => {
+    const scroller = pane.querySelector("[data-scroll-to]");
+    if (!scroller) return;
+    const [mode, sel] = scroller.dataset.scrollTo.split(":");
+    const target = scroller.querySelector(sel);
+    const screen = scroller.parentElement;
+    const nav = device.querySelector(".dv-nav");
+    if (!target || !screen || !nav) return;
+    // The scroller is position: relative, so the target's offsetTop is measured from the top of the scroller,
+    // which starts at the screen's top padding.
+    const top = parseFloat(getComputedStyle(screen).paddingTop) + target.offsetTop;
+    const header = device.querySelector(".dv-topbar");
+    const y = mode === "top"
+      ? (header ? header.offsetHeight + 10 : 120) - top
+      : Math.min(0, nav.offsetTop - 14 - (top + target.offsetHeight));
+    scroller.style.setProperty("--scroll-y", `${Math.round(y)}px`);
+  };
+
   // Each screen plays its own short animation whenever it opens (once the phone has been seen).
   const replay = () => {
     if (!seen) return;
@@ -388,6 +409,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     if (!pane) return;
     panes.forEach((p) => { if (p !== pane) p.classList.remove("play"); });
     pane.classList.remove("play");
+    measureScroll(pane);
     void pane.offsetWidth;
     pane.classList.add("play");
     runCounts(pane);
@@ -404,8 +426,22 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
     pills.forEach((p) => p.classList.toggle("is-on", p.dataset.pick === key));
     device.classList.toggle("is-lock", key === "alerts");
     device.classList.toggle("is-profile", key === "profile");
+    // The next screen in line pulses gently, on the pills and on the phone itself, so it reads as "tap me"
+    const next = order[(order.indexOf(key) + 1) % order.length];
+    pills.forEach((p) => p.classList.toggle("is-next", p.dataset.pick === next));
+    tabs.forEach((t) => t.classList.toggle("is-next", t.dataset.tab === next));
+    const me = device.querySelector(".dv-me");
+    if (me) me.classList.toggle("is-next", next === "profile");
     replay();
   };
+
+  const me = device.querySelector(".dv-me");
+  if (me && order.includes("profile")) {
+    me.setAttribute("role", "button");
+    me.setAttribute("aria-label", "Profile");
+    me.addEventListener("click", () => pick(current === "profile" ? "home" : "profile"));
+  }
+  device.querySelectorAll('[data-pane="profile"] .dv-dim, [data-pane="profile"] .dv-sheet-head i').forEach((el) => el.addEventListener("click", () => pick("home")));
 
   // The phone turns a little towards the pointer, or follows the scroll on touch screens (18 Nov 2026).
   if (!reduced) {
@@ -436,7 +472,7 @@ document.querySelectorAll("[data-showcase]").forEach((box) => {
         const r = device.getBoundingClientRect();
         if (r.bottom < 0 || r.top > window.innerHeight) return;
         const t = Math.max(-1, Math.min(1, ((r.top + r.height / 2) / window.innerHeight - 0.5) * 2));
-        tilt(baseY + t * 9, baseX + t * 5, t * 26);
+        tilt(baseY + t * 5, baseX + t * 3, t * 20);
       };
       window.addEventListener("scroll", () => { if (!frame) frame = window.requestAnimationFrame(follow); }, { passive: true });
       follow();

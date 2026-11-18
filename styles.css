@@ -10058,3 +10058,141 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .same-team-title strong { display: block; }
 
 .same-team-title strong { font-weight: 700; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Portal phone, readable, 18 Nov 2026 (later). Jess: "that text is so small,
+   you can barely read it". The screen is drawn at 330 x 714 instead of
+   390 x 844 (like iPhone Display Zoom) and the phone is shown larger, so
+   everything inside reads about 40% bigger. The next screen pulses to say
+   "tap me", and on phones the tabs sit straight under the phone.
+   ══════════════════════════════════════════════════════════════════ */
+.dv { --vw: 390px; --vh: 844px; }
+.dv[data-device] { --vw: 330px; --vh: 714px; --s: 1; }
+.dv-body { width: calc(var(--vw) * var(--s)); height: calc(var(--vh) * var(--s)); }
+.dv-inner { width: var(--vw); height: var(--vh); }
+.dv[data-device] .dv-screen { padding: 128px 14px 0; }
+.dv[data-device] .dv-home,
+.dv[data-device] .dv-pets,
+.dv[data-device] .dv-billing { padding-left: 0; padding-right: 0; }
+.dv[data-device] .dv-scroll { padding: 0 14px 160px; }
+.dv[data-device] .dv-screen.dv-chat { padding-bottom: 112px; }
+.dv[data-device] .dv-hi { font-size: 29px; }
+.dv[data-device] .dv-tile small { font-size: 12px; }
+.dv[data-device] .dv-bk-sub { display: flex; align-items: center; gap: 4px; }
+.dv[data-device] .dv-bk-sub .dv-bk-tr { font-size: 13px; }
+.dv[data-device] .dv-lock-time { font-size: 84px; height: 92px; }
+.dv[data-device] .dv-lock-stack { bottom: 96px; gap: 6px; }
+.dv[data-device] .dv-lock-n span { font-size: 13px; }
+.dv[data-device] .dv-lock-buttons { bottom: 34px; }
+
+/* One scroll for every screen that needs it, to a distance measured when it opens */
+.dv-pane.play .dv-scroll { animation: dvScrollTo 1s cubic-bezier(0.45, 0, 0.2, 1) var(--scroll-at, 2s) both; }
+.dv-pane[data-pane="pets"] { --scroll-at: 1.9s; }
+.dv-pane[data-pane="billing"] { --scroll-at: 1.05s; }
+@keyframes dvScrollTo { from { transform: none; } to { transform: translateY(var(--scroll-y, 0px)); } }
+
+/* Profile: the menu behind your initials slides up over a dimmed page */
+.dv-pane[data-pane="profile"] { z-index: 45; }
+.dv-profile-wrap { position: absolute; inset: 0; }
+.dv-dim { position: absolute; inset: 0; background: rgba(28, 25, 23, 0.42); cursor: pointer; }
+.dv-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 0 34px; border-radius: 26px 26px 0 0; background: #fff; box-shadow: 0 -12px 30px rgba(28, 25, 23, 0.25); }
+.dv-sheet::before { content: ""; display: block; width: 38px; height: 5px; margin: 4px auto 6px; border-radius: 999px; background: #e2e5e4; }
+.dv-sheet-head { display: flex; align-items: center; gap: 12px; padding: 8px 18px 14px; border-bottom: 1px solid #eef0ef; }
+.dv-sheet-me { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #fff4de; color: #003e45; font-size: 15px; font-weight: 800; }
+.dv-sheet-head b { display: block; color: #0a3f44; font-size: 17px; font-weight: 700; }
+.dv-sheet-head span { color: #6b7280; font-size: 13px; }
+.dv-sheet-head i { margin-left: auto; color: #6b7280; font-size: 26px; font-style: normal; line-height: 1; cursor: pointer; }
+.dv-sheet-row { display: flex; align-items: center; gap: 14px; padding: 13px 20px; color: #0a3f44; font-size: 16px; }
+.dv-sheet-row svg { width: 22px; height: 22px; color: #57534e; }
+.dv-sheet-row em { margin-left: auto; color: #b8bcbb; font-size: 20px; font-style: normal; }
+.dv-sheet-row.out { margin-top: 4px; border-top: 1px solid #eef0ef; }
+.dv-sheet-app { display: flex; align-items: center; gap: 10px; margin: 6px 16px; padding: 12px; border: 1px solid #dfe3e1; border-radius: 16px; background: #eef1ef; }
+.dv-sheet-app > svg { flex: 0 0 auto; width: 38px; height: 38px; padding: 8px; border-radius: 10px; background: #fff; color: #1c1917; }
+.dv-sheet-app b { display: block; color: #0a3f44; font-size: 14.5px; }
+.dv-sheet-app span { display: block; color: #57534e; font-size: 12.5px; line-height: 1.3; }
+.dv-sheet-app em { margin-left: auto; padding: 8px 14px; border-radius: 11px; background: #1c1917; color: #fff; font-size: 13.5px; font-style: normal; font-weight: 700; }
+.dv-pane.play .dv-dim { animation: dvPaneIn 0.3s ease both; }
+.dv-pane.play .dv-sheet { animation: dvSheetUp 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.08) 0.15s both; }
+.dv-pane.play .dv-sheet-row,
+.dv-pane.play .dv-sheet-app { animation: dvRise 0.4s ease both; animation-delay: calc(0.45s + var(--i) * 0.07s); }
+@keyframes dvSheetUp { from { transform: translateY(100%); } to { transform: none; } }
+
+/* "Tap me": the next screen pulses, on the pills and on the phone's own tab bar */
+.dv-me { cursor: pointer; }
+.dv-pills button.is-next { animation: pillNext 2.2s ease-in-out infinite; }
+@keyframes pillNext { 0%, 100% { box-shadow: 0 0 0 0 rgba(100, 127, 79, 0); } 50% { box-shadow: 0 0 0 4px rgba(100, 127, 79, 0.32); background: rgba(255, 255, 255, 0.55); } }
+.dv-nav button.is-next,
+.dv-me.is-next { position: relative; }
+.dv-nav button.is-next::after,
+.dv-me.is-next::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 2px rgba(255, 168, 0, 0.9);
+  animation: tabNext 1.8s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes tabNext { 0% { opacity: 0.95; transform: scale(0.85); } 70%, 100% { opacity: 0; transform: scale(1.25); } }
+.dv-pills button::after { height: 3px !important; background: var(--forest) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-pills button.is-next { animation: none; box-shadow: 0 0 0 2px rgba(100, 127, 79, 0.35); }
+  .dv-nav button.is-next::after,
+  .dv-me.is-next::after { animation: none; opacity: 0.8; transform: none; }
+}
+
+/* Genera: the real logo on a card instead of a line of small print */
+.genera-made {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+  padding: 14px 20px 14px 16px;
+  border: 1px solid rgba(0, 62, 69, 0.12);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 62, 69, 0.06), 0 16px 30px -18px rgba(0, 62, 69, 0.35);
+  color: #003e45;
+  text-decoration: none;
+  transition: transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1), box-shadow 0.3s ease;
+}
+.genera-made img { flex: 0 0 auto; width: 128px; height: auto; filter: none !important; }
+.genera-made span { display: grid; gap: 2px; padding-left: 16px; border-left: 1px solid rgba(0, 62, 69, 0.14); }
+.genera-made b { color: #003e45; font-size: 15px; font-weight: 700; }
+.genera-made small { color: #4b5563; font-size: 13.5px; line-height: 1.35; }
+.genera-made i { color: #ffa800; font-size: 20px; font-style: normal; font-weight: 700; transition: transform 0.4s cubic-bezier(0.34, 1.8, 0.64, 1); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .genera-made:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(0, 62, 69, 0.06), 0 22px 36px -18px rgba(0, 62, 69, 0.45); }
+  .genera-made:hover i { transform: translateX(4px); }
+}
+
+/* Phones and tablets: words, then the phone, then the tabs right under it, then the buttons */
+@media (max-width: 980px) {
+  .dv[data-device] { --s: 1; }
+  .portal-showcase { gap: 0; }
+  .portal-showcase-copy { display: contents; }
+  .portal-showcase-copy > .section-kicker { order: 1; }
+  .portal-showcase-copy > .dv-copies { order: 2; }
+  .portal-showcase-device { order: 3; margin: 22px 0 34px; }
+  .portal-showcase-copy > .dv-pills { order: 4; margin-top: 0 !important; }
+  .portal-showcase-copy > .split-actions { order: 5; }
+  .portal-showcase-copy > .genera-made { order: 6; }
+}
+@media (max-width: 400px) { .dv[data-device] { --s: 0.96; } }
+@media (max-width: 370px) { .dv[data-device] { --s: 0.9; } }
+@media (max-width: 520px) {
+  .genera-made { display: flex; flex-wrap: wrap; gap: 10px; }
+  .genera-made span { padding-left: 0; border-left: 0; flex: 1 1 100%; }
+  .genera-made i { position: absolute; }
+  .genera-made { position: relative; padding-right: 40px; }
+  .genera-made i { right: 16px; top: 16px; }
+}
+@media (max-width: 980px) {
+  .dv[data-device] { --ry: 5deg; --rx: 2deg; }
+  .portal-showcase { overflow-x: clip; }
+}
+.dv[data-device] .dv-scroll { position: relative; }
+.dv[data-device] .dv-lock-head { top: 64px; }
+.dv[data-device] .dv-lock-time { font-size: 76px; height: 84px; }
+.dv[data-device] .dv-lock-stack { bottom: 84px; }
