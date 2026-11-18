@@ -1612,7 +1612,7 @@ function portalShowcase({ start = "home", onPortalPage = false, forDaycare = fal
   return `<section class="portal-showcase" id="portal" data-showcase>
     <div class="portal-showcase-device reveal">${portalDevice(start)}</div>
     <div class="portal-showcase-copy reveal">
-      <p class="section-kicker">Your customer portal</p>
+      <p class="section-kicker portal-label"><img src="/assets/logo.png" alt="" width="30" height="30">Your customer portal</p>
       <div class="dv-copies">${copy}</div>
       <div class="dv-pills" role="group" aria-label="Choose a screen">${pills}</div>
       <div class="split-actions">${actions}</div>

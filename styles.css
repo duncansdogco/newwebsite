@@ -10196,3 +10196,23 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .dv[data-device] .dv-lock-head { top: 64px; }
 .dv[data-device] .dv-lock-time { font-size: 76px; height: 84px; }
 .dv[data-device] .dv-lock-stack { bottom: 84px; }
+
+/* "Your customer portal" label, 18 Nov 2026. Jess: the wording was so small you could barely read it
+   (14px pale moss under a 58px heading). Now the section's name: bigger, dark green, with the logo. */
+.portal-showcase .section-kicker.portal-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: var(--forest) !important;
+  font-size: 20px !important;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.portal-label img { width: 30px; height: 30px; border-radius: 50%; background: #000; box-shadow: 0 0 0 2px #fff, 0 4px 10px -4px rgba(20, 35, 19, 0.5); filter: none !important; }
+
+@media (max-width: 600px) {
+  .portal-showcase .section-kicker.portal-label { font-size: 18px !important; }
+  .portal-label img { width: 28px; height: 28px; }
+}
