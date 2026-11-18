@@ -13,8 +13,10 @@ https://www.duncansdogco.com/* https://duncansdogco.com/:splat 301!
 /puppies.html /puppies/ 301
 /sleepover /sleepovers/ 301
 /sleepover.html /sleepovers/ 301
-/faqs /faq/ 301
-/faqs.html /faq/ 301
+/faq /contact/#questions 301
+/faq/ /contact/#questions 301
+/faqs /contact/#questions 301
+/faqs.html /contact/#questions 301
 /pricing.html /pricing/ 301
 /contact.html /contact/ 301
 /startup-support.html /startup-support/ 301

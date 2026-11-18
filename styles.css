@@ -10222,3 +10222,8 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
 .dv-copy { display: block !important; grid-area: 1 / 1; visibility: hidden; opacity: 0; }
 .dv-copy.is-on { visibility: visible; opacity: 1; }
 .dv-copy h2 { font-size: clamp(30px, 3.9vw, 50px) !important; }
+
+/* Contact page now holds the FAQs too (18 Nov 2026, Dihan via Jess: Enquire, Contact and FAQ on one page, shorter menu) */
+.contact-faq-jump { margin-top: 14px; }
+.contact-faq-jump a { color: var(--forest); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.page-contact .faq-page-intro { scroll-margin-top: 110px; }
