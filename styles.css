@@ -10216,3 +10216,9 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
   .portal-showcase .section-kicker.portal-label { font-size: 18px !important; }
   .portal-label img { width: 28px; height: 28px; }
 }
+
+/* The words beside the phone keep one height (the longest screen's), so nothing below jumps as the screens change */
+.dv-copies { display: grid; min-height: 0 !important; }
+.dv-copy { display: block !important; grid-area: 1 / 1; visibility: hidden; opacity: 0; }
+.dv-copy.is-on { visibility: visible; opacity: 1; }
+.dv-copy h2 { font-size: clamp(30px, 3.9vw, 50px) !important; }

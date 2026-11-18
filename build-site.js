@@ -80,7 +80,7 @@ const servicePages = [
       stats: []
     },
     sections: [
-      ["No pressure, no rush", "Rescue dogs can need slower introductions, quieter handling and time to build trust. We shape the plan around the individual dog."],
+      ["We take things slowly", "Rescue dogs can need slower introductions, quieter handling and time to build trust. We shape the plan around the individual dog."],
       ["Calm socialisation", "When social contact is right, we introduce suitable dogs carefully and watch body language closely."],
       ["A known routine", "Consistent handlers, familiar routes and repeat attendance can help rescue dogs settle into daycare safely."]
     ],
@@ -129,7 +129,7 @@ const servicePages = [
     heroData: {
       eyebrow: "Puppy Daycare · Cobham, Surrey",
       displayTitle: "The best start<br><span>your puppy will ever get</span>",
-      text: "Socialisation, training, habituation and woodland adventure, woven into every single day.",
+      text: "Every day includes meeting other dogs, a little training, new sights and sounds, and plenty of time in the woods.",
       video: "/assets/puppies/hero.mp4",
       videoPoster: "/assets/puppies/hero.jpg",
       stats: []
@@ -236,7 +236,7 @@ const blogArticleContent = {
     ["Safer, calmer journeys", ["We use people carriers and plan routes carefully. Dogs are grouped thoughtfully so travel feels as settled as possible."]]
   ],
   "rescue-dog-daycare-gentle-introductions": [
-    ["No pressure, no rush", ["Rescue dogs often need time to understand new people, new dogs and new routines. Daycare should never be forced."]],
+    ["We take things slowly", ["Rescue dogs often need time to understand new people, new dogs and new routines. Daycare should never be forced."]],
     ["What we look for", ["We look at confidence, body language, recovery time, dog sociability and whether the woodland environment feels helpful or too much."]],
     ["A gentle route in", ["Some rescue dogs settle beautifully with calm introductions and familiar handlers. Others need a slower plan. The honest answer is always the kindest one."]]
   ],
@@ -926,7 +926,7 @@ function homeReviews(areaName = "") {
   const ordered = areaName ? [...testimonials].sort((a, b) => (b.dog.endsWith(areaName) ? 1 : 0) - (a.dog.endsWith(areaName) ? 1 : 0)) : testimonials;
   const cards = ordered.map((r) => `<blockquote class="review-tile reveal"><div class="ht-stars" aria-label="5 stars">${starSvg.repeat(5)}</div><p>${esc(r.quote)}</p><footer><span class="review-avatar" aria-hidden="true">${esc(r.initial)}</span><span><strong>${esc(r.name)}</strong><small>${esc(r.dog)}</small></span></footer></blockquote>`).join("");
   return `<section class="home-reviews${areaName ? " area-reviews" : ""}" aria-labelledby="reviews-title">
-    <div class="section-heading-row reveal"><div><p class="section-kicker">What owners say</p><h2 id="reviews-title">Five stars on Google, from the families who come every week</h2></div><div class="review-google"><div class="ht-google-badge"><div class="ht-g-dot" aria-hidden="true">G</div><div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div><span class="ht-badge-text">5.0 · Google Reviews</span></div><a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div></div>
+    <div class="section-heading-row reveal"><div><p class="section-kicker">What owners say</p><h2 id="reviews-title">What our families say about us on Google</h2></div><div class="review-google"><div class="ht-google-badge"><div class="ht-g-dot" aria-hidden="true">G</div><div class="ht-badge-stars" aria-hidden="true">${starSvg.repeat(5)}</div><span class="ht-badge-text">5.0 · Google Reviews</span></div><a class="ht-cta" href="https://g.page/r/CREp4sOxl7KREAE/review" target="_blank" rel="noopener">Read all reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a></div></div>
     <div class="review-tiles">${cards}</div>
   </section>`;
 }
@@ -1120,7 +1120,7 @@ function puppyBuiltSection() {
     <div class="puppy-built-header reveal">
       <p class="section-kicker">Built for where they are</p>
       <h2>Built into every day</h2>
-      <p>Not a course. Not a programme. Just consistent, expert care, woven into everything we do from day one.</p>
+      <p>Puppy School isn't a separate course. Eleanor and the team build it into your puppy's day from their very first visit.</p>
     </div>
     <div class="puppy-built-grid">
       ${items.map(([title, text], index) => `<article class="puppy-built-card reveal"><span aria-hidden="true">${["●", "◆", "✓", "↻", "□", "•"][index]}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("")}
@@ -1276,10 +1276,10 @@ function serviceBody(page) {
   if (page.slug === "rescue") {
     return `<section class="section live-content rescue-care-section">
       <div class="section-heading-row reveal">
-        <div><p class="section-kicker">Rescue dog daycare</p><h2>Trust first, daycare second</h2><div class="squiggle-line" aria-hidden="true"></div></div>
+        <div><p class="section-kicker">Rescue dog daycare</p><h2>We let rescue dogs settle in at their own pace</h2><div class="squiggle-line" aria-hidden="true"></div></div>
         <p>Rescue dogs often need time, consistency and careful reading. We start gently, keep expectations realistic and build confidence at the dog's pace.</p>
       </div>
-      ${richFeatureGrid([["No pressure, no rush", "Some rescue dogs need slower introductions, quieter handling and time to build trust before joining a routine."], ["Calm socialisation", "When social contact is right, we introduce suitable dogs carefully and watch body language closely."], ["Familiar routine", "The same Cobham facility, familiar handlers and repeat attendance can help dogs settle safely."], ["One connected team", "Our staff stay connected from collection through to home time, so dogs are not passed between unknown people."], ["Woodland confidence", "The natural setting gives dogs space to sniff, decompress and build confidence without a busy indoor environment."], ["Individual fit", "Daycare is not forced. We talk through your dog's background, confidence and needs before planning the right first step."]])}
+      ${richFeatureGrid([["We take things slowly", "Some rescue dogs need slower introductions, quieter handling and time to build trust before joining a routine."], ["Calm socialisation", "When social contact is right, we introduce suitable dogs carefully and watch body language closely."], ["Familiar routine", "The same Cobham facility, familiar handlers and repeat attendance can help dogs settle safely."], ["One connected team", "Our staff stay connected from collection through to home time, so dogs are not passed between unknown people."], ["Woodland confidence", "The natural setting gives dogs space to sniff, decompress and build confidence without a busy indoor environment."], ["Individual fit", "Daycare is not forced. We talk through your dog's background, confidence and needs before planning the right first step."]])}
     </section>
     ${authenticPhotoRibbon({ photos: ["rescue-1", "rescue-2", "rescue-3", "rescue-4"] })}
     ${faqSection({ kicker: "FAQs", title: `Questions about rescue dogs`, faqs: page.faqs })}
@@ -1317,7 +1317,7 @@ function serviceBody(page) {
       </div>
     </section>
     <section class="day-strip">
-      <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>What a daycare day actually looks like</h2></div><p>Open seven days a week. This is the shape of it.</p></div>
+      <div class="section-heading-row reveal"><div><p class="section-kicker">A day at Duncan's</p><h2>A day at daycare with us</h2></div><p>We're open seven days a week. Here's how a usual day goes.</p></div>
       <div class="day-moments">${day.map(([time, title, text, src, alt]) => `<article class="day-moment reveal"><img src="${src}" alt="${esc(alt)}" loading="lazy"><div><span class="day-time">${esc(time)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></div></article>`).join("")}</div>
     </section>
     ${portalShowcase({ start: "alerts", forDaycare: true })}
@@ -1334,7 +1334,7 @@ function serviceBody(page) {
       <div class="start-photo reveal"><img src="/assets/insta/start.jpg" alt="A Duncan's Dog Co. team member holding a cockapoo" loading="lazy"></div>
     </section>
     <section class="daycare-pricing-teaser">
-      <div><h2>Straightforward pricing</h2><p>£65 a day for one day a week, £60 a day for two, and £55 a day for three or more. Collection and drop-off are included. Weekends are £75, and we ask for a minimum of four days a month.</p></div>
+      <div><h2>Our daycare prices</h2><p>£65 a day for one day a week, £60 a day for two, and £55 a day for three or more. Collection and drop-off are included. Weekends are £75, and we ask for a minimum of four days a month.</p></div>
       <a class="button secondary dark" href="/pricing/">See full pricing</a>
     </section>
     ${faqSection({ kicker: "Questions", title: "Daycare questions", faqs: page.faqs })}
@@ -1343,7 +1343,7 @@ function serviceBody(page) {
 
   if (page.slug === "puppies") {
     const puppyFaqs = [["How old does my puppy need to be?", "We accept puppies from 12 weeks old, once they have finished their primary vaccinations and at least two weeks have passed since the last one, with your vet's OK to socialise with other dogs. <a href='/when-can-my-puppy-start-daycare/'>Work out your puppy's start date.</a>"], ["Is Puppy School different to regular daycare?", "It is daycare. Same collection and drop-off times, same woodland, same familiar team. The difference is structure: puppies have a gentler pace, more built-in rest, and introductions matched to where they are developmentally. They are not kept entirely separate from adult dogs. Calm, well-socialised adults play an important role: they model good manners and help puppies understand how to behave in a group. Think of them as the matriarchs of the pack. It is all closely supervised and completely safe."], ["Who leads the puppy programme?", "Eleanor is our puppy specialist. She holds dog behaviour qualifications and genuinely lives and breathes puppy development. She knows every pup's personality and has a rare ability to read early signals before they become problems. <a href='/about-us/#eleanor'>Meet Eleanor on our team page.</a>"], ["Do you offer door-to-door collection for Puppy School?", "Yes, collection and drop-off is included for Puppy School just as it is for regular daycare."], ["When does Puppy School transition to full daycare?", "There is no fixed age. It depends on your puppy's development, confidence and readiness."]];
-    return `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>Built for where they are</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Not a course. Not a programme. Just consistent, expert care woven into each puppy day from the start.</p></div>${photoRows([
+    return `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap">${liveIntro({ kicker: "About puppy school", title: "Puppy-focused and gently socialised", paragraphs: ["Puppy School at Duncan's Dog Co. is daycare. The same collection times, the same woodland, the same familiar team. What changes is the structure: more rest, gentler introductions, and a pace that matches each puppy's development rather than the group's energy.", "Puppies are not kept separate from adult dogs. Calm, well-socialised adults are a deliberate part of the day. They model good manners, demonstrate how to interact in a group, and help puppies feel settled. Eleanor, our puppy specialist, oversees the programme. She holds dog behaviour qualifications and knows every pup by name, temperament and tell.", "Everything we do is focused on building confidence, positive associations with new dogs and people, and the calm, happy temperament that makes for a great adult dog."], badge: "Accepting puppies from 12 weeks old", image: "/assets/insta/intro-puppy.jpg", alt: "Puppy exploring the woodland at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["puppy-1", "puppy-2", "puppy-3", "puppy-4"] })}<section class="section live-content puppy-care-section"><div class="section-heading-row reveal"><div><p class="section-kicker">Built into every day</p><h2>What your puppy learns with us</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Puppy School isn't a separate course. Eleanor and the team build it into your puppy's day from their very first visit.</p></div>${photoRows([
 ["Socialisation", "Positive, consensual interactions with puppies and suitable adult dogs, learning to read cues, play safely and build confidence with good role models.", "/assets/insta/puppy-row-1.jpg", "Two puppies together on the grass"],
 ["Training", "Reward-based methods, good manners, recall foundations and calm handling built naturally into the day.", "/assets/puppies/magic-fist.mp4", "A puppy learning to wait politely for a treat in Eleanor's closed hand", "Learning patience, which is harder than it looks."],
 ["Habituation", "Gradual exposure to new sights, sounds and experiences so puppies build confidence without overwhelm.", "/assets/puppies/tunnel.mp4", "A puppy coming out of a tunnel on a treasure hunt in the woods", "Finding out that new places are nothing to worry about."],
@@ -1354,7 +1354,7 @@ function serviceBody(page) {
   }
 
   if (page.slug === "sleepovers") {
-    return `${liveIntro({ kicker: "About sleepovers", title: "Not a kennel, our home", paragraphs: ["Dog sleepovers at Duncan's Dog Co. are exactly what they sound like. Your dog stays overnight in our home as part of the family, sleeping alongside the team.", "This matters because it means a familiar environment, familiar faces, and a familiar routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "/assets/insta/intro-sleep.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["sleep-1", "sleep-2", "sleep-3", "sleep-4"] })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Full days in daycare", "Every sleepover includes a full woodland day. Same exercise, same familiar team, same routines. Your dog arrives at bedtime genuinely tired and happy."], ["Calm nights at home", "When the day winds down, dogs settle in with the team at our home. Warm, comfortable and familiar. Never a kennel."], ["24-hour supervision", "Someone is always on hand through the night. The same care standards, around the clock."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${quickEnquiry({ service: "Sleepovers", photo: "/assets/insta/svc-sleepover.jpg", alt: "A dog relaxing at a Duncan's Dog Co. sleepover", kicker: "Planning a trip?", title: "Book your dog's sleepover", text: "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates." })}`;
+    return `${liveIntro({ kicker: "About sleepovers", title: "Your dog stays with us at home", paragraphs: ["When your dog has a sleepover, they stay the night in our home as part of the family, sleeping alongside the team.", "That means they're somewhere they know, with people they know, keeping to the same routine. If your dog already comes to us for daycare, a sleepover is a seamless extension of their normal day.", "We handle sleepovers for holidays, work trips, weekends away, or any time you need peace of mind that your dog is genuinely well cared for. Boarding licence LN/202400651."], badge: "Licensed overnight boarding · LN/202400651", image: "/assets/insta/intro-sleep.jpg", alt: "Dog sleepover at Duncan's Dog Co." })}${authenticPhotoRibbon({ photos: ["sleep-1", "sleep-2", "sleep-3", "sleep-4"] })}<section class="section live-content"><div class="section-heading-row reveal"><div><p class="section-kicker">What to expect</p><h2>Everything included</h2><div class="squiggle-line" aria-hidden="true"></div></div><p>Familiar care, full woodland days and calm overnight routines.</p></div>${richFeatureGrid([["Full days in daycare", "Every sleepover includes a full woodland day. Same exercise, same familiar team, same routines. Your dog arrives at bedtime genuinely tired and happy."], ["Calm nights at home", "When the day winds down, dogs settle in with the team at our home. Warm, comfortable and familiar. Never a kennel."], ["24-hour supervision", "Someone is always on hand through the night. The same care standards, around the clock."], ["Available 365 days", "Sleepovers are available every night of the year, including Christmas, New Year and bank holidays."], ["Regular updates", "We will keep you updated while you are away, because owners like to know their dog is happy."], ["Licensed and insured", "Boarding licence LN/202400651 is granted by Elmbridge Council. Fully insured and inspected."]])}</section>${quickEnquiry({ service: "Sleepovers", photo: "/assets/insta/svc-sleepover.jpg", alt: "A dog relaxing at a Duncan's Dog Co. sleepover", kicker: "Planning a trip?", title: "Book your dog's sleepover", text: "Sleepover spaces are limited, especially over holidays. Get in touch early to check availability for your dates." })}`;
   }
 
   return `<section class="section">${cards(page.sections)}</section>${authenticPhotoRibbon()}${faqSection({ kicker: "FAQs", title: `Questions about ${esc(page.nav.toLowerCase())}`, faqs: page.faqs })}<section class="contact-section"><div><p class="section-kicker">Next Step</p><h2>Book a trial day</h2><p>Tell us about your dog and we will advise availability, route options and the right introduction.</p></div><div class="contact-card"><a class="contact-link" href="tel:07731798899">07731 798 899</a><a class="contact-link" href="mailto:info@duncansdogco.com">info@duncansdogco.com</a><a class="button primary" href="/contact/#enquiry-form">Enquire now</a></div></section>`;
@@ -1411,12 +1411,12 @@ const NAV_ORDER = ["home", "pets", "billing", "chat"];
 const deviceTab = (key) => DEVICE_TABS.find((t) => t.key === key);
 
 const DEVICE_COPY = {
-  home: { title: "See your week, book another day", text: "The portal opens on your next seven days, with every booking and whether it is confirmed. Anything still waiting for us to answer sits at the top. Tap Daycare to ask for another day, and you get a notification on your phone the moment we approve it." },
-  chat: { title: "Talk to the team, and to your driver on the day", text: "Anything you need to tell us goes in one thread we can both see, instead of texts and WhatsApps to different phones. On the days your dog is booked in, the driver on your route is in that thread too." },
-  alerts: { title: "Know when they're collected, and when they're home", text: "When the driver collects your dog, your phone shows it with the driver's name, and again when your dog is home. You also hear when new photos go up, when we message you and when a booking is approved. Add the portal to your home screen and they come through like any other app." },
-  pets: { title: "See how their day went", text: "Photos from the woodland and a report card, saved on your dog's profile alongside their vaccination dates and care notes." },
-  billing: { title: "Invoices that pay themselves", text: "One Direct Debit through GoCardless, set up once. Your statement lists every invoice and payment with a running balance, like a bank statement, so you can see at a glance what is paid." },
-  profile: { title: "Your details, behind your name", text: "Tap your initials for your booking history, your contact details and emergency contacts, and which notifications you get. Change something and the team sees it the moment you save." }
+  home: { title: "Your dog's week with us", text: "When you open the portal, you'll see the days your dog is with us this week and whether each one is confirmed. If you'd like an extra day, tap Daycare and pick the date, and we'll let you know as soon as it's confirmed." },
+  chat: { title: "Send us a message any time", text: "Everything you send comes to one chat that the whole team can see, so there's no texting different phones. On the days we're collecting your dog, your driver joins the chat too, which is handy if you're running late or the gate code has changed." },
+  alerts: { title: "We'll let you know when they're collected and when they're home", text: "Your phone pings when your driver collects your dog and again when they're back home. We'll also let you know when new photos go up, when we've sent you a message and when we've confirmed a booking. Add the portal to your home screen and the notifications come through like any other app." },
+  pets: { title: "See what they got up to today", text: "We add photos from the woods during the day, and a report card telling you how they got on. Everything is saved on your dog's profile, along with their vaccination dates and care notes." },
+  billing: { title: "Monthly invoices, paid by Direct Debit", text: "You set up a Direct Debit with GoCardless once, and each invoice is paid from it automatically. Your statement shows every invoice and payment, a bit like a bank statement, so you can always see what's been paid." },
+  profile: { title: "Keep your details up to date", text: "Tap your initials to see your past bookings, update your contact details and emergency contacts, and choose which notifications you get. When you save a change, the team sees it straight away." }
 };
 
 const sunIcon = `<svg class="dv-sun" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
@@ -1711,8 +1711,8 @@ function portalPage() {
     <section class="portal-driver">
       <div class="portal-driver-photo reveal"><img src="/assets/team/laura-driver.jpg" alt="Laura, one of the Duncan's Dog Co. drivers, in the woodland with a spaniel" loading="lazy"><span>Laura, one of our drivers</span></div>
       <div class="portal-driver-copy reveal">
-        <h2>Your driver, one message away</h2>
-        <p>Our own daycare staff do the driving. On the morning of a booked day, the driver on your route joins your thread in the portal alongside the team. Running late, a new gate code, a dog at the neighbour's, a bag of food to bring in. Type it once and the driver sees it on the run, and the office sees it too.</p>
+        <h2>Message your driver on the day</h2>
+        <p>Our own daycare staff do the driving. On the morning of a booked day, the driver on your route joins your thread in the portal alongside the team. If you're running late, the gate code has changed or there's a bag of food to bring in, just write it in the chat. Your driver sees it on their route, and the office sees it too.</p>
         <p>Drivers only hear from the families on that day's route, and your conversation with the team carries on in the same thread as normal.</p>
       </div>
     </section>
@@ -1793,10 +1793,10 @@ function splashPageBody() {
     <div class="splash-benefits-inner section">
       <div class="splash-benefits-heading reveal">
         <p class="section-kicker">Why swimming?</p>
-        <h2>Good for body and mind</h2>
-        <p>Swimming offers something a walk cannot. Low-impact, full-body, genuinely joyful. Here is what your dog gets from a regular dip.</p>
+        <h2>Why swimming is good for your dog</h2>
+        <p>Swimming offers something a walk cannot. It's gentle on their joints, works their whole body, and most dogs love it. Here is what your dog gets from a regular dip.</p>
       </div>
-      <dl class="plain-features on-dark"><div class="reveal"><dt>Joint-friendly exercise</dt><dd>Zero impact on joints. Ideal for dogs with arthritis, post-surgery recovery, or any breed prone to joint problems.</dd></div><div class="reveal"><dt>Full body workout</dt><dd>Every stroke uses more muscles than a land walk. Strong core, strong legs, genuinely tired dog.</dd></div><div class="reveal"><dt>Confidence in water</dt><dd>A positive first experience builds calm around water for life. Especially valuable for nervous or cautious dogs.</dd></div><div class="reveal"><dt>Mental enrichment</dt><dd>New sensations, new environment, new challenge. Swimming tires a busy brain as much as the body.</dd></div><div class="reveal"><dt>Great for senior dogs</dt><dd>Older dogs who struggle on walks often thrive in the water. Supported movement they can actually enjoy.</dd></div><div class="reveal"><dt>Pure fun</dt><dd>Some dogs are simply born for the water. SPLASH gives them somewhere to be exactly that.</dd></div></dl>
+      <dl class="plain-features on-dark"><div class="reveal"><dt>Joint-friendly exercise</dt><dd>Zero impact on joints. Ideal for dogs with arthritis, post-surgery recovery, or any breed prone to joint problems.</dd></div><div class="reveal"><dt>Full body workout</dt><dd>Every stroke uses more muscles than a land walk. It builds strength in their core and legs, and they come out properly tired.</dd></div><div class="reveal"><dt>Confidence in water</dt><dd>A positive first experience builds calm around water for life. Especially valuable for nervous or cautious dogs.</dd></div><div class="reveal"><dt>Mental enrichment</dt><dd>New sensations, new environment, new challenge. Swimming tires a busy brain as much as the body.</dd></div><div class="reveal"><dt>Great for senior dogs</dt><dd>Older dogs who struggle on walks often thrive in the water. Supported movement they can actually enjoy.</dd></div><div class="reveal"><dt>Pure fun</dt><dd>Some dogs just love the water, and SPLASH gives them a safe place to enjoy it.</dd></div></dl>
     </div>
   
   </section>
@@ -1808,7 +1808,7 @@ function splashPageBody() {
         <div class="squiggle-line" aria-hidden="true"></div>
         <p class="splash-exclusive-note">Exclusive to regular daycare dogs.</p>
         <ul class="splash-taster-list">
-          <li class="reveal"><strong>1-to-1 swimming</strong><span>Your dog has the full attention of the SPLASH team throughout. No distractions, no group pressure.</span></li>
+          <li class="reveal"><strong>1-to-1 swimming</strong><span>Your dog has the full attention of the SPLASH team throughout. It's one to one, so there are no other dogs to distract them.</span></li>
           <li class="reveal"><strong>Full assessment</strong><span>We observe confidence, ability and genuine enjoyment. If SPLASH is not right for your dog, we will say so honestly.</span></li>
           <li class="reveal"><strong>First Swim Session Report</strong><span>A written summary of your dog's session, their confidence in the water and our recommendations.</span></li>
           <li class="reveal"><strong>Photos and videos</strong><span>We capture your dog's first swim so you can see exactly how they got on.</span></li>
@@ -2428,8 +2428,8 @@ function aboutUs() {
     kicker: "About Duncan's Dog Co.",
     title: "Built from a love of dogs and the outdoors.",
     paragraphs: [
-      "Duncan's Dog Co. was founded in 2011 by Duncan and Jess. The DDC journey began simply, walking the dogs of South West London and spending their days on Wimbledon Common fulfilling their outdoorsy dream.",
-      "After some time, it became apparent that there were very few facilities in the UK offering genuine quality care within a secure, enriching environment. That gap inspired them to set out on a mission to develop a daycare environment like no other.",
+      "Duncan's Dog Co. was founded in 2011 by Duncan and Jess. They started out walking dogs in South West London and spending their days on Wimbledon Common.",
+      "After some time, it became apparent that there were very few facilities in the UK offering genuine quality care within a secure, enriching environment. So they set out to build one themselves.",
       "Over the years, their children Harley and Ayda have been part of the journey too, helping to care for the dogs at every opportunity and creating a truly special bond between their family and the dogs who are part of DDC.",
       "What they have achieved could not have been done without their dedicated team of staff. Read below to meet the integral members of the DDC family."
     ],
