@@ -10007,3 +10007,34 @@ html body .catchment-section.catchment-signs::before { content: ""; display: blo
   box-shadow: none !important;
   transition-duration: 0.12s !important;
 }
+
+/* ══ "The same team" section, 18 Nov 2026 (Jess picked C, "just words"): the two
+   buttons become underlined words with arrows. On hover the word lifts with a
+   small spring and the arrow steps forward. ══ */
+.split-actions.word-links { align-items: baseline; gap: 14px 34px; margin-top: 30px; }
+
+.word-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--forest);
+  font-size: 21px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 7px;
+  transition: transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1), text-decoration-thickness 0.2s ease;
+}
+
+.word-link span {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.5s cubic-bezier(0.34, 1.8, 0.64, 1);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .word-link:hover { transform: translateY(-2px); text-decoration-thickness: 3px; }
+  .word-link:hover span { transform: translateX(5px); }
+}
+
+.word-link:active { transform: translateY(1px); transition-duration: 0.12s; }
